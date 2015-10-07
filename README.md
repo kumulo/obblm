@@ -1,4 +1,10 @@
-obblm
+Open Blood Bowl League Manager
 =====
 
-A Symfony project created on September 22, 2015, 2:26 pm.
+This project uses [Composer], [Node.js] modules [Bower] & [Grunt] and overall [Symfony].
+
+[Composer]: <http://Composer.org>
+[Node.js]: <https://nodejs.org>
+[Bower]: <http://bower.io>
+[Grunt]: <http://gruntjs.com>
+[Symfony]: <http://symfony.com>
