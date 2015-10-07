@@ -1,0 +1,15 @@
+bblm_manager:
+    resource: "@BbLigueBundle/Resources/config/routing.yml"
+#    prefix:   /manager
+
+old_bblm_manager:
+    type: annotation
+    resource: "@BbLegacyManagerBundle/Controller/LegacyController.php"
+    prefix:   /old
+    
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

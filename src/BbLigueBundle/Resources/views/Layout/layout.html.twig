@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="{{ path("homepage") }}">{{ 'layout.nav_menu.dashboard'|trans|raw }}</a></li>
+                    <li><a href="#">{{ 'layout.nav_menu.my_contest'|trans|raw }}</a></li>
+                    <li><a href="{{ path("ligue_homepage") }}">{{ 'layout.nav_menu.tournaments'|trans|raw }}</a></li>
+                    <li><a href="{{ path("coach_space") }}">{{ 'layout.nav_menu.coach_space'|trans|raw }}</a></li>
+                </ul>
+            </nav>
+            <h1>{{ 'layout.manager_title'|trans|raw }}</h1>
+        </header>
+        {% block body %}{% endblock %}
+        <footer></footer>
+        {% block javascripts %}{% endblock %}
+        <script async type="text/javascript" src="{{ asset('vendor/jquery/jquery.js') }}"></script>
+        <script async type="text/javascript" src="{{ asset('vendor/nanobar/nanobar.js') }}"></script>
+        <script async type="text/javascript" src="{{ asset('vendor/jquery/jquery.js') }}"></script>
+    </body>
+</html>

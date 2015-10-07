@@ -1,0 +1,33 @@
+bb_ligue:
+    rosters:
+        halfings:
+            players:
+                halfing:
+                    min: 0
+                    max: 16
+                    move: 5
+                    force: 2
+                    agility: 3
+                    armor: 6
+                    cost: 30000
+                    skills: ['minus', 'dodge', 'tiny_weight']
+                    available_skills: ['agility']
+                    available_skills_on_double: ['general', 'force', 'pass']
+                treeman:
+                    min: 0
+                    max: 2
+                    move: 2
+                    force: 6
+                    agility: 1
+                    armor: 10
+                    cost: 120000
+                    skills: ['mighty_blow', 'strong', 'thick_skull', 'throw_team_mate', 'take_root', 'stability']
+                    available_skills: ['force']
+                    available_skills_on_double: ['general', 'agility', 'pass']
+            options:
+                reroll_cost: 60000
+                available_champions: []
+                can_have_alchemist: true
+                can_have_sorcerer: true
+                can_have_igor: false
+                can_have_halfing_kitchener: false

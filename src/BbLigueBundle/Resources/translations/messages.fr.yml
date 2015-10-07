@@ -1,0 +1,16 @@
+# Layout
+layout:
+  manager_title: Gestionnaire de ligue
+  prev: Précédent
+  next: Suivant
+  bt_add: Ajouter
+  bt_update: Modifier
+  bt_delete: Supprimer
+  bt_show_more: En savoir plus
+  bt_gallery: Galerie Photo
+  close: Fermer
+  nav_menu:
+    dashboard: Mon tableau de bord
+    my_contest: Mes matchs
+    tournaments: Ligues et tournois
+    coach_space: Espace coach

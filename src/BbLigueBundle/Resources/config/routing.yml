@@ -1,0 +1,23 @@
+bbl_manager_api_v1:
+    resource: "@BbLigueBundle/Controller/ApiV1Controller.php"
+    type:     annotation
+    prefix:   /api/v1
+
+bbl_manager_admin:
+    resource: "@BbLigueBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin
+
+bbl_manager_ligue:
+    resource: "@BbLigueBundle/Controller/LigueController.php"
+    type:     annotation
+    prefix:   /ligue
+
+bbl_manager_coach_space:
+    resource: "@BbLigueBundle/Controller/CoachController.php"
+    type:     annotation
+    prefix:   /coach
+
+bbl_manager_app:
+    resource: "@BbLigueBundle/Controller/DefaultController.php"
+    type:     annotation
