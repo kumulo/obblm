@@ -10,6 +10,7 @@
 namespace BbLigueBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /** @ORM\MappedSuperclass */
 class Team
@@ -23,11 +24,13 @@ class Team
 
     /**
      * @ORM\ManyToOne(targetEntity="BbLigueBundle\Entity\Coach", inversedBy="teams", cascade={"persist"})
+     * @Assert\NotBlank()
      */
     protected $coach;
 
     /**
      * @ORM\ManyToOne(targetEntity="BbLigueBundle\Entity\Ligue", inversedBy="teams", cascade={"persist"})
+     * @Assert\NotBlank()
      */
     protected $ligue;
 
@@ -39,20 +42,28 @@ class Team
 
     /**
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
      */
     protected $name;
 
     /**
      * @ORM\Column(name="created_at", type="datetime")
+     * @Assert\NotBlank()
+     * @Assert\Date()
      */
     protected $created_at;
 
     /**
      * @ORM\Column(name="updated_at", type="datetime")
+     * @Assert\NotBlank()
+     * @Assert\Date()
      */
     protected $updated_at;
     
-    public function __construct() {}
+    public function __construct() {
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
+    }
     /**
      * Get id
      *
@@ -71,6 +82,46 @@ class Team
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * Get ligue
+     *
+     * @return Entity\Ligue
+     */
+    public function getLigue()
+    {
+        return $this->ligue;
+    }
+
+    /**
+     * Set ligue
+     *
+     * @param Entity\Ligue
+     */
+    public function setLigue($ligue)
+    {
+        $this->ligue = $ligue;
+    }
+
+    /**
+     * Get coach
+     *
+     * @return Entity\Coach
+     */
+    public function getCoach()
+    {
+        return $this->coach;
+    }
+
+    /**
+     * Set coach
+     *
+     * @param Entity\Coach
+     */
+    public function setCoach($coach)
+    {
+        $this->coach = $coach;
     }
 
     /**

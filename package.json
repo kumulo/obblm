@@ -15,7 +15,7 @@
     "grunt-contrib-cssmin": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-contrib-copy": "^0.6.0",
-    "grunt-typescript": "^0.3.8"
+    "grunt-google-fonts": "^0.2.1"
   },
   "devDependencies": {
     "grunt-contrib-less": "^1.0.1"

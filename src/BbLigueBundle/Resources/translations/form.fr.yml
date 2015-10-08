@@ -1,0 +1,7 @@
+entity:
+  team:
+    add:
+      submit: Créer mon équipe
+    label:
+      name: Nom de l'équipe
+      ligue: Ligue participée

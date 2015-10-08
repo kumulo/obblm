@@ -8,6 +8,7 @@
 namespace BbLigueBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /** @ORM\MappedSuperclass */
 class Ligue
@@ -25,10 +26,55 @@ class Ligue
      */
     protected $teams;
 
+    /**
+     * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    protected $name;
+
     public function __construct()
     {
         parent::__construct();
         // your own logic
+    }
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Get name
+     *
+     * @return varchar
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
     
 }

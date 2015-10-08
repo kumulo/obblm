@@ -5,6 +5,13 @@
         <div id="container">
             <div id="welcome">
                 <h1><span>Mes Teams</span> Hoooooo yeah</h1>
+                {% for team in coach.teams %}
+                    <p>{{ team.name }}</p>
+                {% endfor %}
+                <h1><span>Mes ligues</span></h1>
+                {% for ligue in coach.getInvolvedLigues() %}
+                    {% if ligue %}<p>{{ ligue.name }}</p>{% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
