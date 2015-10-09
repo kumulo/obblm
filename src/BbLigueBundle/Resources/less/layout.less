@@ -1,7 +1,283 @@
-@white: #fff;
+@import "vars.less";
 
 body {
-    background: @white;
+    background: @body-bg;
     font-family: "Lato", sans-serif;
     font-weight: 300;
+    font-size: 10px;
+    color: @font-color;
+    strong, b {font-weight: 700;}
+    em, i {font-style: italic;}
+    sup {vertical-align: top; font-size: 60%;}
+    a {color: @font-color;}
+    a:hover {text-decoration: none;}
+    .marge_auto {margin-left: auto; margin-right: auto;}
+    .ui-tabs-hide {display: none;}
+    .imgBt {display: block; background-position: top left; background-repeat: no-repeat; background-color: transparent; border: none; outline: 0 none; padding: 0; margin: 0; cursor: pointer;}
+    a.imgBt:hover,
+    input.imgBt:hover {background-position: bottom left;}
+    .imgBt span {display: none;}
+
+    a, input, .with-transition {
+      -webkit-transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
+      -moz-transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
+      -o-transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
+      transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
+    }
+}
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    z-index: 3;
+    border-bottom: 2px solid @header-border-color;
+    background: @header-bg;
+    .ligue-icon {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        background: @ligue-icon-bg;
+        svg {
+            fill: @white;
+            display: block;
+            max-width: 70%;
+            max-height: 70%;
+            width: auto;
+            height: auto;
+            margin: 15% auto;
+            path {
+                fill: @white;
+            }
+        }
+    }
+    .site-title {
+        padding-left: 120px;
+        line-height: 100px;
+        font-size: 360%;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: "Dosis", sans-serif;
+    }
+    #navigation {
+        z-index: 2;
+        position: fixed;
+        top: 100px;
+        left: 0;
+        bottom: 0;
+        width: 100px;
+        background: @nav-bg;
+        > ul {
+            > li {
+                border-bottom: 2px solid @nav-item-border-color;
+                > a {
+                    display: block;
+                    color: @nav-link-color;
+                    text-align: center;
+                    padding-top: 10px;
+                    height: 90px;
+                    text-decoration: none;
+                    font-size: 120%;
+                    text-transform: uppercase;
+                    line-height: 1.2em;
+                    > .icon {
+                        width: auto;
+                        height: auto;
+                        max-height: 42px;
+                        display: block;
+                        margin: 0 auto 10px;
+                        fill: @nav-icon-color;
+                        path {
+                            fill: @nav-icon-color;
+                        }
+                    }
+                }
+                > a:hover,
+                > a.active {
+                    color: @nav-link-color-hover;
+                    background: @nav-link-bg-hover;
+                    > .icon {
+                        width: auto;
+                        height: auto;
+                        max-height: 42px;
+                        display: block;
+                        margin: 0 auto 10px;
+                        fill: @nav-link-color-hover;
+                        path {
+                            fill: @nav-link-color-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#content {
+    margin: 100px 0 0 100px;
+    .content {
+    }
+    .padding-me {
+        padding: 20px;
+    }
+    .normal-content {
+        .section-title {
+            font-size: 240%;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: "Dosis", sans-serif;
+            margin-bottom: 20px;
+        }
+    }
+    /*
+     * TEAM LIST
+     */
+    .teams {
+        > .team {
+            position: relative;
+            .separator();
+            .wrapper {
+                padding-left: 180px;
+                min-height: 150px;
+            }
+            .team-header {
+                margin-bottom: 5px;
+                .team-name {
+                    font-size: 240%;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    font-family: "Dosis", sans-serif;
+                    color: @team-name-color;
+                }
+                .team-metas {
+                    > .race {
+                        display: inline-block;
+                        font-size: 200%;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        color: @team-race-color;
+                    }
+                    > .ligue {
+                        display: inline-block;
+                        margin-left: 10px;
+                        > .name {
+                            font-size: 200%;
+                            color: @team-ligue-color;
+                        }
+                        > .format {
+                            font-size: 140%;
+                            font-style: italic;
+                            color: @team-ligue-format;
+                        }
+                    }
+                }
+            }
+            .team-actions {
+                position: absolute;
+                right: 0;
+            }
+            .team-logo {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 160px;
+                height: 150px;
+                background: @mid-green;
+            }
+            .stats-container {
+                border-spacing : 0;
+                border-collapse : collapse;
+                width: 100%;
+                display: table;
+                .block-main-stats {
+                    width: 350px;
+                }
+                .stats-table {
+                    height: 100%;
+                }
+            }
+            .stats-table {
+                background: @stats-tab-bg;
+                border-spacing : 0;
+                border-collapse : collapse;
+                width: 100%;
+                display: table;
+                tbody {width: 100%; display: table;}
+                .label {
+                    font-size: 160%;
+                    text-transform: uppercase;
+                    display: block;
+                }
+                .value {
+                    font-size: 160%;
+                    text-transform: uppercase;
+                    display: block;
+                }
+                > tbody > tr,
+                > tr {
+                    > td,
+                    > th {
+                        border-spacing : 0;
+                        border-collapse : collapse;
+                        border: 1px solid @stats-tab-border;
+                        text-align: center;
+                        padding: 20px 5px;
+                        > .value {
+                            font-size: 360%;
+                            font-weight: 700;
+                        }
+                    }
+                }
+                .positive {
+                    color: @positive-color;
+                }
+                .nul {
+                    color: @nul-color;
+                }
+                .negative {
+                    color: @negative-color;
+                }
+            }
+            .stats-table-like {
+                > .value {
+                    font-size: 360%;
+                    font-weight: 700;
+                }
+            }
+            .lines-table {
+                > tbody > tr,
+                > tr {
+                    > td,
+                    > th {
+                        > .label {
+                            float: left;
+                            margin-left: 10px;
+                            line-height: 24px;
+                        }
+                        > .value {
+                            float: right;
+                            line-height: 24px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+            .main-stats {
+                width: 330px;
+                > tbody {
+                    > tr {
+                        > td {
+                            padding: 25px 5px;
+                        }
+                    }
+                }
+            }
+        }
+        > .team:first-child {
+            border-top: 0 none;
+        }
+    }
 }

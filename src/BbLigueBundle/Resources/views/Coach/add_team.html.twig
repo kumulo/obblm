@@ -1,28 +1,24 @@
 {% extends 'BbLigueBundle:Layout:layout.html.twig' %}
 {% trans_default_domain "form" %}
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1><span>Ajout de team</span> Hoooooo yeah</h1>
+    <section id="espace-coach" class="content normal-content has-form add-team">
+        <h1><span>Ajout de team</span> Hoooooo yeah</h1>
 
-                {{ form_start(form) }}
-                    {{form_errors(form)}}
-                    <table>
-                        <tr>
-                            <td>{{form_label(form.name, 'entity.team.label.name')}}</td>
-                            <td>{{form_widget(form.name)}}</td>
-                        </tr>
-                        <tr>
-                            <td>{{form_label(form.ligue, 'entity.team.label.ligue')}}</td>
-                            <td>{{form_widget(form.ligue)}}</td>
-                        </tr>
-                    </table>
-                    <div>
-                        <input type="submit" value="{{ 'entity.team.add.submit'|trans }}" />
-                    </div>
-                </form>
+        {{ form_start(form) }}
+            {{form_errors(form)}}
+            <table>
+                <tr>
+                    <td>{{form_label(form.name, 'entity.team.label.name')}}</td>
+                    <td>{{form_widget(form.name)}}</td>
+                </tr>
+                <tr>
+                    <td>{{form_label(form.ligue, 'entity.team.label.ligue')}}</td>
+                    <td>{{form_widget(form.ligue)}}</td>
+                </tr>
+            </table>
+            <div>
+                {{form_widget(form.save, {'label': 'entity.team.add.submit'})}}
             </div>
-        </div>
-    </div>
+        {{ form_end(form) }}
+    </section>
 {% endblock %}

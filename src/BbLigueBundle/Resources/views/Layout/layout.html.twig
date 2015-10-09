@@ -1,27 +1,41 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('built/app.min.css') }}" />
-    </head>
+{% extends 'BbLigueBundle:Layout:base.html.twig' %}
+
+{% block struct %}
     <body>
-        <header>
-            <h1>{{ 'layout.manager_title'|trans|raw }}</h1>
+        <header id="header">
+            <span class="ligue-icon">
+               {{ include('BbLigueBundle:Layout:Icons/logo-ligue.html.twig') }}
+            </span>
+            <h1 class="site-title">{{ 'layout.manager_title'|trans|raw }}</h1>
             <nav id="navigation" class="clearfix">
                 <ul>
-                    <li><a href="{{ path("homepage") }}">{{ 'layout.nav_menu.dashboard'|trans|raw }}</a></li>
-                    <li><a href="#">{{ 'layout.nav_menu.my_contest'|trans|raw }}</a></li>
-                    <li><a href="{{ path("ligue_homepage") }}">{{ 'layout.nav_menu.tournaments'|trans|raw }}</a></li>
-                    <li><a href="{{ path("coach_space") }}">{{ 'layout.nav_menu.coach_space'|trans|raw }}</a></li>
+                    <li>
+                        <a class="{% if app.request.attributes.get('_route') == 'homepage' %}active{% endif %}" href="{{ path("homepage") }}">
+                            {{ include('BbLigueBundle:Layout:Icons/stats.html.twig') }}
+                            {{ 'layout.nav_menu.dashboard'|trans|raw }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            {{ include('BbLigueBundle:Layout:Icons/matchs.html.twig') }}
+                            {{ 'layout.nav_menu.my_contest'|trans|raw }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{% if app.request.attributes.get('_route') starts with 'ligue' %}active{% endif %}" href="{{ path("ligue_homepage") }}">
+                            {{ include('BbLigueBundle:Layout:Icons/calendar.html.twig') }}
+                            {{ 'layout.nav_menu.tournaments'|trans|raw }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{% if app.request.attributes.get('_route') starts with 'coach' %}active{% endif %}" href="{{ path("coach_space") }}">
+                            {{ include('BbLigueBundle:Layout:Icons/coach.html.twig') }}
+                            {{ 'layout.nav_menu.coach_space'|trans|raw }}
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </header>
         <div id="content" class="clearfix">{% block body %}{% endblock %}</section>
         <footer></footer>
-        {% block javascripts %}{% endblock %}
-        <script async type="text/javascript" src="{{ asset('built/app.min.js') }}"></script>
-    </body>
-</html>
+{% endblock %}

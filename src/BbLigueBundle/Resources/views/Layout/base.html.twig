@@ -5,9 +5,11 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('built/app.min.css') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block struct %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <script async type="text/javascript" src="{{ asset('built/app.min.js') }}"></script>
     </body>
 </html>

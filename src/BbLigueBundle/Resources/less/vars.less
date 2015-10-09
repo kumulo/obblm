@@ -1,0 +1,73 @@
+/* COLORS */
+@white: #fff;
+@black: #000;
+@dark-grey: #2d2d2d;
+@dark-mid-grey: #686767;
+@mid-grey: #d5d5d5;
+@light-grey: #f6f6f6;
+
+@mid-green: #049d4a;
+@light-green: #8dd321;
+
+@positive-color: #049d4a;
+@nul-color: #f0a70b;
+@negative-color: #c70c0c;
+
+/* GENERIC */
+@body-bg: @white;
+@font-color: @dark-grey;
+/* HEADER */
+@header-bg: @white;
+@header-border-color: @mid-grey;
+@ligue-icon-bg: @mid-green;
+@ligue-icon-color: @white;
+@separator-border-color: @mid-grey;
+/* NAVIGATION */
+@nav-bg: @dark-grey;
+@nav-item-border-color: @dark-mid-grey;
+
+@nav-link-color: @white;
+@nav-icon-color: @light-green;
+
+@nav-link-color-hover: @dark-grey;
+@nav-icon-color-hover: @dark-grey;
+@nav-link-bg-hover: @white;
+/* TEAM */
+@team-name-color: @dark-grey;
+@team-race-color: @dark-grey;
+@team-ligue-color: @dark-grey;
+@team-ligue-format: @mid-green;
+/* STATS TABS */
+@stats-tab-border: @mid-grey;
+@stats-tab-bg: @light-grey;
+
+.gradient-background (@bottom: #0093CD, @top: #009DD1) {
+    background-image: linear-gradient(bottom, @bottom 0%, @top 100%);
+    background-image: -o-linear-gradient(bottom, @bottom 0%, @top 100%);
+    background-image: -moz-linear-gradient(bottom, @bottom 0%, @top 100%);
+    background-image: -webkit-linear-gradient(bottom, @bottom 0%, @top 100%);
+    background-image: -ms-linear-gradient(bottom, @bottom 0%, @top 100%);
+
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, @bottom),
+      color-stop(1, @top)
+    );
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@top', endColorstr='@bottom',GradientType=0 ); /* IE6-9 */
+}
+.border-radius (@size: 3px) {
+  -webkit-border-radius: @size;
+  -moz-border-radius: @size;
+  border-radius: @size;
+}
+.box-sizing (@size: border-box) {
+  -webkit-box-sizing: @size;
+  -moz-box-sizing: @size;
+  box-sizing: @size;
+}
+.separator () {
+    border-top: 2px solid @separator-border-color;
+}

@@ -1,47 +1,149 @@
 {% extends 'BbLigueBundle:Layout:layout.html.twig' %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1><span>Mes Teams</span> Hoooooo yeah</h1>
-                {% for team in coach.teams %}
-                    <p>{{ team.name }}</p>
-                {% endfor %}
-                <h1><span>Mes ligues</span></h1>
-                {% for ligue in coach.getInvolvedLigues() %}
-                    {% if ligue %}<p>{{ ligue.name }}</p>{% endif %}
-                {% endfor %}
-            </div>
+    <section id="espace-coach" class="content normal-content clearfix">
+        <header class="section-header clearfix padding-me">
+            <h1 class="section-title">{{ 'layout.coach_space.index.my_teams'|trans }}</h1>
+            <ul class="section-actions">
+                <li><a class="button button-basic" href="{{ path("team_add") }}">{{ 'layout.coach_space.index.team_add'|trans }}</a></li>
+            </ul>
+        </header>
+        <div class="teams clearfix">
+            {% for team in coach.teams %}
+                <article class="team clearfix padding-me">
+                    <div class="wrapper relative clearfix">
+                        <header class="team-header clearfix">
+                            <div class="team-logo">Le Logo</div>
+                            <h3 class="team-name">{{ team.name }}</h3>
+                            <div class="team-metas clearfix">
+                                <span class="race">Race de l'équipe</span>
+                                <span class="ligue"><span class="name">{{ team.ligue.name }}</span> <span class="format">(Format)</span></span>
+                            </div>
+                        </header>
+                        <footer class="team-footer clearfix">
+                            <ul class="team-actions">
+                                <li><a class="button button-ok" href="{{ path("team_edit", {team_id: team.id}) }}">{{ 'layout.coach_space.index.team_edit'|trans }}</a></li>
+                                <li><a class="button button-not" href="#">{{ 'layout.coach_space.index.team_delete'|trans }}</a></li>
+                            </ul>
+                        </footer>
+                        <div>
+                            <table class="stats-container clearfix">
+                                <tr>
+                                    <td class="block-main-stats">
+                                        <table class="stats-table main-stats clearfix">
+                                            <tr>
+                                                <td>
+                                                    <span class="label">TR</span>
+                                                    <span class="value">108</span>
+                                                </td>
+                                                <td>
+                                                    <span class="label">Trésorerie</span>
+                                                    <span class="value">400 kPO</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table class="stats-table clearfix">
+                                            <tr>
+                                                <td>
+                                                    <table class="clearfix details-table">
+                                                        <tr>
+                                                            <td class="stats-table-like">
+                                                                <span class="label">Points</span>
+                                                                <span class="value">5</span>
+                                                            </td>
+                                                            <td>
+                                                                <table class="clearfix lines-table">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <span class="label">Victoires</span>
+                                                                            <span class="value positive">5</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <span class="label">Nuls</span>
+                                                                            <span class="value nul">5</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <span class="label">Défaites</span>
+                                                                            <span class="value negative">5</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table class="clearfix details-table">
+                                                        <tr>
+                                                            <td>
+                                                                <span class="label">Touchdown</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="value positive">5</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="value negative">5</span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table class="clearfix details-table">
+                                                        <tr>
+                                                            <td>
+                                                                <span class="label">Sorties</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="value positive">5</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="value negative">5</span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table class="clearfix lines-table">
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="label">Réussites</span>
+                                                                <span class="value positive">5</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="label">Cartons</span>
+                                                                <span class="value negative">5</span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
         </div>
-    </div>
-{% endblock %}
-
-{% block stylesheets %}
-<style>
-    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
-    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
-    h1 { font-size: 36px; }
-    h2 { font-size: 21px; margin-bottom: 1em; }
-    p { margin: 0 0 1em 0; }
-    a { color: #0000F0; }
-    a:hover { text-decoration: none; }
-    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
-    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
-    #container { padding: 2em; }
-    #welcome, #status { margin-bottom: 2em; }
-    #welcome h1 span { display: block; font-size: 75%; }
-    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
-    #icon-book { display: none; }
-
-    @media (min-width: 768px) {
-        #wrapper { width: 80%; margin: 2em auto; }
-        #icon-book { display: inline-block; }
-        #status a, #next a { display: block; }
-
-        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
-    }
-</style>
+    </section>
 {% endblock %}

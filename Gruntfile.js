@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             },
             files: {
                 ".tmp/css/app.css": [
-                    "bower_components/bootsrap/dist/css/bootstrap.css",
+                    "src/BbLigueBundle/Resources/public/css/vendor/reset5.css",
                     "src/BbLigueBundle/Resources/less/**/*.less"
                 ]
             }
