@@ -17,3 +17,5 @@ before_install:
 install:
   - composer install
   - grunt
+
+script: phpunit -c app
