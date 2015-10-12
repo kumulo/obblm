@@ -8,7 +8,7 @@
     </parameters>
 
     <services>
-		<service id="bb.rosters" class="%bb.rosters.class%">
+		<service id="bb.rules" class="%bb.rosters.class%">
 			<argument>%bb_ligue.rules%</argument>
 		</service>
         <service id="obblm.form.type.team" class="BbLigueBundle\Form\Type\Team">
