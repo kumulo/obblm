@@ -29,7 +29,7 @@ class BbLigueExtension extends Extension implements PrependExtensionInterface
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         
-        $container->setParameter('bb_ligue.rostervars', $config['rosters']);
+        $container->setParameter('bb_ligue.rules', $config['rules']);
         
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
@@ -38,7 +38,9 @@ class BbLigueExtension extends Extension implements PrependExtensionInterface
     {
         // Loading our YAML file containing our template rules
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('rosters/dwarves.yml');
-        $loader->load('rosters/halfings.yml');
+        $loader->load('lbr6/rules.yml');
+        $loader->load('lbr6/rosters/amazon.yml');
+        $loader->load('lbr6/rosters/dwarf.yml');
+        $loader->load('lbr6/rosters/halfing.yml');
     }
 }

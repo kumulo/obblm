@@ -13,6 +13,7 @@ layout:
     my_contest: Mes matchs
     tournaments: Ligues et tournois
     coach_space: Espace coach
+    admin_space: Espace admin
   coach_space:
     index:
       title: Mon espace coach
@@ -20,3 +21,6 @@ layout:
       team_edit: Modifier cette équipe
       team_delete: Supprimer cette équipe
       my_teams: Mes équipes
+  admin_space:
+    index:
+      title: Espace administrateur

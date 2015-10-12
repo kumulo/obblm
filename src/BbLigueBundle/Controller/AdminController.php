@@ -13,8 +13,12 @@ class AdminController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
+        $bb = $this->get('bb.rules');
+        dump($bb->getRules());
+        return $this->render('BbLigueBundle:Admin:index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }

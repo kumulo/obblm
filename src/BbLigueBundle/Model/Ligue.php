@@ -32,6 +32,12 @@ class Ligue
      */
     protected $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="BbLigueBundle\Entity\Rule", inversedBy="ligues", cascade={"persist"})
+     * @ORM\JoinColumn(referencedColumnName="rule_key")
+     */
+    protected $rule;
+
     public function __construct()
     {
         parent::__construct();

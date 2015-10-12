@@ -1,0 +1,68 @@
+bb_ligue:
+    rules:
+        lbr6:
+            rosters:
+                dwarf:
+                    players:
+                        slayer:
+                            min: 0
+                            max: 2
+                            move: 5
+                            force: 3
+                            agility: 2
+                            armor: 8
+                            cost: 90000
+                            skills: ['block', 'heavy_skull', 'intrepidity']
+                            available_skills: ['general', 'strenght']
+                            available_skills_on_double: ['agility', 'pass']
+                        blitzer:
+                            min: 0
+                            max: 2
+                            move: 5
+                            force: 3
+                            agility: 3
+                            armor: 9
+                            cost: 80000
+                            skills: ['block', 'heavy_skull']
+                            available_skills: ['general', 'strenght']
+                            available_skills_on_double: ['agility', 'pass']
+                        runner:
+                            min: 0
+                            max: 2
+                            move: 6
+                            force: 3
+                            agility: 3
+                            armor: 8
+                            cost: 80000
+                            skills: ['dexterity', 'heavy_skull']
+                            available_skills: ['general', 'pass']
+                            available_skills_on_double: ['strenght', 'agility']
+                        blocker:
+                            min: 0
+                            max: 16
+                            move: 4
+                            force: 3
+                            agility: 2
+                            armor: 9
+                            cost: 70000
+                            skills: ['block', 'heavy_skull', 'tackl']
+                            available_skills: ['general', 'strenght']
+                            available_skills_on_double: ['agility', 'pass']
+                        death_roller:
+                            min: 0
+                            max: 1
+                            move: 4
+                            force: 7
+                            agility: 1
+                            armor: 10
+                            cost: 160000
+                            skills: ['lonely', 'secret_weapon', 'strenght_dodge', 'mighty_blow', 'vicious', 'juggernaut', 'no_hands', 'stability']
+                            available_skills: ['strenght']
+                            available_skills_on_double: ['general', 'agility', 'pass']
+                    options:
+                        reroll_cost: 50000
+                        available_champions: []
+                        can_have_alchemist: true
+                        can_have_sorcerer: true
+                        can_have_igor: false
+                        can_have_halfing_kitchener: false

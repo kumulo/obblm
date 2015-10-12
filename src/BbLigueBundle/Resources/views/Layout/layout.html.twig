@@ -7,6 +7,7 @@
                {{ include('BbLigueBundle:Layout:Icons/logo-ligue.html.twig') }}
             </span>
             <h1 class="site-title">{{ 'layout.manager_title'|trans|raw }}</h1>
+            {% if is_granted("ROLE_USER") %}
             <nav id="navigation" class="clearfix">
                 <ul>
                     <li>
@@ -33,8 +34,17 @@
                             {{ 'layout.nav_menu.coach_space'|trans|raw }}
                         </a>
                     </li>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <li>
+                        <a class="{% if app.request.attributes.get('_route') starts with 'admin' %}active{% endif %}" href="{{ path("admin_homepage") }}">
+                            {# { include('BbLigueBundle:Layout:Icons/admin.html.twig') } #}
+                            {{ 'layout.nav_menu.admin_space'|trans|raw }}
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </nav>
+            {% endif %}
         </header>
         <div id="content" class="clearfix">{% block body %}{% endblock %}</section>
         <footer></footer>

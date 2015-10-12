@@ -1,0 +1,57 @@
+bb_ligue:
+    rules:
+        lbr6:
+            rosters:
+                amazon:
+                    players:
+                        linewoman:
+                            min: 0
+                            max: 16
+                            move: 6
+                            force: 3
+                            agility: 3
+                            armor: 7
+                            cost: 50000
+                            skills: ['dodge']
+                            available_skills: ['general']
+                            available_skills_on_double: ['strenght', 'agility', 'pass']
+                        thrower:
+                            min: 0
+                            max: 2
+                            move: 6
+                            force: 3
+                            agility: 3
+                            armor: 7
+                            cost: 70000
+                            skills: ['dodge', 'pass']
+                            available_skills: ['general', 'pass']
+                            available_skills_on_double: ['strenght', 'agility']
+                        catcher:
+                            min: 0
+                            max: 2
+                            move: 6
+                            force: 3
+                            agility: 3
+                            armor: 7
+                            cost: 70000
+                            skills: ['dodge', 'catch']
+                            available_skills: ['general', 'agility']
+                            available_skills_on_double: ['strenght', 'pass']
+                        blitzer:
+                            min: 0
+                            max: 4
+                            move: 6
+                            force: 3
+                            agility: 3
+                            armor: 7
+                            cost: 90000
+                            skills: ['dodge', 'block']
+                            available_skills: ['general', 'strenght']
+                            available_skills_on_double: ['agility', 'pass']
+                    options:
+                        reroll_cost: 50000
+                        available_champions: [bertha_bigfist, helmut_wulf, morg_n_thorg, roxanna_darknail, willow_rosebark, zara_the_slayer]
+                        can_have_alchemist: true
+                        can_have_sorcerer: true
+                        can_have_igor: false
+                        can_have_halfing_kitchener: false
