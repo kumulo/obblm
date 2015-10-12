@@ -18,4 +18,9 @@ install:
   - composer install
   - grunt
 
+before_script:
+  - cp app/config/parameters.yml.travis app/config/parameters.yml
+  - php app/console doctrine:database:create --env=test
+  - php app/console doctrine:schema:create --env=test
+
 script: phpunit -c app
