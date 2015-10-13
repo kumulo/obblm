@@ -1,0 +1,235 @@
+blood_bowl:
+    skill_types:
+        g: general
+        s: strength
+        a: agility
+        p: passing
+        m: mutation
+        e: extraordinary
+    skills:
+        block:
+        block:
+            title: Block
+            description: ~
+        dauntless:
+            title: Dauntless
+            description: ~
+        dirty_player:
+            title: Dirty Player
+            description: ~
+        fend:
+            title: Fend
+            description: ~
+        frenzy:
+            title: Frenzy
+            description: ~
+        kick:
+            title: Kick
+            description: ~
+        kick_off_return:
+            title: Kick-Off Return
+            description: ~
+        pass_block:
+            title: Pass Block
+            description: ~
+        pro:
+            title: Pro
+            description: ~
+        shadowing:
+            title: Shadowing
+            description: ~
+        strip_ball:
+            title: Strip Ball
+            description: ~
+        sure_hands:
+            title: Sure Hands
+            description: ~
+        tackle:
+            title: Tackle
+            description: ~
+        wrestle:
+            title: Wrestle
+            description: ~
+        catch:
+            title: Catch
+            description: ~
+        diving_catch:
+            title: Diving Catch
+            description: ~
+        diving_tackle:
+            title: Diving Tackle
+            description: ~
+        dodge:
+            title: Dodge
+            description: ~
+        jump_up:
+            title: Jump Up
+            description: ~
+        leap:
+            title: Leap
+            description: ~
+        side_step:
+            title: Side Step
+            description: ~
+        sneaky_git:
+            title: Sneaky Git
+            description: ~
+        sprint:
+            title: Sprint
+            description: ~
+        sure_feet:
+            title: Sure Feet
+            description: ~
+        accurate:
+            title: Accurate
+            description: ~
+        dump_off:
+            title: Dump-Off
+            description: ~
+        hail_mary_pass:
+            title: Hail Mary Pass
+            description: ~
+        leader:
+            title: Leader
+            description: ~
+        nerves_of_steel:
+            title: Nerves of Steel
+            description: ~
+        pass:
+            title: Pass
+            description: ~
+        safe_throw:
+            title: Safe Throw
+            description: ~
+        break_tackle:
+            title: Break Tackle
+            description: ~
+        grab:
+            title: Grab
+            description: ~
+        guard:
+            title: Guard
+            description: ~
+        juggernaut:
+            title: Juggernaut
+            description: ~
+        mighty_blow:
+            title: Mighty Blow
+            description: ~
+        multiple_block:
+            title: Multiple Block
+            description: ~
+        piling_on:
+            title: Piling On
+            description: ~
+        stand_firm:
+            title: Stand Firm
+            description: ~
+        strong_arm:
+            title: Strong Arm
+            description: ~
+        thick_skull:
+            title: Thick Skull
+            description: ~
+        big_hand:
+            title: Big Hand
+            description: ~
+        claw_claws:
+            title: Claw / Claws
+            description: ~
+        disturbing_presence:
+            title: Disturbing Presence
+            description: ~
+        extra_arms:
+            title: Extra Arms
+            description: ~
+        foul_appearance:
+            title: Foul Appearance
+            description: ~
+        horns:
+            title: Horns
+            description: ~
+        prehensile_tail:
+            title: Prehensile Tail
+            description: ~
+        tentacles:
+            title: Tentacles
+            description: ~
+        two_heads:
+            title: Two Heads
+            description: ~
+        very_long_legs:
+            title: Very Long Legs
+            description: ~
+        always_hungry:
+            title: Always Hungry
+            description: ~
+        animosity:
+            title: Animosity
+            description: ~
+        ball_chain:
+            title: Ball & Chain
+            description: ~
+        blood_lust:
+            title: Blood Lust
+            description: ~
+        bombardier:
+            title: Bombardier
+            description: ~
+        bone_head:
+            title: Bone-head
+            description: ~
+        chainsaw:
+            title: Chainsaw
+            description: ~
+        decay:
+            title: Decay
+            description: ~
+        fan_favourite:
+            title: Fan Favourite
+            description: ~
+        hypnotic_gaze:
+            title: Hypnotic Gaze
+            description: ~
+        loner:
+            title: Loner
+            description: ~
+        no_hands:
+            title: No Hands
+            description: ~
+        nurgle_rot:
+            title: Nurgle's Rot
+            description: ~
+        really_stupid:
+            title: Really Stupid
+            description: ~
+        regeneration:
+            title: Regeneration
+            description: ~
+        right_stuff:
+            title: Right Stuff
+            description: ~
+        secret_weapon:
+            title: Secret Weapon
+            description: ~
+        stab:
+            title: Stab
+            description: ~
+        stakes:
+            title: Stakes
+            description: ~
+        stunty:
+            title: Stunty
+            description: ~
+        take_root:
+            title: Take Root
+            description: ~
+        throw_team_mate:
+            title: Throw Team-Mate
+            description: ~
+        titchy:
+            title: Titchy
+            description: ~
+        wild_animal:
+            title: Wild Animal
+            description: ~

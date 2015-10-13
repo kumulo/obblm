@@ -1,0 +1,6 @@
+admin:
+    block:
+        rules:
+            title: Règles disponibles
+        ligues:
+            title: Ligues crées

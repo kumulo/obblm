@@ -17,9 +17,33 @@ class AdminController extends Controller
 
         // replace this example code with whatever you need
         $bb = $this->get('bb.rules');
-        dump($bb->getRules());
+        $rules = $bb->getRules();
+        $repo = $this->get('doctrine')->getManager()->getRepository('BbLigueBundle:Ligue');
+
+        $ligues  = $repo->findAll();
+        dump($ligues);
         return $this->render('BbLigueBundle:Admin:index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'rules' => $rules,
+            'ligues' => $ligues,
+        ));
+    }
+    /**
+     * @Route("/ligue/edit/{ligue_id}", name="admin_ligue_edit")
+     */
+    public function adminLigueEditAction(Request $request, $ligue_id)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        // replace this example code with whatever you need
+        $bb = $this->get('bb.rules');
+        $rules = $bb->getRules();
+        $repo = $this->get('doctrine')->getManager()->getRepository('BbLigueBundle:Ligue');
+
+        $ligues  = $repo->findAll();
+        dump($rules);
+        return $this->render('BbLigueBundle:Admin:index.html.twig', array(
+            'rules' => $rules,
+            'ligues' => $ligues,
         ));
     }
 }

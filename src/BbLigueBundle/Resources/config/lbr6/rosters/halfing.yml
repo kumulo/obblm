@@ -12,9 +12,9 @@ bb_ligue:
                             agility: 3
                             armor: 6
                             cost: 30000
-                            skills: ['minus', 'dodge', 'tiny_weight']
-                            available_skills: ['agility']
-                            available_skills_on_double: ['general', 'strenght', 'pass']
+                            skills: ['dodge', 'stunty', 'right_stuff']
+                            available_skills: ['a']
+                            available_skills_on_double: ['g', 's', 'p']
                         treeman:
                             min: 0
                             max: 2
@@ -23,9 +23,9 @@ bb_ligue:
                             agility: 1
                             armor: 10
                             cost: 120000
-                            skills: ['mighty_blow', 'strong', 'thick_skull', 'throw_team_mate', 'take_root', 'stability']
-                            available_skills: ['strenght']
-                            available_skills_on_double: ['general', 'agility', 'pass']
+                            skills: ['mighty_blow', 'strong_arm', 'thick_skull', 'throw_team_mate', 'take_root', 'stand_firm']
+                            available_skills: ['s']
+                            available_skills_on_double: ['g', 'a', 'p']
                     options:
                         reroll_cost: 60000
                         available_champions: []

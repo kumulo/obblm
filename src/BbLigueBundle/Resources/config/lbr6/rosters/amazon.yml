@@ -13,8 +13,8 @@ bb_ligue:
                             armor: 7
                             cost: 50000
                             skills: ['dodge']
-                            available_skills: ['general']
-                            available_skills_on_double: ['strenght', 'agility', 'pass']
+                            available_skills: ['g']
+                            available_skills_on_double: ['s', 'a', 'p']
                         thrower:
                             min: 0
                             max: 2
@@ -24,8 +24,8 @@ bb_ligue:
                             armor: 7
                             cost: 70000
                             skills: ['dodge', 'pass']
-                            available_skills: ['general', 'pass']
-                            available_skills_on_double: ['strenght', 'agility']
+                            available_skills: ['g', 'p']
+                            available_skills_on_double: ['s', 'a']
                         catcher:
                             min: 0
                             max: 2
@@ -35,8 +35,8 @@ bb_ligue:
                             armor: 7
                             cost: 70000
                             skills: ['dodge', 'catch']
-                            available_skills: ['general', 'agility']
-                            available_skills_on_double: ['strenght', 'pass']
+                            available_skills: ['g', 'a']
+                            available_skills_on_double: ['s', 'p']
                         blitzer:
                             min: 0
                             max: 4
@@ -46,8 +46,8 @@ bb_ligue:
                             armor: 7
                             cost: 90000
                             skills: ['dodge', 'block']
-                            available_skills: ['general', 'strenght']
-                            available_skills_on_double: ['agility', 'pass']
+                            available_skills: ['g', 's']
+                            available_skills_on_double: ['a', 'p']
                     options:
                         reroll_cost: 50000
                         available_champions: [bertha_bigfist, helmut_wulf, morg_n_thorg, roxanna_darknail, willow_rosebark, zara_the_slayer]

@@ -12,9 +12,9 @@ bb_ligue:
                             agility: 2
                             armor: 8
                             cost: 90000
-                            skills: ['block', 'heavy_skull', 'intrepidity']
-                            available_skills: ['general', 'strenght']
-                            available_skills_on_double: ['agility', 'pass']
+                            skills: ['block', 'thick_skull', 'dauntless']
+                            available_skills: ['g', 's']
+                            available_skills_on_double: ['a', 'p']
                         blitzer:
                             min: 0
                             max: 2
@@ -23,9 +23,9 @@ bb_ligue:
                             agility: 3
                             armor: 9
                             cost: 80000
-                            skills: ['block', 'heavy_skull']
-                            available_skills: ['general', 'strenght']
-                            available_skills_on_double: ['agility', 'pass']
+                            skills: ['block', 'thick_skull']
+                            available_skills: ['g', 's']
+                            available_skills_on_double: ['a', 'p']
                         runner:
                             min: 0
                             max: 2
@@ -34,9 +34,9 @@ bb_ligue:
                             agility: 3
                             armor: 8
                             cost: 80000
-                            skills: ['dexterity', 'heavy_skull']
-                            available_skills: ['general', 'pass']
-                            available_skills_on_double: ['strenght', 'agility']
+                            skills: ['sure_hands', 'thick_skull']
+                            available_skills: ['g', 'p']
+                            available_skills_on_double: ['s', 'a']
                         blocker:
                             min: 0
                             max: 16
@@ -45,9 +45,9 @@ bb_ligue:
                             agility: 2
                             armor: 9
                             cost: 70000
-                            skills: ['block', 'heavy_skull', 'tackl']
-                            available_skills: ['general', 'strenght']
-                            available_skills_on_double: ['agility', 'pass']
+                            skills: ['block', 'thick_skull', 'tackle']
+                            available_skills: ['g', 's']
+                            available_skills_on_double: ['a', 'p']
                         death_roller:
                             min: 0
                             max: 1
@@ -56,9 +56,9 @@ bb_ligue:
                             agility: 1
                             armor: 10
                             cost: 160000
-                            skills: ['lonely', 'secret_weapon', 'strenght_dodge', 'mighty_blow', 'vicious', 'juggernaut', 'no_hands', 'stability']
-                            available_skills: ['strenght']
-                            available_skills_on_double: ['general', 'agility', 'pass']
+                            skills: ['loner', 'secret_weapon', 'break_tackle', 'mighty_blow', 'dirty_player', 'juggernaut', 'no_hands', 'stand_firm']
+                            available_skills: ['s']
+                            available_skills_on_double: ['g', 'a', 'p']
                     options:
                         reroll_cost: 50000
                         available_champions: []

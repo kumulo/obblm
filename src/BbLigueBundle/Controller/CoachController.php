@@ -17,11 +17,6 @@ class CoachController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        $em = $this->get('doctrine')->getManager();
-
-
-        //print_r($query);
         return $this->render('BbLigueBundle::Coach/index.html.twig', array(
             'coach' => $this->getUser(),
         ));
