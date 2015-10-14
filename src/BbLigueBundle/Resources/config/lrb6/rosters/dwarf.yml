@@ -1,6 +1,6 @@
 bb_ligue:
     rules:
-        lbr6:
+        lrb6:
             rosters:
                 dwarf:
                     players:
@@ -61,7 +61,7 @@ bb_ligue:
                             available_skills_on_double: ['g', 'a', 'p']
                     options:
                         reroll_cost: 50000
-                        available_champions: []
+                        available_star_players: []
                         can_have_alchemist: true
                         can_have_sorcerer: true
                         can_have_igor: false

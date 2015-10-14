@@ -233,3 +233,53 @@ blood_bowl:
         wild_animal:
             title: Wild Animal
             description: ~
+    rosters:
+        amazon:
+            title: Amazons
+            description: Long ago, driven by a desire for adventure, the Valkyries of the Norse settlement in Lustria sailed away from their men-folk and founded a colony deep within the estuary of the river Amaxon. Now these ferocious warriors have taken to the Blood Bowl pitch – and Nuffle save those who dare play against them!
+    star_players:
+        bertha_bigfist:
+            name: Bertha Bigfist
+        helmut_wulf:
+            name: Helmut Wulf
+        morg_n_thorg:
+            name: Morg ‘n’ Thorg
+
+        prince_moranion:
+            name: Prince Moranion
+        puggy_baconbreath:
+            name: Puggy Baconbreath
+        quetzal_leap:
+            name: Quetzal Leap
+        ramtut_iii:
+            name: Ramtut III
+        rashnak_rackstabber:
+            name: Rashnak Backstabber
+        ripper:
+            name: Ripper
+        roxanna_darknail:
+            name: Roxanna Darknail
+        scrappa_sorehead:
+            name: Scrappa Sorehead
+        setekh:
+            name: Setekh
+        slibli:
+            name: Slibli
+        sinnedbad:
+            name: Sinnedbad
+        skitter_stab_stab:
+            name: Skitter Stab-Stab
+        soaren_hightower:
+            name: Soaren Hightower
+        ugroth_bolgrot:
+            name: Ugroth Bolgrot
+        varag_ghoul_chewer:
+            name: Varag Ghoul-Chewer
+        wilhelm_chaney:
+            name: Wilhelm Chaney
+        willow_rosebark:
+            name: Willow Rosebark
+        zara_the_slayer:
+            name: Zara the Slayer
+        zzharg_madeye:
+            name: Zzharg Madeye

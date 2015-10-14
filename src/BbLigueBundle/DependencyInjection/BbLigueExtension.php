@@ -38,9 +38,10 @@ class BbLigueExtension extends Extension implements PrependExtensionInterface
     {
         // Loading our YAML file containing our template rules
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('lbr6/rules.yml');
-        $loader->load('lbr6/rosters/amazon.yml');
-        $loader->load('lbr6/rosters/dwarf.yml');
-        $loader->load('lbr6/rosters/halfing.yml');
+        $loader->load('lrb6/rules.yml');
+        $loader->load('lrb6/rosters/amazon.yml');
+        $loader->load('lrb6/rosters/dwarf.yml');
+        $loader->load('lrb6/rosters/halfling.yml');
+        $loader->load('lrb6/star-players.yml');
     }
 }

@@ -6,17 +6,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 
-class Team extends AbstractType
+class Ligue extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', null)
-            ->add('ligue', 'entity', array(
-                'class' => 'BbLigueBundle:Ligue',
+            ->add('rule', 'entity', array(
+                'class' => 'BbLigueBundle:Rule',
                 'choice_label' => 'name',
                 'required' => true,
-                'query_builder' => function(EntityRepository $repository) use ($options) {
+                /*'query_builder' => function(EntityRepository $repository) use ($options) {
                     $qb = $repository->createQueryBuilder('l');
                     // the function returns a QueryBuilder object
                     $involvedligues = $options['data']->getCoach()
@@ -30,7 +30,7 @@ class Team extends AbstractType
                         ->setParameter('ligues', $involvedligues)
                         ->orderBy('l.name', 'ASC')
                     ;
-                },
+                },*/
             ))
             ->add('save', 'submit')
         ;
@@ -38,13 +38,13 @@ class Team extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BbLigueBundle\Entity\Team',
+            'data_class' => 'BbLigueBundle\Entity\Ligue',
             'translation_domain' => 'form'
         ));
 
     }
     public function getName()
     {
-        return 'obbml_forms_user_team';
+        return 'obbml_forms_admin_ligue';
     }
 }

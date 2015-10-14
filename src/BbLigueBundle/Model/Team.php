@@ -47,6 +47,12 @@ class Team
     protected $name;
 
     /**
+     * @ORM\Column(name="roster", type="string", length=30)
+     * @Assert\NotBlank()
+     */
+    protected $roster;
+
+    /**
      * @ORM\Column(name="created_at", type="datetime")
      * @Assert\NotBlank()
      * @Assert\Date()
@@ -142,6 +148,26 @@ class Team
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * Get roster
+     *
+     * @return varchar
+     */
+    public function getRoster()
+    {
+        return $this->roster;
+    }
+
+    /**
+     * Set roster
+     *
+     * @param string
+     */
+    public function setRoster($roster)
+    {
+        $this->roster = $roster;
     }
 
     /**

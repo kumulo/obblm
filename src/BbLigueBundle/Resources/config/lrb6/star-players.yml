@@ -1,0 +1,160 @@
+bb_ligue:
+    rules:
+        lrb6:
+            star_players:
+                bertha_bigfist:
+                    cost: 20
+                    move: 6
+                    force: 3
+                    agility: 3
+                    armor: 7
+                    skills: ~
+                helmut_wulf:
+                    cost: 20
+                    move: 6
+                    force: 3
+                    agility: 3
+                    armor: 7
+                    skills: ~
+                morg_n_thorg:
+                    cost: 20
+                    move: 6
+                    force: 3
+                    agility: 3
+                    armor: 7
+                    skills: ~
+
+                prince_moranion:
+                    cost: 230000
+                    move: 7
+                    force: 4
+                    agility: 4
+                    armor: 8
+                    skills: ['loner', 'block', 'dauntless', 'tackle', 'wrestle']
+                puggy_baconbreath:
+                    cost: 140000
+                    move: 5
+                    force: 3
+                    agility: 3
+                    armor: 6
+                    skills: ['loner', 'block', 'dodge', 'nerves_of_steel', 'right_stuff', 'stunty']
+                quetzal_leap:
+                    cost: 250000
+                    move: 8
+                    force: 2
+                    agility: 4
+                    armor: 7
+                    skills: ['loner', 'catch', 'diving_catch', 'fend', 'kick_off_return', 'leap', 'nerves_of_steel', 'very_long_legs']
+                ramtut_iii:
+                    cost: 380000
+                    move: 5
+                    force: 6
+                    agility: 1
+                    armor: 9
+                    skills: ['loner', 'break_tackle', 'mighty_blow', 'regeneration', 'wrestle']
+                rashnak_rackstabber:
+                    cost: 270000
+                    move: 7
+                    force: 3
+                    agility: 3
+                    armor: 7
+                    skills: ['loner', 'dodge', 'side_step', 'sneaky_git', 'stab']
+                ripper:
+                    cost: 240000
+                    move: 4
+                    force: 6
+                    agility: 1
+                    armor: 9
+                    skills: ['loner', 'grab', 'mighty_blow', 'regeneration', 'throw_team_mate']
+                roxanna_darknail:
+                    cost: 250000
+                    move: 8
+                    force: 3
+                    agility: 5
+                    armor: 7
+                    skills: ['loner', 'dodge', 'jump_up', 'frenzy', 'juggernaut', 'leap']
+                scrappa_sorehead:
+                    cost: 150000
+                    move: 7
+                    force: 2
+                    agility: 3
+                    armor: 7
+                    skills: ['loner', 'dirty_player', 'dodge', 'leap', 'right_stuff', 'sprint', 'stunty', 'sure_feet', 'very_long_legs']
+                setekh:
+                    cost: 220000
+                    move: 6
+                    force: 4
+                    agility: 2
+                    armor: 8
+                    skills: ['loner', 'block', 'break_tackle', 'juggernaut', 'regeneration', 'strip_ball']
+                slibli:
+                    cost: 250000
+                    move: 7
+                    force: 4
+                    agility: 1
+                    armor: 9
+                    skills: ['loner', 'block', 'grab', 'stand_firm']
+
+                sinnedbad:
+                    cost: 240000
+                    move: 6
+                    force: 3
+                    agility: 2
+                    armor: 7
+                    skills: ['loner', 'block', 'jump_up', 'pass_block', 'regeneration', 'secret_weapon', 'side_step', 'stab']
+                skitter_stab_stab:
+                    cost: 160000
+                    move: 9
+                    force: 2
+                    agility: 4
+                    armor: 7
+                    skills: ['loner', 'dodge', 'prehensile_tail', 'shadowing', 'stab']
+                soaren_hightower:
+                    cost: 180000
+                    move: 6
+                    force: 3
+                    agility: 4
+                    armor: 8
+                    skills: ['loner', 'fend', 'kick_off_return', 'pass', 'safe_throw', 'strong_arm', 'sure_hands']
+                ugroth_bolgrot:
+                    cost: 100000
+                    move: 5
+                    force: 3
+                    agility: 3
+                    armor: 9
+                    skills: ['loner', 'chainsaw', 'secret_weapon']
+                varag_ghoul_chewer:
+                    cost: 290000
+                    move: 6
+                    force: 4
+                    agility: 3
+                    armor: 9
+                    skills: ['loner', 'block', 'jump_up', 'mighty_blow', 'thick_skull']
+                wilhelm_chaney:
+                    cost: 240000
+                    move: 8
+                    force: 4
+                    agility: 3
+                    armor: 8
+                    skills: ['loner', 'catch', 'claws', 'frenzy', 'regeneration', 'wrestle']
+                willow_rosebark:
+                    cost: 150000
+                    move: 5
+                    force: 4
+                    agility: 3
+                    armor: 8
+                    skills: ['loner', 'dauntless', 'side_step', 'thick_skull']
+                zara_the_slayer:
+                    cost: 270000
+                    move: 6
+                    force: 4
+                    agility: 3
+                    armor: 8
+                    skills: ['loner', 'block', 'dauntless', 'dodge', 'jump_up', 'stab', 'stakes']
+                zzharg_madeye:
+                    cost: 90000
+                    move: 4
+                    force: 4
+                    agility: 3
+                    armor: 9
+                    skills: ['loner', 'hail_mary_pass', 'pass', 'secret_weapon', 'strong_arm', 'sure_hands', 'tackle', 'thick_skull']

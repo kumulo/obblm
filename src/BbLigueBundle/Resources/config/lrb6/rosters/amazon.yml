@@ -1,6 +1,6 @@
 bb_ligue:
     rules:
-        lbr6:
+        lrb6:
             rosters:
                 amazon:
                     players:
@@ -50,7 +50,7 @@ bb_ligue:
                             available_skills_on_double: ['a', 'p']
                     options:
                         reroll_cost: 50000
-                        available_champions: [bertha_bigfist, helmut_wulf, morg_n_thorg, roxanna_darknail, willow_rosebark, zara_the_slayer]
+                        available_star_players: [bertha_bigfist, helmut_wulf, morg_n_thorg, roxanna_darknail, willow_rosebark, zara_the_slayer]
                         can_have_alchemist: true
                         can_have_sorcerer: true
                         can_have_igor: false

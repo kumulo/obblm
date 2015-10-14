@@ -1,6 +1,6 @@
 bb_ligue:
     rules:
-        lbr6:
+        lrb6:
             max_team_cost: 1000000
             skills:
                 g:

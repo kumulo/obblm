@@ -5,3 +5,9 @@ entity:
     label:
       name: Nom de l'équipe
       ligue: Ligue participée
+  ligue:
+    add:
+      submit: Créer la ligue
+    label:
+      name: Nom de la ligue
+      rule: Règles appliquées

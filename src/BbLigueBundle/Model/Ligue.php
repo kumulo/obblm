@@ -38,11 +38,6 @@ class Ligue
      */
     protected $rule;
 
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
     /**
      * Get id
      *
@@ -81,6 +76,26 @@ class Ligue
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * Get rule
+     *
+     * @return Rule
+     */
+    public function getRule()
+    {
+        return $this->rule;
+    }
+
+    /**
+     * Set rule
+     *
+     * @param Rule
+     */
+    public function setRule($rule)
+    {
+        $this->rule = $rule;
     }
     
 }

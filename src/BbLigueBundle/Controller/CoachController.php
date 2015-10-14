@@ -6,9 +6,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BbLigueBundle\Entity\Team;
-use BbLigueBundle\Form\Type\Team as TeamForm;
-use Symfony\Component\Debug\Debug;
-use Doctrine\Common\Collections;
 
 class CoachController extends Controller
 {
@@ -27,12 +24,10 @@ class CoachController extends Controller
     public function addAction(Request $request)
     {
         // replace this example code with whatever you need
-        Debug::enable();
         $team = new Team();
         $team->setCoach($this->getUser());
-        $team->setName("Toto");
 
-        $form = $this->createForm('team', $team);
+        $form = $this->createForm('obbml_forms_user_team', $team);
 
         $form->handleRequest($request);
 

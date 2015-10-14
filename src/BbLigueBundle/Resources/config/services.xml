@@ -11,8 +11,11 @@
 		<service id="bb.rules" class="%bb.rosters.class%">
 			<argument>%bb_ligue.rules%</argument>
 		</service>
-        <service id="obblm.form.type.team" class="BbLigueBundle\Form\Type\Team">
-            <tag name="form.type" alias="team" />
+        <service id="obbml.forms.user.team" class="BbLigueBundle\Form\Type\Team">
+            <tag name="form.type" alias="obbml_forms_user_team" />
+        </service>
+        <service id="obbml.forms.admin.ligue" class="BbLigueBundle\Form\Type\Ligue">
+            <tag name="form.type" alias="obbml_forms_admin_ligue" />
         </service>
     </services>
 </container>
