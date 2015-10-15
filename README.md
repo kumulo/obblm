@@ -1,6 +1,6 @@
 Open Blood Bowl League Manager
 =====
-[![Build Status](https://travis-ci.org/kumulo/obblm.svg?branch=dev)](https://travis-ci.org/kumulo/obblm)
+[![Build Status](https://travis-ci.org/kumulo/obblm.svg?branch=dev)](https://travis-ci.org/kumulo/obblm)[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kumulo/obblm/badges/quality-score.png?b=dev)](https://scrutinizer-ci.com/g/kumulo/obblm/?branch=dev)
 
 This project uses [Composer], [Node.js] modules ([Bower] & [Grunt]) and first of all [Symfony].
 
