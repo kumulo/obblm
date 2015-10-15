@@ -1,3 +1,4 @@
+# To extend it add app/Resources/BbLigueBundle/translations/messages.fr.yml
 # Layout
 layout:
   manager_title: Gestionnaire de ligue

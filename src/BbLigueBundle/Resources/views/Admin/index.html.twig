@@ -18,6 +18,9 @@
                         <article class="ligue clearfix">
                             <h3 class="ligue-name">{{ ligue.name }}</h3>
                             <div class="ligue-metas clearfix">
+                                {% if ligue.rule %}
+                                    {{ bb_rules.getRule(ligue.rule).name }}
+                                {% endif %}
                                 {% if ligue.description is defined %}
                                     {{ ligue.description }}
                                 {% endif %}
@@ -35,15 +38,16 @@
                         {% trans from "admin" %}admin.block.rules.title{% endtrans %}
                     </h2>
                     {% for key , rule in rules %}
-                        {% set title = 'rules.' ~ key ~ '.title' %}
                         {% if rule.id is defined %}
-                        <a href="#">
+                        <a href="{{ path("admin_rule_edit", {rule_id: rule.id}) }}">
+                        {% else %}
+                        {% set title = 'rules.' ~ key ~ '.title' %}
                         {% endif %}
                         <article class="rule clearfix">
-                            <h3 class="rule-name">{{ title|trans({}, "rules") }}</h3>
+                            <h3 class="rule-name">{% if rule.id is defined %}{{ rule.name }}{% else %}{{ title|trans({}, "rules") }}{% endif %}</h3>
                             <div class="rule-metas clearfix">
-                                {% if rule.description is defined %}
-                                    {{ rule.description }}
+                                {% if rule.id is defined %}
+                                    {{ rule.description }}
                                 {% else %}
                                     {% set description = 'rules.' ~ key ~ '.description' %}
                                     {% if description|trans({}, "rules") != description %}

@@ -16,7 +16,10 @@
                             <div class="team-logo">Le Logo</div>
                             <h3 class="team-name">{{ team.name }}</h3>
                             <div class="team-metas clearfix">
-                                <span class="race">Race de l'équipe</span>
+                                <span class="race">
+                                    {% set racename = 'blood_bowl.rosters.' ~ team.roster ~ '.title' %}
+                                    {{ racename|trans({},'bb-dictionnary') }}
+                                </span>
                                 <span class="ligue"><span class="name">{{ team.ligue.name }}</span> <span class="format">(Format)</span></span>
                             </div>
                         </header>

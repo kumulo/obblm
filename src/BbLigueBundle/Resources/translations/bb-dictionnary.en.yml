@@ -1,3 +1,4 @@
+# To extend it add app/Resources/BbLigueBundle/translations/bb-dictionnary.en.yml
 blood_bowl:
     skill_types:
         g: general

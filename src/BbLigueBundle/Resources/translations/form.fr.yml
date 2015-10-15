@@ -1,3 +1,4 @@
+# To extend it add app/Resources/BbLigueBundle/translations/form.fr.yml
 entity:
   team:
     add:
@@ -7,7 +8,16 @@ entity:
       ligue: Ligue participée
   ligue:
     add:
-      submit: Créer la ligue
+      submit: Enregistrer la ligue
     label:
       name: Nom de la ligue
       rule: Règles appliquées
+      description: Description
+  rule:
+    add:
+      submit: Enregistrer la règle
+    label:
+      name: Nom de la règle
+      rule_key: Nom technique de la règle
+      base_rule: Créer la règle à partir de
+      description: Description

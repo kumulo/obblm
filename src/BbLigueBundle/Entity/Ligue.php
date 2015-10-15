@@ -12,5 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Ligue extends BaseLigue
 {
-    
+    public function getTheRule() {
+        $this->getContainer()->get('bb.rules')->getRule($this->rule);
+    }
 }

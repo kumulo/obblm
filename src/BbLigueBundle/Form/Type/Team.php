@@ -17,19 +17,18 @@ class Team extends AbstractType
                 'choice_label' => 'name',
                 'required' => true,
                 'query_builder' => function(EntityRepository $repository) use ($options) {
-                    $qb = $repository->createQueryBuilder('l');
-                    // the function returns a QueryBuilder object
+                    $qb = $repository->createQueryBuilder('l')->orderBy('l.id', 'DESC');
                     $involvedligues = $options['data']->getCoach()
                         ->getInvolvedLigues()
                         ->map(function($ligue)  {
                             return $ligue->getId();
                         })->toArray();
-                    return $qb
+                    if($involvedligues) {
                         // find all ligues where coach is not allready involved
-                        ->where('l.id NOT IN (:ligues)')
-                        ->setParameter('ligues', $involvedligues)
-                        ->orderBy('l.name', 'ASC')
-                    ;
+                        $qb = $qb->where('l.id NOT IN (:ligues)')
+                            ->setParameter('ligues', $involvedligues);
+                    }
+                    return $qb;
                 },
             ))
             ->add('save', 'submit')

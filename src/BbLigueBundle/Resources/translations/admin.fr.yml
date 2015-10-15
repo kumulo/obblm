@@ -1,3 +1,4 @@
+# To extend it add app/Resources/BbLigueBundle/translations/admin.fr.yml
 admin:
     block:
         rules:

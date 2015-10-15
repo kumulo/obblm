@@ -26,12 +26,6 @@ class Rule
      */
     protected $rule_key;
 
-
-    /**
-     * @ORM\OneToMany(targetEntity="Ligue", mappedBy="rule")
-     */
-    protected $ligues;
-
     /**
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank()
@@ -39,8 +33,12 @@ class Rule
     protected $name;
 
     /**
-     * @ORM\Column(name="rule", type="text")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="description", type="string", nullable=true, length=255)
+     */
+    protected $description;
+
+    /**
+     * @ORM\Column(name="rule", nullable=true, type="array")
      */
     protected $rule;
 
@@ -102,6 +100,26 @@ class Rule
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * Get description
+     *
+     * @return varchar
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**

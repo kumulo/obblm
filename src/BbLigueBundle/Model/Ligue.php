@@ -33,8 +33,8 @@ class Ligue
     protected $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BbLigueBundle\Entity\Rule", inversedBy="ligues", cascade={"persist"})
-     * @ORM\JoinColumn(referencedColumnName="rule_key")
+     * @ORM\Column(name="rule_key", type="string", length=255)
+     * @Assert\NotBlank()
      */
     protected $rule;
 
