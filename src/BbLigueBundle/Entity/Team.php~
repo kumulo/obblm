@@ -13,10 +13,4 @@ use Doctrine\ORM\Mapping as ORM;
 class Team extends BaseTeam
 {
     protected $last_journey;
-    
-    public function getLastJourney()
-    {
-        $this->getJourneys();
-        return $this->getJourneys()->first();
-    }
 }

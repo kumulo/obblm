@@ -10,8 +10,10 @@ namespace BbLigueBundle\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/** @ORM\MappedSuperclass */
-class Rule
+/**
+ * @ORM\MappedSuperclass
+ */
+abstract class Rule
 {
     /**
      * @ORM\Id
@@ -41,7 +43,6 @@ class Rule
      * @ORM\Column(name="rule", nullable=true, type="array")
      */
     protected $rule;
-
     /**
      * Get id
      *
@@ -53,19 +54,23 @@ class Rule
     }
 
     /**
-     * Set id
+     * Set ruleKey
      *
-     * @param integer
+     * @param string $ruleKey
+     *
+     * @return Rule
      */
-    public function setId($id)
+    public function setRuleKey($ruleKey)
     {
-        $this->id = $id;
+        $this->rule_key = $ruleKey;
+
+        return $this;
     }
 
     /**
-     * Get rule_key
+     * Get ruleKey
      *
-     * @return varchar
+     * @return string
      */
     public function getRuleKey()
     {
@@ -73,19 +78,23 @@ class Rule
     }
 
     /**
-     * Set rule_key
+     * Set name
      *
-     * @param string
+     * @param string $name
+     *
+     * @return Rule
      */
-    public function setRuleKey($rule_key)
+    public function setName($name)
     {
-        $this->rule_key = $rule_key;
+        $this->name = $name;
+
+        return $this;
     }
 
     /**
      * Get name
      *
-     * @return varchar
+     * @return string
      */
     public function getName()
     {
@@ -93,19 +102,23 @@ class Rule
     }
 
     /**
-     * Set name
+     * Set description
      *
-     * @param string
+     * @param string $description
+     *
+     * @return Rule
      */
-    public function setName($name)
+    public function setDescription($description)
     {
-        $this->name = $name;
+        $this->description = $description;
+
+        return $this;
     }
 
     /**
      * Get description
      *
-     * @return varchar
+     * @return string
      */
     public function getDescription()
     {
@@ -113,32 +126,26 @@ class Rule
     }
 
     /**
-     * Set description
+     * Set rule
      *
-     * @param string
+     * @param array $rule
+     *
+     * @return Rule
      */
-    public function setDescription($description)
+    public function setRule($rule)
     {
-        $this->description = $description;
+        $this->rule = $rule;
+
+        return $this;
     }
 
     /**
      * Get rule
      *
-     * @return varchar
+     * @return array
      */
     public function getRule()
     {
         return $this->rule;
-    }
-
-    /**
-     * Set rule
-     *
-     * @param string
-     */
-    public function setRule($rule)
-    {
-        $this->rule = $rule;
     }
 }

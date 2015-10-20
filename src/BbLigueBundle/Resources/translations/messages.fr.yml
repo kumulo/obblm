@@ -25,3 +25,15 @@ layout:
   admin_space:
     index:
       title: Espace administrateur
+  values:
+    tr: TR
+    score: Classement
+    treasure: Trésorerie
+    points: Points
+    victory: Victoires
+    draw: Nuls
+    lost: Défaites
+    touchdown: Touchdown
+    injury: Sorties
+    pass: Réussites
+    cards: Cartons

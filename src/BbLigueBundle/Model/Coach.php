@@ -11,7 +11,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /** @ORM\MappedSuperclass */
-class Coach extends BaseUser
+abstract class Coach extends BaseUser
 {
     /**
      * @ORM\Id
@@ -31,12 +31,37 @@ class Coach extends BaseUser
      */
     protected $teams;
 
+    /**
+     * Add team
+     *
+     * @param \BbLigueBundle\Entity\Team $team
+     *
+     * @return Coach
+     */
+    public function addTeam(\BbLigueBundle\Entity\Team $team)
+    {
+        $this->teams[] = $team;
+
+        return $this;
+    }
+
+    /**
+     * Remove team
+     *
+     * @param \BbLigueBundle\Entity\Team $team
+     */
+    public function removeTeam(\BbLigueBundle\Entity\Team $team)
+    {
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
     public function getTeams()
     {
         return $this->teams;
-    }
-    public function setTeams($teams)
-    {
-        $this->teams = $teams;
     }
 }

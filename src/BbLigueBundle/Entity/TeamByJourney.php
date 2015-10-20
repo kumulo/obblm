@@ -12,5 +12,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class TeamByJourney extends BaseTeamByJourney
 {
+    protected $points = 0;
     
+    public function getPoints()
+    {
+        $ligue = $this->team->getLigue();
+        $this->points = 0;
+
+        $this->points += $this->win_match  * $ligue->getPointsForWin();
+        $this->points += $this->draw_match * $ligue->getPointsForDraw();
+        $this->points += $this->lost_match * $ligue->getPointsForLost();
+
+        return $this->points;
+    }
 }

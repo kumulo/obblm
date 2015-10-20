@@ -30,17 +30,18 @@
                             </ul>
                         </footer>
                         <div>
+                            {% set last_journey = team.getLastJourney %}
                             <table class="stats-container clearfix">
                                 <tr>
                                     <td class="block-main-stats">
                                         <table class="stats-table main-stats clearfix">
                                             <tr>
                                                 <td>
-                                                    <span class="label">TR</span>
+                                                    <span class="label">{{ 'layout.values.tr'|trans }}</span>
                                                     <span class="value">108</span>
                                                 </td>
                                                 <td>
-                                                    <span class="label">Trésorerie</span>
+                                                    <span class="label">{{ 'layout.values.treasure'|trans }}</span>
                                                     <span class="value">400 kPO</span>
                                                 </td>
                                             </tr>
@@ -53,27 +54,27 @@
                                                     <table class="clearfix details-table">
                                                         <tr>
                                                             <td class="stats-table-like">
-                                                                <span class="label">Points</span>
-                                                                <span class="value">5</span>
+                                                                <span class="label">{{ 'layout.values.points'|trans }}</span>
+                                                                <span class="value">{{ last_journey ? last_journey.points : '-' }}</span>
                                                             </td>
                                                             <td>
                                                                 <table class="clearfix lines-table">
                                                                     <tr>
                                                                         <td>
-                                                                            <span class="label">Victoires</span>
-                                                                            <span class="value positive">5</span>
+                                                                            <span class="label">{{ 'layout.values.victory'|trans }}</span>
+                                                                            <span class="value positive">{{ last_journey ? last_journey.winMatch : '-' }}</span>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
-                                                                            <span class="label">Nuls</span>
-                                                                            <span class="value nul">5</span>
+                                                                            <span class="label">{{ 'layout.values.draw'|trans }}</span>
+                                                                            <span class="value nul">{{ last_journey ? last_journey.drawMatch : '-' }}</span>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
-                                                                            <span class="label">Défaites</span>
-                                                                            <span class="value negative">5</span>
+                                                                            <span class="label">{{ 'layout.values.lost'|trans }}</span>
+                                                                            <span class="value negative">{{ last_journey ? last_journey.lostMatch : '-' }}</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -85,17 +86,17 @@
                                                     <table class="clearfix details-table">
                                                         <tr>
                                                             <td>
-                                                                <span class="label">Touchdown</span>
+                                                                <span class="label">{{ 'layout.values.touchdown'|trans }}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <span class="value positive">5</span>
+                                                                <span class="value positive">{{ last_journey ? last_journey.tdGive : '-' }}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <span class="value negative">5</span>
+                                                                <span class="value negative">{{ last_journey ? last_journey.tdTake : '-' }}</span>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -104,17 +105,17 @@
                                                     <table class="clearfix details-table">
                                                         <tr>
                                                             <td>
-                                                                <span class="label">Sorties</span>
+                                                                <span class="label">{{ 'layout.values.injury'|trans }}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <span class="value positive">5</span>
+                                                                <span class="value positive">{{ last_journey ? last_journey.injuryGive : '-' }}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <span class="value negative">5</span>
+                                                                <span class="value negative">{{ last_journey ? last_journey.injuryTake : '-' }}</span>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -126,14 +127,14 @@
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <span class="label">Réussites</span>
-                                                                <span class="value positive">5</span>
+                                                                <span class="label">{{ 'layout.values.pass'|trans }}</span>
+                                                                <span class="value positive">{{ last_journey ? last_journey.pass : '-' }}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <span class="label">Cartons</span>
-                                                                <span class="value negative">5</span>
+                                                                <span class="label">{{ 'layout.values.cards'|trans }}</span>
+                                                                <span class="value negative">{{ last_journey ? last_journey.redCard : '-' }}</span>
                                                             </td>
                                                         </tr>
                                                     </table>

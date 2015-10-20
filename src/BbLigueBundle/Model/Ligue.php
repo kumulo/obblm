@@ -39,6 +39,32 @@ class Ligue
     protected $rule;
 
     /**
+     * @ORM\Column(name="points_for_win", type="integer", length=2)
+     * @Assert\NotBlank()
+     */
+    protected $points_for_win = 3;
+
+    /**
+     * @ORM\Column(name="points_for_draw", type="integer", length=2)
+     * @Assert\NotBlank()
+     */
+    protected $points_for_draw = 1;
+
+    /**
+     * @ORM\Column(name="points_for_lost", type="integer", length=2)
+     * @Assert\NotBlank()
+     */
+    protected $points_for_lost = 0;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -49,19 +75,23 @@ class Ligue
     }
 
     /**
-     * Set id
+     * Set name
      *
-     * @param integer
+     * @param string $name
+     *
+     * @return Ligue
      */
-    public function setId($id)
+    public function setName($name)
     {
-        $this->id = $id;
+        $this->name = $name;
+
+        return $this;
     }
 
     /**
      * Get name
      *
-     * @return varchar
+     * @return string
      */
     public function getName()
     {
@@ -69,19 +99,23 @@ class Ligue
     }
 
     /**
-     * Set name
+     * Set rule
      *
-     * @param string
+     * @param string $rule
+     *
+     * @return Ligue
      */
-    public function setName($name)
+    public function setRule($rule)
     {
-        $this->name = $name;
+        $this->rule = $rule;
+
+        return $this;
     }
 
     /**
      * Get rule
      *
-     * @return Rule
+     * @return string
      */
     public function getRule()
     {
@@ -89,13 +123,108 @@ class Ligue
     }
 
     /**
-     * Set rule
+     * Add team
      *
-     * @param Rule
+     * @param \BbLigueBundle\Entity\Team $team
+     *
+     * @return Ligue
      */
-    public function setRule($rule)
+    public function addTeam(\BbLigueBundle\Entity\Team $team)
     {
-        $this->rule = $rule;
+        $this->teams[] = $team;
+
+        return $this;
     }
-    
+
+    /**
+     * Remove team
+     *
+     * @param \BbLigueBundle\Entity\Team $team
+     */
+    public function removeTeam(\BbLigueBundle\Entity\Team $team)
+    {
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * Set pointsForWin
+     *
+     * @param integer $pointsForWin
+     *
+     * @return Ligue
+     */
+    public function setPointsForWin($pointsForWin)
+    {
+        $this->points_for_win = $pointsForWin;
+
+        return $this;
+    }
+
+    /**
+     * Get pointsForWin
+     *
+     * @return integer
+     */
+    public function getPointsForWin()
+    {
+        return $this->points_for_win;
+    }
+
+    /**
+     * Set pointsForDraw
+     *
+     * @param integer $pointsForDraw
+     *
+     * @return Ligue
+     */
+    public function setPointsForDraw($pointsForDraw)
+    {
+        $this->points_for_draw = $pointsForDraw;
+
+        return $this;
+    }
+
+    /**
+     * Get pointsForDraw
+     *
+     * @return integer
+     */
+    public function getPointsForDraw()
+    {
+        return $this->points_for_draw;
+    }
+
+    /**
+     * Set pointsForLost
+     *
+     * @param integer $pointsForLost
+     *
+     * @return Ligue
+     */
+    public function setPointsForLost($pointsForLost)
+    {
+        $this->points_for_lost = $pointsForLost;
+
+        return $this;
+    }
+
+    /**
+     * Get pointsForLost
+     *
+     * @return integer
+     */
+    public function getPointsForLost()
+    {
+        return $this->points_for_lost;
+    }
 }

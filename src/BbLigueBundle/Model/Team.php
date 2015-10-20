@@ -12,8 +12,10 @@ namespace BbLigueBundle\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/** @ORM\MappedSuperclass */
-class Team
+/**
+ * @ORM\MappedSuperclass
+ */
+abstract class Team
 {
     /**
      * @ORM\Id
@@ -36,7 +38,7 @@ class Team
 
     /**
      * @ORM\OneToMany(targetEntity="BbLigueBundle\Entity\TeamByJourney", mappedBy="team", cascade={"remove"})
-     * @ORM\OrderBy({"id" = "ASC"})
+     * @ORM\OrderBy({"id" = "DESC"})
      */
     protected $journeys;
 
@@ -66,10 +68,16 @@ class Team
      */
     protected $updated_at;
     
-    public function __construct() {
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->journeys = new \Doctrine\Common\Collections\ArrayCollection();
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
     }
+
     /**
      * Get id
      *
@@ -81,59 +89,23 @@ class Team
     }
 
     /**
-     * Set id
+     * Set name
      *
-     * @param integer
+     * @param string $name
+     *
+     * @return Team
      */
-    public function setId($id)
+    public function setName($name)
     {
-        $this->id = $id;
-    }
+        $this->name = $name;
 
-    /**
-     * Get ligue
-     *
-     * @return Entity\Ligue
-     */
-    public function getLigue()
-    {
-        return $this->ligue;
-    }
-
-    /**
-     * Set ligue
-     *
-     * @param Entity\Ligue
-     */
-    public function setLigue($ligue)
-    {
-        $this->ligue = $ligue;
-    }
-
-    /**
-     * Get coach
-     *
-     * @return Entity\Coach
-     */
-    public function getCoach()
-    {
-        return $this->coach;
-    }
-
-    /**
-     * Set coach
-     *
-     * @param Entity\Coach
-     */
-    public function setCoach($coach)
-    {
-        $this->coach = $coach;
+        return $this;
     }
 
     /**
      * Get name
      *
-     * @return varchar
+     * @return string
      */
     public function getName()
     {
@@ -141,19 +113,23 @@ class Team
     }
 
     /**
-     * Set name
+     * Set roster
      *
-     * @param string
+     * @param string $roster
+     *
+     * @return Team
      */
-    public function setName($name)
+    public function setRoster($roster)
     {
-        $this->name = $name;
+        $this->roster = $roster;
+
+        return $this;
     }
 
     /**
      * Get roster
      *
-     * @return varchar
+     * @return string
      */
     public function getRoster()
     {
@@ -161,19 +137,23 @@ class Team
     }
 
     /**
-     * Set roster
+     * Set createdAt
      *
-     * @param string
+     * @param \DateTime $createdAt
+     *
+     * @return Team
      */
-    public function setRoster($roster)
+    public function setCreatedAt($createdAt)
     {
-        $this->roster = $roster;
+        $this->created_at = $createdAt;
+
+        return $this;
     }
 
     /**
-     * Get created_at
+     * Get createdAt
      *
-     * @return Datetime
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -181,19 +161,23 @@ class Team
     }
 
     /**
-     * Set created_at
+     * Set updatedAt
      *
-     * @param Datetime
+     * @param \DateTime $updatedAt
+     *
+     * @return Team
      */
-    public function setCreatedAt($date)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->created_at = $date;
+        $this->updated_at = $updatedAt;
+
+        return $this;
     }
 
     /**
-     * Get updated_at
+     * Get updatedAt
      *
-     * @return Datetime
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -201,13 +185,85 @@ class Team
     }
 
     /**
-     * Set updated_at
+     * Set coach
      *
-     * @param Datetime
+     * @param \BbLigueBundle\Entity\Coach $coach
+     *
+     * @return Team
      */
-    public function setUpdatedAt($date)
+    public function setCoach(\BbLigueBundle\Entity\Coach $coach = null)
     {
-        $this->updated_at = $date;
+        $this->coach = $coach;
+
+        return $this;
+    }
+
+    /**
+     * Get coach
+     *
+     * @return \BbLigueBundle\Entity\Coach
+     */
+    public function getCoach()
+    {
+        return $this->coach;
+    }
+
+    /**
+     * Set ligue
+     *
+     * @param \BbLigueBundle\Entity\Ligue $ligue
+     *
+     * @return Team
+     */
+    public function setLigue(\BbLigueBundle\Entity\Ligue $ligue = null)
+    {
+        $this->ligue = $ligue;
+
+        return $this;
+    }
+
+    /**
+     * Get ligue
+     *
+     * @return \BbLigueBundle\Entity\Ligue
+     */
+    public function getLigue()
+    {
+        return $this->ligue;
+    }
+
+    /**
+     * Add journey
+     *
+     * @param \BbLigueBundle\Entity\TeamByJourney $journey
+     *
+     * @return Team
+     */
+    public function addJourney(\BbLigueBundle\Entity\TeamByJourney $journey)
+    {
+        $this->journeys[] = $journey;
+
+        return $this;
+    }
+
+    /**
+     * Remove journey
+     *
+     * @param \BbLigueBundle\Entity\TeamByJourney $journey
+     */
+    public function removeJourney(\BbLigueBundle\Entity\TeamByJourney $journey)
+    {
+        $this->journeys->removeElement($journey);
+    }
+
+    /**
+     * Get journeys
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJourneys()
+    {
+        return $this->journeys;
     }
     
     /**
