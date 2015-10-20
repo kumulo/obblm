@@ -1,0 +1,60 @@
+{% extends 'BbLigueBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <section id="dashboard" class="content normal-content clearfix">
+        <header class="section-header clearfix padding-me">
+            <h1 class="section-title">{{ 'layout.dashboard.index.my_teams'|trans }}</h1>
+            <ul class="section-actions">
+                <li><a class="button button-basic" href="{{ path("team_add") }}">{{ 'layout.dashboard.index.team_add'|trans }}</a></li>
+            </ul>
+        </header>
+        <div class="teams clearfix">
+            {% for team in coach.teams %}
+                <article class="team clearfix padding-me">
+                    <div class="wrapper relative clearfix">
+                        <header class="team-header clearfix">
+                            <div class="team-logo">Le Logo</div>
+                            <h3 class="team-name">{{ team.name }}</h3>
+                            <div class="team-metas clearfix">
+                                <span class="race">
+                                    {% set racename = 'blood_bowl.rosters.' ~ team.roster ~ '.title' %}
+                                    {{ racename|trans({},'bb-dictionnary') }}
+                                </span>
+                                <span class="ligue"><span class="name">{{ team.ligue.name }}</span> <span class="format">(Format)</span></span>
+                            </div>
+                        </header>
+                        <div>
+                            {% set last_journey = team.getLastJourney %}
+                            <table class="stats-container clearfix">
+                                <tr>
+                                    <td class="block-main-stats">
+                                        <table class="stats-table main-stats clearfix">
+                                            <tr>
+                                                <td>
+                                                    <span class="label">{{ 'layout.values.tr'|trans }}</span>
+                                                    <span class="value">108</span>
+                                                </td>
+                                                <td>
+                                                    <span class="label">{{ 'layout.values.treasure'|trans }}</span>
+                                                    <span class="value">400 kPO</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        {% for journey in team.journeys %}
+                                        {{ journey.points }}
+                                        {% else %}
+                                        Pas encore de match joué
+                                        {% endfor %}
+                                        <div id="chartdiv"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

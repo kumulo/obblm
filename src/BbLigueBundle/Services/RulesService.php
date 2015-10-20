@@ -12,13 +12,12 @@ class RulesService {
     private $translator;
     private $available_rules;
 
-    public function __construct(EntityManager $entity_manager, DataCollectorTranslator $translator, $datas) {
+    public function __construct(EntityManager $entity_manager, $translator, $datas) {
         $this->em = $entity_manager;
         $this->translator = $translator;
         $this->available_rules = $datas;
 
         $rules = $this->em->getRepository('BbLigueBundle:Rule')->findAll();
-        dump($rules);
         foreach($rules as $rule) $this->addRule($rule);
     }
 

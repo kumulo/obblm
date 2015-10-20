@@ -12,6 +12,7 @@
   ],
   "dependencies": {
     "jquery": "1.9.0",
-    "nanobar": "0.2.0"
+    "nanobar": "0.2.0",
+    "amcharts": "3.15.2"
   }
 }

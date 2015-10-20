@@ -10,6 +10,7 @@
     <body>
         {% block struct %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <script type="text/javascript" src="{{ asset('built/libs.min.js') }}"></script>
         <script async type="text/javascript" src="{{ asset('built/app.min.js') }}"></script>
     </body>
 </html>

@@ -10,13 +10,22 @@ module.exports = function(grunt) {
         sourceMap: true,
         sourceMapName: 'web/built/app.map'
       },
+      libs: {
+        files: {
+          'web/built/libs.min.js': [
+            'app/Resources/lib/jquery/jquery.js',
+            'app/Resources/lib/nanobar/nanobar.js',
+            'app/Resources/lib/amcharts/dist/amcharts/amcharts.js',
+            'app/Resources/lib/amcharts/dist/amcharts/serial.js',
+            'app/Resources/lib/amcharts/dist/amcharts/lang/fr.js',
+            'app/Resources/lib/amcharts/dist/amcharts/lang/en.js'
+          ]
+        }
+      },
       dist: {
         files: {
           'web/built/app.min.js': [
-            'app/Resources/lib/jquery/jquery.js',
-            'app/Resources/lib/nanobar/nanobar.js',
-            'app/Resources/lib/bootstrap-sass-official/asset/javascripts/bootstrap.js',
-            '.tmp/js/**/*.js'
+             "src/BbLigueBundle/Resources/public/js/front.js"
           ]
         }
       }
@@ -107,6 +116,6 @@ module.exports = function(grunt) {
   // Déclaration des différentes tâches
   grunt.registerTask('default', ['css', 'javascript']);
   grunt.registerTask('fonts', ['googlefonts', 'copy:fonts']);
-  grunt.registerTask('javascript', ['uglify']);
+  grunt.registerTask('javascript', ['uglify:libs', 'uglify:dist']);
   grunt.registerTask('css', ['fonts', 'less','cssmin']);
 };

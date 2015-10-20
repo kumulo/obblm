@@ -25,6 +25,59 @@ body {
       transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
     }
 }
+#chartdiv {
+	width		: 96%;
+	height		: 475px;
+	font-size	: 11px;
+ 	margin-left: auto;
+    margin-right: auto;
+  	margin-top: 15px;
+}
+
+.amcharts-graph-g1 .amcharts-graph-fill {
+  filter: url(#blur);
+}
+
+.amcharts-graph-g2 .amcharts-graph-fill {
+  filter: url(#blur);
+}
+
+.amcharts-cursor-fill {
+  filter: url(#shadow);
+}
+.button {
+    .border-radius();
+    display: inline-block;
+    padding: 5px 10px;
+    color: @white;
+    text-decoration: none;
+    font-size: 140%;
+    border: 1px solid;
+    &.button-basic {
+        border-color: @black;
+        background: @black;
+        &:hover {
+            color: @black;
+        }
+    }
+    &.button-ok {
+        border-color: @positive-color;
+        background: @positive-color;
+        &:hover {
+            color: @positive-color;
+        }
+    }
+    &.button-not {
+        border-color: @negative-color;
+        background: @negative-color;
+        &:hover {
+            color: @negative-color;
+        }
+    }
+    &:hover {
+        background: @white;
+    }
+}
 #header {
     position: fixed;
     top: 0;
@@ -95,20 +148,20 @@ body {
                             fill: @nav-icon-color;
                         }
                     }
-                }
-                > a:hover,
-                > a.active {
-                    color: @nav-link-color-hover;
-                    background: @nav-link-bg-hover;
-                    > .icon {
-                        width: auto;
-                        height: auto;
-                        max-height: 42px;
-                        display: block;
-                        margin: 0 auto 10px;
-                        fill: @nav-link-color-hover;
-                        path {
+                    &:hover,
+                    &.active {
+                        color: @nav-link-color-hover;
+                        background: @nav-link-bg-hover;
+                        > .icon {
+                            width: auto;
+                            height: auto;
+                            max-height: 42px;
+                            display: block;
+                            margin: 0 auto 10px;
                             fill: @nav-link-color-hover;
+                            path {
+                                fill: @nav-link-color-hover;
+                            }
                         }
                     }
                 }
@@ -124,12 +177,20 @@ body {
         padding: 20px;
     }
     .normal-content {
-        .section-title {
-            font-size: 240%;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-family: "Dosis", sans-serif;
-            margin-bottom: 20px;
+        .section-header {
+            position: relative;
+            .section-title {
+                font-size: 240%;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-family: "Dosis", sans-serif;
+                margin-bottom: 20px;
+            }
+            .section-actions {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
         }
     }
     /*
@@ -178,6 +239,11 @@ body {
             .team-actions {
                 position: absolute;
                 right: 0;
+                top: 0;
+                li {
+                    display: inline-block;
+                    margin-left: 3px;
+                }
             }
             .team-logo {
                 position: absolute;
@@ -214,6 +280,15 @@ body {
                 .value {
                     font-size: 160%;
                     display: block;
+                    &.positive {
+                        color: @positive-color;
+                    }
+                    &.nul {
+                        color: @nul-color;
+                    }
+                    &.negative {
+                        color: @negative-color;
+                    }
                 }
                 > tbody > tr,
                 > tr {
@@ -229,15 +304,6 @@ body {
                             font-weight: 700;
                         }
                     }
-                }
-                .positive {
-                    color: @positive-color;
-                }
-                .nul {
-                    color: @nul-color;
-                }
-                .negative {
-                    color: @negative-color;
                 }
             }
             .stats-table-like {
@@ -274,9 +340,9 @@ body {
                     }
                 }
             }
-        }
-        > .team:first-child {
-            border-top: 0 none;
+            &:first-child {
+                border-top: 0 none;
+            }
         }
     }
     /*
