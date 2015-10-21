@@ -49,7 +49,7 @@ BbLigueBundle\Entity\Team:
         ligue:  @ligue1
     team2:
         name:   'Nagarrond Panthers'
-        roster: 'ark_elf'
+        roster: 'dark_elf'
         coach:  @coach1
         ligue:  @ligue1
     team3:

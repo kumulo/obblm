@@ -16,7 +16,6 @@ class Rule extends AbstractType
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $rules = $this->provider->getRulesForForm();
         $builder
             ->add('name', null)
             ->add('description', null)

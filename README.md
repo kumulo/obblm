@@ -12,6 +12,7 @@ This project uses [Composer], [Node.js] modules ([Bower] & [Grunt]) and first of
 ## Installation :
     npm install
     composer install
+    bower install
     grunt
 Create database
 
