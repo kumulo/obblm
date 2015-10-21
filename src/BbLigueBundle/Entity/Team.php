@@ -19,4 +19,40 @@ class Team extends BaseTeam
         $this->getJourneys();
         return $this->getJourneys()->first();
     }
+
+    public function getStats()
+    {
+        $j = $this->journeys;
+
+        $iterator = $j->getIterator();
+        $iterator->uasort(function ($a, $b) {
+            return ($a->getId() < $b->getId()) ? -1 : 1;
+        });
+        $r = array();
+        foreach(iterator_to_array($iterator) as $journey) {
+            $r[$journey->getId()] = $journey->__toArray();
+        }
+        return $r;
+    }
+
+    public function getDashbordStats()
+    {
+        $j = $this->getStats();
+
+        $r = array(
+            array(
+                'label' => '',
+                'value' => 100
+            )
+        );
+        foreach($j as $key => $journey) {
+            $nj = array(
+                'label' => $journey['name'],
+                //'date' => $journey['created_at'],
+                'value' => 100 + $journey['points']
+            );
+            $r[] = $nj;
+        }
+        return $r;
+    }
 }

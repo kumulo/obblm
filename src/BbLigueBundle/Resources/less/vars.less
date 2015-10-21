@@ -8,10 +8,14 @@
 
 @mid-green: #049d4a;
 @light-green: #8dd321;
+@clear-green: #8dd321;
 
 @positive-color: #049d4a;
 @nul-color: #f0a70b;
-@negative-color: #c70c0c;
+@negative-color: #d44a4a;
+
+@chart-dark: @mid-green;
+@chart-clear: @clear-green;
 
 /* GENERIC */
 @body-bg: @white;
@@ -57,6 +61,16 @@
     );
 
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@top', endColorstr='@bottom',GradientType=0 ); /* IE6-9 */
+}
+.charts-background (@dark-color: @chart-dark, @clear-color: @chart-clear) {
+    background: @dark-color;
+    background: -moz-linear-gradient(-45deg, @dark-color 0%, @clear-color 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, @dark-color), color-stop(100%, @clear-color));
+    background: -webkit-linear-gradient(-45deg, @dark-color 0%, @clear-color 100%);
+    background: -o-linear-gradient(-45deg, @dark-color 0%, @clear-color 100%);
+    background: -ms-linear-gradient(-45deg, @dark-color 0%, @clear-color 100%);
+    background: linear-gradient(135deg, @dark-color 0%, @clear-color 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@dark-color', endColorstr='@clear-color', GradientType=1 );
 }
 .border-radius (@size: 3px) {
   -webkit-border-radius: @size;

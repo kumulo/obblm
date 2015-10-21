@@ -100,6 +100,8 @@ abstract class TeamByJourney
     public function __construct()
     {
         $this->players = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
     }
 
     /**

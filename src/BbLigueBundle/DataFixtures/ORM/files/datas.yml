@@ -1,0 +1,114 @@
+BbLigueBundle\Entity\Coach:
+    admin:
+        username:  "admin"
+        password:  "admin"
+        email:     "admin@domainbblm.com"
+        enabled:   true
+        roles:
+            - 'ROLE_SUPER_ADMIN'
+    coach1:
+        username:  "coach1"
+        password:  "coach1"
+        email:     "coach1@domainbblm.com"
+        enabled:   true
+        roles:
+            - 'ROLE_USER'
+    coach2:
+        username:  "coach2"
+        password:  "coach2"
+        email:     "coach2@domainbblm.com"
+        enabled:   true
+        roles:
+            - 'ROLE_USER'
+    coach3:
+        username:  "coach3"
+        password:  "coach3"
+        email:     "coach3@domainbblm.com"
+        enabled:   true
+        roles:
+            - 'ROLE_USER'
+
+BbLigueBundle\Entity\Ligue:
+    ligue1:
+        name:   'Ligue de test'
+        rule:   'lbr6'
+
+BbLigueBundle\Entity\Journey:
+     j1:
+        name:   'J1'
+        ligue:  @ligue1
+     j2:
+        name:   'J2'
+        ligue:  @ligue1
+
+BbLigueBundle\Entity\Team:
+    team1:
+        name:   'Karak Helmets'
+        roster: 'dwarf'
+        coach:  @admin
+        ligue:  @ligue1
+    team2:
+        name:   'Nagarrond Panthers'
+        roster: 'ark_elf'
+        coach:  @coach1
+        ligue:  @ligue1
+    team3:
+        name:   'Nourn Corsairs'
+        roster: 'ogre'
+        coach:  @coach2
+        ligue:  @ligue1
+    team4:
+        name:   'Moar Eagles'
+        roster: 'high_elf'
+        coach:  @coach3
+        ligue:  @ligue1
+
+BbLigueBundle\Entity\TeamByJourney:
+    tj11:
+        team:           @team1
+        journey:        @j1
+        win_match:      1
+        draw_match:     0
+        lost_match:     0
+        td_give:        2
+        td_take:        0
+        injury_give:    3
+        injury_take:    1
+        pass:           0
+        red_card:       0
+    tj12:
+        team:           @team2
+        journey:        @j1
+        win_match:      0
+        draw_match:     1
+        lost_match:     0
+        td_give:        2
+        td_take:        2
+        injury_give:    1
+        injury_take:    2
+        pass:           3
+        red_card:       0
+    tj13:
+        team:           @team3
+        journey:        @j1
+        win_match:      0
+        draw_match:     0
+        lost_match:     1
+        td_give:        0
+        td_take:        2
+        injury_give:    1
+        injury_take:    3
+        pass:           1
+        red_card:       0
+    tj14:
+        team:           @team4
+        journey:        @j1
+        win_match:      0
+        draw_match:     1
+        lost_match:     0
+        td_give:        2
+        td_take:        2
+        injury_give:    2
+        injury_take:    1
+        pass:           1
+        red_card:       0

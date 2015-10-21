@@ -25,4 +25,24 @@ class TeamByJourney extends BaseTeamByJourney
 
         return $this->points;
     }
+
+    public function __toArray()
+    {
+        return array(
+            'id'            => $this->id,
+            'name'          => $this->journey->getName(),
+            'points'        => $this->getPoints(),
+            'win_match'     => $this->win_match,
+            'draw_match'    => $this->draw_match,
+            'lost_match'    => $this->lost_match,
+            'td_give'       => $this->td_give,
+            'td_take'       => $this->td_take,
+            'injury_give'   => $this->injury_give,
+            'injury_take'   => $this->injury_take,
+            'pass'          => $this->pass,
+            'red_card'      => $this->red_card,
+            'created_at'    => $this->created_at,
+            'updated_at'    => $this->updated_at,
+        );
+    }
 }

@@ -42,12 +42,11 @@
                                         </table>
                                     </td>
                                     <td>
-                                        {% for journey in team.journeys %}
-                                        {{ journey.points }}
+                                        {% if team.getDashbordStats %}
+                                        <div id="dashboard-chart-{{ team.id }}" class="dashboard-chart" chart-data="{{ team.getDashbordStats|json_encode }}" chart-title="Evolution de mon TR"></div>
                                         {% else %}
                                         Pas encore de match joué
-                                        {% endfor %}
-                                        <div id="chartdiv"></div>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             </table>

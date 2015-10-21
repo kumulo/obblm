@@ -42,7 +42,6 @@ abstract class Journey
 
     public function __construct()
     {
-        parent::__construct();
         // your own logic
     }
 
