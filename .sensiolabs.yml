@@ -10,3 +10,22 @@ post_composer_script: |
     ./app/console doctrine:schema:update --force --no-interaction
     ./app/console assets:install web --symlink --no-interaction
     #./app/console doctrine:fixtures:load --no-interaction
+
+global_exclude_dirs:
+    - vendor
+    - vendors
+    - test
+    - tests
+    - Tests
+    - spec
+    - features
+    - Fixtures
+    - DataFixtures
+    - var
+    - src/BbLegacyManagerBundle
+
+rules:
+    doctrine.database_query_contains_string_and_variable_concatenation:
+        enabled: true
+    composer.dependencies_not_installable:
+        enabled: false
