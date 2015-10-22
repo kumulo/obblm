@@ -15,4 +15,5 @@
 /node_modules/
 /.tmp/
 /legacy/
+/src/BbLegacyManagerBundle/
 composer.lock

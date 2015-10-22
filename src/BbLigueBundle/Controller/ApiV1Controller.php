@@ -3,11 +3,9 @@
 namespace BbLigueBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\FOSRestController;
-use BbLigueBundle\DependencyInjection\BbLigueExtension;
 
 class ApiV1Controller extends FOSRestController
 {
@@ -20,7 +18,6 @@ class ApiV1Controller extends FOSRestController
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
         $data = array(
             'message' => "Hello Toto",
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
@@ -48,7 +45,6 @@ class ApiV1Controller extends FOSRestController
      */
     public function meAction(Request $request)
     {
-        // replace this example code with whatever you need
         $user = $this->getUser();
         if($user) {
             $data = array(
@@ -85,13 +81,8 @@ class ApiV1Controller extends FOSRestController
      */
     public function myTeamsAction(Request $request)
     {
-        // replace this example code with whatever you need
         $user = $this->getUser();
-        
-        //$rosters = $this->get('bb.rosters');
-        
-        //var_dump($rosters->getRosters());
-        //exit;
+
         if($user) {
             $teams = $user->getTeams();
             $data = array(

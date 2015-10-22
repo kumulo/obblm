@@ -23,7 +23,6 @@ class CoachController extends Controller
      */
     public function addAction(Request $request)
     {
-        // replace this example code with whatever you need
         $team = new Team();
         $team->setCoach($this->getUser());
 
@@ -46,8 +45,6 @@ class CoachController extends Controller
      */
     public function editAction(Request $request, $team_id)
     {
-        // replace this example code with whatever you need
-
         $team = $this->getDoctrine()
             ->getRepository('BbLigueBundle:Team')
             ->find($team_id);

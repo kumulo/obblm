@@ -13,7 +13,6 @@ class LigueController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
         return $this->render('BbLigueBundle::Ligue/index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
@@ -23,7 +22,6 @@ class LigueController extends Controller
      */
     public function addAction(Request $request)
     {
-        // replace this example code with whatever you need
         return $this->render('BbLigueBundle::Ligue/add.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));

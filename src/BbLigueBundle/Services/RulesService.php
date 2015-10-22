@@ -4,7 +4,6 @@ namespace BbLigueBundle\Services;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\DataCollectorTranslator;
-use BbLigueBundle\Entity\Team;
 
 class RulesService {
 

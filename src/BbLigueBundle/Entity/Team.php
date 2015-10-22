@@ -5,6 +5,7 @@ namespace BbLigueBundle\Entity;
 
 use BbLigueBundle\Model\Team as BaseTeam;
 use Doctrine\ORM\Mapping as ORM;
+use BbLigueBundle\Entity\TeamByJourney;
 
 /**
  * @ORM\Entity
@@ -25,7 +26,7 @@ class Team extends BaseTeam
         $j = $this->journeys;
 
         $iterator = $j->getIterator();
-        $iterator->uasort(function ($a, $b) {
+        $iterator->uasort(function (TeamByJourney $a, TeamByJourney $b) {
             return ($a->getId() < $b->getId()) ? -1 : 1;
         });
         $r = array();
@@ -48,7 +49,6 @@ class Team extends BaseTeam
         foreach($j as $key => $journey) {
             $nj = array(
                 'label' => $journey['name'],
-                //'date' => $journey['created_at'],
                 'value' => 100 + $journey['points']
             );
             $r[] = $nj;
