@@ -20,7 +20,7 @@ class Team extends AbstractType
                     $qb = $repository->createQueryBuilder('l')->orderBy('l.id', 'DESC');
                     $involvedligues = $options['data']->getCoach()
                         ->getInvolvedLigues()
-                        ->map(function($ligue)  {
+                        ->map(function(\BbLigueBundle\Entity\Ligue $ligue)  {
                             return $ligue->getId();
                         })->toArray();
                     if($involvedligues) {

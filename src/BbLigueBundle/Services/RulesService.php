@@ -2,8 +2,6 @@
 
 namespace BbLigueBundle\Services;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\Translation\Translator;
-use Symfony\Component\Translation\DataCollectorTranslator;
 
 class RulesService {
 
@@ -37,7 +35,7 @@ class RulesService {
         return $rules;
     }
 
-    public function addRule($rule) {
+    public function addRule(\BbLigueBundle\Entity\Rule $rule) {
         return $this->available_rules[$rule->getRuleKey()] = $rule;
     }
     public function getRule($key) {
