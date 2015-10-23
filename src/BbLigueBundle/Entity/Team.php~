@@ -55,25 +55,4 @@ class Team extends BaseTeam
         }
         return $r;
     }
-
-    /**
-     * Get matchs
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCommingMatchs()
-    {
-        $r = array();
-        foreach(iterator_to_array($this->matchs) as $match) {
-            if(count($match->getTeamsByJourney()) == 0) {
-                $r[] = $match;
-            }
-        }
-        foreach(iterator_to_array($this->matchs_has_visitor) as $match) {
-            if(count($match->getTeamsByJourney()) == 0) {
-                $r[] = $match;
-            }
-        }
-        return $r;
-    }
 }

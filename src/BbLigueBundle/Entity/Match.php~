@@ -12,5 +12,5 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Match extends BaseMatch
 {
-
+    
 }

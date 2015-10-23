@@ -17,3 +17,4 @@
 /legacy/
 /src/BbLegacyManagerBundle/
 composer.lock
+/web/app_test.php

@@ -67,6 +67,16 @@ abstract class Team
      * @Assert\Date()
      */
     protected $updated_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity="BbLigueBundle\Entity\Match", mappedBy="team", cascade={"persist"})
+     */
+    protected $matchs;
+
+    /**
+     * @ORM\OneToMany(targetEntity="BbLigueBundle\Entity\Match", mappedBy="visitor", cascade={"persist"})
+     */
+    protected $matchs_has_visitor;
     
     /**
      * Constructor
@@ -264,6 +274,74 @@ abstract class Team
     public function getJourneys()
     {
         return $this->journeys;
+    }
+
+    /**
+     * Add match
+     *
+     * @param \BbLigueBundle\Entity\Match $match
+     *
+     * @return Team
+     */
+    public function addMatch(\BbLigueBundle\Entity\Match $match)
+    {
+        $this->matchs[] = $match;
+
+        return $this;
+    }
+
+    /**
+     * Remove match
+     *
+     * @param \BbLigueBundle\Entity\Match $match
+     */
+    public function removeMatch(\BbLigueBundle\Entity\Match $match)
+    {
+        $this->matchs->removeElement($match);
+    }
+
+    /**
+     * Get matchs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMatchs()
+    {
+        return $this->matchs;
+    }
+
+    /**
+     * Add matchsHasVisitor
+     *
+     * @param \BbLigueBundle\Entity\Match $matchsHasVisitor
+     *
+     * @return Team
+     */
+    public function addMatchsHasVisitor(\BbLigueBundle\Entity\Match $matchsHasVisitor)
+    {
+        $this->matchs_has_visitor[] = $matchsHasVisitor;
+
+        return $this;
+    }
+
+    /**
+     * Remove matchsHasVisitor
+     *
+     * @param \BbLigueBundle\Entity\Match $matchsHasVisitor
+     */
+    public function removeMatchsHasVisitor(\BbLigueBundle\Entity\Match $matchsHasVisitor)
+    {
+        $this->matchs_has_visitor->removeElement($matchsHasVisitor);
+    }
+
+    /**
+     * Get matchsHasVisitor
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMatchsHasVisitor()
+    {
+        return $this->matchs_has_visitor;
     }
     
     /**

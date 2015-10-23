@@ -31,7 +31,6 @@ body {
 	font-size	: 11px;
  	margin-left: auto;
     margin-right: auto;
-  	margin-top: 15px;
     color: @white;
     .charts-background();
     circle {
@@ -186,8 +185,6 @@ body {
 }
 #content {
     margin: 100px 0 0 100px;
-    .content {
-    }
     .padding-me {
         padding: 20px;
     }
@@ -208,155 +205,264 @@ body {
             }
         }
     }
-    /*
-     * TEAM LIST
-     */
-    .teams {
-        > .team {
-            position: relative;
-            .separator();
-            .wrapper {
-                padding-left: 180px;
-                min-height: 150px;
-            }
-            .team-header {
-                margin-bottom: 5px;
-                .team-name {
-                    font-size: 240%;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    font-family: "Dosis", sans-serif;
-                    color: @team-name-color;
+    .content {
+        /*
+         * TEAM LIST
+         */
+        .teams {
+            > .team {
+                position: relative;
+                .separator();
+                .wrapper {
+                    padding-left: 180px;
+                    min-height: 150px;
                 }
-                .team-metas {
-                    > .race {
-                        display: inline-block;
-                        font-size: 200%;
-                        font-weight: 600;
+                .team-header {
+                    margin-bottom: 5px;
+                    .team-name {
+                        font-size: 240%;
+                        font-weight: 700;
                         text-transform: uppercase;
-                        color: @team-race-color;
+                        font-family: "Dosis", sans-serif;
+                        color: @team-name-color;
                     }
-                    > .ligue {
-                        display: inline-block;
-                        margin-left: 10px;
-                        > .name {
+                    .team-metas {
+                        > .race {
+                            display: inline-block;
                             font-size: 200%;
-                            color: @team-ligue-color;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                            color: @team-race-color;
                         }
-                        > .format {
-                            font-size: 140%;
-                            font-style: italic;
-                            color: @team-ligue-format;
+                        > .ligue {
+                            display: inline-block;
+                            margin-left: 10px;
+                            > .name {
+                                font-size: 200%;
+                                color: @team-ligue-color;
+                            }
+                            > .format {
+                                font-size: 140%;
+                                font-style: italic;
+                                color: @team-ligue-format;
+                            }
                         }
                     }
                 }
-            }
-            .team-actions {
-                position: absolute;
-                right: 0;
-                top: 0;
-                li {
-                    display: inline-block;
-                    margin-left: 3px;
+                .team-actions {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    li {
+                        display: inline-block;
+                        margin-left: 3px;
+                    }
                 }
-            }
-            .team-logo {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 160px;
-                height: 150px;
-                background: @mid-green;
-            }
-            .stats-container {
-                border-spacing : 0;
-                border-collapse : collapse;
-                width: 100%;
-                display: table;
-                .block-main-stats {
-                    width: 350px;
+                .team-logo {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 160px;
+                    height: 150px;
+                    background: @mid-green;
+                }
+                .stats-container {
+                    border-spacing : 0;
+                    border-collapse : collapse;
+                    width: 100%;
+                    display: table;
+                    .block-main-stats {
+                        width: 350px;
+                    }
+                    .stats-table {
+                        height: 100%;
+                    }
                 }
                 .stats-table {
-                    height: 100%;
-                }
-            }
-            .stats-table {
-                background: @stats-tab-bg;
-                border-spacing : 0;
-                border-collapse : collapse;
-                width: 100%;
-                display: table;
-                tbody {width: 100%; display: table;}
-                .label {
-                    font-size: 160%;
-                    text-transform: uppercase;
-                    display: block;
-                }
-                .value {
-                    font-size: 160%;
-                    display: block;
-                    &.positive {
-                        color: @positive-color;
+                    background: @stats-tab-bg;
+                    border-spacing : 0;
+                    border-collapse : collapse;
+                    width: 100%;
+                    display: table;
+                    tbody {width: 100%; display: table;}
+                    .label {
+                        font-size: 160%;
+                        text-transform: uppercase;
+                        display: block;
                     }
-                    &.nul {
-                        color: @nul-color;
-                    }
-                    &.negative {
-                        color: @negative-color;
-                    }
-                }
-                > tbody > tr,
-                > tr {
-                    > td,
-                    > th {
-                        border-spacing : 0;
-                        border-collapse : collapse;
-                        border: 1px solid @stats-tab-border;
-                        text-align: center;
-                        padding: 20px 5px;
-                        > .value {
-                            font-size: 360%;
-                            font-weight: 700;
+                    .value {
+                        font-size: 160%;
+                        display: block;
+                        &.positive {
+                            color: @positive-color;
+                        }
+                        &.nul {
+                            color: @nul-color;
+                        }
+                        &.negative {
+                            color: @negative-color;
                         }
                     }
-                }
-            }
-            .stats-table-like {
-                > .value {
-                    font-size: 360%;
-                    font-weight: 700;
-                }
-            }
-            .lines-table {
-                > tbody > tr,
-                > tr {
-                    > td,
-                    > th {
-                        > .label {
-                            float: left;
-                            margin-left: 10px;
-                            line-height: 24px;
-                        }
-                        > .value {
-                            float: right;
-                            line-height: 24px;
-                            margin-right: 10px;
-                        }
-                    }
-                }
-            }
-            .main-stats {
-                width: 330px;
-                > tbody {
+                    > tbody > tr,
                     > tr {
-                        > td {
-                            padding: 25px 5px;
+                        > td,
+                        > th {
+                            border-spacing : 0;
+                            border-collapse : collapse;
+                            border: 1px solid @stats-tab-border;
+                            text-align: center;
+                            padding: 20px 5px;
+                            > .value {
+                                font-size: 360%;
+                                font-weight: 700;
+                            }
                         }
                     }
                 }
+                .stats-table-like {
+                    > .value {
+                        font-size: 360%;
+                        font-weight: 700;
+                    }
+                }
+                .lines-table {
+                    > tbody > tr,
+                    > tr {
+                        > td,
+                        > th {
+                            > .label {
+                                float: left;
+                                margin-left: 10px;
+                                line-height: 24px;
+                            }
+                            > .value {
+                                float: right;
+                                line-height: 24px;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+                .main-stats {
+                    width: 330px;
+                    > tbody {
+                        > tr {
+                            > td {
+                                padding: 25px 5px;
+                            }
+                        }
+                    }
+                }
+                &:first-child {
+                    border-top: 0 none;
+                }
             }
-            &:first-child {
-                border-top: 0 none;
+        }
+        &#dashboard {
+            .teams {
+                > .team {
+                    .wrapper {
+                        padding-left: 0;
+                    }
+                    .team-header {
+                        .team-name,
+                        .team-metas {
+                            float: left;
+                        }
+                        .team-metas {
+                            line-height: 31px;
+                        }
+                    }
+                    .team-content {
+                        display: table;
+                        width: 100%;
+                    }
+                    .team-logo,
+                    .team-matches,
+                    .team-stats {
+                        display: table-cell;
+                        padding-left: 20px;
+                        vertical-align: top;
+                    }
+                    .team-logo {
+                        position: relative;
+                        padding-left: 0;
+                    }
+                    .team-matches {
+                        width: 505px;
+                        .see-all {
+                            float: right;
+                            margin-top: 5px;
+                        }
+                        .matches {
+                            width: 100%;
+                            border-spacing: 2px;
+                            border-collapse: separate;
+                            display: table;
+                            tr {
+                                td {
+                                    background: @mid-grey;
+                                    padding: 5px 10px;
+                                    font-size: 140%;
+                                    &.journey {
+                                        text-align: center;
+                                        width: 30px;
+                                    }
+                                    &.versus {
+                                        background: @chart-dark;
+                                        color: @white;
+                                        .team-name {
+                                            text-transform: uppercase;
+                                            font-weight: 700;
+                                            font-style: italic;
+                                        }
+                                        .coach {
+                                            float: right;
+                                            font-style: italic;
+                                        }
+                                    }
+                                    &.tr {
+                                        text-align: center;
+                                        width: 40px;
+                                        background: @dark-mid-grey;
+                                        color: @white;
+                                    }
+                                }
+                                &.even {
+                                    td {
+                                        &.versus {
+                                            background: @chart-clear;
+                                            color: inherit;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .stats-container {
+                        td {vertical-align: top;}
+                        .block-main-stats {
+                            width: 100px;
+                        }
+                        .main-stats {
+                            width: 100%;
+                            .treso {
+                                font-size: 60%;
+                            }
+                            > tbody > tr > td {
+                                padding: 20px 5px;
+                            }
+                        }
+                        .chart {
+                            position: relative;
+                            padding-left: 20px;
+                            .dashboard-chart {
+                                height: 100%;
+                                position: absolute;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

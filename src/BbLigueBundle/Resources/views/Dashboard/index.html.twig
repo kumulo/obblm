@@ -3,53 +3,63 @@
 {% block body %}
     <section id="dashboard" class="content normal-content clearfix">
         <header class="section-header clearfix padding-me">
-            <h1 class="section-title">{{ 'layout.dashboard.index.my_teams'|trans }}</h1>
-            <ul class="section-actions">
-                <li><a class="button button-basic" href="{{ path("team_add") }}">{{ 'layout.dashboard.index.team_add'|trans }}</a></li>
-            </ul>
+            <h1 class="section-title">{{ 'layout.dashboard.index.title'|trans }}</h1>
         </header>
         <div class="teams clearfix">
             {% for team in coach.teams %}
                 <article class="team clearfix padding-me">
                     <div class="wrapper relative clearfix">
                         <header class="team-header clearfix">
-                            <div class="team-logo">Le Logo</div>
                             <h3 class="team-name">{{ team.name }}</h3>
                             <div class="team-metas clearfix">
-                                <span class="race">
-                                    {% set racename = 'blood_bowl.rosters.' ~ team.roster ~ '.title' %}
-                                    {{ racename|trans({},'bb-dictionnary') }}
-                                </span>
                                 <span class="ligue"><span class="name">{{ team.ligue.name }}</span> <span class="format">(Format)</span></span>
                             </div>
                         </header>
-                        <div>
+                        <div class="team-content clearfix">
+                            <div class="team-logo">Le Logo</div>
+                            <div class="team-matches">
+                                <table class="matches clearfix">
+                                    {% for i, match in team.commingMatchs|slice(0, 5) %}
+                                    <tr class="{{ cycle(['odd', 'even'], i) }}">
+                                        <td class="journey">{{ match.journey.name }}</td>
+                                        {% set versus = (match.team == team) ? match.visitor : match.team %}
+                                        <td class="versus"><span class="team-name">{{ versus.name }}</span> <span class="coach">{{ versus.coach.username }}</span></td>
+                                        <td class="tr">103</td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                                <a class="button button-ok see-all" href="#">{{ 'layout.dashboard.index.matches.see_all'|trans }}</a>
+                            </div>
                             {% set last_journey = team.getLastJourney %}
-                            <table class="stats-container clearfix">
-                                <tr>
-                                    <td class="block-main-stats">
-                                        <table class="stats-table main-stats clearfix">
-                                            <tr>
-                                                <td>
-                                                    <span class="label">{{ 'layout.values.tr'|trans }}</span>
-                                                    <span class="value">108</span>
-                                                </td>
-                                                <td>
-                                                    <span class="label">{{ 'layout.values.treasure'|trans }}</span>
-                                                    <span class="value">400 kPO</span>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        {% if team.getDashbordStats %}
-                                        <div id="dashboard-chart-{{ team.id }}" class="dashboard-chart" chart-data="{{ team.getDashbordStats|json_encode }}" chart-title="Evolution de mon TR"></div>
-                                        {% else %}
-                                        Pas encore de match joué
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="team-stats clearfix">
+                                <table class="stats-container clearfix">
+                                    <tr>
+                                        <td class="block-main-stats">
+                                            <table class="stats-table main-stats clearfix">
+                                                <tr>
+                                                    <td>
+                                                        <span class="label">{{ 'layout.values.tr'|trans }}</span>
+                                                        <span class="value">108</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="treso">
+                                                        <span class="label">{{ 'layout.values.treasure'|trans }}</span>
+                                                        <span class="value">400 kPO</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="chart">
+                                            {% if team.getDashbordStats %}
+                                            <div id="dashboard-chart-{{ team.id }}" class="dashboard-chart" chart-data="{{ team.getDashbordStats|json_encode }}" chart-title="Evolution de mon TR"></div>
+                                            {% else %}
+                                            Pas encore de match joué
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </article>

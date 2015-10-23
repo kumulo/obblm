@@ -15,6 +15,11 @@ layout:
     tournaments: Ligues et tournois
     coach_space: Espace coach
     admin_space: Espace admin
+  dashboard:
+    index:
+      title: Mon tableau de bord
+      matches:
+        see_all: Voir toutes mes rencontres
   coach_space:
     index:
       title: Mon espace coach

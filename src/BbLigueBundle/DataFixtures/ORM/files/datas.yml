@@ -1,32 +1,59 @@
 BbLigueBundle\Entity\Coach:
     admin:
-        username:  "admin"
-        password:  "admin"
-        email:     "admin@domainbblm.com"
-        enabled:   true
+        username:       "admin"
+        plainPassword:  "admin"
+        email:          "admin@domainbblm.com"
+        enabled:        true
         roles:
             - 'ROLE_SUPER_ADMIN'
     coach1:
         username:  "coach1"
-        password:  "coach1"
+        plainPassword:  "coach1"
         email:     "coach1@domainbblm.com"
         enabled:   true
-        roles:
-            - 'ROLE_USER'
+        roles:     []
     coach2:
         username:  "coach2"
-        password:  "coach2"
+        plainPassword:  "coach2"
         email:     "coach2@domainbblm.com"
         enabled:   true
-        roles:
-            - 'ROLE_USER'
+        roles:     []
     coach3:
         username:  "coach3"
-        password:  "coach3"
+        plainPassword:  "coach3"
         email:     "coach3@domainbblm.com"
         enabled:   true
-        roles:
-            - 'ROLE_USER'
+        roles:     []
+    coach4:
+        username:  "coach4"
+        plainPassword:  "coach4"
+        email:     "coach4@domainbblm.com"
+        enabled:   true
+        roles:     []
+    coach5:
+        username:  "coach5"
+        plainPassword:  "coach5"
+        email:     "coach5@domainbblm.com"
+        enabled:   true
+        roles:     []
+    coach6:
+        username:  "coach6"
+        plainPassword:  "coach6"
+        email:     "coach6@domainbblm.com"
+        enabled:   true
+        roles:     []
+    coach7:
+        username:  "coach7"
+        plainPassword:  "coach7"
+        email:     "coach7@domainbblm.com"
+        enabled:   true
+        roles:     []
+    coach8:
+        username:  "coach8"
+        plainPassword:  "coach8"
+        email:     "coach8@domainbblm.com"
+        enabled:   true
+        roles:     []
 
 BbLigueBundle\Entity\Ligue:
     ligue1:
@@ -40,33 +67,143 @@ BbLigueBundle\Entity\Journey:
      j2:
         name:   'J2'
         ligue:  @ligue1
+     j3:
+        name:   'J3'
+        ligue:  @ligue1
+     j4:
+        name:   'J4'
+        ligue:  @ligue1
+     j5:
+        name:   'J5'
+        ligue:  @ligue1
+     j6:
+        name:   'J6'
+        ligue:  @ligue1
+     j7:
+        name:   'J7'
+        ligue:  @ligue1
 
 BbLigueBundle\Entity\Team:
     team1:
         name:   'Karak Helmets'
         roster: 'dwarf'
-        coach:  @admin
+        coach:  @coach1
         ligue:  @ligue1
     team2:
         name:   'Nagarrond Panthers'
         roster: 'dark_elf'
-        coach:  @coach1
+        coach:  @coach2
         ligue:  @ligue1
     team3:
         name:   'Nourn Corsairs'
         roster: 'ogre'
-        coach:  @coach2
+        coach:  @coach3
         ligue:  @ligue1
     team4:
         name:   'Moar Eagles'
         roster: 'high_elf'
-        coach:  @coach3
+        coach:  @coach4
         ligue:  @ligue1
+    team5:
+        name:   'Grim Garveyards'
+        roster: 'necromantic'
+        coach:  @coach5
+        ligue:  @ligue1
+    team6:
+        name:   'Chims Lords'
+        roster: 'human'
+        coach:  @coach6
+        ligue:  @ligue1
+    team7:
+        name:   'Goblin Boomers'
+        roster: 'goblin'
+        coach:  @coach7
+        ligue:  @ligue1
+    team8:
+        name:   'Boobs and Noobs'
+        roster: 'amazon'
+        coach:  @coach8
+        ligue:  @ligue1
+
+BbLigueBundle\Entity\Match:
+    m11:
+        journey:        @j1
+        team:           @team1
+        visitor:        @team2
+    m12:
+        journey:        @j1
+        team:           @team3
+        visitor:        @team4
+    m13:
+        journey:        @j1
+        team:           @team5
+        visitor:        @team6
+    m14:
+        journey:        @j1
+        team:           @team7
+        visitor:        @team8
+    m21:
+        journey:        @j2
+        team:           @team1
+        visitor:        @team3
+    m22:
+        journey:        @j2
+        team:           @team2
+        visitor:        @team4
+    m23:
+        journey:        @j2
+        team:           @team5
+        visitor:        @team8
+    m24:
+        journey:        @j2
+        team:           @team7
+        visitor:        @team6
+    m31:
+        journey:        @j3
+        team:           @team1
+        visitor:        @team4
+    m32:
+        journey:        @j3
+        team:           @team2
+        visitor:        @team5
+    m41:
+        journey:        @j4
+        team:           @team1
+        visitor:        @team5
+    m32:
+        journey:        @j3
+        team:           @team2
+        visitor:        @team6
+    m51:
+        journey:        @j5
+        team:           @team1
+        visitor:        @team6
+    m32:
+        journey:        @j3
+        team:           @team2
+        visitor:        @team7
+    m61:
+        journey:        @j6
+        team:           @team1
+        visitor:        @team7
+    m32:
+        journey:        @j3
+        team:           @team2
+        visitor:        @team8
+    m71:
+        journey:        @j7
+        team:           @team1
+        visitor:        @team8
+    m32:
+        journey:        @j3
+        team:           @team2
+        visitor:        @team3
 
 BbLigueBundle\Entity\TeamByJourney:
     tj11:
         team:           @team1
         journey:        @j1
+        match:          @m11
         win_match:      1
         draw_match:     0
         lost_match:     0
@@ -79,6 +216,7 @@ BbLigueBundle\Entity\TeamByJourney:
     tj12:
         team:           @team2
         journey:        @j1
+        match:          @m11
         win_match:      0
         draw_match:     1
         lost_match:     0
@@ -88,27 +226,39 @@ BbLigueBundle\Entity\TeamByJourney:
         injury_take:    2
         pass:           3
         red_card:       0
-    tj13:
-        team:           @team3
-        journey:        @j1
-        win_match:      0
-        draw_match:     0
-        lost_match:     1
-        td_give:        0
-        td_take:        2
-        injury_give:    1
-        injury_take:    3
-        pass:           1
-        red_card:       0
-    tj14:
-        team:           @team4
-        journey:        @j1
-        win_match:      0
-        draw_match:     1
-        lost_match:     0
-        td_give:        2
-        td_take:        2
-        injury_give:    2
-        injury_take:    1
-        pass:           1
-        red_card:       0
+#    tj12:
+#        team:           @team2
+#        journey:        @j1
+#        win_match:      0
+#        draw_match:     1
+#        lost_match:     0
+#        td_give:        2
+#        td_take:        2
+#        injury_give:    1
+#        injury_take:    2
+#        pass:           3
+#        red_card:       0
+#    tj13:
+#        team:           @team3
+#        journey:        @j1
+#        win_match:      0
+#        draw_match:     0
+#        lost_match:     1
+#        td_give:        0
+#        td_take:        2
+#        injury_give:    1
+#        injury_take:    3
+#        pass:           1
+#        red_card:       0
+#    tj14:
+#        team:           @team4
+#        journey:        @j1
+#        win_match:      0
+#        draw_match:     1
+#        lost_match:     0
+#        td_give:        2
+#        td_take:        2
+#        injury_give:    2
+#        injury_take:    1
+#        pass:           1
+#        red_card:       0

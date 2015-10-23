@@ -34,6 +34,11 @@ abstract class TeamByJourney
     protected $journey;
 
     /**
+     * @ORM\ManyToOne(targetEntity="BbLigueBundle\Entity\Match", inversedBy="teams_by_journey", cascade={"persist"})
+     */
+    protected $match;
+
+    /**
      * @ORM\OneToMany(targetEntity="BbLigueBundle\Entity\Player", mappedBy="journey", cascade={"remove"})
      * @ORM\OrderBy({"id" = "ASC"})
      */
@@ -465,5 +470,29 @@ abstract class TeamByJourney
     public function getPlayers()
     {
         return $this->players;
+    }
+
+    /**
+     * Set match
+     *
+     * @param \BbLigueBundle\Entity\Match $match
+     *
+     * @return TeamByJourney
+     */
+    public function setMatch(\BbLigueBundle\Entity\Match $match = null)
+    {
+        $this->match = $match;
+
+        return $this;
+    }
+
+    /**
+     * Get match
+     *
+     * @return \BbLigueBundle\Entity\Match
+     */
+    public function getMatch()
+    {
+        return $this->match;
     }
 }
