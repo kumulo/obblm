@@ -27,7 +27,7 @@ class DefaultControllerTest extends WebTestCase
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     }
     /*
-     * Login tests are broken
+     * TODO : Login tests are broken
     public function testUser() {
         $this->logInAsUser();
         $this->client->request('GET', '/');
@@ -78,6 +78,7 @@ class DefaultControllerTest extends WebTestCase
             );
         }
     }
+    // TODO : Add more data tests
     public function testService()
     {
         $crawler = $this->client->request('GET', '/login');
