@@ -59,7 +59,7 @@ class DefaultControllerTest extends WebTestCase
         $repo = $em->getRepository('BbLigueBundle:Team');
         $teams = $repo->findAll();
         // Four teams injected
-        $this->assertCount(4, $teams);
+        $this->assertCount(8, $teams);
         foreach($teams as $team) {
             $this->assertTrue(
                 in_array(
@@ -68,7 +68,11 @@ class DefaultControllerTest extends WebTestCase
                         'dwarf',
                         'ogre',
                         'dark_elf',
-                        'high_elf'
+                        'high_elf',
+                        'necromantic',
+                        'human',
+                        'goblin',
+                        'amazon'
                     )
                 )
             );

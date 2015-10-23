@@ -64,12 +64,11 @@ class Team extends BaseTeam
     public function getCommingMatchs()
     {
         $r = array();
-        foreach(iterator_to_array($this->matchs) as $match) {
-            if(count($match->getTeamsByJourney()) == 0) {
-                $r[] = $match;
-            }
-        }
-        foreach(iterator_to_array($this->matchs_has_visitor) as $match) {
+        $matchs = array_merge(
+            iterator_to_array($this->matchs),
+            iterator_to_array($this->matchs_has_visitor)
+        );
+        foreach($matchs as $match) {
             if(count($match->getTeamsByJourney()) == 0) {
                 $r[] = $match;
             }
