@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BbLigueBundle\Entity\Team;
+use BbLigueBundle\Form\Type\Team as TeamForm;
 
 class CoachController extends Controller
 {
