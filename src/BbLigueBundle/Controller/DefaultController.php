@@ -13,6 +13,8 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $rules = $this->get('bb.rules');
+        dump($rules);
         return $this->render('BbLigueBundle::Dashboard/index.html.twig', array(
             'coach' => $this->getUser()
         ));

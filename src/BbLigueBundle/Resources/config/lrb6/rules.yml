@@ -2,6 +2,78 @@ bb_ligue:
     rules:
         lrb6:
             max_team_cost: 1000000
+            experience:
+                rookie: 0
+                experienced: 6
+                veteran: 16
+                emerging_star: 31
+                star: 51
+                super_star: 76
+                legend: 176
+            experience_value_modifiers:
+                new_skill: 20000
+                new_skill_double: 30000
+                move_bonus: 30000
+                average_bonus: 30000
+                move_bonus: 40000
+                move_bonus: 50000
+            injuries:
+                badly_hurt:
+                    from: 11
+                    to: 38
+                    effects: ~
+                broken_ribs:
+                    from: 41
+                    effects: ['M']
+                groin_strain:
+                    from: 42
+                    effects: ['M']
+                gouged_eye:
+                    from: 43
+                    effects: ['M']
+                broken_jaw:
+                    from: 44
+                    effects: ['M']
+                fractured_arm:
+                    from: 45
+                    effects: ['M']
+                fractured_leg:
+                    from: 46
+                    effects: ['M']
+                smashed_hand:
+                    from: 47
+                    effects: ['M']
+                pinched_nerve:
+                    from: 48
+                    effects: ['M']
+                damaged_back:
+                    from: 51
+                    effects: ['M', 'N']
+                smashed_knee:
+                    from: 52
+                    effects: ['M', 'N']
+                smashed_hip:
+                    from: 53
+                    effects: ['M', 'MA']
+                smashed_ankle:
+                    from: 54
+                    effects: ['M', 'MA']
+                smashed_concussion:
+                    from: 55
+                    effects: ['M', 'AV']
+                smashed_skull:
+                    from: 56
+                    effects: ['M', 'AV']
+                broken_neck:
+                    from: 57
+                    effects: ['M', 'AG']
+                smashed_collar:
+                    from: 58
+                    effects: ['M', 'ST']
+                dead:
+                    from: 61
+                    from: 68
+                    effects: ['DEAD']
             skills:
                 g:
                     - block

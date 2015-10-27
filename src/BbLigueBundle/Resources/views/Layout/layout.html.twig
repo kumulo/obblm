@@ -4,10 +4,30 @@
     <body>
         <header id="header">
             <span class="ligue-icon">
-               {{ include('BbLigueBundle:Layout:Icons/logo-ligue.html.twig') }}
+                {{ include('BbLigueBundle:Layout:Icons/logo-ligue.html.twig') }}
             </span>
             <h1 class="site-title">{{ 'layout.manager_title'|trans|raw }}</h1>
             {% if is_granted("ROLE_USER") %}
+            <aside id="account" class="clearfix">
+                <div class="title">
+                    {% if gravatar_exists(app.user.email) %}
+                        <img src="{{ gravatar(app.user.email) }}" />
+                    {% else %}
+                        Default gravatar
+                    {% endif %}
+                    {{ app.user.username }}
+                </div>
+                <nav class="nav clearfix">
+                    <ul>
+                        <li>
+                            <a href="{{ path("fos_user_profile_edit") }}">{{ 'layout.account.my_account'|trans|raw }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path("fos_user_security_logout") }}">{{ 'layout.account.logout'|trans|raw }}</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
             <nav id="navigation" class="clearfix">
                 <ul>
                     <li>

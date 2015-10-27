@@ -130,6 +130,46 @@ body {
         text-transform: uppercase;
         font-family: "Dosis", sans-serif;
     }
+    #account {
+        position: absolute;
+        top: 0;
+        right: 0;
+        .title {
+            img {
+                vertical-align: middle;
+                margin-right: 10px;
+                .border-radius(50px);
+            }
+            line-height: 100px;
+            font-size: 140%;
+            padding: 0 20px;
+            background: @mid-grey;
+        }
+        .nav {
+            ul {
+                background: @mid-grey;
+                display: none;
+                li {
+                    a {
+                        display: block;
+                        padding: 10px 20px;
+                        text-decoration: none;
+                        font-size: 140%;
+                        &:hover {
+                            background: @white;
+                        }
+                    }
+                }
+            }
+        }
+        &:hover {
+            .nav {
+                ul{
+                    display: block;
+                }
+            }
+        }
+    }
     #navigation {
         z-index: 2;
         position: fixed;

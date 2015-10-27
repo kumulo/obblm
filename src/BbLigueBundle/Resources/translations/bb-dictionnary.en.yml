@@ -7,8 +7,70 @@ blood_bowl:
         p: passing
         m: mutation
         e: extraordinary
+    experience:
+        rookie: Rookie
+        experienced: Experienced
+        veteran: Veteran
+        emerging_star: Emerging Star
+        star: Star
+        super_star: Super Star
+        legend: Legend
+    injuries:
+        badly_hurt:
+            name: Badly Hurt
+            effet: No long term effect
+        broken_ribs:
+            name: Broken Ribs
+            effet: Miss next game
+        groin_strain:
+            name: Groin Strain
+            effet: Miss next game
+        gouged_eye:
+            name: Gouged Eye
+            effet: Miss next game
+        broken_jaw:
+            name: Broken Jaw
+            effet: Miss next game
+        fractured_arm:
+            name: Fractured Arm
+            effet: Miss next game
+        fractured_leg:
+            name: Fractured Leg
+            effet: Miss next game
+        smashed_hand:
+            name: Smashed Hand
+            effet: Miss next game
+        pinched_nerve:
+            name: Pinched Nerve
+            effet: Miss next game
+        damaged_back:
+            name: Damaged Back
+            effet: Niggling Injury
+        smashed_knee:
+            name: Smashed Knee
+            effet: Niggling Injury
+        smashed_hip:
+            name: Smashed Hip
+            effet: -1 MA
+        smashed_ankle:
+            name: Smashed Ankle
+            effet: -1 MA
+        smashed_concussion:
+            name: Serious Concussion
+            effet: -1 AV
+        smashed_skull:
+            name: Fractured Skull
+            effet: -1 AV
+        broken_neck:
+            name: Broken Neck
+            effet: -1 AG
+        smashed_collar:
+            name: Smashed Collar Bone
+            effet: -1 ST
+        dead:
+            name: DEAD
+            effet: Dead!
     skills:
-        block:
         block:
             title: Block
             description: ~

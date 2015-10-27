@@ -7,10 +7,10 @@ bb_ligue:
                         halfling:
                             min: 0
                             max: 16
-                            move: 5
-                            force: 2
-                            agility: 3
-                            armor: 6
+                            ma: 5
+                            st: 2
+                            ag: 3
+                            av: 6
                             cost: 30000
                             skills: ['dodge', 'stunty', 'right_stuff']
                             available_skills: ['a']
@@ -18,10 +18,10 @@ bb_ligue:
                         treeman:
                             min: 0
                             max: 2
-                            move: 2
-                            force: 6
-                            agility: 1
-                            armor: 10
+                            ma: 2
+                            st: 6
+                            ag: 1
+                            av: 10
                             cost: 120000
                             skills: ['mighty_blow', 'strong_arm', 'thick_skull', 'throw_team_mate', 'take_root', 'stand_firm']
                             available_skills: ['s']

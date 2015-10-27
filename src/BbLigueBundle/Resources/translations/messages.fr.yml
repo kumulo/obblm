@@ -9,6 +9,9 @@ layout:
   bt_delete: Supprimer
   bt_show_more: En savoir plus
   close: Fermer
+  account:
+    my_account: Mon compte
+    logout: Se déconnecter
   nav_menu:
     dashboard: Mon tableau de bord
     my_contest: Mes matchs

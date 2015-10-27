@@ -84,3 +84,4 @@ swiftmailer:
     spool:     { type: memory }
 
 nelmio_api_doc: ~
+ornicar_gravatar: ~

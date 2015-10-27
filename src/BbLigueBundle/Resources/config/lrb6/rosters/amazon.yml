@@ -7,10 +7,10 @@ bb_ligue:
                         linewoman:
                             min: 0
                             max: 16
-                            move: 6
-                            force: 3
-                            agility: 3
-                            armor: 7
+                            ma: 6
+                            st: 3
+                            ag: 3
+                            av: 7
                             cost: 50000
                             skills: ['dodge']
                             available_skills: ['g']
@@ -18,10 +18,10 @@ bb_ligue:
                         thrower:
                             min: 0
                             max: 2
-                            move: 6
-                            force: 3
-                            agility: 3
-                            armor: 7
+                            ma: 6
+                            st: 3
+                            ag: 3
+                            av: 7
                             cost: 70000
                             skills: ['dodge', 'pass']
                             available_skills: ['g', 'p']
@@ -29,10 +29,10 @@ bb_ligue:
                         catcher:
                             min: 0
                             max: 2
-                            move: 6
-                            force: 3
-                            agility: 3
-                            armor: 7
+                            ma: 6
+                            st: 3
+                            ag: 3
+                            av: 7
                             cost: 70000
                             skills: ['dodge', 'catch']
                             available_skills: ['g', 'a']
@@ -40,10 +40,10 @@ bb_ligue:
                         blitzer:
                             min: 0
                             max: 4
-                            move: 6
-                            force: 3
-                            agility: 3
-                            armor: 7
+                            ma: 6
+                            st: 3
+                            ag: 3
+                            av: 7
                             cost: 90000
                             skills: ['dodge', 'block']
                             available_skills: ['g', 's']
