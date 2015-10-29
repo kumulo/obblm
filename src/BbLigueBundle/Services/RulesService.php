@@ -12,8 +12,8 @@ class RulesService {
     public function __construct(EntityManager $entity_manager, $translator, $datas) {
         $this->em = $entity_manager;
         $this->translator = $translator;
-        $this->available_rules = $datas;
 
+        foreach($datas as $name => $rule) $this->addStaticRule($name, $rule);
         $rules = $this->em->getRepository('BbLigueBundle:Rule')->findAll();
         foreach($rules as $rule) $this->addRule($rule);
     }
@@ -25,7 +25,7 @@ class RulesService {
     public function getRulesForForm() {
         $rules = array();
         foreach($this->available_rules as $key => $rule) {
-            if(is_object($rule)) {
+            if($rule->getId()) {
                 $rules[$rule->getRuleKey()] = $rule->getName();
             }
             else {
@@ -35,21 +35,17 @@ class RulesService {
         return $rules;
     }
 
+    public function addStaticRule($name, Array $data) {
+        $rule = new \BbLigueBundle\Entity\Rule();
+        $rule->setRule($data);
+        $rule->setRuleKey($name);
+        $this->available_rules[$rule->getRuleKey()] = $rule;
+    }
+
     public function addRule(\BbLigueBundle\Entity\Rule $rule) {
-        return $this->available_rules[$rule->getRuleKey()] = $rule;
+        $this->available_rules[$rule->getRuleKey()] = $rule;
     }
     public function getRule($key) {
-        if(!isset($this->available_rules[$key])) {return false;}
-        $rule = array();
-        $available_rule = $this->available_rules[$key];
-        if(is_object($available_rule)) {
-            $rule['name'] = $available_rule->getName();
-            $rule['rule'] = $available_rule->getRule();
-        }
-        else {
-            $rule['rule'] = $available_rule;
-            $rule['name'] = $this->translator->trans('rules.' . $key . '.title', array(), 'rules');
-        }
-        return $rule;
+        return (isset($this->available_rules[$key])) ? $this->available_rules[$key] : false;
     }
 }

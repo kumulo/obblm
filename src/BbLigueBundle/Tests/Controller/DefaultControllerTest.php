@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 class DefaultControllerTest extends WebTestCase
 {
     private $client = null;
+    private $container = null;
 
     public function setUp()
     {
@@ -81,9 +82,12 @@ class DefaultControllerTest extends WebTestCase
     // TODO : Add more data tests
     public function testService()
     {
-        $crawler = $this->client->request('GET', '/login');
-        $container = $this->client->getContainer();
-        $rules = $container->get('bb.rules');
+        $rules = $this->client->getContainer()->get('bb.rules');
+        $rule = $rules->getRule('lrb6');
+        $this->assertEquals('1000000', $rule->getMaxTeamCost());
+        $this->assertEquals('veteran', $rule->getExperienceLevelForValue(16));
+        $injury = $rule->getInjury(53);
+        $this->assertEquals('smashed_hip', $injury['key_name']);
     }
 
     /*

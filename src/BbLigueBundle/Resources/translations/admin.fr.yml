@@ -2,6 +2,6 @@
 admin:
     block:
         rules:
-            title: Règles disponibles
+            title: Règles personnalisées
         ligues:
             title: Ligues crées

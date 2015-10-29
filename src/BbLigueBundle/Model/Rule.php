@@ -43,6 +43,10 @@ abstract class Rule
      * @ORM\Column(name="rule", nullable=true, type="array")
      */
     protected $rule;
+
+
+    public function __construct() {}
+
     /**
      * Get id
      *

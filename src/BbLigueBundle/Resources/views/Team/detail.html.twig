@@ -1,0 +1,28 @@
+{% extends 'BbLigueBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <section id="espace-coach" class="content normal-content clearfix">
+        <header class="section-header clearfix padding-me">
+            <h1 class="section-title">{{ team.name }}</h1>
+            {% if team.coach == app.user %}
+            <ul class="section-actions">
+                <li><a class="button button-basic" href="{{ path("team_edit", {team_id: team.id}) }}">{{ 'layout.coach_space.index.team_edit'|trans }}</a></li>
+            </ul>
+            {% endif %}
+        </header>
+        <table class="players">
+            <tr>
+                <th>pos</th>
+                <th>name</th>
+                <th>type</th>
+            </tr>
+            {% for player in team.players %}
+            <tr>
+                <td>{{ player.position }}</td>
+                <td>{{ player.name }}</td>
+                <td>{{ player.type }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+{% endblock %}

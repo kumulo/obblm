@@ -39,7 +39,7 @@ abstract class TeamByJourney
     protected $match;
 
     /**
-     * @ORM\OneToMany(targetEntity="BbLigueBundle\Entity\Player", mappedBy="journey", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="BbLigueBundle\Entity\PlayerByJourney", mappedBy="journey", cascade={"remove"})
      * @ORM\OrderBy({"id" = "ASC"})
      */
     protected $players;

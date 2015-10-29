@@ -38,7 +38,7 @@
                         {% trans from "admin" %}admin.block.rules.title{% endtrans %}
                     </h2>
                     {% for key , rule in rules %}
-                        {% if rule.id is defined %}
+                        {% if rule.id is defined and rule.id %}
                         <a href="{{ path("admin_rule_edit", {rule_id: rule.id}) }}">
                         {% else %}
                         {% set title = 'rules.' ~ key ~ '.title' %}

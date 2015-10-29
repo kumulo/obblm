@@ -135,11 +135,10 @@ class AdminController extends Controller
         }
         $bb = $this->get('bb.rules');
         $base_rule = $bb->getRule('lrb6');
-        $rule->setRule($base_rule['rule']);
+        $rule->setRule($base_rule->getRule());
         $form = $this->createForm('obbml_forms_admin_rule', $rule);
 
         $form->handleRequest($request);
-        dump($base_rule['rule']);
         if ($form->isValid()) {
             // the validation passed, do something with the $author object
             $em = $this->getDoctrine()->getManager();

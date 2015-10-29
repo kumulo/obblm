@@ -18,6 +18,11 @@ bbl_manager_coach_space:
     type:     annotation
     prefix:   /coach
 
+bbl_manager_team:
+    resource: "@BbLigueBundle/Controller/TeamController.php"
+    type:     annotation
+    prefix:   /teams
+
 bbl_manager_app:
     resource: "@BbLigueBundle/Controller/DefaultController.php"
     type:     annotation

@@ -43,6 +43,12 @@ abstract class Team
     protected $journeys;
 
     /**
+     * @ORM\OneToMany(targetEntity="BbLigueBundle\Entity\Player", mappedBy="team", cascade={"remove"})
+     * @ORM\OrderBy({"id" = "ASC"})
+     */
+    protected $players;
+
+    /**
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank()
      */
@@ -342,6 +348,60 @@ abstract class Team
     public function getMatchsHasVisitor()
     {
         return $this->matchs_has_visitor;
+    }
+
+    /**
+     * Get matchs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommingMatchs()
+    {
+        $r = array();
+        $matchs = array_merge(
+            iterator_to_array($this->matchs),
+            iterator_to_array($this->matchs_has_visitor)
+        );
+        foreach($matchs as $match) {
+            if(count($match->getTeamsByJourney()) == 0) {
+                $r[] = $match;
+            }
+        }
+        return $r;
+    }
+
+    /**
+     * Add player
+     *
+     * @param \BbLigueBundle\Entity\Player $player
+     *
+     * @return Team
+     */
+    public function addPlayer(\BbLigueBundle\Entity\Player $player)
+    {
+        $this->players[] = $player;
+
+        return $this;
+    }
+
+    /**
+     * Remove player
+     *
+     * @param \BbLigueBundle\Entity\Player $player
+     */
+    public function removePlayer(\BbLigueBundle\Entity\Player $player)
+    {
+        $this->players->removeElement($player);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
     
     /**

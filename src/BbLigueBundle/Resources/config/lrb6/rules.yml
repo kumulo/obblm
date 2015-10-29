@@ -3,13 +3,13 @@ bb_ligue:
         lrb6:
             max_team_cost: 1000000
             experience:
-                rookie: 0
-                experienced: 6
-                veteran: 16
-                emerging_star: 31
-                star: 51
-                super_star: 76
-                legend: 176
+                0: rookie
+                6: experienced
+                16: veteran
+                31: emerging_star
+                51: star
+                76: super_star
+                176: legend
             experience_value_modifiers:
                 new_skill: 20000
                 new_skill_double: 30000
@@ -72,7 +72,7 @@ bb_ligue:
                     effects: ['M', 'ST']
                 dead:
                     from: 61
-                    from: 68
+                    to: 68
                     effects: ['DEAD']
             skills:
                 g:
