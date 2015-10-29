@@ -15,6 +15,7 @@
 /node_modules/
 /.tmp/
 /legacy/
+/src/*/Entity/*.php~
 /src/BbLegacyManagerBundle/
 composer.lock
 /web/app_test.php

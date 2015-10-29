@@ -1,5 +1,54 @@
 # To extend it add app/Resources/BbLigueBundle/translations/bb-dictionnary.fr.yml
 blood_bowl:
+    trait:
+        pos:
+            abbr: N°
+            title: Numéro
+        name:
+            abbr: Nom
+            title: Nom
+        type:
+            abbr: Pos
+            title: Position
+        ma:
+            abbr: M
+            title: Mouvement
+        st:
+            abbr: F
+            title: Force
+        ag:
+            abbr: Ag
+            title: Agilité
+        av:
+            abbr: Ar
+            title: Armure
+        skill:
+            abbr: Comp
+            title: Compétences
+        injury:
+            abbr: Bl
+            title: Bléssures
+        com:
+            abbr: Réu
+            title: Réussites
+        td:
+            abbr: TD
+            title: Touchdowns
+        int:
+            abbr: Int
+            title: Interceptions
+        cas:
+            abbr: Sor
+            title: Sorties
+        mvp:
+            abbr: JPV
+            title: Joueur le Plus Valable
+        spp:
+            abbr: Exp
+            title: Expérience
+        value:
+            abbr: Valeur
+            title: Valeur
     skill_types:
         g: générale
         s: force
@@ -315,6 +364,12 @@ blood_bowl:
         dwarf:
             title: Nains
             description: Les Nains semblent êtres les joueurs de Blood Bowl idéaux. Petits, costauds, bien protégés et têtus au point de refuser obstinément de mourir ! La plupart de leurs équipes obéissent au principe selon lequel si elles parviennent à massacrer les meilleurs joueurs adverses et à neutraliser les autres, rien ne saurait les empêcher d’effectuer leurs touchdowns en paix !
+            positions:
+                slayer: Tueur de Trolls
+                runner: Coureur
+                blitzer: Blitzer
+                blocker: Bloqueur
+                death_roller: Roule-mort
         elf:
             title: Elfes
             description: Lorsque la NAF s’effondra de nombreuses équipes Elfes se retrouvèrent ruinées. Les équipes qui ont survécu à cette période ne sont ni aussi riches ni aussi bien équipées que les équipes de Hauts Elfes, mais il est clair qu’elles savent jouer. Masque de protection sur le visage et crête dressée sur la tête, elles entrent sur le terrain pour retrouver leur gloire passée.
