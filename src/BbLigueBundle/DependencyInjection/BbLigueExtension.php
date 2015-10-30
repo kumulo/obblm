@@ -9,15 +9,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 use BbLigueBundle\DependencyInjection\Configuration;
 
-/**
- * This is the class that loads and manages your bundle configuration
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
- */
-/*
-KW : symfony load yml datas
-VOiR : http://www.strangebuzz.com/post/2012/01/28/Load-fixtures-with-Symfony2
-*/
 class BbLigueExtension extends Extension implements PrependExtensionInterface
 {
     /**

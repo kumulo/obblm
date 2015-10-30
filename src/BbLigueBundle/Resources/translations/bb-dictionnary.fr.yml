@@ -119,6 +119,9 @@ blood_bowl:
         dead:
             name: MORT
             effet: Mort !
+    injuries_abbr:
+        M: Rate le prochain match
+        P: Blessure Persistante
     skills:
         block:
             title: Blocage

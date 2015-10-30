@@ -8,9 +8,14 @@
         <parameter key="bb.forms.user.team.class">BbLigueBundle\Form\Type\Team</parameter>
         <parameter key="bb.forms.admin.ligue.class">BbLigueBundle\Form\Type\Ligue</parameter>
         <parameter key="bb.forms.admin.rule.class">BbLigueBundle\Form\Type\Rule</parameter>
+        <parameter key="bb.twig.extension.class">BbLigueBundle\Twig\BbLigueTwigExtension</parameter>
     </parameters>
 
     <services>
+        <service id="bb.twig.bbligue_extension" class="%bb.twig.extension.class%" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="translator" />
+        </service>
 		<service id="bb.rules" class="%bb.rosters.class%">
 			<argument type="service" id="doctrine.orm.entity_manager" />
 			<argument type="service" id="translator" />

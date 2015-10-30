@@ -12,7 +12,7 @@ bb_ligue:
                             ag: 2
                             av: 8
                             cost: 90000
-                            skills: ['block', 'thick_skull', 'dauntless']
+                            skills: ['block', 'dauntless', 'frenzy', 'thick_skull']
                             available_skills: ['g', 's']
                             available_skills_on_double: ['a', 'p']
                         blitzer:
@@ -45,7 +45,7 @@ bb_ligue:
                             ag: 2
                             av: 9
                             cost: 70000
-                            skills: ['block', 'thick_skull', 'tackle']
+                            skills: ['block', 'tackle', 'thick_skull']
                             available_skills: ['g', 's']
                             available_skills_on_double: ['a', 'p']
                         death_roller:
@@ -56,7 +56,7 @@ bb_ligue:
                             ag: 1
                             av: 10
                             cost: 160000
-                            skills: ['loner', 'secret_weapon', 'break_tackle', 'mighty_blow', 'dirty_player', 'juggernaut', 'no_hands', 'stand_firm']
+                            skills: ['break_tackle', 'loner', 'dirty_player', 'juggernaut', 'mighty_blow', 'no_hands', 'secret_weapon', 'stand_firm']
                             available_skills: ['s']
                             available_skills_on_double: ['g', 'a', 'p']
                     options:

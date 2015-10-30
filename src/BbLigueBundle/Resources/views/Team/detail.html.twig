@@ -70,15 +70,15 @@
                 <td>{{ pj.strenght }}</td>
                 <td>{{ pj.agility }}</td>
                 <td>{{ pj.average }}</td>
-                <td></td>
-                <td></td>
+                <td>{{ pj.skills|skills|raw }}</td>
+                <td>{{ pj.injuries|injuries|raw }}</td>
                 <td>{{ pj.completions }}</td>
                 <td>{{ pj.touchdowns }}</td>
                 <td>{{ pj.interceptions }}</td>
                 <td>{{ pj.casualties }}</td>
                 <td>{{ pj.mvps }}</td>
                 <td>{{ pj.spp }}</td>
-                <td>{{ pj.value }}</td>
+                <td>{{ pj.value|bbprice }}</td>
             </tr>
             {% endfor %}
         </table>

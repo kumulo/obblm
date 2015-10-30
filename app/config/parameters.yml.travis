@@ -10,3 +10,4 @@ parameters:
     mailer_password:   ~
     secret:            ThisTokenIsDedicatedToTravis
     use_assetic_controller: false
+    locale: en
