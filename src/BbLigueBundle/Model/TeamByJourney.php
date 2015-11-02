@@ -45,49 +45,79 @@ abstract class TeamByJourney
     protected $players;
 
     /**
-     * @ORM\Column(name="win_match", type="integer")
+     * @ORM\Column(name="win_match", type="smallint")
      */
     protected $win_match;
 
     /**
-     * @ORM\Column(name="draw_match", type="integer")
+     * @ORM\Column(name="draw_match", type="smallint")
      */
     protected $draw_match;
 
     /**
-     * @ORM\Column(name="lost_match", type="integer")
+     * @ORM\Column(name="lost_match", type="smallint")
      */
     protected $lost_match;
 
     /**
-     * @ORM\Column(name="td_give", type="integer")
+     * @ORM\Column(name="td_give", type="smallint")
      */
     protected $td_give;
 
     /**
-     * @ORM\Column(name="td_take", type="integer")
+     * @ORM\Column(name="td_take", type="smallint")
      */
     protected $td_take;
 
     /**
-     * @ORM\Column(name="injury_give", type="integer")
+     * @ORM\Column(name="injury_give", type="smallint")
      */
     protected $injury_give;
 
     /**
-     * @ORM\Column(name="injury_take", type="integer")
+     * @ORM\Column(name="injury_take", type="smallint")
      */
     protected $injury_take;
 
     /**
-     * @ORM\Column(name="pass", type="integer")
+     * @ORM\Column(name="pass", type="smallint")
      */
     protected $pass;
 
     /**
-     * @ORM\Column(name="red_card", type="integer")
+     * @ORM\Column(name="red_card", type="smallint")
      */
     protected $red_card;
+
+    /**
+     * @ORM\Column(name="rerolls", type="smallint")
+     */
+    protected $rerolls;
+
+    /**
+     * @ORM\Column(name="treasure", type="integer")
+     */
+    protected $treasure;
+
+    /**
+     * @ORM\Column(name="popularity", type="integer")
+     */
+    protected $popularity;
+
+    /**
+     * @ORM\Column(name="assistants", type="integer")
+     */
+    protected $assistants;
+
+    /**
+     * @ORM\Column(name="cheerleaders", type="integer")
+     */
+    protected $cheerleaders;
+
+    /**
+     * @ORM\Column(name="apothecary", type="boolean")
+     */
+    protected $apothecary;
 
     /**
      * @ORM\Column(name="created_at", type="datetime")
@@ -107,13 +137,6 @@ abstract class TeamByJourney
         $this->players = new \Doctrine\Common\Collections\ArrayCollection();
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
-    }
-
-    /**
-     * @ORM\PreUpdate
-     */
-    public function preUpdate() {
-        $this->setUpdatedAt(new \Datetime);
     }
 
     /**
@@ -494,5 +517,132 @@ abstract class TeamByJourney
     public function getMatch()
     {
         return $this->match;
+    }
+
+    /**
+     * Set rerolls
+     *
+     * @param integer $rerolls
+     *
+     * @return TeamByJourney
+     */
+    public function setRerolls($rerolls)
+    {
+        $this->rerolls = $rerolls;
+
+        return $this;
+    }
+
+    /**
+     * Get rerolls
+     *
+     * @return integer
+     */
+    public function getRerolls()
+    {
+        return $this->rerolls;
+    }
+
+    /**
+     * Set treasure
+     *
+     * @param integer $treasure
+     *
+     * @return TeamByJourney
+     */
+    public function setTreasure($treasure)
+    {
+        $this->treasure = $treasure;
+
+        return $this;
+    }
+
+    /**
+     * Get treasure
+     *
+     * @return integer
+     */
+    public function getTreasure()
+    {
+        return $this->treasure;
+    }
+
+    /**
+     * Set popularity
+     *
+     * @param integer $popularity
+     *
+     * @return TeamByJourney
+     */
+    public function setPopularity($popularity)
+    {
+        $this->popularity = $popularity;
+
+        return $this;
+    }
+
+    /**
+     * Get popularity
+     *
+     * @return integer
+     */
+    public function getPopularity()
+    {
+        return $this->popularity;
+    }
+
+    /**
+     * Set assistants
+     *
+     * @param integer $assistants
+     *
+     * @return TeamByJourney
+     */
+    public function setAssistants($assistants)
+    {
+        $this->assistants = $assistants;
+
+        return $this;
+    }
+
+    /**
+     * Get assistants
+     *
+     * @return integer
+     */
+    public function getAssistants()
+    {
+        return $this->assistants;
+    }
+
+    /**
+     * Set cheerleaders
+     *
+     * @param integer $cheerleaders
+     *
+     * @return TeamByJourney
+     */
+    public function setCheerleaders($cheerleaders)
+    {
+        $this->cheerleaders = $cheerleaders;
+
+        return $this;
+    }
+
+    /**
+     * Get cheerleaders
+     *
+     * @return integer
+     */
+    public function getCheerleaders()
+    {
+        return $this->cheerleaders;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate() {
+        $this->setUpdatedAt(new \Datetime);
     }
 }

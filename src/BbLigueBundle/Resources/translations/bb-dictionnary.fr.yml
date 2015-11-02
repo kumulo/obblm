@@ -1,5 +1,6 @@
 # To extend it add app/Resources/BbLigueBundle/translations/bb-dictionnary.fr.yml
 blood_bowl:
+    kunit: kPo
     trait:
         pos:
             abbr: N°

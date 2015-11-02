@@ -24,7 +24,7 @@
                                         <td class="journey">{{ match.journey.name }}</td>
                                         {% set versus = (match.team == team) ? match.visitor : match.team %}
                                         <td class="versus"><span class="team-name">{{ versus.name }}</span> <span class="coach">{{ versus.coach.username }}</span></td>
-                                        <td class="tr">103</td>
+                                        <td class="tr">{{ versus.getLastJourney.tr }}</td>
                                     </tr>
                                     {% endfor %}
                                 </table>
@@ -39,13 +39,13 @@
                                                 <tr>
                                                     <td>
                                                         <span class="label">{{ 'layout.values.tr'|trans }}</span>
-                                                        <span class="value">108</span>
+                                                        <span class="value">{{ last_journey ? last_journey.tr : 0 }}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="treso">
                                                         <span class="label">{{ 'layout.values.treasure'|trans }}</span>
-                                                        <span class="value">400 kPO</span>
+                                                        <span class="value">{{ last_journey ? last_journey.treasure|bbkpo|raw : 0 }}</span>
                                                     </td>
                                                 </tr>
                                             </table>

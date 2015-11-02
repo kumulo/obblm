@@ -40,16 +40,11 @@ class Team extends BaseTeam
     {
         $j = $this->getStats();
 
-        $r = array(
-            array(
-                'label' => '',
-                'value' => 100
-            )
-        );
+        $r = array();
         foreach($j as $key => $journey) {
             $nj = array(
                 'label' => $journey['name'],
-                'value' => 100 + $journey['points']
+                'value' => $journey['tr']
             );
             $r[] = $nj;
         }

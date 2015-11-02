@@ -18,13 +18,34 @@ class TeamController extends Controller
         $repo = $this->get('doctrine')->getManager()->getRepository('BbLigueBundle:Team');
 
         $team  = $repo->find($team_id);
+        $journey  = $team->getLastJourney();
 
-        if(!$team) {
+        if(!$team || !$journey) {
             throw $this->createNotFoundException('The team does not exist');
         }
 
         return $this->render('BbLigueBundle::Team/detail.html.twig', array(
             'team' => $team,
+            'journey' => $journey
+        ));
+    }
+    /**
+     * @Route("/{team_id}/{journey_id}", name="team_journey")
+     */
+    public function journeyAction(Request $request, $team_id, $journey_id)
+    {
+        $em = $this->get('doctrine')->getManager();
+
+        $team  = $em->getRepository('BbLigueBundle:Team')->find($team_id);
+        $journey  = $em->getRepository('BbLigueBundle:TeamByJourney')->findOneBy(array('team' => $team_id, 'journey' => $journey_id));
+
+        if(!$team || !$journey) {
+            throw $this->createNotFoundException('The team does not exist');
+        }
+
+        return $this->render('BbLigueBundle::Team/detail.html.twig', array(
+            'team' => $team,
+            'journey' => $journey
         ));
     }
 }

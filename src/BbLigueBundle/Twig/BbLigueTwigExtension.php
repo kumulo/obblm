@@ -15,6 +15,7 @@ class BbLigueTwigExtension extends \Twig_Extension
             new \Twig_SimpleFilter('injuries', array($this, 'injuriesFilter')),
             new \Twig_SimpleFilter('skills', array($this, 'skillsFilter')),
             new \Twig_SimpleFilter('bbprice', array($this, 'bbPriceFilter')),
+            new \Twig_SimpleFilter('bbkpo', array($this, 'bbKpoFilter')),
         );
     }
 
@@ -44,6 +45,11 @@ class BbLigueTwigExtension extends \Twig_Extension
     public function bbPriceFilter($number, $comma = '.', $separator = ',')
     {
         return number_format($number, 0, $separator, $comma);
+    }
+
+    public function bbKpoFilter($number, $comma = '.', $separator = ',', $forcelang = false)
+    {
+        return $this->bbPriceFilter(($number / 1000), 0, $separator, $comma) . ' <span class="">' . $this->translator->trans('blood_bowl.kunit', array(), 'bb-dictionnary', $forcelang) . '</span>';
     }
 
     public function getName()

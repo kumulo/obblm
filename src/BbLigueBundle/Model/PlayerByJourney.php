@@ -108,6 +108,16 @@ class PlayerByJourney
     protected $value;
 
     /**
+     * @ORM\Column(name="dead", type="boolean")
+     */
+    protected $dead;
+
+    /**
+     * @ORM\Column(name="dismiss", type="boolean")
+     */
+    protected $dismiss;
+
+    /**
      * Get id
      *
      * @return integer

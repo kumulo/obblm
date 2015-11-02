@@ -10,77 +10,7 @@
             </ul>
             {% endif %}
         </header>
-        <table class="players" style="display: table;">
-            <tr>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.pos.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.pos.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.name.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.name.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.type.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.type.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.ma.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.ma.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.st.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.st.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.ag.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.ag.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.av.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.av.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.skill.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.skill.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.injury.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.injury.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.com.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.com.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.td.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.td.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.int.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.int.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.cas.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.cas.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.mvp.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.mvp.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.spp.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.spp.abbr{% endtrans %}</span>
-                </th>
-                <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.value.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.value.abbr{% endtrans %}</span>
-                </th>
-            </tr>
-            {% for pj in team.getLastJourney.players %}
-            <tr>
-                <td>{{ pj.player.position }}</td>
-                <td>{{ pj.player.name }}</td>
-                <td>{% set player_type = 'blood_bowl.rosters.' ~ team.roster ~ '.positions.' ~ pj.player.type %}{{ player_type|trans({}, 'bb-dictionnary' ) }}</td>
-                <td>{{ pj.move }}</td>
-                <td>{{ pj.strenght }}</td>
-                <td>{{ pj.agility }}</td>
-                <td>{{ pj.average }}</td>
-                <td>{{ pj.skills|skills|raw }}</td>
-                <td>{{ pj.injuries|injuries|raw }}</td>
-                <td>{{ pj.completions }}</td>
-                <td>{{ pj.touchdowns }}</td>
-                <td>{{ pj.interceptions }}</td>
-                <td>{{ pj.casualties }}</td>
-                <td>{{ pj.mvps }}</td>
-                <td>{{ pj.spp }}</td>
-                <td>{{ pj.value|bbprice }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+        {{ journey.tr }}
+        {% include 'BbLigueBundle:Team:sheet.html.twig' with {journey: journey, team: team} %}
     </section>
 {% endblock %}

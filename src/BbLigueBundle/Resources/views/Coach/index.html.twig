@@ -38,11 +38,11 @@
                                             <tr>
                                                 <td>
                                                     <span class="label">{{ 'layout.values.tr'|trans }}</span>
-                                                    <span class="value">108</span>
+                                                    <span class="value">{{ last_journey ? last_journey.tr : '0' }}</span>
                                                 </td>
                                                 <td>
                                                     <span class="label">{{ 'layout.values.treasure'|trans }}</span>
-                                                    <span class="value">400 kPO</span>
+                                                    <span class="value">{{ last_journey ? last_journey.treasure|bbkpo|raw : '-' }}</span>
                                                 </td>
                                             </tr>
                                         </table>

@@ -83,6 +83,12 @@ abstract class Team
      * @ORM\OneToMany(targetEntity="BbLigueBundle\Entity\Match", mappedBy="visitor", cascade={"persist"})
      */
     protected $matchs_has_visitor;
+
+    /**
+     * @ORM\Column(name="rr_value", type="integer", length=8)
+     * @Assert\NotBlank()
+     */
+    protected $base_reroll_value;
     
     /**
      * Constructor
@@ -402,6 +408,30 @@ abstract class Team
     public function getPlayers()
     {
         return $this->players;
+    }
+
+    /**
+     * Set baseRerollValue
+     *
+     * @param integer $baseRerollValue
+     *
+     * @return Team
+     */
+    public function setBaseRerollValue($baseRerollValue)
+    {
+        $this->base_reroll_value = $baseRerollValue;
+
+        return $this;
+    }
+
+    /**
+     * Get baseRerollValue
+     *
+     * @return integer
+     */
+    public function getBaseRerollValue()
+    {
+        return $this->base_reroll_value;
     }
     
     /**
