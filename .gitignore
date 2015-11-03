@@ -19,3 +19,4 @@
 /src/BbLegacyManagerBundle/
 composer.lock
 /web/app_test.php
+/web/app_dev.php

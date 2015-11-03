@@ -40,7 +40,7 @@ class TeamController extends Controller
         $em = $this->get('doctrine')->getManager();
 
         $team  = $em->getRepository('BbLigueBundle:Team')->find($team_id);
-        if(!$team || !$journey) {
+        if(!$team) {
             throw $this->createNotFoundException('The team does not exist');
         }
 

@@ -22,6 +22,7 @@ class TeamByJourney extends BaseTeamByJourney
 
     public function getAvailaiblePlayers() {
         $playerCollection = $this->getPlayers();
+        //TODO : Ajouter le test sur le tableau des blessures
         $criteria = Criteria::create()
             ->where(Criteria::expr()->eq("dead", "0"))
             ->where(Criteria::expr()->eq("dismiss", "0"))

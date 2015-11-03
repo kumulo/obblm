@@ -25,7 +25,7 @@ BbLigueBundle\Entity\Player:
         team:       @team2
         name:       Player 7 / Team 2
         position:   7
-        type:       assassin
+        type:       runner
     p2_{8..11}:
         team:       @team2
         name:       Player <current()> / Team 2
@@ -36,7 +36,7 @@ BbLigueBundle\Entity\PlayerByJourney:
     pj20_{1..6} (extends pj_darkelf_lineman):
         player: @p2_<current()>
         journey: @tj20
-    pj20_7 (extends pj_darkelf_assassin):
+    pj20_7 (extends pj_darkelf_runner):
         player: @p2_7
         journey: @tj20
     pj20_{8..11} (extends pj_darkelf_blitzer):

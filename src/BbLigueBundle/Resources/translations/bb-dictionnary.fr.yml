@@ -372,7 +372,7 @@ blood_bowl:
             description: Mauvais au-delà de tout ce qui est imaginable, extrêmement talentueux, les Elfes Noirs entrent sur le terrain pour prouver au monde leur supériorité. Les équipes d’Elfes Noirs préfèrent un jeu rusé et sournois de course au jeu de passe de leurs cousins du côté du Bien. Assistés par les Furies sans pitié et de dangereux assassins, les Elfes Noirs ont toutes les cartes pour perforer les lignes adverses au lieu de les contourner.
             positions:
                 lineman: Trois-quart
-                thrower: Lanceur
+                runner: Coureur
                 blitzer: Blitzeur
                 assassin: Assassin
                 witch: Furie
