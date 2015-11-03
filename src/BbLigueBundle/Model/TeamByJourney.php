@@ -134,9 +134,24 @@ abstract class TeamByJourney
      */
     public function __construct()
     {
-        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->created_at = new \DateTime();
-        $this->updated_at = new \DateTime();
+        $this->players      = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->rerolls      = 0;
+        $this->treasure     = 0;
+        $this->apothecary   = 0;
+        $this->popularity   = 0;
+        $this->assistants   = 0;
+        $this->cheerleaders = 0;
+        $this->win_match    = 0;
+        $this->draw_match   = 0;
+        $this->lost_match   = 0;
+        $this->td_give      = 0;
+        $this->td_take      = 0;
+        $this->injury_give  = 0;
+        $this->injury_take  = 0;
+        $this->pass         = 0;
+        $this->red_card     = 0;
+        $this->created_at   = new \DateTime();
+        $this->updated_at   = new \DateTime();
     }
 
     /**

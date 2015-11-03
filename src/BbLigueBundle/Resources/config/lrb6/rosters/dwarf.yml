@@ -62,7 +62,7 @@ bb_ligue:
                     options:
                         reroll_cost: 50000
                         available_star_players: []
-                        can_have_alchemist: true
+                        can_have_apothecary: true
                         can_have_sorcerer: true
                         can_have_igor: false
                         can_have_halfing_kitchener: false

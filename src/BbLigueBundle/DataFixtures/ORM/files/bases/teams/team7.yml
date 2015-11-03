@@ -1,0 +1,62 @@
+include:
+    - ../../templates/goblin.yml
+
+BbLigueBundle\Entity\Team:
+    team7:
+        name:       'Goblin Boomers'
+        roster:     'goblin'
+        coach:      @coach7
+        ligue:      @ligue1
+        base_reroll_value:   60000
+
+BbLigueBundle\Entity\TeamByJourney:
+    tj70:
+        team:           @team7
+        journey:        @j0
+        rerolls:        4
+        popularity:     2
+        apothecary:     1
+
+BbLigueBundle\Entity\Player:
+    p7_{1..2}:
+        team:       @team7
+        name:       Player <current()> / Team 7
+        position:   <current()>
+        type:       troll
+    p7_3:
+        team:       @team7
+        name:       Player 3 / Team 7
+        position:   3
+        type:       looney
+    p7_4:
+        team:       @team7
+        name:       Player 4 / Team 7
+        position:   4
+        type:       bombardier
+    p7_5:
+        team:       @team7
+        name:       Player 5 / Team 7
+        position:   5
+        type:       pogoer
+    p7_{7..14}:
+        team:       @team7
+        name:       Player <current()> / Team 7
+        position:   <current()>
+        type:       goblin
+
+BbLigueBundle\Entity\PlayerByJourney:
+    pj70_{1..2} (extends pj_goblin_troll):
+        player: @p7_<current()>
+        journey: @tj70
+    pj70_3 (extends pj_goblin_looney):
+        player: @p7_3
+        journey: @tj70
+    pj70_4 (extends pj_goblin_bombardier):
+        player: @p7_4
+        journey: @tj70
+    pj70_5 (extends pj_goblin_pogoer):
+        player: @p7_5
+        journey: @tj70
+    pj70_{7..14} (extends pj_goblin_goblin):
+        player: @p7_<current()>
+        journey: @tj70

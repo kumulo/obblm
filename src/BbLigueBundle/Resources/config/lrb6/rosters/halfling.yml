@@ -28,8 +28,8 @@ bb_ligue:
                             available_skills_on_double: ['g', 'a', 'p']
                     options:
                         reroll_cost: 60000
-                        available_star_players: []
-                        can_have_alchemist: true
+                        available_star_players: [puggy_baconbreath, willow_rosebark, deeproot_strongbranch, bertha_bigfist, zara_the_slayer, morg_n_thorg]
+                        can_have_apothecary: true
                         can_have_sorcerer: true
                         can_have_igor: false
-                        can_have_halfing_kitchener: false
+                        can_have_halfing_kitchener: true

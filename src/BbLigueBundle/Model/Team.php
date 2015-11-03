@@ -38,7 +38,7 @@ abstract class Team
 
     /**
      * @ORM\OneToMany(targetEntity="BbLigueBundle\Entity\TeamByJourney", mappedBy="team", cascade={"remove"})
-     * @ORM\OrderBy({"id" = "DESC"})
+     * @ORM\OrderBy({"journey" = "DESC"})
      */
     protected $journeys;
 
@@ -85,7 +85,7 @@ abstract class Team
     protected $matchs_has_visitor;
 
     /**
-     * @ORM\Column(name="rr_value", type="integer", length=8)
+     * @ORM\Column(name="base_reroll_value", type="integer", length=8)
      * @Assert\NotBlank()
      */
     protected $base_reroll_value;
@@ -95,9 +95,11 @@ abstract class Team
      */
     public function __construct()
     {
-        $this->journeys = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->created_at = new \DateTime();
-        $this->updated_at = new \DateTime();
+        $this->journeys             = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->players              = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->created_at           = new \DateTime();
+        $this->updated_at           = new \DateTime();
+        $this->base_reroll_value    = 0;
     }
 
     /**

@@ -20,12 +20,6 @@ class Player
      */
     protected $id;
 
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
-
     /**
      * @ORM\ManyToOne(targetEntity="BbLigueBundle\Entity\Team", inversedBy="players", cascade={"persist"})
      */
@@ -53,6 +47,10 @@ class Player
      * @Assert\NotBlank()
      */
     protected $type;
+
+    public function __construct()
+    {
+    }
 
     /**
      * Get id

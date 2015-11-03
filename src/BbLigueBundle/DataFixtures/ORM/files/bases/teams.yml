@@ -1,0 +1,9 @@
+include:
+    - teams/team1.yml
+    - teams/team2.yml
+    - teams/team3.yml
+    - teams/team4.yml
+    - teams/team5.yml
+    - teams/team6.yml
+    - teams/team7.yml
+    - teams/team8.yml

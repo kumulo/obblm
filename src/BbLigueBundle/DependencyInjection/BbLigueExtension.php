@@ -31,8 +31,14 @@ class BbLigueExtension extends Extension implements PrependExtensionInterface
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('lrb6/rules.yml');
         $loader->load('lrb6/rosters/amazon.yml');
+        $loader->load('lrb6/rosters/dark_elf.yml');
         $loader->load('lrb6/rosters/dwarf.yml');
+        $loader->load('lrb6/rosters/goblin.yml');
         $loader->load('lrb6/rosters/halfling.yml');
+        $loader->load('lrb6/rosters/high_elf.yml');
+        $loader->load('lrb6/rosters/human.yml');
+        $loader->load('lrb6/rosters/necromantic.yml');
+        $loader->load('lrb6/rosters/ogre.yml');
         $loader->load('lrb6/star-players.yml');
     }
 }

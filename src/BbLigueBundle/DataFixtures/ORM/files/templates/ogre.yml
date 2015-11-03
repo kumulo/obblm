@@ -1,0 +1,15 @@
+BbLigueBundle\Entity\PlayerByJourney:
+    pj_ogre_ogre (template):
+        move: 5
+        strenght: 5
+        agility: 2
+        average: 9
+        skills: [ 'bone_head', 'mighty_blow', 'thick_skull', 'throw_team_mate' ]
+        value: 140000
+    pj_ogre_snotling (template):
+        move: 5
+        strenght: 1
+        agility: 3
+        average: 5
+        skills: [ 'dodge', 'right_stuff', 'side_step', 'stunty', 'titchy' ]
+        value: 20000

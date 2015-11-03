@@ -97,7 +97,7 @@ class Configuration implements ConfigurationInterface
                                                 ->arrayNode( 'available_star_players' )
                                                     ->prototype('scalar')->end()
                                                 ->end( )
-                                                ->booleanNode('can_have_alchemist')
+                                                ->booleanNode('can_have_apothecary')
                                                     ->defaultTrue()
                                                 ->end( )
                                                 ->booleanNode('can_have_sorcerer')

@@ -1,0 +1,43 @@
+BbLigueBundle\Entity\PlayerByJourney:
+    pj_goblin_troll (template):
+        move: 4
+        strenght: 5
+        agility: 1
+        average: 9
+        skills: [ 'loner', 'always_hungry', 'mighty_blow', 'really_stupid', 'regeneration', 'throw_team_mate' ]
+        value: 110000
+    pj_goblin_bombardier (template):
+        move: 6
+        strenght: 2
+        agility: 3
+        average: 7
+        skills: [ 'bombardier', 'dodge', 'secret_weapon', 'stunty' ]
+        value: 40000
+    pj_goblin_looney (template):
+        move: 6
+        strenght: 2
+        agility: 3
+        average: 7
+        skills: [ 'chainsaw', 'secret_weapon', 'stunty' ]
+        value: 40000
+    pj_goblin_fanatic (template):
+        move: 3
+        strenght: 7
+        agility: 3
+        average: 7
+        skills: [ 'ball_chain', 'no_hands', 'secret_weapon,', 'stunty' ]
+        value: 70000
+    pj_goblin_pogoer (template):
+        move: 7
+        strenght: 2
+        agility: 3
+        average: 7
+        skills: [ 'dodge', 'leap', 'stunty', 'very_long_legs' ]
+        value: 70000
+    pj_goblin_goblin (template):
+        move: 6
+        strenght: 2
+        agility: 3
+        average: 7
+        skills: [ 'dodge', 'right_stuff', 'stunty' ]
+        value: 40000

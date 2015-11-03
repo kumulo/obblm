@@ -21,12 +21,6 @@ class PlayerByJourney
      */
     protected $id;
 
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
-
     /**
      * @ORM\ManyToOne(targetEntity="BbLigueBundle\Entity\Player", inversedBy="journeys", cascade={"persist"})
      */
@@ -84,7 +78,7 @@ class PlayerByJourney
     protected $touchdowns;
 
     /**
-     * @ORM\Column(name="int", type="integer", length=3)
+     * @ORM\Column(name="inter", type="integer", length=3)
      * @Assert\NotBlank()
      */
     protected $interceptions;
@@ -116,6 +110,24 @@ class PlayerByJourney
      * @ORM\Column(name="dismiss", type="boolean")
      */
     protected $dismiss;
+
+
+    public function __construct() {
+        $this->move             = 0;
+        $this->strenght         = 0;
+        $this->agility          = 0;
+        $this->average          = 0;
+        $this->skills           = array();
+        $this->injuries         = array();
+        $this->completions      = 0;
+        $this->touchdowns       = 0;
+        $this->interceptions    = 0;
+        $this->casualties       = 0;
+        $this->mvps             = 0;
+        $this->value            = 0;
+        $this->dead             = 0;
+        $this->dismiss          = 0;
+    }
 
     /**
      * Get id

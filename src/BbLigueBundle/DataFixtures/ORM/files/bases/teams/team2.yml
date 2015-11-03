@@ -1,0 +1,44 @@
+include:
+    - ../../templates/dark_elf.yml
+
+BbLigueBundle\Entity\Team:
+    team2:
+        name:       'Nagarrond Panthers'
+        roster:     'dark_elf'
+        coach:      @coach2
+        ligue:      @ligue1
+        base_reroll_value:   50000
+
+BbLigueBundle\Entity\TeamByJourney:
+    tj20:
+        team:           @team2
+        journey:        @j0
+        rerolls:        2
+
+BbLigueBundle\Entity\Player:
+    p2_{1..6}:
+        team:       @team2
+        name:       Player <current()> / Team 2
+        position:   <current()>
+        type:       lineman
+    p2_7:
+        team:       @team2
+        name:       Player 7 / Team 2
+        position:   7
+        type:       assassin
+    p2_{8..11}:
+        team:       @team2
+        name:       Player <current()> / Team 2
+        position:   <current()>
+        type:       blitzer
+
+BbLigueBundle\Entity\PlayerByJourney:
+    pj20_{1..6} (extends pj_darkelf_lineman):
+        player: @p2_<current()>
+        journey: @tj20
+    pj20_7 (extends pj_darkelf_assassin):
+        player: @p2_7
+        journey: @tj20
+    pj20_{8..11} (extends pj_darkelf_blitzer):
+        player: @p2_<current()>
+        journey: @tj20
