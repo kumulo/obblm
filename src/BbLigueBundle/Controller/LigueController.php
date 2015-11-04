@@ -13,17 +13,32 @@ class LigueController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $ligues = $this->getUser()->getInvolvedLigues();
         return $this->render('BbLigueBundle::Ligue/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'ligues' => $ligues,
         ));
     }
     /**
-     * @Route("/add", name="ligue_add")
+     * @Route("/results/{ligue_id}", name="ligue_results")
      */
-    public function addAction(Request $request)
+    public function resultsAction(Request $request, $ligue_id)
     {
-        return $this->render('BbLigueBundle::Ligue/add.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+
+        $repo = $this->get('doctrine')->getManager()->getRepository('BbLigueBundle:Ligue');
+
+        $ligue  = $repo->find($ligue_id);
+        if(!$ligue) {
+            throw $this->createNotFoundException('The league does not exist');
+        }
+
+        $ligues = $this->getUser()->getInvolvedLigues()->toArray();
+        if(!in_array($ligue, $ligues)) {
+            throw $this->createNotFoundException('You are not involved in this ligue');
+        }
+
+
+        return $this->render('BbLigueBundle::Ligue/results.html.twig', array(
+            'ligue' => $ligue,
         ));
     }
 }

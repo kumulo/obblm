@@ -10,7 +10,7 @@
                 <article class="team clearfix padding-me">
                     <div class="wrapper relative clearfix">
                         <header class="team-header clearfix">
-                            <h3 class="team-name">{{ team.name }}</h3>
+                            <h3 class="team-name"><a class="link" href="{{ path("team_detail", {team_id: team.id}) }}">{{ team.name }}</a></h3>
                             <div class="team-metas clearfix">
                                 <span class="ligue"><span class="name">{{ team.ligue.name }}</span> <span class="format">(Format)</span></span>
                             </div>
@@ -23,7 +23,7 @@
                                     <tr class="{{ cycle(['odd', 'even'], i) }}">
                                         <td class="journey">{{ match.journey.name }}</td>
                                         {% set versus = (match.team == team) ? match.visitor : match.team %}
-                                        <td class="versus"><span class="team-name">{{ versus.name }}</span> <span class="coach">{{ versus.coach.username }}</span></td>
+                                        <td class="versus"><a class="link" href="{{ path("team_detail", {team_id: versus.id}) }}"><span class="team-name">{{ versus.name }}</span> <span class="coach">{{ versus.coach.username }}</span></a></td>
                                         <td class="tr">{{ versus.getLastJourney.tr }}</td>
                                     </tr>
                                     {% endfor %}

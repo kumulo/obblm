@@ -55,7 +55,7 @@ bb_ligue:
                             st: 3
                             ag: 4
                             av: 8
-                            skills: [ 'claws', 'fernzy', 'regeneration' ]
+                            skills: [ 'claw_claws', 'frenzy', 'regeneration' ]
                             cost: 120000
                             available_skills: ['g', 'a']
                             available_skills_on_double: ['s', 'p']

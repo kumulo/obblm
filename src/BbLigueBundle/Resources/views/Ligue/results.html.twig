@@ -3,22 +3,17 @@
 {% block body %}
     <section id="dashboard" class="content normal-content clearfix">
         <header class="section-header clearfix padding-me">
-            <h1 class="section-title">{{ 'layout.ligues.index.title'|trans }}</h1>
+            <h1 class="section-title">{{ ligue.name }}</h1>
         </header>
         <div class="ligues clearfix">
-            {% for ligue in ligues %}
+            {% for team in ligue.teams %}
                 <article class="ligue clearfix padding-me">
                     <div class="wrapper relative clearfix">
                         <header class="ligue-header clearfix">
-                            <h3 class="ligue-name">{{ ligue.name }}</h3>
-                            <div class="ligue-metas clearfix">
-                                <span class="ligue"><span class="format">(Format)</span></span>
-                            </div>
-                            <ul class="section-actions">
-                                <li><a class="button button-basic" href="{{ path("ligue_results", {ligue_id: ligue.id}) }}">{{ 'layout.ligues.index.show_results'|trans }}</a></li>
-                            </ul>
+                            <h3 class="ligue-name">{{ team.name }}</h3>
                         </header>
                         <div class="ligue-content clearfix">
+                            {{ team.getLastJourney.getPoints }}
                         </div>
                     </div>
                 </article>

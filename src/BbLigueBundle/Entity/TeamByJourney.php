@@ -104,7 +104,7 @@ class TeamByJourney extends BaseTeamByJourney
         return $this->tr;
     }
 
-    public function __toArray()
+    public function toArray()
     {
         return array(
             'id'            => $this->id,

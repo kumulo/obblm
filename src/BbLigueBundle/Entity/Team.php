@@ -31,7 +31,7 @@ class Team extends BaseTeam
         });
         $r = array();
         foreach(iterator_to_array($iterator) as $journey) {
-            $r[$journey->getJourney()->getId()] = $journey->__toArray();
+            $r[$journey->getJourney()->getId()] = $journey->toArray();
         }
         ksort($r);
         return $r;

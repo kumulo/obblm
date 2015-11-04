@@ -32,5 +32,5 @@ BbLigueBundle\Entity\PlayerByJourney:
         strenght: 3
         agility: 4
         average: 8
-        skills: [ 'claws', 'fernzy', 'regeneration' ]
+        skills: [ 'claw_claws', 'frenzy', 'regeneration' ]
         value: 120000

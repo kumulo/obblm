@@ -5,6 +5,9 @@ body {
     font-family: "Lato", sans-serif;
     font-weight: 300;
     font-size: 10px;
+    @media @smartphones {
+        font-size: 9px;
+    }
     color: @font-color;
     strong, b {font-weight: 700;}
     em, i {font-style: italic;}
@@ -92,6 +95,103 @@ body {
         background: @white;
     }
 }
+#login-box {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: table;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: @dark-grey;
+    > .row {
+        display: table-row;
+        height: 100%;
+        > .cell {
+            display: table-cell;
+            vertical-align: middle;
+            height: 100%;
+            @media @smartphones {
+                vertical-align: top;
+            }
+            #login-form {
+                display: block;
+                max-width: 400px;
+                margin: 0 auto;
+                background: @light-grey;
+                .wrapper {
+                    padding: @base-spacing;
+                    &.logo-wrapper {
+                        background: @ligue-icon-bg;
+                        height: 100px;
+                        svg {
+                            fill: @white;
+                            display: block;
+                            width: auto;
+                            height: 100px;
+                            margin: 0 auto;
+                            path {
+                                fill: @white;
+                            }
+                        }
+                    }
+                    &.title-wrapper {
+                        margin-top: (@base-spacing/2);
+                        padding: (@base-spacing/2) @base-spacing;
+                        text-align: center;
+                        font-size: 260%;
+                        text-transform: uppercase;
+                    }
+                    &.input-wrapper {
+                        padding: (@base-spacing/2) @base-spacing;
+                        font-size: 160%;
+                        label {
+                            float: left;
+                            width: 50%;
+                            padding: 10px 0;
+                            box-sizing: border-box;
+                        }
+                        input {
+                            float: right;
+                            width: 50%;
+                            padding: 10px;
+                            box-sizing: border-box;
+                            border: 1px solid @mid-grey;
+                        }
+                    }
+                    &.checkbox-wrapper {
+                        padding: (@base-spacing/2) @base-spacing;
+                        font-size: 160%;
+                        text-align: center;
+                        label {
+                            margin-left: 10px;
+                        }
+                    }
+                    &.submit-wrapper {
+                        margin-top: (@base-spacing/2);
+                        padding: 0;
+                        #_submit {
+                            background: @ligue-icon-bg;
+                            color: @white;
+                            display: block;
+                            border: 2px solid @ligue-icon-bg;
+                            text-align: center;
+                            font-size: 200%;
+                            text-transform: uppercase;
+                            width: 100%;
+                            padding: 20px 0;
+                            &:hover {
+                                background: @white;
+                                color: @ligue-icon-bg;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 #header {
     position: fixed;
     top: 0;
@@ -142,7 +242,7 @@ body {
             }
             line-height: 100px;
             font-size: 140%;
-            padding: 0 20px;
+            padding: 0 @base-spacing;
             background: @mid-grey;
         }
         .nav {
@@ -152,7 +252,7 @@ body {
                 li {
                     a {
                         display: block;
-                        padding: 10px 20px;
+                        padding: (@base-spacing/2) @base-spacing;
                         text-decoration: none;
                         font-size: 140%;
                         &:hover {
@@ -226,7 +326,7 @@ body {
 #content {
     margin: 100px 0 0 100px;
     .padding-me {
-        padding: 20px;
+        padding: @base-spacing;
     }
     .normal-content {
         .section-header {
@@ -236,12 +336,12 @@ body {
                 font-weight: 700;
                 text-transform: uppercase;
                 font-family: "Dosis", sans-serif;
-                margin-bottom: 20px;
+                margin-bottom: @base-spacing;
             }
             .section-actions {
                 position: absolute;
-                right: 20px;
-                top: 20px;
+                right: @base-spacing;
+                top: @base-spacing;
             }
         }
     }
@@ -303,7 +403,7 @@ body {
                     top: 0;
                     left: 0;
                     width: 160px;
-                    height: 150px;
+                    height: 145px;
                     background: @mid-green;
                 }
                 .stats-container {
@@ -313,6 +413,9 @@ body {
                     display: table;
                     .block-main-stats {
                         width: 350px;
+                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                            width: 220px;
+                        }
                     }
                     .stats-table {
                         height: 100%;
@@ -327,11 +430,17 @@ body {
                     tbody {width: 100%; display: table;}
                     .label {
                         font-size: 160%;
+                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                            font-size: 130%;
+                        }
                         text-transform: uppercase;
                         display: block;
                     }
                     .value {
                         font-size: 160%;
+                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                            font-size: 130%;
+                        }
                         display: block;
                         &.positive {
                             color: @positive-color;
@@ -351,10 +460,16 @@ body {
                             border-collapse : collapse;
                             border: 1px solid @stats-tab-border;
                             text-align: center;
-                            padding: 20px 5px;
+                            padding: @base-spacing (@base-spacing/4);
+                            @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                                padding: 14px (@base-spacing/4);
+                            }
                             > .value {
                                 font-size: 360%;
                                 font-weight: 700;
+                                @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                                    font-size: 280%;
+                                }
                             }
                         }
                     }
@@ -363,6 +478,9 @@ body {
                     > .value {
                         font-size: 360%;
                         font-weight: 700;
+                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                            font-size: 280%;
+                        }
                     }
                 }
                 .lines-table {
@@ -372,19 +490,22 @@ body {
                         > th {
                             > .label {
                                 float: left;
-                                margin-left: 10px;
+                                margin-left: (@base-spacing/2);
                                 line-height: 24px;
                             }
                             > .value {
                                 float: right;
                                 line-height: 24px;
-                                margin-right: 10px;
+                                margin-right: (@base-spacing/2);
                             }
                         }
                     }
                 }
                 .main-stats {
                     width: 330px;
+                    @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                        width: 200px;
+                    }
                     > tbody {
                         > tr {
                             > td {
@@ -421,29 +542,53 @@ body {
                     .team-matches,
                     .team-stats {
                         display: table-cell;
-                        padding-left: 20px;
+                        padding-left: @base-spacing;
                         vertical-align: top;
+                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                            display: block;
+                        }
+                    }
+                    .team-stats {
+                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                            padding-left: 0;
+                        }
                     }
                     .team-logo {
                         position: relative;
                         padding-left: 0;
+                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                            float: left;
+                            margin-bottom: @base-spacing;
+                        }
                     }
                     .team-matches {
                         width: 505px;
+                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                            width: auto;
+                            margin-left: 160px;
+                            margin-bottom: @base-spacing;
+                        }
                         .see-all {
                             float: right;
                             margin-top: 5px;
+                            @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                                float: none;
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                            }
                         }
                         .matches {
                             width: 100%;
-                            border-spacing: 2px;
-                            border-collapse: separate;
+                            border-spacing: 0;
+                            border-collapse: collapse;
                             display: table;
                             tr {
                                 td {
                                     background: @mid-grey;
                                     padding: 5px 10px;
                                     font-size: 140%;
+                                    border: 2px solid @white;
                                     &.journey {
                                         text-align: center;
                                         width: 30px;
@@ -451,6 +596,18 @@ body {
                                     &.versus {
                                         background: @chart-dark;
                                         color: @white;
+                                        padding: 0;
+                                        > a {
+                                            padding: 5px 10px;
+                                            display: block;
+                                            color: @white;
+                                            text-decoration: none;
+                                            &:hover {
+                                                color: @chart-dark;
+                                                background: @white;
+                                                text-decoration: none;
+                                            }
+                                        }
                                         .team-name {
                                             text-transform: uppercase;
                                             font-weight: 700;
@@ -473,6 +630,9 @@ body {
                                         &.versus {
                                             background: @chart-clear;
                                             color: inherit;
+                                            > a {
+                                                color: inherit;
+                                            }
                                         }
                                     }
                                 }
@@ -483,6 +643,9 @@ body {
                         td {vertical-align: top;}
                         .block-main-stats {
                             width: 100px;
+                            @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                                width: 160px;
+                            }
                         }
                         .main-stats {
                             width: 100%;
@@ -490,17 +653,76 @@ body {
                                 font-size: 60%;
                             }
                             > tbody > tr > td {
-                                padding: 20px 5px;
+                                padding: @base-spacing (@base-spacing/4);
                             }
                         }
                         .chart {
                             position: relative;
-                            padding-left: 20px;
+                            padding-left: @base-spacing;
                             .dashboard-chart {
                                 height: 100%;
                                 position: absolute;
                             }
                         }
+                    }
+                }
+            }
+        }
+        &#team-sheet {
+            table.team {
+                width: 100%;
+                .players {
+                    &:before {
+                        content: '';
+                        display: block;
+                        height: 1px;
+                        margin-top: 20px;
+                    }
+                    .numeric {
+                        text-align: center;
+                    }
+                    th {
+                        background: @black;
+                        color: @white;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        font-size: 140%;
+                        padding: 5px;
+                    }
+                    tr {
+                        td {
+                            font-size: 140%;
+                            padding: 5px;
+                            &.skills {
+                                max-width: 25%;
+                            }
+                            &.value {
+                                text-align: right;
+                            }
+                        }
+                        &.odd {
+                            td {
+                                background: @light-grey;
+                            }
+                        }
+                        &.even {
+                            td {
+                                background: @mid-grey;
+                            }
+                        }
+                        &.injured {
+                            td {
+                                background: @injured-color;
+                            }
+                        }
+                    }
+                }
+                .foot-informations {
+                    &:before {
+                        content: '';
+                        display: block;
+                        height: 1px;
+                        margin-top: 20px;
                     }
                 }
             }
@@ -541,5 +763,23 @@ body {
                 }
             }
         }
+    }
+}
+/*
+ * DEFAULT RESPONSIVE
+ */
+.nomobile {
+    @media @smartphones {
+        display: none;
+    }
+}
+.notablet-v {
+    @media @smartphones, @tablets-v {
+        display: none;
+    }
+}
+.notablet {
+    @media @smartphones, @tablets-v, @tablets {
+        display: none;
     }
 }
