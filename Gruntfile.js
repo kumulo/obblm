@@ -70,47 +70,47 @@ module.exports = function(grunt) {
       }
     }, //end watch
     copy: {
-      fonts: {
-        expand: true,
-        filter: 'isFile',
-        src: '.tmp/fonts/*.css',
-        dest: '.tmp/css/',
-        options: {
-          process: function (content, srcpath) {
-            return content.replace(/web\//g,"/");
-          },
+        fonts: {
+            expand: true,
+            filter: 'isFile',
+            src: '.tmp/fonts/*.css',
+            dest: '.tmp/css/',
+            options: {
+                process: function (content, srcpath) {
+                    return content.replace(/web\//g, "/");
+                },
+            },
+            flatten: true,
         },
-        flatten: true,
-      },
     },
     googlefonts : {
-      build: {
-        options: {
-        formats: {
-          eot: true,
-          ttf: true,
-          woff: true,
-          woff2: true,
-          svg: true
-        },
-          fontPath: 'web/vendor/fonts/',
-          cssFile: '.tmp/fonts/1.fonts.css',
-          fonts: [
-            {
-              family: 'Lato',
-              styles: [
-                100,300,400,700,900,'100italic','300italic','400italic','700italic','900italic'
-              ]
-            },
-            {
-              family: 'Dosis',
-              styles: [
-                200,300,400,500,600,700,800
-              ]
+        build: {
+            options: {
+                formats: {
+                    eot: true,
+                    ttf: true,
+                    woff: true,
+                    woff2: true,
+                    svg: true
+                },
+                fontPath: 'web/built/fonts/',
+                cssFile: '.tmp/fonts/1.fonts.css',
+                fonts: [
+                    {
+                        family: 'Lato',
+                        styles: [
+                            100,300,400,700,900,'100italic','300italic','400italic','700italic','900italic'
+                        ]
+                    },
+                    {
+                        family: 'Dosis',
+                        styles: [
+                            200,300,400,500,600,700,800
+                        ]
+                    }
+                ]
             }
-          ]
         }
-      }
     } //end googlefont
   });
 
