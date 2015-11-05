@@ -11,8 +11,11 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "1.9.0",
-    "nanobar": "0.2.0",
-    "amcharts": "3.15.2"
+    "jquery": "2.1.4",
+    "nanobar": "master",
+    "amcharts": "master"
+  },
+  "resolutions": {
+    "jquery": "2.1.4"
   }
 }

@@ -43,4 +43,10 @@ jQuery(function() {
             });
         });
     });
+    /*
+     * TEAM SHEET
+     */
+    $('#team-sheet').each(function(base_el, sheet) {
+
+    });
 });

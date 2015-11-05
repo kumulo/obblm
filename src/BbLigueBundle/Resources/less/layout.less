@@ -95,6 +95,9 @@ body {
         background: @white;
     }
 }
+/*
+ * LOGIN
+ */
 #login-box {
     position: absolute;
     top: 0;
@@ -192,6 +195,9 @@ body {
         }
     }
 }
+/*
+ * HEADER
+ */
 #header {
     position: fixed;
     top: 0;
@@ -201,6 +207,9 @@ body {
     z-index: 3;
     border-bottom: 2px solid @header-border-color;
     background: @header-bg;
+    @media @smartphones {
+        height: 50px;
+    }
     .ligue-icon {
         display: block;
         position: fixed;
@@ -221,6 +230,10 @@ body {
                 fill: @white;
             }
         }
+        @media @smartphones {
+            width: 50px;
+            height: 50px;
+        }
     }
     .site-title {
         padding-left: 120px;
@@ -229,6 +242,11 @@ body {
         font-weight: 700;
         text-transform: uppercase;
         font-family: "Dosis", sans-serif;
+        @media @smartphones {
+            font-size: 160%;
+            padding-left: 60px;
+            line-height: 50px;
+        }
     }
     #account {
         position: absolute;
@@ -244,6 +262,10 @@ body {
             font-size: 140%;
             padding: 0 @base-spacing;
             background: @mid-grey;
+            @media @smartphones {
+                font-size: 120%;
+                line-height: 50px;
+            }
         }
         .nav {
             ul {
@@ -278,9 +300,20 @@ body {
         bottom: 0;
         width: 100px;
         background: @nav-bg;
+        @media @smartphones {
+            width: 100%;
+            top: auto;
+            height: 50px;
+            right: 0;
+        }
         > ul {
             > li {
                 border-bottom: 2px solid @nav-item-border-color;
+                @media @smartphones {
+                    float: left;
+                    height: 50px;
+                    width: 25%;
+                }
                 > a {
                     display: block;
                     color: @nav-link-color;
@@ -291,6 +324,10 @@ body {
                     font-size: 120%;
                     text-transform: uppercase;
                     line-height: 1.2em;
+                    @media @smartphones {
+                        height: 50px;
+                        padding: 5px 5px 0;
+                    }
                     > .icon {
                         width: auto;
                         height: auto;
@@ -301,17 +338,16 @@ body {
                         path {
                             fill: @nav-icon-color;
                         }
+                        @media @smartphones {
+                            max-height: 15px;
+                            margin-bottom: 5px;
+                        }
                     }
                     &:hover,
                     &.active {
                         color: @nav-link-color-hover;
                         background: @nav-link-bg-hover;
                         > .icon {
-                            width: auto;
-                            height: auto;
-                            max-height: 42px;
-                            display: block;
-                            margin: 0 auto 10px;
                             fill: @nav-link-color-hover;
                             path {
                                 fill: @nav-link-color-hover;
@@ -325,6 +361,9 @@ body {
 }
 #content {
     margin: 100px 0 0 100px;
+    @media @smartphones {
+        margin: 50px 0;
+    }
     .padding-me {
         padding: @base-spacing;
     }
@@ -346,9 +385,9 @@ body {
         }
     }
     .content {
-        /*
-         * TEAM LIST
-         */
+/*
+ * TEAM LIST
+ */
         .teams {
             > .team {
                 position: relative;
@@ -519,6 +558,30 @@ body {
                 }
             }
         }
+/*
+ * STATS BLOC
+ */
+        .team-statistics {
+            display: table;
+            width: 100%;
+            .core {
+                display: table-cell;
+                width: 330px;
+                background: @stats-tab-bg;
+                &:after {
+                    content: ' ';
+                    width: @base-spacing;
+                    height: 100%;
+                    display: table-cell;
+                }
+            }
+            .detail {
+                display: table-cell;
+            }
+        }
+/*
+ * DASHBOARD
+ */
         &#dashboard {
             .teams {
                 > .team {
@@ -668,8 +731,12 @@ body {
                 }
             }
         }
+/*
+ * TEAM SHEET
+ */
         &#team-sheet {
             table.team {
+                display: table;
                 width: 100%;
                 .players {
                     &:before {
@@ -688,6 +755,9 @@ body {
                         text-transform: uppercase;
                         font-size: 140%;
                         padding: 5px;
+                        @media @smartphones {
+                            display: none;
+                        }
                     }
                     tr {
                         td {
@@ -698,6 +768,25 @@ body {
                             }
                             &.value {
                                 text-align: right;
+                            }
+                            &:before {
+                                content: attr(data-th) ": ";
+                                font-weight: 700;
+                                width: 6.5em;
+                                display: inline-block;
+                                @media @largerthantiny {
+                                    display: none;
+                                }
+                            }
+                            @media @smartphones {
+                                display: block;
+                                text-align: left !important;
+                                max-width: 100% !important;
+                            }
+                            &.notablet {
+                                @media @smartphones {
+                                    display: none;
+                                }
                             }
                         }
                         &.odd {
@@ -715,6 +804,12 @@ body {
                                 background: @injured-color;
                             }
                         }
+                        @media @smartphones {
+                            display: block;
+                        }
+                    }
+                    @media @smartphones {
+                        display: block;
                     }
                 }
                 .foot-informations {
@@ -725,12 +820,15 @@ body {
                         margin-top: 20px;
                     }
                 }
+                @media @smartphones {
+                    display: block;
+                }
             }
         }
     }
-    /*
-     * ADMIN
-     */
+/*
+ * ADMIN
+ */
     #espace-admin {
         .admin-block {
             .admin-block-name {

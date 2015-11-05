@@ -7,27 +7,28 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         mangle: false,
-        sourceMap: true,
-        sourceMapName: 'web/built/app.map'
+        sourceMap: true
       },
       libs: {
         files: {
           'web/built/libs.min.js': [
-            'app/Resources/lib/jquery/jquery.js',
+            'app/Resources/lib/jquery/dist/jquery.js',
             'app/Resources/lib/nanobar/nanobar.js',
             'app/Resources/lib/amcharts/dist/amcharts/amcharts.js',
             'app/Resources/lib/amcharts/dist/amcharts/serial.js',
             'app/Resources/lib/amcharts/dist/amcharts/lang/fr.js',
             'app/Resources/lib/amcharts/dist/amcharts/lang/en.js'
           ]
-        }
+        },
+        sourceMapName: 'web/built/libs.map'
       },
       dist: {
         files: {
           'web/built/app.min.js': [
              "src/BbLigueBundle/Resources/public/js/front.js"
           ]
-        }
+        },
+        sourceMapName: 'web/built/app.map'
       }
     }, //end uglify
     less: {
