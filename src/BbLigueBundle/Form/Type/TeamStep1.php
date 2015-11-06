@@ -6,7 +6,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 
-class Team extends AbstractType
+class TeamStep1 extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -31,7 +31,6 @@ class Team extends AbstractType
                     return $qb;
                 },
             ))
-            ->add('save', 'submit')
         ;
     }
     public function configureOptions(OptionsResolver $resolver)

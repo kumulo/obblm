@@ -1,0 +1,31 @@
+{% extends 'BbLigueBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+<div>
+    Steps:
+    {% include 'CraueFormFlowBundle:FormFlow:stepList.html.twig' %}
+</div>
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {% if flow.getCurrentStepNumber() == 1 %}
+        <div>
+            When selecting four wheels you have to choose the engine in the next step.<br />
+        </div>
+        <table>
+            <tr>
+                <td>{{form_label(form.name, 'entity.team.label.name')}}</td>
+                <td>{{form_widget(form.name)}}</td>
+            </tr>
+            <tr>
+                <td>{{form_label(form.ligue, 'entity.team.label.ligue')}}</td>
+                <td>{{form_widget(form.ligue)}}</td>
+            </tr>
+        </table>
+    {% else %}
+        {{ form_rest(form) }}
+    {% endif %}
+
+    {% include 'CraueFormFlowBundle:FormFlow:buttons.html.twig' %}
+{{ form_end(form) }}
+{% endblock body %}

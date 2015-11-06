@@ -39,6 +39,7 @@ class RulesService {
         $rule = new \BbLigueBundle\Entity\Rule();
         $rule->setRule($data);
         $rule->setRuleKey($name);
+        $rule->setName($this->translator->trans('rules.' . $name . '.title', array(), 'rules'));
         $this->available_rules[$rule->getRuleKey()] = $rule;
     }
 

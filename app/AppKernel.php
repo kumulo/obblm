@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
+            new Craue\FormFlowBundle\CraueFormFlowBundle(),
             new BbLigueBundle\BbLigueBundle(),
         );
 
