@@ -6,6 +6,7 @@ namespace BbLigueBundle\Entity;
 use BbLigueBundle\Model\Team as BaseTeam;
 use Doctrine\ORM\Mapping as ORM;
 use BbLigueBundle\Entity\TeamByJourney;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity

@@ -8,9 +8,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use BbLigueBundle\Form\Type\TeamStep1;
 use BbLigueBundle\Form\Type\TeamStep2;
+use BbLigueBundle\Services\RulesService;
 
 class CreateTeamFlow extends FormFlow {
 
+    private $rules;
+    private $translator;
+
+    public function __construct($translator, RulesService $service)
+    {
+        $this->translator = $translator;
+        $this->rules = $service;
+    }
     public function getName() {
         return 'createTeam';
     }
@@ -18,15 +27,15 @@ class CreateTeamFlow extends FormFlow {
     protected function loadStepsConfig() {
         return array(
             array(
-                'label' => 'base',
+                'label' => 'form.team.add.steps.step1.title',
                 'form_type' => new TeamStep1(),
             ),
             array(
-                'label' => 'roster_and_conf',
-                'form_type' => new TeamStep2(),
+                'label' => 'form.team.add.steps.step2.title',
+                'form_type' => new TeamStep2($this->translator, $this->rules),
             ),
             array(
-                'label' => 'confirmation',
+                'label' => 'form.team.add.steps.step3.title',
             ),
         );
     }

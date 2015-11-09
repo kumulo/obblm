@@ -16,7 +16,6 @@ class Ligue extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $rules = $this->provider->getRulesForForm();
-        dump($rules);
         $builder
             ->add('name', null)
             ->add('rule', 'choice', array(

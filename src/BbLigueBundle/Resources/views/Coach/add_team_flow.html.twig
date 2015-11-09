@@ -1,31 +1,60 @@
 {% extends 'BbLigueBundle:Layout:layout.html.twig' %}
 
 {% block body %}
-<div>
-    Steps:
-    {% include 'CraueFormFlowBundle:FormFlow:stepList.html.twig' %}
-</div>
-{{ form_start(form) }}
-    {{ form_errors(form) }}
-
-    {% if flow.getCurrentStepNumber() == 1 %}
-        <div>
-            When selecting four wheels you have to choose the engine in the next step.<br />
+{% trans_default_domain 'form' %}
+<section id="content-form" class="content has-steps normal-content clearfix">
+    <header class="section-header clearfix padding-me">
+        <h1 class="section-title">{% trans from 'form' %}form.team.add.title{% endtrans %}</h1>
+    </header>
+    {{ form_start(form) }}
+        {% include 'BbLigueBundle:Layout:forms/steps.html.twig' %}
+        {% if form_errors(form) %}
+        <div class="ui ignored error message clearfix icon">
+            <i class="help icon"></i>
+            <div class="content">
+                {{ form_errors(form) }}
+            </div>
         </div>
-        <table>
-            <tr>
-                <td>{{form_label(form.name, 'entity.team.label.name')}}</td>
-                <td>{{form_widget(form.name)}}</td>
-            </tr>
-            <tr>
-                <td>{{form_label(form.ligue, 'entity.team.label.ligue')}}</td>
-                <td>{{form_widget(form.ligue)}}</td>
-            </tr>
-        </table>
-    {% else %}
-        {{ form_rest(form) }}
-    {% endif %}
+        {% endif %}
+        <div class="ui form">
+        {% if flow.getCurrentStepNumber() == 1 %}
+            <div class="ui ignored warning message clearfix icon">
+                <i class="help icon"></i>
+                <div class="content">
+                    <p>{{ 'form.team.add.steps.step1.about'|trans }}</p>
+                </div>
+            </div>
+            <div class="field">
+                {{form_label(form.ligue, 'form.team.label.ligue')}}
+                {{form_widget(form.ligue, {'attr': {class: 'ui fluid dropdown'} } )}}
+            </div>
+        {% elseif flow.getCurrentStepNumber() == 2 %}
+            <div class="field">
+                {{form_label(form.roster, 'form.team.label.roster')}}
+                {{form_widget(form.roster, {'attr': {class: 'ui fluid dropdown'} })}}
+            </div>
+            <div class="field">
+                {{form_label(form.name, 'form.team.label.name')}}
+                {{form_widget(form.name)}}
+            </div>
+        {% else %}
+            <div class="field">
+                <label>{% trans from 'form' %}form.team.label.name{% endtrans %}</label>
+                {{ flow.formData.name }}
+            </div>
+            <div class="field">
+                <label>{% trans from 'form' %}form.team.label.ligue{% endtrans %}</label>
+                {{ flow.formData.ligue.name }}
+            </div>
+            <div class="field">
+                <label>{% trans from 'form' %}form.team.label.roster{% endtrans %}</label>
+                {% set rostername = 'blood_bowl.rosters.' ~ flow.formData.roster ~ '.title' %}
+                {{ rostername|trans({}, 'bb-dictionnary') }}
+            </div>
+        {% endif %}
 
-    {% include 'CraueFormFlowBundle:FormFlow:buttons.html.twig' %}
-{{ form_end(form) }}
+        {% include 'BbLigueBundle:Layout:forms/buttons.html.twig' %}
+        </div>
+    {{ form_end(form) }}
+</section>
 {% endblock body %}

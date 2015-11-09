@@ -30,6 +30,7 @@
                 parent="craue.form.flow"
                 scope="request">
 			<argument type="service" id="translator" />
+			<argument type="service" id="bb.rules" />
         </service>
         <service id="bb.forms.admin.ligue" class="%bb.forms.admin.ligue.class%">
 			<argument type="service" id="bb.rules" />

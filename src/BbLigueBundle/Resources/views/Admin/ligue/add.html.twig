@@ -1,24 +1,24 @@
 {% extends 'BbLigueBundle:Layout:layout.html.twig' %}
 {% trans_default_domain "form" %}
 {% block body %}
-    <section id="espace-coach" class="content normal-content has-form add-team">
-        <h1><span>Ajout de ligue</span> Hoooooo yeah</h1>
+<section id="content-form" class="content has-steps normal-content clearfix">
+    <header class="section-header clearfix padding-me">
+        <h1 class="section-title">{% trans from 'form' %}form.league.add.title{% endtrans %}</h1>
+    </header>
 
-        {{ form_start(form) }}
-            {{form_errors(form)}}
-            <table>
-                <tr>
-                    <td>{{form_label(form.name, 'entity.ligue.label.name')}}</td>
-                    <td>{{form_widget(form.name)}}</td>
-                </tr>
-                <tr>
-                    <td>{{form_label(form.rule, 'entity.ligue.label.rule')}}</td>
-                    <td>{{form_widget(form.rule)}}</td>
-                </tr>
-            </table>
-            <div>
-                {{form_widget(form.save, {'label': 'entity.ligue.add.submit'})}}
-            </div>
-        {{ form_end(form) }}
-    </section>
+    {{ form_start(form, {attr: {class: 'ui form'} }) }}
+        {{form_errors(form)}}
+        <div class="field">
+            {{form_label(form.name, 'form.league.label.name')}}
+            {{form_widget(form.name)}}
+        </div>
+        <div class="field">
+            {{form_label(form.rule, 'form.league.label.rule')}}
+            {{form_widget(form.rule, {'attr': {class: 'ui fluid dropdown'} })}}
+        </div>
+        <div class="field">
+            {{form_widget(form.save, {'label': 'form.league.add.submit', 'attr': {class: 'ui button'}})}}
+        </div>
+    {{ form_end(form) }}
+</section>
 {% endblock %}

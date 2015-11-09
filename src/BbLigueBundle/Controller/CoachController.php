@@ -40,53 +40,18 @@ class CoachController extends Controller
             } else {
                 // flow finished
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($formData);
+                $em->persist($team);
                 $em->flush();
 
                 $flow->reset(); // remove step data from the session
 
-                return $this->redirect($this->generateUrl('home')); // redirect when done
+                return $this->redirect($this->generateUrl('coach_space')); // redirect when done
             }
         }
-        /*$team->setRoster('a');
-        $form = $this->createForm('obbml_forms_user_team', $team);
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            // the validation passed, do something with the $author object
-
-            return $this->redirectToRoute("team_add_step2");
-        }
-
-        return $this->render('BbLigueBundle::Coach/add_team.html.twig', array(
-            'form' => $form->createView(),
-        ));*/
 
         return $this->render('BbLigueBundle:Coach:add_team_flow.html.twig', array(
             'form' => $form->createView(),
             'flow' => $flow,
-        ));
-    }
-    /**
-     * @Route("/team-add/step2", name="team_add_step2")
-     */
-    public function addStep2Action(Request $request)
-    {
-        $team = new Team();
-        $team->setCoach($this->getUser());
-        $form = $this->createForm('obbml_forms_user_team', $team);
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            // the validation passed, do something with the $author object
-
-            //return $this->redirectToRoute(...);
-        }
-
-        return $this->render('BbLigueBundle::Coach/add_team.html.twig', array(
-            'form' => $form->createView(),
         ));
     }
     /**

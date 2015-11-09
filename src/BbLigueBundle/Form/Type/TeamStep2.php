@@ -5,31 +5,34 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
+use BbLigueBundle\Services\RulesService;
 
 class TeamStep2 extends AbstractType
 {
+    private $rules;
+    private $translator;
+
+    public function __construct($translator, RulesService $rules)
+    {
+        $this->translator = $translator;
+        $this->rules = $rules;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $krule = $builder->getData()->getLigue()->getRule();
+        $rule = $this->rules->getRule($krule)->getRule();
+
+        $rosters_choice = array();
+        foreach($rule['rosters'] as $kroster => $roster) {
+            $rosters_choice[$kroster] = $this->translator->trans('blood_bowl.rosters.' . $kroster . '.title', array(), 'bb-dictionnary');
+        }
+        asort($rosters_choice);
         $builder
-            ->add('roster', null)
-            ->add('ligue', 'entity', array(
-                'class' => 'BbLigueBundle:Ligue',
-                'choice_label' => 'name',
-                'required' => true,
-                'query_builder' => function(EntityRepository $repository) use ($options) {
-                    $qb = $repository->createQueryBuilder('l')->orderBy('l.id', 'DESC');
-                    $involvedligues = $options['data']->getCoach()
-                        ->getInvolvedLigues()
-                        ->map(function(\BbLigueBundle\Entity\Ligue $ligue)  {
-                            return $ligue->getId();
-                        })->toArray();
-                    if($involvedligues) {
-                        // find all ligues where coach is not allready involved
-                        $qb = $qb->where('l.id NOT IN (:ligues)')
-                            ->setParameter('ligues', $involvedligues);
-                    }
-                    return $qb;
-                },
+            ->add('name', 'text', array(
+                'required'    => true,
+            ))
+            ->add('roster', 'choice', array(
+                'choices'  => $rosters_choice,
             ))
         ;
     }

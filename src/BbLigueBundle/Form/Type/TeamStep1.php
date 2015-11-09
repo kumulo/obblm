@@ -11,7 +11,6 @@ class TeamStep1 extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null)
             ->add('ligue', 'entity', array(
                 'class' => 'BbLigueBundle:Ligue',
                 'choice_label' => 'name',

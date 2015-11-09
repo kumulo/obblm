@@ -13,9 +13,7 @@
   "dependencies": {
     "jquery": "2.1.4",
     "nanobar": "master",
-    "amcharts": "master"
-  },
-  "resolutions": {
-    "jquery": "2.1.4"
+    "amcharts": "master",
+    "semantic": "master"
   }
 }

@@ -8,14 +8,14 @@
   "license": "MIT",
   "dependencies": {
     "grunt": "^0.4.5",
-    "load-grunt-tasks": "^0.6.0",
-    "grunt-contrib-compass": "^1.0.1",
-    "grunt-contrib-less": "^1.0.1",
-    "grunt-contrib-uglify": "^0.6.0",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-contrib-copy": "^0.6.0",
-    "grunt-google-fonts": "^0.2.1"
+    "load-grunt-tasks"      : "^0.6.0",
+    "grunt-contrib-compass" : "^1.0.1",
+    "grunt-contrib-less"    : "^1.0.1",
+    "grunt-contrib-uglify"  : "^0.6.0",
+    "grunt-contrib-cssmin"  : "^0.10.0",
+    "grunt-contrib-watch"   : "^0.6.1",
+    "grunt-contrib-copy"    : "^0.6.0",
+    "grunt-google-fonts"    : "^0.2.1"
   },
   "devDependencies": {
     "grunt-contrib-less": "^1.0.1"

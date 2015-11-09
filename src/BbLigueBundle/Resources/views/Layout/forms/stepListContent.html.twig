@@ -1,0 +1,12 @@
+{% block craue_flow_stepList_class %}
+	{% if loop.index == flow.getCurrentStepNumber() %}
+		{{ ' class="current_step"' }}
+	{% elseif flow.isStepSkipped(loop.index) %}
+		{{ ' class="skipped_step"' }}
+	{% elseif flow.isStepDone(loop.index) %}
+		{{ ' class="done_step"' }}
+	{% endif %}
+{% endblock %}
+{% block craue_flow_stepLabel %}
+	{{ stepLabel | trans({}, 'form') }}
+{% endblock %}

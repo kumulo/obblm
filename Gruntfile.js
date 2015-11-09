@@ -17,7 +17,8 @@ module.exports = function(grunt) {
             'app/Resources/lib/amcharts/dist/amcharts/amcharts.js',
             'app/Resources/lib/amcharts/dist/amcharts/serial.js',
             'app/Resources/lib/amcharts/dist/amcharts/lang/fr.js',
-            'app/Resources/lib/amcharts/dist/amcharts/lang/en.js'
+            'app/Resources/lib/amcharts/dist/amcharts/lang/en.js',
+            'app/Resources/lib/semantic/dist/semantic.js'
           ]
         },
         sourceMapName: 'web/built/libs.map'
@@ -41,13 +42,24 @@ module.exports = function(grunt) {
             },
             files: {
                 ".tmp/css/app.css": [
-                    "src/BbLigueBundle/Resources/public/css/vendor/reset5.css",
                     "src/BbLigueBundle/Resources/less/**/*.less"
                 ]
             }
         }
     }, //end less
     cssmin: {
+      combinelibs: {
+        options:{
+          report: 'gzip',
+          keepSpecialComments: 0
+        },
+        files: {
+          'web/built/libs.min.css': [
+            '.tmp/libs/semantic.css',
+            '.tmp/libs/reset5.css'
+          ]
+        }
+      },
       combine: {
         options:{
           report: 'gzip',
@@ -81,6 +93,28 @@ module.exports = function(grunt) {
                 },
             },
             flatten: true,
+        },
+        fontIcons: {
+            expand: true,
+            filter: 'isFile',
+            src: 'app/Resources/lib/semantic/dist/themes/default/assets/fonts/*',
+            dest: 'web/built/fonts/',
+            flatten: true,
+        },
+        cssLibs: {
+            expand: true,
+            filter: 'isFile',
+            src: [
+                'app/Resources/lib/semantic/dist/semantic.css',
+                'src/BbLigueBundle/Resources/public/css/vendor/reset5.css'
+            ],
+            dest: '.tmp/libs/', //themes/default/assets/fonts/
+            flatten: true,
+            options: {
+                process: function (content, srcpath) {
+                    return content.replace(/themes\/default\/assets\//g, "/built/");
+                },
+            }
         },
     },
     googlefonts : {
@@ -116,7 +150,7 @@ module.exports = function(grunt) {
 
   // Déclaration des différentes tâches
   grunt.registerTask('default', ['css', 'javascript']);
-  grunt.registerTask('fonts', ['googlefonts', 'copy:fonts']);
+  grunt.registerTask('fonts', ['googlefonts', 'copy:fontIcons', 'copy:fonts']);
   grunt.registerTask('javascript', ['uglify:libs', 'uglify:dist']);
-  grunt.registerTask('css', ['fonts', 'less','cssmin']);
+  grunt.registerTask('css', ['fonts', 'copy:cssLibs', 'less', 'cssmin']);
 };

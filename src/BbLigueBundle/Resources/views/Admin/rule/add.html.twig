@@ -1,33 +1,36 @@
 {% extends 'BbLigueBundle:Layout:layout.html.twig' %}
-{% trans_default_domain "form" %}
 {% block body %}
-    <section id="espace-coach" class="content normal-content has-form add-team">
-        <h1><span>Ajout de règle</span> Hoooooo yeah</h1>
-
-        {{ form_start(form) }}
+{% use 'BbLigueBundle:Layout:forms/form_div_layout.html.twig' with form_errors %}
+<section id="content-form" class="content has-steps normal-content clearfix">
+    <header class="section-header clearfix padding-me">
+        <h1 class="section-title">{% trans from 'form' %}form.rule.add.title{% endtrans %}</h1>
+    </header>
+    {{ form_start(form, {attr: {class: 'ui form'} }) }}
             {{form_errors(form)}}
-            <table>
-                <tr>
-                    <td>{{form_label(form.name, 'entity.rule.label.name')}}</td>
-                    <td>{{form_widget(form.name)}} {{form_errors(form.name)}}</td>
-                </tr>
-                <tr>
-                    <td>{{form_label(form.rule_key, 'entity.rule.label.rule_key')}}</td>
-                    <td>{{form_widget(form.rule_key)}} {{form_errors(form.rule_key)}}</td>
-                </tr>
-                {% if form.base_rule is defined %}
-                <tr>
-                    <td>{{form_label(form.base_rule, 'entity.rule.label.base_rule')}}</td>
-                    <td>{{form_widget(form.base_rule)}} {{form_errors(form.base_rule)}}</td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <td>{{form_label(form.description, 'entity.rule.label.description')}}</td>
-                    <td>{{form_widget(form.description)}} {{form_errors(form.description)}}</td>
-                </tr>
-            </table>
+            <div class="field">
+                {{form_label(form.name, 'form.rule.label.name')}}
+                {{form_widget(form.name)}}
+                {{form_errors(form.name)}}
+            </div>
+            <div class="field">
+                {{form_label(form.rule_key, 'form.rule.label.rule_key')}}
+                {{form_widget(form.rule_key)}}
+                {{form_errors(form.rule_key)}}
+            </div>
+            {% if form.base_rule is defined %}
+            <div class="field">
+                {{form_label(form.base_rule, 'form.rule.label.base_rule')}}
+                {{form_widget(form.base_rule, {'attr': {class: 'ui fluid dropdown'} })}}
+                {{form_errors(form.base_rule)}}
+            </div>
+            {% endif %}
+            <div class="field">
+                {{form_label(form.description, 'form.rule.label.description')}}
+                {{form_widget(form.description)}}
+                {{form_errors(form.description)}}
+            </div>
             <div>
-                {{form_widget(form.save, {'label': 'entity.rule.add.submit'})}}
+                {{form_widget(form.save, {'label': 'form.rule.add.submit', 'attr': {class: 'ui button'}})}}
             </div>
         {{ form_end(form) }}
     </section>

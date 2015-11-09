@@ -49,4 +49,13 @@ jQuery(function() {
     $('#team-sheet').each(function(base_el, sheet) {
 
     });
+    /*
+     * FORM COMPONENTS
+     */
+    $('#content-form').each(function(base_el, form) {
+        $('select.dropdown', form)
+          .dropdown()
+        ;
+        $('form', form).attr('novalidate', 'novalidate');
+    });
 });
