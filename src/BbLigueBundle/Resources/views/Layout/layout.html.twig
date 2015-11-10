@@ -3,9 +3,6 @@
 {% block struct %}
     <body>
         <header id="header">
-            <span class="ligue-icon">
-                {{ include('BbLigueBundle:Layout:Icons/logo-ligue.html.twig') }}
-            </span>
             <h1 class="site-title">{{ 'layout.manager_title'|trans|raw }}</h1>
             {% if is_granted("ROLE_USER") %}
             <aside id="account" class="clearfix">
@@ -29,6 +26,9 @@
                 </nav>
             </aside>
             <nav id="navigation" class="clearfix">
+                <span class="ligue-icon">
+                    {{ include('BbLigueBundle:Layout:Icons/logo-ligue.html.twig') }}
+                </span>
                 <ul>
                     <li>
                         <a class="{% if app.request.attributes.get('_route') == 'homepage' %}active{% endif %}" href="{{ path("homepage") }}">

@@ -27,6 +27,12 @@ class Ligue
     protected $teams;
 
     /**
+     * @ORM\OneToMany(targetEntity="BbLigueBundle\Entity\Journey", mappedBy="ligue", cascade={"remove"})
+     * @ORM\OrderBy({"id" = "ASC"})
+     */
+    protected $journeys;
+
+    /**
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank()
      */
@@ -226,5 +232,39 @@ class Ligue
     public function getPointsForLost()
     {
         return $this->points_for_lost;
+    }
+
+    /**
+     * Add journey
+     *
+     * @param \BbLigueBundle\Entity\Journey $journey
+     *
+     * @return Ligue
+     */
+    public function addJourney(\BbLigueBundle\Entity\Journey $journey)
+    {
+        $this->journeys[] = $journey;
+
+        return $this;
+    }
+
+    /**
+     * Remove journey
+     *
+     * @param \BbLigueBundle\Entity\Journey $journey
+     */
+    public function removeJourney(\BbLigueBundle\Entity\Journey $journey)
+    {
+        $this->journeys->removeElement($journey);
+    }
+
+    /**
+     * Get journeys
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJourneys()
+    {
+        return $this->journeys;
     }
 }

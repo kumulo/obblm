@@ -84,3 +84,14 @@ swiftmailer:
 
 nelmio_api_doc: ~
 ornicar_gravatar: ~
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        dashboard_logo:
+            quality: 75
+            filters:
+                thumbnail: { size: [160, 160], mode: outbound }

@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Craue\FormFlowBundle\CraueFormFlowBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
             new BbLigueBundle\BbLigueBundle(),
         );
 

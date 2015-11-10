@@ -7,6 +7,7 @@ use BbLigueBundle\Model\Team as BaseTeam;
 use Doctrine\ORM\Mapping as ORM;
 use BbLigueBundle\Entity\TeamByJourney;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity
@@ -51,5 +52,48 @@ class Team extends BaseTeam
             $r[] = $nj;
         }
         return $r;
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Gets file.
+     *
+     * @return UploadedFile $file
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+    public function removeFile($file)
+    {
+        $file_path = $this->getUploadRootDir().'/'.$file;
+        if(file_exists($file_path)) unlink($file_path);
+    }
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+        if($this->logo) {
+            $this->removeFile($this->logo);
+        }
+
+        $fileName = $this->getId() . '-' . md5(uniqid()) . '.' . $this->getFile()->guessExtension();
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $fileName
+        );
+
+        $this->logo = $fileName;
+        $this->file = null;
     }
 }

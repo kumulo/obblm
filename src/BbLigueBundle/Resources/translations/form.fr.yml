@@ -6,6 +6,9 @@ form:
     reset: Recommencer
     finish: Terminer
   team:
+    edit:
+      submit: Modifier l'équipe
+      title: Modifier l'équipe : %name%
     add:
       submit: Créer mon équipe
       title: Créer une équipe
@@ -21,6 +24,7 @@ form:
     label:
       name: Nom de l'équipe
       roster: Roster de l'équipe
+      logo: Logo de l'équipe
       ligue: Ligue participée
   league:
     add:

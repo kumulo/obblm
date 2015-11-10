@@ -49,7 +49,7 @@ class BbLigueTwigExtension extends \Twig_Extension
 
     public function bbKpoFilter($number, $comma = '.', $separator = ',', $forcelang = false)
     {
-        return $this->bbPriceFilter(($number / 1000), 0, $separator, $comma) . ' <span class="">' . $this->translator->trans('blood_bowl.kunit', array(), 'bb-dictionnary', $forcelang) . '</span>';
+        return $this->bbPriceFilter(($number / 1000), $separator, $comma) . ' <span class="">' . $this->translator->trans('blood_bowl.kunit', array(), 'bb-dictionnary', $forcelang) . '</span>';
     }
 
     public function getName()

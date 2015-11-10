@@ -1,5 +1,6 @@
 {% extends 'BbLigueBundle:Layout:layout.html.twig' %}
 {% trans_default_domain "form" %}
+{% form_theme form 'BbLigueBundle:Form:form_div_layout.html.twig' %}
 {% block body %}
 <section id="content-form" class="content has-steps normal-content clearfix">
     <header class="section-header clearfix padding-me">
@@ -7,14 +8,16 @@
     </header>
 
     {{ form_start(form, {attr: {class: 'ui form'} }) }}
-        {{form_errors(form)}}
+        {{ form_errors(form) }}
         <div class="field">
             {{form_label(form.name, 'form.league.label.name')}}
             {{form_widget(form.name)}}
+            {{ form_errors(form.name) }}
         </div>
         <div class="field">
             {{form_label(form.rule, 'form.league.label.rule')}}
             {{form_widget(form.rule, {'attr': {class: 'ui fluid dropdown'} })}}
+            {{ form_errors(form.rule) }}
         </div>
         <div class="field">
             {{form_widget(form.save, {'label': 'form.league.add.submit', 'attr': {class: 'ui button'}})}}

@@ -33,6 +33,9 @@ class CreateTeamFlow extends FormFlow {
             array(
                 'label' => 'form.team.add.steps.step2.title',
                 'form_type' => new TeamStep2($this->translator, $this->rules),
+                'form_options' => array(
+                    'validation_groups' => array('Default'),
+                ),
             ),
             array(
                 'label' => 'form.team.add.steps.step3.title',

@@ -16,7 +16,15 @@
                             </div>
                         </header>
                         <div class="team-content clearfix">
-                            <div class="team-logo">Le Logo</div>
+                            {% if team.logo %}
+                            <div class="team-logo">
+                                <img src="{{ team.webPath | imagine_filter('dashboard_logo') }}" />
+                            </div>
+                            {% else %}
+                            <div class="team-logo no-logo">
+                                {{ include('BbLigueBundle:Layout:Icons/logo-ligue.html.twig') }}
+                            </div>
+                            {% endif %}
                             <div class="team-matches">
                                 <table class="matches clearfix">
                                     {% for i, match in team.commingMatchs|slice(0, 5) %}

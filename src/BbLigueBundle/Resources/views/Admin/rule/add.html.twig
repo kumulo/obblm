@@ -1,6 +1,6 @@
 {% extends 'BbLigueBundle:Layout:layout.html.twig' %}
 {% block body %}
-{% use 'BbLigueBundle:Layout:forms/form_div_layout.html.twig' with form_errors %}
+{% form_theme form 'BbLigueBundle:Form:form_div_layout.html.twig' %}
 <section id="content-form" class="content has-steps normal-content clearfix">
     <header class="section-header clearfix padding-me">
         <h1 class="section-title">{% trans from 'form' %}form.rule.add.title{% endtrans %}</h1>

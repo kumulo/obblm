@@ -5,6 +5,7 @@ body {
     font-family: "Lato", sans-serif;
     font-weight: 300;
     font-size: 10px;
+    line-height: normal;
     @media @smartphones {
         font-size: 9px;
     }
@@ -298,40 +299,33 @@ body {
         }
     }
     #navigation {
-        z-index: 2;
-        position: fixed;
-        top: 100px;
-        left: 0;
-        bottom: 0;
-        width: 100px;
-        background: @nav-bg;
-        @media @smartphones {
-            width: 100%;
-            top: auto;
-            height: 50px;
-            right: 0;
-        }
         > ul {
+            z-index: 2;
+            position: fixed;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            width: 100px;
+            background: @nav-bg;
             > li {
                 border-bottom: 2px solid @nav-item-border-color;
                 @media @smartphones {
-                    float: left;
-                    height: 50px;
-                    width: 25%;
                 }
                 > a {
                     display: block;
                     color: @nav-link-color;
                     text-align: center;
                     padding-top: 10px;
-                    height: 90px;
+                    height: 100px;
                     text-decoration: none;
                     font-size: 120%;
                     text-transform: uppercase;
                     line-height: 1.2em;
                     @media @smartphones {
-                        height: 50px;
-                        padding: 5px 5px 0;
+                        padding: 10px;
+                        height: auto;
+                        white-space: nowrap;
+                        text-align: left;
                     }
                     > .icon {
                         width: auto;
@@ -344,8 +338,13 @@ body {
                             fill: @nav-icon-color;
                         }
                         @media @smartphones {
-                            max-height: 15px;
-                            margin-bottom: 5px;
+                            width: auto;
+                            height: auto;
+                            max-width: 40px;
+                            max-height: 30px;
+                            display: inline-block;
+                            margin: 0 10px 0 0;
+                            vertical-align: middle;
                         }
                     }
                     &:hover,
@@ -362,12 +361,51 @@ body {
                 }
             }
         }
+        @media @smartphones, @tablets-v {
+            > ul {
+                width: 75%;
+                visibility: hidden;
+                top: 50px;
+                left: -75%;
+                -webkit-transition: left .2s ease-out;
+                -moz-transition: left .2s ease-out;
+                -o-transition: left .2s ease-out;
+                transition: left .2s ease-out;
+            }
+            &:before {
+                content: '';
+                visibility: hidden;
+                position: fixed;
+                z-index: 1;
+                top: 50px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 0;
+                background: #000;
+                -webkit-transition: opacity .2s ease-out;
+                -moz-transition: opacity .2s ease-out;
+                -o-transition: opacity .2s ease-out;
+                transition: opacity .2s ease-out;
+            }
+            &:hover,
+            &:active {
+                > ul {
+                    visibility: visible;
+                    left: 0;
+                }
+                &:before {
+                    visibility: visible;
+                    opacity: 0.5;
+                }
+            }
+        }
     }
 }
 #content {
     margin: 100px 0 0 100px;
-    @media @smartphones {
-        margin: 50px 0;
+    @media @smartphones, @tablets-v {
+        margin: 50px 0 0;
     }
     .padding-me {
         padding: @base-spacing;
@@ -448,7 +486,19 @@ body {
                     left: 0;
                     width: 160px;
                     height: 145px;
-                    background: @mid-green;
+                    &.no-logo {
+                        background: @ligue-icon-bg;
+                        svg {
+                            fill: @white;
+                            display: block;
+                            width: auto;
+                            height: 100px;
+                            margin: 0 auto;
+                            path {
+                                fill: @white;
+                            }
+                        }
+                    }
                 }
                 .stats-container {
                     border-spacing : 0;
@@ -777,7 +827,7 @@ body {
                             &:before {
                                 content: attr(data-th) ": ";
                                 font-weight: 700;
-                                width: 6.5em;
+                                width: 5em;
                                 display: inline-block;
                                 @media @largerthantiny {
                                     display: none;

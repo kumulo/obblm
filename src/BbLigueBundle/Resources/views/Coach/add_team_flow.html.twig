@@ -2,20 +2,13 @@
 
 {% block body %}
 {% trans_default_domain 'form' %}
+{% form_theme form 'BbLigueBundle:Form:form_div_layout.html.twig' %}
 <section id="content-form" class="content has-steps normal-content clearfix">
     <header class="section-header clearfix padding-me">
         <h1 class="section-title">{% trans from 'form' %}form.team.add.title{% endtrans %}</h1>
     </header>
     {{ form_start(form) }}
         {% include 'BbLigueBundle:Layout:forms/steps.html.twig' %}
-        {% if form_errors(form) %}
-        <div class="ui ignored error message clearfix icon">
-            <i class="help icon"></i>
-            <div class="content">
-                {{ form_errors(form) }}
-            </div>
-        </div>
-        {% endif %}
         <div class="ui form">
         {% if flow.getCurrentStepNumber() == 1 %}
             <div class="ui ignored warning message clearfix icon">
@@ -27,15 +20,18 @@
             <div class="field">
                 {{form_label(form.ligue, 'form.team.label.ligue')}}
                 {{form_widget(form.ligue, {'attr': {class: 'ui fluid dropdown'} } )}}
+                {{form_errors(form.ligue)}}
             </div>
         {% elseif flow.getCurrentStepNumber() == 2 %}
             <div class="field">
                 {{form_label(form.roster, 'form.team.label.roster')}}
                 {{form_widget(form.roster, {'attr': {class: 'ui fluid dropdown'} })}}
+                {{form_errors(form.roster)}}
             </div>
             <div class="field">
                 {{form_label(form.name, 'form.team.label.name')}}
                 {{form_widget(form.name)}}
+                {{form_errors(form.name)}}
             </div>
         {% else %}
             <div class="field">

@@ -20,3 +20,5 @@
 composer.lock
 /web/app_test.php
 /web/app_dev.php
+/web/media/*
+/web/uploads/teams/*

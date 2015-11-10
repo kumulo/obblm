@@ -13,7 +13,15 @@
                 <article class="team clearfix padding-me">
                     <div class="wrapper relative clearfix">
                         <header class="team-header clearfix">
-                            <div class="team-logo">Le Logo</div>
+                            {% if team.logo %}
+                            <div class="team-logo">
+                                <img src="{{ team.webPath | imagine_filter('dashboard_logo') }}" />
+                            </div>
+                            {% else %}
+                            <div class="team-logo no-logo">
+                                {{ include('BbLigueBundle:Layout:Icons/logo-ligue.html.twig') }}
+                            </div>
+                            {% endif %}
                             <h3 class="team-name">{{ team.name }}</h3>
                             <div class="team-metas clearfix">
                                 <span class="race">
@@ -25,7 +33,7 @@
                         </header>
                         <footer class="team-footer clearfix">
                             <ul class="team-actions">
-                                <li><a class="button button-ok" href="{{ path("team_edit", {team_id: team.id}) }}">{{ 'layout.coach_space.index.team_edit'|trans }}</a></li>
+                                {% if not team.valid %}<li><a class="button button-ok" href="{{ path("team_edit", {team_id: team.id}) }}">{{ 'layout.coach_space.index.team_edit'|trans }}</a></li>{% endif %}
                                 <li><a class="button button-not" href="#">{{ 'layout.coach_space.index.team_delete'|trans }}</a></li>
                             </ul>
                         </footer>

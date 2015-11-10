@@ -89,6 +89,22 @@ abstract class Team
      * @Assert\NotBlank()
      */
     protected $base_reroll_value;
+
+    /**
+     * @ORM\Column(name="valid", type="boolean")
+     */
+    protected $valid;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $logo;
+
+    /**
+     * @var \Symfony\Component\HttpFoundation\File\UploadedFile
+     * @Assert\File(maxSize="6000000", mimeTypes={ "image/jpeg", "image/jpg", "image/png", "image/svg" })
+     */
+    public $file;
     
     /**
      * Constructor
@@ -100,6 +116,35 @@ abstract class Team
         $this->created_at           = new \DateTime();
         $this->updated_at           = new \DateTime();
         $this->base_reroll_value    = 0;
+        $this->valid                = 0;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->logo
+            ? null
+            : $this->getUploadRootDir().'/'.$this->logo;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->logo
+            ? null
+            : $this->getUploadDir().'/'.$this->logo;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/teams';
     }
 
     /**
@@ -434,6 +479,40 @@ abstract class Team
     public function getBaseRerollValue()
     {
         return $this->base_reroll_value;
+    }
+
+    /**
+     * Set valid
+     *
+     * @param boolean $valid
+     *
+     * @return Team
+     */
+    public function setValid($valid)
+    {
+        $this->valid = $valid;
+
+        return $this;
+    }
+
+    /**
+     * Get valid
+     *
+     * @return boolean
+     */
+    public function getValid()
+    {
+        return $this->valid;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
     
     /**
