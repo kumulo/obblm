@@ -17,7 +17,7 @@ class BbLigueScriptHandler extends ScriptHandler
         parent::executeCommand(
             $event,
             $appDir,
-            'bbLigue:media:init'
+            'bbligue:media:init'
         );
     }
 }
