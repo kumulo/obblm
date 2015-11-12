@@ -16,3 +16,8 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
     use_assetic_controller: false
     locale: en
+    
+    # Paths
+    web_path: web/
+    upload_path: web/uploads/
+    media_cache_path: web/media/cache/

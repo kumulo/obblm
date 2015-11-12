@@ -42,14 +42,8 @@ class CoachController extends Controller
                 $rule = $this->get('bb.rules')->getRule($team->getLigue()->getRule())->getRule();
 
                 $base_rr_value  = $rule['rosters'][$team->getRoster()]['options']['reroll_cost'];
-                $start_treasure = $rule['max_team_cost'];
-                $ligue_j0       = $team->getLigue()->getJourneys()->first();
 
-                $j0 = new TeamByJourney();
-                $j0->setTeam($team);
-                $j0->setJourney($ligue_j0);
-                $j0->setTreasure($start_treasure);
-
+                $j0 = $this->createTeamJ0($team);
                 $team->setBaseRerollValue($base_rr_value);
                 $team->addJourney($j0);
 
@@ -67,6 +61,20 @@ class CoachController extends Controller
             'form' => $form->createView(),
             'flow' => $flow,
         ));
+    }
+    private function createTeamJ0($team) {
+        $ligue = $team->getLigue();
+        $rule = $this->get('bb.rules')->getRule($ligue->getRule())->getRule();
+
+        $start_treasure = $rule['max_team_cost'];
+        $ligue_j0 = $ligue->getJourneys()->first();
+
+        $journey = new TeamByJourney();
+        $journey->setTeam($team);
+        $journey->setJourney($ligue_j0);
+        $journey->setTreasure($start_treasure);
+
+        return $journey;
     }
     /**
      * @Route("/edit/{team_id}", name="team_edit")
@@ -97,10 +105,8 @@ class CoachController extends Controller
 
         if ($form->isValid()) {
             // the validation passed, do something with the $author object
-            $em = $this->getDoctrine()->getManager();
-
             $team->upload();
-
+            $em = $this->getDoctrine()->getManager();
             $em->persist($team);
             $em->flush();
 

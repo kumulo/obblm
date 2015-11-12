@@ -3,7 +3,6 @@
 namespace BbLigueBundle\Form;
 
 use Craue\FormFlowBundle\Form\FormFlow;
-use Craue\FormFlowBundle\Form\FormFlowInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use BbLigueBundle\Form\Type\TeamStep1;

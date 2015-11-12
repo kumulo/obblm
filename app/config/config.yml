@@ -92,6 +92,6 @@ liip_imagine:
     filter_sets:
         cache: ~
         dashboard_logo:
-            quality: 75
+            quality: 100
             filters:
                 thumbnail: { size: [160, 160], mode: outbound }

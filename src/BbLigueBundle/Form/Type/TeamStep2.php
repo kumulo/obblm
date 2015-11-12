@@ -4,7 +4,6 @@ namespace BbLigueBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Doctrine\ORM\EntityRepository;
 use BbLigueBundle\Services\RulesService;
 
 class TeamStep2 extends AbstractType

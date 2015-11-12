@@ -119,34 +119,6 @@ abstract class Team
         $this->valid                = 0;
     }
 
-    public function getAbsolutePath()
-    {
-        return null === $this->logo
-            ? null
-            : $this->getUploadRootDir().'/'.$this->logo;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->logo
-            ? null
-            : $this->getUploadDir().'/'.$this->logo;
-    }
-
-    protected function getUploadRootDir()
-    {
-        // the absolute directory path where uploaded
-        // documents should be saved
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return 'uploads/teams';
-    }
-
     /**
      * Get id
      *

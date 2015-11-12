@@ -6,7 +6,6 @@ namespace BbLigueBundle\Entity;
 use BbLigueBundle\Model\Team as BaseTeam;
 use Doctrine\ORM\Mapping as ORM;
 use BbLigueBundle\Entity\TeamByJourney;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -16,6 +15,37 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Team extends BaseTeam
 {
     protected $last_journey;
+    protected $abs_path;
+    protected $web_path;
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'teams/';
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->logo
+            ? null
+            : $this->web_path.$this->logo;
+    }
+
+    protected function getUploadRootDir($root_path)
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return $this->abs_path.$this->getUploadDir();
+    }
+
+    public function setAbsPath($abs_path) {
+        $this->abs_path = $abs_path.$this->getUploadDir();
+    }
+
+    public function setWebPath($web_path) {
+        $this->web_path = $web_path.$this->getUploadDir();
+    }
     
     public function getLastJourney()
     {
@@ -75,7 +105,7 @@ class Team extends BaseTeam
     }
     public function removeFile($file)
     {
-        $file_path = $this->getUploadRootDir().'/'.$file;
+        $file_path = $this->abs_path.'/'.$file;
         if(file_exists($file_path)) unlink($file_path);
     }
     public function upload()
@@ -89,7 +119,7 @@ class Team extends BaseTeam
 
         $fileName = $this->getId() . '-' . md5(uniqid()) . '.' . $this->getFile()->guessExtension();
         $this->getFile()->move(
-            $this->getUploadRootDir(),
+            $this->abs_path,
             $fileName
         );
 

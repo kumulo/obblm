@@ -10,6 +10,7 @@
         <parameter key="bb.forms.admin.ligue.class">BbLigueBundle\Form\Type\Ligue</parameter>
         <parameter key="bb.forms.admin.rule.class">BbLigueBundle\Form\Type\Rule</parameter>
         <parameter key="bb.twig.extension.class">BbLigueBundle\Twig\BbLigueTwigExtension</parameter>
+        <parameter key="bb.upload.events.class">BbLigueBundle\EventListener\UploadDirPopulate</parameter>
     </parameters>
 
     <services>
@@ -39,6 +40,12 @@
         <service id="bb.forms.admin.rule" class="%bb.forms.admin.rule.class%">
 			<argument type="service" id="bb.rules" />
             <tag name="form.type" alias="obbml_forms_admin_rule" />
+        </service>
+        <service id="bb.upload.listener" class="%bb.upload.events.class%">
+			<argument>%kernel.root_dir%</argument>
+			<argument>%web_path%</argument>
+			<argument>%upload_path%</argument>
+            <tag name="doctrine.event_listener" event="postLoad" />
         </service>
     </services>
 </container>
