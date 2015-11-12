@@ -1,0 +1,29 @@
+BbLeagueBundle\Entity\PlayerByJourney:
+    pj_dwarf_slayer (template):
+        move: 5
+        strenght: 3
+        agility: 2
+        average: 8
+        skills: [ 'block', 'dauntless', 'frenzy', 'thick_skull' ]
+        value: 90000
+    pj_dwarf_runner (template):
+        move: 6
+        strenght: 3
+        agility: 3
+        average: 8
+        skills: [ 'sure_hands', 'thick_skull' ]
+        value: 80000
+    pj_dwarf_blitzer (template):
+        move: 5
+        strenght: 3
+        agility: 3
+        average: 9
+        skills: [ 'block', 'thick_skull' ]
+        value: 80000
+    pj_dwarf_blocker (template):
+        move: 4
+        strenght: 3
+        agility: 2
+        average: 9
+        skills: [ 'block', 'tackle', 'thick_skull' ]
+        value: 70000

@@ -1,0 +1,25 @@
+{% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <section id="dashboard" class="content normal-content clearfix">
+        <header class="section-header clearfix padding-me">
+            <h1 class="section-title">{{ league.name }}</h1>
+        </header>
+        <div class="leagues clearfix">
+            {% for team in league.teams %}
+                <article class="league clearfix padding-me">
+                    <div class="wrapper relative clearfix">
+                        <header class="league-header clearfix">
+                            <h3 class="league-name">{{ team.name }}</h3>
+                        </header>
+                        <div class="league-content clearfix">
+                            {{ team.getLastJourney.getPoints }}
+                        </div>
+                    </div>
+                </article>
+                {% else %}
+                Pas encore inscrit dans une league
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

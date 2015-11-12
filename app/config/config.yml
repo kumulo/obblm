@@ -43,7 +43,7 @@ assetic:
     debug:          "%kernel.debug%"
     use_controller: %use_assetic_controller%
     bundles:
-        - BbLigueBundle
+        - BbLeagueBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

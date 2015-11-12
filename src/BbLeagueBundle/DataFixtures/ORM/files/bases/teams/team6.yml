@@ -1,0 +1,52 @@
+include:
+    - ../../templates/human.yml
+
+BbLeagueBundle\Entity\Team:
+    team6:
+        name:       'Chims Lords'
+        roster:     'human'
+        coach:      @coach6
+        league:      @league1
+        base_reroll_value:   50000
+
+BbLeagueBundle\Entity\TeamByJourney:
+    tj60:
+        team:           @team6
+        journey:        @j0
+        rerolls:        4
+
+BbLeagueBundle\Entity\Player:
+    p6_{2..6}:
+        team:       @team6
+        name:       Player <current()> / Team 6
+        position:   <current()>
+        type:       lineman
+    p6_7:
+        team:       @team6
+        name:       Player 7 / Team 6
+        position:   7
+        type:       thrower
+    p6_{9..11}:
+        team:       @team6
+        name:       Player <current()> / Team 6
+        position:   <current()>
+        type:       catcher
+    p6_{13..15}:
+        team:       @team6
+        name:       Player <current()> / Team 6
+        position:   <current()>
+        type:       blitzer
+
+BbLeagueBundle\Entity\PlayerByJourney:
+    pj60_{2..6} (extends pj_human_lineman):
+        player: @p6_<current()>
+        journey: @tj60
+    p60_7 (extends pj_human_thrower):
+        player: @p6_7
+        journey: @tj60
+    pj60_{9..11} (extends pj_human_catcher):
+        player: @p6_<current()>
+        journey: @tj60
+    pj60_{13..15} (extends pj_human_blitzer):
+        player: @p6_<current()>
+        journey: @tj60

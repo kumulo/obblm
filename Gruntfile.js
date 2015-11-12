@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'web/built/app.min.js': [
-             "src/BbLigueBundle/Resources/public/js/front.js"
+             "src/BbLeagueBundle/Resources/public/js/front.js"
           ]
         },
         sourceMapName: 'web/built/app.map'
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
             },
             files: {
                 ".tmp/css/app.css": [
-                    "src/BbLigueBundle/Resources/less/**/*.less"
+                    "src/BbLeagueBundle/Resources/less/**/*.less"
                 ]
             }
         }
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
     }, //end cssmin
     watch: {
       css: {
-        files: ['src/BbLigueBundle/Resources/less/**/*.less'],
+        files: ['src/BbLeagueBundle/Resources/less/**/*.less'],
         tasks: ['less'],
         options: {
           nospawn: true
@@ -106,7 +106,7 @@ module.exports = function(grunt) {
             filter: 'isFile',
             src: [
                 'app/Resources/lib/semantic/dist/semantic.css',
-                'src/BbLigueBundle/Resources/public/css/vendor/reset5.css'
+                'src/BbLeagueBundle/Resources/public/css/vendor/reset5.css'
             ],
             dest: '.tmp/libs/', //themes/default/assets/fonts/
             flatten: true,

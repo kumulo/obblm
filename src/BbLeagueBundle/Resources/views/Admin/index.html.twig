@@ -1,0 +1,64 @@
+{% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <div id="espace-admin" class="content normal-content clearfix">
+        <header class="section-header clearfix padding-me">
+            <h1 class="section-title">{{ 'layout.admin_space.index.title'|trans }}</h1>
+        </header>
+        <div class="clearfix">
+            <section class="clearfix admin-block padding-me">
+                <div class="wrapper relative clearfix leagues">
+                    <h2 class="admin-block-name">
+                        {% trans from "admin" %}admin.block.leagues.title{% endtrans %}
+                    </h2>
+                    {% for key , league in leagues %}
+                        {% if league.id is defined %}
+                        <a href="{{ path("admin_league_edit", {league_id: league.id}) }}">
+                        {% endif %}
+                        <article class="league clearfix">
+                            <h3 class="league-name">{{ league.name }}</h3>
+                            <div class="league-metas clearfix">
+                                {% if league.rule %}
+                                    {{ bb_rules.getRule(league.rule).name }}
+                                {% endif %}
+                            </div>
+                        </article>
+                        {% if league.id is defined %}
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="clearfix admin-block padding-me">
+                <div class="wrapper relative clearfix rules">
+                    <h2 class="admin-block-name">
+                        {% trans from "admin" %}admin.block.rules.title{% endtrans %}
+                    </h2>
+                    {% for key , rule in rules %}
+                        {% if rule.id is defined and rule.id %}
+                        <a href="{{ path("admin_rule_edit", {rule_id: rule.id}) }}">
+                        {% else %}
+                        {% set title = 'rules.' ~ key ~ '.title' %}
+                        {% endif %}
+                        <article class="rule clearfix">
+                            <h3 class="rule-name">{% if rule.id is defined %}{{ rule.name }}{% else %}{{ title|trans({}, "rules") }}{% endif %}</h3>
+                            <div class="rule-metas clearfix">
+                                {% if rule.id is defined %}
+                                    {{ rule.description }}
+                                {% else %}
+                                    {% set description = 'rules.' ~ key ~ '.description' %}
+                                    {% if description|trans({}, "rules") != description %}
+                                        {{ description|trans({}, "rules") }}
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </article>
+                        {% if rule.id is defined %}
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

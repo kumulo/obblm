@@ -1,0 +1,5 @@
+# To extend it add app/Resources/BbLeagueBundle/translations/rules.fr.yml
+rules:
+  lrb6:
+    title: LRB6 officielle
+    description: Règles de base décrites dans le LRB6

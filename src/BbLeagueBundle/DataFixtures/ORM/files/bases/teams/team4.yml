@@ -1,0 +1,53 @@
+include:
+    - ../../templates/high_elf.yml
+
+BbLeagueBundle\Entity\Team:
+    team4:
+        name:       'Moar Eagles'
+        roster:     'high_elf'
+        coach:      @coach4
+        league:      @league1
+        base_reroll_value:   50000
+
+BbLeagueBundle\Entity\TeamByJourney:
+    tj40:
+        team:           @team4
+        journey:        @j0
+        rerolls:        2
+        popularity:     1
+
+BbLeagueBundle\Entity\Player:
+    p4_{1..6}:
+        team:       @team4
+        name:       Player <current()> / Team 4
+        position:   <current()>
+        type:       lineman
+    p4_7:
+        team:       @team4
+        name:       Player 7 / Team 4
+        position:   7
+        type:       thrower
+    p4_{9..10}:
+        team:       @team4
+        name:       Player <current()> / Team 4
+        position:   <current()>
+        type:       catcher
+    p4_{13..14}:
+        team:       @team4
+        name:       Player <current()> / Team 4
+        position:   <current()>
+        type:       blitzer
+
+BbLeagueBundle\Entity\PlayerByJourney:
+    pj40_{1..6} (extends pj_highelf_lineman):
+        player: @p4_<current()>
+        journey: @tj40
+    pj40_7 (extends pj_highelf_thrower):
+        player: @p4_7
+        journey: @tj40
+    pj40_{9..10} (extends pj_highelf_catcher):
+        player: @p4_<current()>
+        journey: @tj40
+    pj40_{13..14} (extends pj_highelf_blitzer):
+        player: @p4_<current()>
+        journey: @tj40

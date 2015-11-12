@@ -1,0 +1,30 @@
+{% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <section id="dashboard" class="content normal-content clearfix">
+        <header class="section-header clearfix padding-me">
+            <h1 class="section-title">{{ 'layout.leagues.index.title'|trans }}</h1>
+        </header>
+        <div class="leagues clearfix">
+            {% for league in leagues %}
+                <article class="league clearfix padding-me">
+                    <div class="wrapper relative clearfix">
+                        <header class="league-header clearfix">
+                            <h3 class="league-name">{{ league.name }}</h3>
+                            <div class="league-metas clearfix">
+                                <span class="league"><span class="format">(Format)</span></span>
+                            </div>
+                            <ul class="section-actions">
+                                <li><a class="button button-basic" href="{{ path("league_results", {league_id: league.id}) }}">{{ 'layout.leagues.index.show_results'|trans }}</a></li>
+                            </ul>
+                        </header>
+                        <div class="league-content clearfix">
+                        </div>
+                    </div>
+                </article>
+                {% else %}
+                Pas encore inscrit dans une league
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

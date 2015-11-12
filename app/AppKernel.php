@@ -23,7 +23,7 @@ class AppKernel extends Kernel
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Craue\FormFlowBundle\CraueFormFlowBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
-            new BbLigueBundle\BbLigueBundle(),
+            new BbLeagueBundle\BbLeagueBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

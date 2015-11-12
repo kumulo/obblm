@@ -1,0 +1,44 @@
+# To extend it add app/Resources/BbLeagueBundle/translations/form.fr.yml
+form:
+  buttons:
+    back: Précédent
+    next: Suivant
+    reset: Recommencer
+    finish: Terminer
+  team:
+    edit:
+      submit: Modifier l'équipe
+      title: Modifier l'équipe : %name%
+    add:
+      submit: Créer mon équipe
+      title: Créer une équipe
+      about_step_1:
+      steps:
+        step1:
+          title: Choix de la ligue
+          about: Les options du roster sont définies en fonction des règles de la ligue.
+        step2:
+          title: Créer une équipe
+        step3:
+          title: Validation
+    label:
+      name: Nom de l'équipe
+      roster: Roster de l'équipe
+      logo: Logo de l'équipe
+      league: Ligue participée
+  league:
+    add:
+      submit: Enregistrer la ligue
+      title: Créer une ligue
+    label:
+      name: Nom de la ligue
+      rule: Règles appliquées
+      description: Description
+  rule:
+    add:
+      submit: Enregistrer la règle
+    label:
+      name: Nom de la règle
+      rule_key: Nom technique de la règle
+      base_rule: Créer la règle à partir de
+      description: Description

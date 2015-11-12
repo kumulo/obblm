@@ -1,0 +1,48 @@
+{% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <section id="espace-coach" class="content normal-content clearfix">
+        <header class="section-header clearfix padding-me">
+            <h1 class="section-title">{{ 'layout.coach_space.index.my_teams'|trans }}</h1>
+            <ul class="section-actions">
+                <li><a class="button button-basic" href="{{ path("team_add") }}">{{ 'layout.coach_space.index.team_add'|trans }}</a></li>
+            </ul>
+        </header>
+        <div class="teams clearfix">
+            {% for team in coach.teams %}
+                <article class="team clearfix padding-me">
+                    <div class="wrapper relative clearfix">
+                        <header class="team-header clearfix">
+                            {% if team.logo %}
+                            <div class="team-logo">
+                                <img src="{{ team.webPath | imagine_filter('dashboard_logo') }}" />
+                            </div>
+                            {% else %}
+                            <div class="team-logo no-logo">
+                                {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
+                            </div>
+                            {% endif %}
+                            <h3 class="team-name">{{ team.name }}</h3>
+                            <div class="team-metas clearfix">
+                                <span class="race">
+                                    {% set racename = 'blood_bowl.rosters.' ~ team.roster ~ '.title' %}
+                                    {{ racename|trans({},'bb-dictionnary') }}
+                                </span>
+                                <span class="league"><span class="name">{{ team.league.name }}</span> <span class="format">(Format)</span></span>
+                            </div>
+                        </header>
+                        <footer class="team-footer clearfix">
+                            <ul class="team-actions">
+                                {% if not team.valid %}<li><a class="button button-ok" href="{{ path("team_edit", {team_id: team.id}) }}">{{ 'layout.coach_space.index.team_edit'|trans }}</a></li>{% endif %}
+                                <li><a class="button button-not" href="#">{{ 'layout.coach_space.index.team_delete'|trans }}</a></li>
+                            </ul>
+                        </footer>
+                        <div>
+                            {% include 'BbLeagueBundle:Team:journey-table.html.twig' with {journey: team.getLastJourney, team: team} %}
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

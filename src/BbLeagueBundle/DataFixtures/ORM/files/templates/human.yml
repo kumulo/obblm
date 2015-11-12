@@ -1,0 +1,35 @@
+BbLeagueBundle\Entity\PlayerByJourney:
+    pj_human_lineman (template):
+        move: 6
+        strenght: 3
+        agility: 3
+        average: 8
+        value: 50000
+    pj_human_thrower (template):
+        move: 6
+        strenght: 3
+        agility: 3
+        average: 8
+        skills: [ 'pass', 'sure_hands' ]
+        value: 70000
+    pj_human_catcher (template):
+        move: 8
+        strenght: 3
+        agility: 3
+        average: 7
+        skills: [ 'catch', 'dodge' ]
+        value: 70000
+    pj_human_blitzer (template):
+        move: 7
+        strenght: 3
+        agility: 3
+        average: 8
+        skills: [ 'block' ]
+        value: 90000
+    pj_human_ogre (template):
+        move: 5
+        strenght: 5
+        agility: 2
+        average: 9
+        skills: [ 'loner', 'bone_head', 'mighty_blow', 'thick_skull', 'throw_team_mate' ]
+        value: 140000

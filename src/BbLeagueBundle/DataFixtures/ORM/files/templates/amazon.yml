@@ -1,0 +1,29 @@
+BbLeagueBundle\Entity\PlayerByJourney:
+    pj_amazon_linewoman (template):
+        move: 6
+        strenght: 3
+        agility: 3
+        average: 7
+        skills: [ 'dodge' ]
+        value: 50000
+    pj_amazon_thrower (template):
+        move: 6
+        strenght: 3
+        agility: 3
+        average: 7
+        skills: [ 'dodge', 'pass' ]
+        value: 70000
+    pj_amazon_catcher (template):
+        move: 6
+        strenght: 3
+        agility: 3
+        average: 7
+        skills: [ 'dodge', 'catch' ]
+        value: 70000
+    pj_amazon_blitzer (template):
+        move: 6
+        strenght: 3
+        agility: 3
+        average: 7
+        skills: [ 'block', 'dodge' ]
+        value: 90000

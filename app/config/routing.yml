@@ -1,5 +1,5 @@
 bblm_manager:
-    resource: "@BbLigueBundle/Resources/config/routing.yml"
+    resource: "@BbLeagueBundle/Resources/config/routing.yml"
     
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"

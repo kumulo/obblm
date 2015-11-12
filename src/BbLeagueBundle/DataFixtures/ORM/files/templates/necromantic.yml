@@ -1,0 +1,36 @@
+BbLeagueBundle\Entity\PlayerByJourney:
+    pj_necromantic_zombi (template):
+        move: 4
+        strenght: 3
+        agility: 2
+        average: 8
+        skills: [ 'regeneration' ]
+        value: 40000
+    pj_necromantic_ghoul (template):
+        move: 7
+        strenght: 3
+        agility: 3
+        average: 7
+        skills: [ 'dodge' ]
+        value: 70000
+    pj_necromantic_wight (template):
+        move: 6
+        strenght: 3
+        agility: 3
+        average: 8
+        skills: [ 'block', 'regeneration' ]
+        value: 90000
+    pj_necromantic_golem (template):
+        move: 7
+        strenght: 3
+        agility: 4
+        average: 8
+        skills: [ 'regeneration', 'stand_firm', 'thick_skull' ]
+        value: 110000
+    pj_necromantic_werewolf (template):
+        move: 7
+        strenght: 3
+        agility: 4
+        average: 8
+        skills: [ 'claw_claws', 'frenzy', 'regeneration' ]
+        value: 120000

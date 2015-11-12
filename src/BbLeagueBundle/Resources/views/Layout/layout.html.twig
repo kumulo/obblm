@@ -1,0 +1,71 @@
+{% extends 'BbLeagueBundle:Layout:base.html.twig' %}
+
+{% block struct %}
+    <body>
+        <header id="header">
+            <h1 class="site-title">{{ 'layout.manager_title'|trans|raw }}</h1>
+            {% if is_granted("ROLE_USER") %}
+            <aside id="account" class="clearfix">
+                <div class="title">
+                    {% if gravatar_exists(app.user.email) %}
+                        <img src="{{ gravatar(app.user.email) }}" />
+                    {% else %}
+                        Default gravatar
+                    {% endif %}
+                    {{ app.user.username }}
+                </div>
+                <nav class="nav clearfix">
+                    <ul>
+                        <li>
+                            <a href="{{ path("fos_user_profile_edit") }}">{{ 'layout.account.my_account'|trans|raw }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path("fos_user_security_logout") }}">{{ 'layout.account.logout'|trans|raw }}</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <nav id="navigation" class="clearfix">
+                <span class="league-icon">
+                    {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
+                </span>
+                <ul>
+                    <li>
+                        <a class="{% if app.request.attributes.get('_route') == 'homepage' %}active{% endif %}" href="{{ path("homepage") }}">
+                            {{ include('BbLeagueBundle:Layout:Icons/stats.html.twig') }}
+                            {{ 'layout.nav_menu.dashboard'|trans|raw }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            {{ include('BbLeagueBundle:Layout:Icons/matchs.html.twig') }}
+                            {{ 'layout.nav_menu.my_contest'|trans|raw }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{% if app.request.attributes.get('_route') starts with 'league' %}active{% endif %}" href="{{ path("league_homepage") }}">
+                            {{ include('BbLeagueBundle:Layout:Icons/calendar.html.twig') }}
+                            {{ 'layout.nav_menu.tournaments'|trans|raw }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{% if app.request.attributes.get('_route') starts with 'coach' %}active{% endif %}" href="{{ path("coach_space") }}">
+                            {{ include('BbLeagueBundle:Layout:Icons/coach.html.twig') }}
+                            {{ 'layout.nav_menu.coach_space'|trans|raw }}
+                        </a>
+                    </li>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <li>
+                        <a class="{% if app.request.attributes.get('_route') starts with 'admin' %}active{% endif %}" href="{{ path("admin_homepage") }}">
+                            {# { include('BbLeagueBundle:Layout:Icons/admin.html.twig') } #}
+                            {{ 'layout.nav_menu.admin_space'|trans|raw }}
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </header>
+        <div id="content" class="clearfix">{% block body %}{% endblock %}</section>
+        <footer></footer>
+{% endblock %}

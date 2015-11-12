@@ -1,0 +1,348 @@
+# To extend it add app/Resources/BbLeagueBundle/translations/bb-dictionnary.en.yml
+blood_bowl:
+    skill_types:
+        g: general
+        s: strength
+        a: agility
+        p: passing
+        m: mutation
+        e: extraordinary
+    experience:
+        rookie: Rookie
+        experienced: Experienced
+        veteran: Veteran
+        emerging_star: Emerging Star
+        star: Star
+        super_star: Super Star
+        legend: Legend
+    injuries:
+        badly_hurt:
+            name: Badly Hurt
+            effet: No long term effect
+        broken_ribs:
+            name: Broken Ribs
+            effet: Miss next game
+        groin_strain:
+            name: Groin Strain
+            effet: Miss next game
+        gouged_eye:
+            name: Gouged Eye
+            effet: Miss next game
+        broken_jaw:
+            name: Broken Jaw
+            effet: Miss next game
+        fractured_arm:
+            name: Fractured Arm
+            effet: Miss next game
+        fractured_leg:
+            name: Fractured Leg
+            effet: Miss next game
+        smashed_hand:
+            name: Smashed Hand
+            effet: Miss next game
+        pinched_nerve:
+            name: Pinched Nerve
+            effet: Miss next game
+        damaged_back:
+            name: Damaged Back
+            effet: Niggling Injury
+        smashed_knee:
+            name: Smashed Knee
+            effet: Niggling Injury
+        smashed_hip:
+            name: Smashed Hip
+            effet: -1 MA
+        smashed_ankle:
+            name: Smashed Ankle
+            effet: -1 MA
+        smashed_concussion:
+            name: Serious Concussion
+            effet: -1 AV
+        smashed_skull:
+            name: Fractured Skull
+            effet: -1 AV
+        broken_neck:
+            name: Broken Neck
+            effet: -1 AG
+        smashed_collar:
+            name: Smashed Collar Bone
+            effet: -1 ST
+        dead:
+            name: DEAD
+            effet: Dead!
+    skills:
+        block:
+            title: Block
+            description: ~
+        dauntless:
+            title: Dauntless
+            description: ~
+        dirty_player:
+            title: Dirty Player
+            description: ~
+        fend:
+            title: Fend
+            description: ~
+        frenzy:
+            title: Frenzy
+            description: ~
+        kick:
+            title: Kick
+            description: ~
+        kick_off_return:
+            title: Kick-Off Return
+            description: ~
+        pass_block:
+            title: Pass Block
+            description: ~
+        pro:
+            title: Pro
+            description: ~
+        shadowing:
+            title: Shadowing
+            description: ~
+        strip_ball:
+            title: Strip Ball
+            description: ~
+        sure_hands:
+            title: Sure Hands
+            description: ~
+        tackle:
+            title: Tackle
+            description: ~
+        wrestle:
+            title: Wrestle
+            description: ~
+        catch:
+            title: Catch
+            description: ~
+        diving_catch:
+            title: Diving Catch
+            description: ~
+        diving_tackle:
+            title: Diving Tackle
+            description: ~
+        dodge:
+            title: Dodge
+            description: ~
+        jump_up:
+            title: Jump Up
+            description: ~
+        leap:
+            title: Leap
+            description: ~
+        side_step:
+            title: Side Step
+            description: ~
+        sneaky_git:
+            title: Sneaky Git
+            description: ~
+        sprint:
+            title: Sprint
+            description: ~
+        sure_feet:
+            title: Sure Feet
+            description: ~
+        accurate:
+            title: Accurate
+            description: ~
+        dump_off:
+            title: Dump-Off
+            description: ~
+        hail_mary_pass:
+            title: Hail Mary Pass
+            description: ~
+        leader:
+            title: Leader
+            description: ~
+        nerves_of_steel:
+            title: Nerves of Steel
+            description: ~
+        pass:
+            title: Pass
+            description: ~
+        safe_throw:
+            title: Safe Throw
+            description: ~
+        break_tackle:
+            title: Break Tackle
+            description: ~
+        grab:
+            title: Grab
+            description: ~
+        guard:
+            title: Guard
+            description: ~
+        juggernaut:
+            title: Juggernaut
+            description: ~
+        mighty_blow:
+            title: Mighty Blow
+            description: ~
+        multiple_block:
+            title: Multiple Block
+            description: ~
+        piling_on:
+            title: Piling On
+            description: ~
+        stand_firm:
+            title: Stand Firm
+            description: ~
+        strong_arm:
+            title: Strong Arm
+            description: ~
+        thick_skull:
+            title: Thick Skull
+            description: ~
+        big_hand:
+            title: Big Hand
+            description: ~
+        claw_claws:
+            title: Claw / Claws
+            description: ~
+        disturbing_presence:
+            title: Disturbing Presence
+            description: ~
+        extra_arms:
+            title: Extra Arms
+            description: ~
+        foul_appearance:
+            title: Foul Appearance
+            description: ~
+        horns:
+            title: Horns
+            description: ~
+        prehensile_tail:
+            title: Prehensile Tail
+            description: ~
+        tentacles:
+            title: Tentacles
+            description: ~
+        two_heads:
+            title: Two Heads
+            description: ~
+        very_long_legs:
+            title: Very Long Legs
+            description: ~
+        always_hungry:
+            title: Always Hungry
+            description: ~
+        animosity:
+            title: Animosity
+            description: ~
+        ball_chain:
+            title: Ball & Chain
+            description: ~
+        blood_lust:
+            title: Blood Lust
+            description: ~
+        bombardier:
+            title: Bombardier
+            description: ~
+        bone_head:
+            title: Bone-head
+            description: ~
+        chainsaw:
+            title: Chainsaw
+            description: ~
+        decay:
+            title: Decay
+            description: ~
+        fan_favourite:
+            title: Fan Favourite
+            description: ~
+        hypnotic_gaze:
+            title: Hypnotic Gaze
+            description: ~
+        loner:
+            title: Loner
+            description: ~
+        no_hands:
+            title: No Hands
+            description: ~
+        nurgle_rot:
+            title: Nurgle's Rot
+            description: ~
+        really_stupid:
+            title: Really Stupid
+            description: ~
+        regeneration:
+            title: Regeneration
+            description: ~
+        right_stuff:
+            title: Right Stuff
+            description: ~
+        secret_weapon:
+            title: Secret Weapon
+            description: ~
+        stab:
+            title: Stab
+            description: ~
+        stakes:
+            title: Stakes
+            description: ~
+        stunty:
+            title: Stunty
+            description: ~
+        take_root:
+            title: Take Root
+            description: ~
+        throw_team_mate:
+            title: Throw Team-Mate
+            description: ~
+        titchy:
+            title: Titchy
+            description: ~
+        wild_animal:
+            title: Wild Animal
+            description: ~
+    rosters:
+        amazon:
+            title: Amazons
+            description: Long ago, driven by a desire for adventure, the Valkyries of the Norse settlement in Lustria sailed away from their men-folk and founded a colony deep within the estuary of the river Amaxon. Now these ferocious warriors have taken to the Blood Bowl pitch – and Nuffle save those who dare play against them!
+    star_players:
+        bertha_bigfist:
+            name: Bertha Bigfist
+        helmut_wulf:
+            name: Helmut Wulf
+        morg_n_thorg:
+            name: Morg ‘n’ Thorg
+
+        prince_moranion:
+            name: Prince Moranion
+        puggy_baconbreath:
+            name: Puggy Baconbreath
+        quetzal_leap:
+            name: Quetzal Leap
+        ramtut_iii:
+            name: Ramtut III
+        rashnak_rackstabber:
+            name: Rashnak Backstabber
+        ripper:
+            name: Ripper
+        roxanna_darknail:
+            name: Roxanna Darknail
+        scrappa_sorehead:
+            name: Scrappa Sorehead
+        setekh:
+            name: Setekh
+        slibli:
+            name: Slibli
+        sinnedbad:
+            name: Sinnedbad
+        skitter_stab_stab:
+            name: Skitter Stab-Stab
+        soaren_hightower:
+            name: Soaren Hightower
+        ugroth_bolgrot:
+            name: Ugroth Bolgrot
+        varag_ghoul_chewer:
+            name: Varag Ghoul-Chewer
+        wilhelm_chaney:
+            name: Wilhelm Chaney
+        willow_rosebark:
+            name: Willow Rosebark
+        zara_the_slayer:
+            name: Zara the Slayer
+        zzharg_madeye:
+            name: Zzharg Madeye

@@ -1,0 +1,73 @@
+BbLeagueBundle\Entity\Match:
+    m11:
+        journey:        @j1
+        team:           @team1
+        visitor:        @team2
+    m12:
+        journey:        @j1
+        team:           @team3
+        visitor:        @team4
+    m13:
+        journey:        @j1
+        team:           @team5
+        visitor:        @team6
+    m14:
+        journey:        @j1
+        team:           @team7
+        visitor:        @team8
+    m21:
+        journey:        @j2
+        team:           @team1
+        visitor:        @team3
+    m22:
+        journey:        @j2
+        team:           @team2
+        visitor:        @team4
+    m23:
+        journey:        @j2
+        team:           @team5
+        visitor:        @team8
+    m24:
+        journey:        @j2
+        team:           @team7
+        visitor:        @team6
+    m31:
+        journey:        @j3
+        team:           @team1
+        visitor:        @team4
+    m32:
+        journey:        @j3
+        team:           @team2
+        visitor:        @team5
+    m41:
+        journey:        @j4
+        team:           @team1
+        visitor:        @team5
+    m32:
+        journey:        @j3
+        team:           @team2
+        visitor:        @team6
+    m51:
+        journey:        @j5
+        team:           @team1
+        visitor:        @team6
+    m32:
+        journey:        @j3
+        team:           @team2
+        visitor:        @team7
+    m61:
+        journey:        @j6
+        team:           @team1
+        visitor:        @team7
+    m32:
+        journey:        @j3
+        team:           @team2
+        visitor:        @team8
+    m71:
+        journey:        @j7
+        team:           @team1
+        visitor:        @team8
+    m32:
+        journey:        @j3
+        team:           @team2
+        visitor:        @team3

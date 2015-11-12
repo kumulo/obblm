@@ -1,0 +1,7 @@
+# To extend it add app/Resources/BbLeagueBundle/translations/admin.fr.yml
+admin:
+    block:
+        rules:
+            title: Règles personnalisées
+        leagues:
+            title: Leagues crées

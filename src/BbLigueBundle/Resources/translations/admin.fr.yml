@@ -1,7 +1,0 @@
-# To extend it add app/Resources/BbLigueBundle/translations/admin.fr.yml
-admin:
-    block:
-        rules:
-            title: Règles personnalisées
-        ligues:
-            title: Ligues crées
