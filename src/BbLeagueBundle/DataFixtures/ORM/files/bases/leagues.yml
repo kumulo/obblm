@@ -1,6 +1,6 @@
 BbLeagueBundle\Entity\League:
     league1:
-        name:   'League de test'
+        name:   'Test League'
         rule:   'lbr6'
 
 BbLeagueBundle\Entity\Journey:
