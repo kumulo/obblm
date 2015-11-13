@@ -50,7 +50,7 @@ class DefaultControllerTest extends WebTestCase
         // One league injected
         $this->assertCount(1, $leagues);
         foreach($leagues as $league) {
-            $this->assertEquals('lbr6', $league->getRule());
+            $this->assertEquals('lrb6', $league->getRule());
         }
     }
     public function testTeams()
