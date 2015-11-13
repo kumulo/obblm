@@ -1,6 +1,7 @@
 <?php
 namespace BbLeagueBundle\EventListener;
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use BbLeagueBundle\Entity\Team;
 use BbLeagueBundle\Entity\TeamByJourney;

@@ -14,6 +14,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Team extends BaseTeam
 {
+    public function getEncounters() {
+        $encounters = array();
+        foreach($this->getMatchs() as $match) {
+            $encounters[] = ($match->getTeam() == $this) ? $match->getVisitor() : $match->getTeam();
+        }
+
+        return $encounters;
+    }
+
     protected $last_journey;
 
     public function getLastJourney()

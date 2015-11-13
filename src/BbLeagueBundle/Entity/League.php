@@ -6,6 +6,7 @@ namespace BbLeagueBundle\Entity;
 use BbLeagueBundle\Model\League as BaseLeague;
 use Doctrine\ORM\Mapping as ORM;
 use BbLeagueBundle\Entity\Team;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -16,16 +17,10 @@ class League extends BaseLeague
     public function getTeams() {
         $teams = $this->teams;
         $iterator = $teams->getIterator();
-        $iterator->uasort(function (Team $a, Team $b) {
-            return ($a->getId() < $b->getId()) ? -1 : 1;
+        $iterator->uasort(function ($a, $b) {
+            return ($a->getLastJourney()->getPoints() > $b->getLastJourney()->getPoints()) ? -1 : 1;
         });
-        $r = array();
-        foreach(iterator_to_array($iterator) as $team) {
-            $key = $team->getLastJourney()->getPoints().'-'.$team->getLastJourney()->getTdGive().'-'.$team->getLastJourney()->getTR().'-'.$team->getId();
-            $r[$key] = $team;
-        }
-        krsort($r);
-
+        $r = new ArrayCollection(iterator_to_array($iterator));
         return $r;
     }
 }

@@ -5,6 +5,7 @@
 	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="bb.rosters.class">BbLeagueBundle\Services\RulesService</parameter>
+        <parameter key="bb.league.service.class">BbLeagueBundle\Services\LeagueService</parameter>
         <parameter key="bb.forms.user.team.class">BbLeagueBundle\Form\Type\Team</parameter>
         <parameter key="bb.forms.user.team.flow">BbLeagueBundle\Form\CreateTeamFlow</parameter>
         <parameter key="bb.forms.admin.league.class">BbLeagueBundle\Form\Type\League</parameter>
@@ -23,9 +24,10 @@
 			<argument type="service" id="translator" />
 			<argument>%bb_league.rules%</argument>
 		</service>
-        <!-- <service id="bb.forms.user.team" class="%bb.forms.user.team.class%">
-            <tag name="form.type" alias="obbml_forms_user_team" />
-        </service> -->
+		<service id="bb.league.tools" class="%bb.league.service.class%">
+			<argument type="service" id="doctrine.orm.entity_manager" />
+			<argument type="service" id="translator" />
+		</service>
         <service id="bb.forms.user.team"
                 class="%bb.forms.user.team.flow%"
                 parent="craue.form.flow"

@@ -11,7 +11,9 @@
             {% endif %}
         </header>
         <article class="clearfix padding-me">
+            {% if journey %}
             {% include 'BbLeagueBundle:Team:sheet.html.twig' with {journey: journey, team: team} %}
+            {% endif %}
         </article>
     </section>
 {% endblock %}

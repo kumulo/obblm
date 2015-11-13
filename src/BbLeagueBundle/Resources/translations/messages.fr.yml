@@ -45,3 +45,5 @@ layout:
     injury: Sorties
     pass: Réussites
     cards: Cartons
+specials:
+    league_journey_count: J%count%
