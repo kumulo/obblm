@@ -6,8 +6,6 @@ namespace BbLeagueBundle\Entity;
 use BbLeagueBundle\Model\TeamByJourney as BaseTeamByJourney;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Criteria;
-use BbLeagueBundle\Entity\Player;
-use BbLeagueBundle\Entity\PlayerByJourney;
 
 /**
  * @ORM\Entity

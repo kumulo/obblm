@@ -31,7 +31,6 @@ class TeamDoctrineEvents
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        $entityManager = $args->getEntityManager();
         // Only act on "Team" entity
         if ($entity instanceof Team) {
             $entity->setAbsPath( $this->getUploadDir() );
@@ -48,7 +47,7 @@ class TeamDoctrineEvents
             $this->addJourneyMen($entity, $entityManager);
         }
     }
-    private function addJourneyMen($entity, $entityManager) {
+    private function addJourneyMen(TeamByJourney $entity, EntitytManager $entityManager) {
         $rules = $this->container->get('bb.rules');
         $diff = 11 - (count($entity->getAvailaiblePlayers()) - count($entity->getInjuredPlayers()));
         $rule = $rules->getRule($entity->getTeam()->getLeague()->getRule())->getRule();
@@ -84,7 +83,6 @@ class TeamDoctrineEvents
             }
             $entityManager->persist($entity);
             $entityManager->flush();
-            dump($entity);
         }
     }
 }
