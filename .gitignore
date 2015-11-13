@@ -22,3 +22,5 @@ composer.lock
 /web/app_dev.php
 /web/media/*
 /web/uploads/teams/*
+/logs/
+
