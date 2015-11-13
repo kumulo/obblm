@@ -15,6 +15,7 @@ bb_league:
                             skills: ['dodge']
                             available_skills: ['g']
                             available_skills_on_double: ['s', 'a', 'p']
+                            is_journeyman: true
                         thrower:
                             min: 0
                             max: 2

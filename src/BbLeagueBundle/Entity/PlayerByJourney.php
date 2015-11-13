@@ -27,28 +27,4 @@ class PlayerByJourney extends BasePlayerByJourney
             $this->mvps * 5
         );
     }
-
-    /**
-     * Set value
-     *
-     * @param integer $value
-     *
-     * @return PlayerByJourney
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get value
-     *
-     * @return integer
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
 }

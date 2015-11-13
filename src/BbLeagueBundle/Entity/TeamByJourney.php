@@ -6,9 +6,12 @@ namespace BbLeagueBundle\Entity;
 use BbLeagueBundle\Model\TeamByJourney as BaseTeamByJourney;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Criteria;
+use BbLeagueBundle\Entity\Player;
+use BbLeagueBundle\Entity\PlayerByJourney;
 
 /**
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="bbl_team_by_journey")
  */
 class TeamByJourney extends BaseTeamByJourney
@@ -19,17 +22,47 @@ class TeamByJourney extends BaseTeamByJourney
     public function __construct() {
         parent::__construct();
     }
+    public function getInjuredPlayers() {
+        $injuredPlayers = array();
+        $playerCollection = $this->getPlayers();
+        foreach($playerCollection as $player) {
+            if(in_array("M", $player->getInjuries())) {
+                $injuredPlayers[] = $player;
+            }
+        }
+
+        return $injuredPlayers;
+    }
 
     public function getAvailaiblePlayers() {
         $playerCollection = $this->getPlayers();
-        //TODO : Ajouter le test sur le tableau des blessures
         $criteria = Criteria::create()
-            ->where(Criteria::expr()->eq("dead", "0"))
-            ->where(Criteria::expr()->eq("dismiss", "0"))
+            ->where(Criteria::expr()->eq("dismiss", false))
+            ->where(Criteria::expr()->eq("dead", false))
             ->orderBy(array("id" => Criteria::ASC))
         ;
         $availaiblePlayers = $playerCollection->matching($criteria);
         return $availaiblePlayers;
+    }
+
+    public function getBasePlayers() {
+        $playerCollection = $this->getAvailaiblePlayers();
+        $criteria = Criteria::create()
+            ->where(Criteria::expr()->eq("journeyman", false))
+            ->orderBy(array("id" => Criteria::ASC))
+        ;
+        $basePlayers = $playerCollection->matching($criteria);
+        return $basePlayers;
+    }
+
+    public function getJourneyMen() {
+        $playerCollection = $this->getAvailaiblePlayers();
+        $criteria = Criteria::create()
+            ->where(Criteria::expr()->eq("journeyman", true))
+            ->orderBy(array("id" => Criteria::ASC))
+        ;
+        $journeyMen = $playerCollection->matching($criteria);
+        return $journeyMen;
     }
 
     public function calculatePoints()
@@ -45,8 +78,6 @@ class TeamByJourney extends BaseTeamByJourney
     public function getRosterRules()
     {
         $lrule = $this->getJourney()->getLeague()->getRule();
-        dump($lrule);
-
         $rule = $lrule['rosters'];
         return $rule;
     }
@@ -85,8 +116,9 @@ class TeamByJourney extends BaseTeamByJourney
     public function calculateTR()
     {
         $value = 0;
+        $injuredPlayers = $this->getInjuredPlayers();
         foreach($this->getAvailaiblePlayers() as $player) {
-            $value += $player->getValue();
+            if(!in_array($player, $injuredPlayers)) $value += $player->getValue();
         }
 
         $value += $this->getRerollsValue();

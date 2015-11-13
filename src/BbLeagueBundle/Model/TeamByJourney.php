@@ -479,11 +479,11 @@ abstract class TeamByJourney
     /**
      * Add player
      *
-     * @param \BbLeagueBundle\Entity\Player $player
+     * @param \BbLeagueBundle\Entity\PlayerByJourney $player
      *
      * @return TeamByJourney
      */
-    public function addPlayer(\BbLeagueBundle\Entity\Player $player)
+    public function addPlayer(\BbLeagueBundle\Entity\PlayerByJourney $player)
     {
         $this->players[] = $player;
 
@@ -493,9 +493,9 @@ abstract class TeamByJourney
     /**
      * Remove player
      *
-     * @param \BbLeagueBundle\Entity\Player $player
+     * @param \BbLeagueBundle\Entity\PlayerByJourney $player
      */
-    public function removePlayer(\BbLeagueBundle\Entity\Player $player)
+    public function removePlayer(\BbLeagueBundle\Entity\PlayerByJourney $player)
     {
         $this->players->removeElement($player);
     }

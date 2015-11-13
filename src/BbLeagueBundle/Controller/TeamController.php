@@ -24,7 +24,7 @@ class TeamController extends Controller
         if(!$journey) {
             throw $this->createNotFoundException('The journey does not exist');
         }
-
+        //dump( $journey->getInjuredPlayers() );
         return $this->render('BbLeagueBundle::Team/detail.html.twig', array(
             'team' => $team,
             'journey' => $journey

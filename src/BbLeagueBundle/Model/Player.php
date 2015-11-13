@@ -134,4 +134,62 @@ class Player
         return $this->type;
     }
 
+    /**
+     * Set team
+     *
+     * @param \BbLeagueBundle\Entity\Team $team
+     *
+     * @return Player
+     */
+    public function setTeam(\BbLeagueBundle\Entity\Team $team = null)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return \BbLeagueBundle\Entity\Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * Add journey
+     *
+     * @param \BbLeagueBundle\Entity\PlayerByJourney $journey
+     *
+     * @return Player
+     */
+    public function addJourney(\BbLeagueBundle\Entity\PlayerByJourney $journey)
+    {
+        $this->journeys[] = $journey;
+
+        return $this;
+    }
+
+    /**
+     * Remove journey
+     *
+     * @param \BbLeagueBundle\Entity\PlayerByJourney $journey
+     */
+    public function removeJourney(\BbLeagueBundle\Entity\PlayerByJourney $journey)
+    {
+        $this->journeys->removeElement($journey);
+    }
+
+    /**
+     * Get journeys
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJourneys()
+    {
+        return $this->journeys;
+    }
+
 }

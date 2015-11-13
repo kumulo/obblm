@@ -102,6 +102,11 @@ class PlayerByJourney
     protected $value;
 
     /**
+     * @ORM\Column(name="journeyman", type="boolean")
+     */
+    protected $journeyman;
+
+    /**
      * @ORM\Column(name="dead", type="boolean")
      */
     protected $dead;
@@ -127,6 +132,7 @@ class PlayerByJourney
         $this->value            = 0;
         $this->dead             = 0;
         $this->dismiss          = 0;
+        $this->journeyman       = 0;
     }
 
     /**
@@ -451,4 +457,99 @@ class PlayerByJourney
         return $this->mvps;
     }
 
+    /**
+     * Set value
+     *
+     * @param integer $value
+     *
+     * @return PlayerByJourney
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return integer
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Set dead
+     *
+     * @param boolean $dead
+     *
+     * @return PlayerByJourney
+     */
+    public function setDead($dead)
+    {
+        $this->dead = $dead;
+
+        return $this;
+    }
+
+    /**
+     * Get dead
+     *
+     * @return boolean
+     */
+    public function getDead()
+    {
+        return $this->dead;
+    }
+
+    /**
+     * Set dismiss
+     *
+     * @param boolean $dismiss
+     *
+     * @return PlayerByJourney
+     */
+    public function setDismiss($dismiss)
+    {
+        $this->dismiss = $dismiss;
+
+        return $this;
+    }
+
+    /**
+     * Get dismiss
+     *
+     * @return boolean
+     */
+    public function getDismiss()
+    {
+        return $this->dismiss;
+    }
+
+    /**
+     * Set journeyman
+     *
+     * @param boolean $journeyman
+     *
+     * @return PlayerByJourney
+     */
+    public function setJourneyman($journeyman)
+    {
+        $this->journeyman = $journeyman;
+
+        return $this;
+    }
+
+    /**
+     * Get journeyman
+     *
+     * @return boolean
+     */
+    public function getJourneyman()
+    {
+        return $this->journeyman;
+    }
 }

@@ -15,6 +15,7 @@ bb_league:
                             skills: ['dodge', 'stunty', 'right_stuff']
                             available_skills: ['a']
                             available_skills_on_double: ['g', 's', 'p']
+                            is_journeyman: true
                         treeman:
                             min: 0
                             max: 2

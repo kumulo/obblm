@@ -14,6 +14,7 @@ bb_league:
                             cost: 70000
                             available_skills: ['g', 'a']
                             available_skills_on_double: ['s', 'p']
+                            is_journeyman: true
                         runner:
                             min: 0
                             max: 2

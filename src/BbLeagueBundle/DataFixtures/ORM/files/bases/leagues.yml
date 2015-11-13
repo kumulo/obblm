@@ -1,7 +1,7 @@
 BbLeagueBundle\Entity\League:
     league1:
         name:   'Test League'
-        rule:   'lbr6'
+        rule:   'lrb6'
 
 BbLeagueBundle\Entity\Journey:
     j0:

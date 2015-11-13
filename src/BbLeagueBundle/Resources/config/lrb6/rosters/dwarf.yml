@@ -48,6 +48,7 @@ bb_league:
                             skills: ['block', 'tackle', 'thick_skull']
                             available_skills: ['g', 's']
                             available_skills_on_double: ['a', 'p']
+                            is_journeyman: true
                         death_roller:
                             min: 0
                             max: 1

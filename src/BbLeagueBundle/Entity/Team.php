@@ -9,12 +9,20 @@ use BbLeagueBundle\Entity\TeamByJourney;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BbLeagueBundle\Repository\TeamRepository")
  * @ORM\Table(name="bbl_team")
  */
 class Team extends BaseTeam
 {
     protected $last_journey;
+
+    public function getLastJourney()
+    {
+        $this->getJourneys();
+        return $this->getJourneys()->first();
+    }
+
+
     protected $abs_path;
     protected $web_path;
 
@@ -45,12 +53,6 @@ class Team extends BaseTeam
 
     public function setWebPath($web_path) {
         $this->web_path = $web_path.$this->getUploadDir();
-    }
-
-    public function getLastJourney()
-    {
-        $this->getJourneys();
-        return $this->getJourneys()->first();
     }
 
     public function getStats()

@@ -15,6 +15,7 @@ bb_league:
                             cost: 40000
                             available_skills: ['g']
                             available_skills_on_double: ['a', 's', 'p']
+                            is_journeyman: true
                         ghoul:
                             min: 0
                             max: 2
