@@ -27,7 +27,7 @@
                             {% endif %}
                             <div class="team-matches">
                                 <table class="matches clearfix">
-                                    {% for i, match in team.commingMatchs|slice(0, 5) %}
+                                    {% for i, match in team.matchs|slice(0, 5) %}
                                     <tr class="{{ cycle(['odd', 'even'], i) }}">
                                         <td class="journey">{{ match.journey.name }}</td>
                                         {% set versus = (match.team == team) ? match.visitor : match.team %}
@@ -36,7 +36,7 @@
                                     </tr>
                                     {% endfor %}
                                 </table>
-                                <a class="button button-ok see-all" href="#">{{ 'layout.dashboard.index.matches.see_all'|trans }}</a>
+                                <a class="button button-ok see-all" href="{{ path('team_encounters', {team_id: team.id}) }}">{{ 'layout.dashboard.index.matches.see_all'|trans }}</a>
                             </div>
                             {% set last_journey = team.getLastJourney %}
                             <div class="team-stats clearfix">

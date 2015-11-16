@@ -37,7 +37,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a class="{% if app.request.attributes.get('_route') starts with 'encounters' %}active{% endif %}" href="#">
                             {{ include('BbLeagueBundle:Layout:Icons/matchs.html.twig') }}
                             {{ 'layout.nav_menu.my_contest'|trans|raw }}
                         </a>

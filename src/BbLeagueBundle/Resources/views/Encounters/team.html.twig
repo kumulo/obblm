@@ -1,0 +1,12 @@
+{% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <ul>
+    {% for i, match in team.matchs %}
+        <li class="{{ cycle(['odd', 'even'], i) }}">
+            {{ match.journey.name }}
+            <div>{{ match.team.name }} VS {{ match.visitor.name }}</div>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock body %}

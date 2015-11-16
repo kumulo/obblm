@@ -5,7 +5,9 @@ namespace BbLeagueBundle\Entity;
 
 use BbLeagueBundle\Model\Team as BaseTeam;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use BbLeagueBundle\Entity\TeamByJourney;
+use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -14,6 +16,26 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Team extends BaseTeam
 {
+
+    /**
+     * Get matchs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMatchs() {
+        $realmatchs = new ArrayCollection();
+        $matchs = array_merge(
+            iterator_to_array($this->matchs),
+            iterator_to_array($this->matchs_has_visitor)
+        );
+        foreach($matchs as $match) {
+            $realmatchs->add($match);
+        }
+        $criteria = Criteria::create()
+            ->orderBy(array("id" => Criteria::ASC))
+        ;
+        return $realmatchs->matching($criteria);
+    }
     public function getEncounters() {
         $encounters = array();
         foreach($this->getMatchs() as $match) {

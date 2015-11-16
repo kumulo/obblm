@@ -55,6 +55,7 @@ module.exports = function(grunt) {
         },
         files: {
           'web/built/libs.min.css': [
+            '.tmp/libs/1.fonts.css',
             '.tmp/libs/semantic.css',
             '.tmp/libs/reset5.css'
           ]
@@ -85,8 +86,8 @@ module.exports = function(grunt) {
         fonts: {
             expand: true,
             filter: 'isFile',
-            src: '.tmp/fonts/*.css',
-            dest: '.tmp/css/',
+            src: '.tmp/libs/*.css',
+            dest: '.tmp/libs/',
             options: {
                 process: function (content, srcpath) {
                     return content.replace(/web\//g, "/");
@@ -128,7 +129,7 @@ module.exports = function(grunt) {
                     svg: true
                 },
                 fontPath: 'web/built/fonts/',
-                cssFile: '.tmp/fonts/1.fonts.css',
+                cssFile: '.tmp/libs/1.fonts.css',
                 fonts: [
                     {
                         family: 'Lato',

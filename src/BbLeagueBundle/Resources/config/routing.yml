@@ -23,6 +23,11 @@ bbl_manager_team:
     type:     annotation
     prefix:   /teams
 
+bbl_manager_encounters:
+    resource: "@BbLeagueBundle/Controller/EncountersController.php"
+    type:     annotation
+    prefix:   /encounters
+
 bbl_manager_app:
     resource: "@BbLeagueBundle/Controller/DefaultController.php"
     type:     annotation

@@ -51,6 +51,51 @@ class Match
     protected $weather;
 
     /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $home_actions;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $visitor_actions;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $home_injuries;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $visitor_injuries;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $home_skills;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $visitor_skills;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $home_dismiss;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $visitor_dismiss;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $valid;
+
+    /**
      * Get id
      *
      * @return integer

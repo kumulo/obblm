@@ -500,114 +500,6 @@ body {
                         }
                     }
                 }
-                .stats-container {
-                    border-spacing : 0;
-                    border-collapse : collapse;
-                    width: 100%;
-                    display: table;
-                    .block-main-stats {
-                        width: 350px;
-                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                            width: 220px;
-                        }
-                    }
-                    .stats-table {
-                        height: 100%;
-                    }
-                }
-                .stats-table {
-                    background: @stats-tab-bg;
-                    border-spacing : 0;
-                    border-collapse : collapse;
-                    width: 100%;
-                    display: table;
-                    tbody {width: 100%; display: table;}
-                    .label {
-                        font-size: 160%;
-                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                            font-size: 130%;
-                        }
-                        text-transform: uppercase;
-                        display: block;
-                    }
-                    .value {
-                        font-size: 160%;
-                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                            font-size: 130%;
-                        }
-                        display: block;
-                        &.positive {
-                            color: @positive-color;
-                        }
-                        &.nul {
-                            color: @nul-color;
-                        }
-                        &.negative {
-                            color: @negative-color;
-                        }
-                    }
-                    > tbody > tr,
-                    > tr {
-                        > td,
-                        > th {
-                            border-spacing : 0;
-                            border-collapse : collapse;
-                            border: 1px solid @stats-tab-border;
-                            text-align: center;
-                            padding: @base-spacing (@base-spacing/4);
-                            @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                                padding: 14px (@base-spacing/4);
-                            }
-                            > .value {
-                                font-size: 360%;
-                                font-weight: 700;
-                                @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                                    font-size: 280%;
-                                }
-                            }
-                        }
-                    }
-                }
-                .stats-table-like {
-                    > .value {
-                        font-size: 360%;
-                        font-weight: 700;
-                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                            font-size: 280%;
-                        }
-                    }
-                }
-                .lines-table {
-                    > tbody > tr,
-                    > tr {
-                        > td,
-                        > th {
-                            > .label {
-                                float: left;
-                                margin-left: (@base-spacing/2);
-                                line-height: 24px;
-                            }
-                            > .value {
-                                float: right;
-                                line-height: 24px;
-                                margin-right: (@base-spacing/2);
-                            }
-                        }
-                    }
-                }
-                .main-stats {
-                    width: 330px;
-                    @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                        width: 200px;
-                    }
-                    > tbody {
-                        > tr {
-                            > td {
-                                padding: 25px 5px;
-                            }
-                        }
-                    }
-                }
                 &:first-child {
                     border-top: 0 none;
                 }
@@ -617,21 +509,29 @@ body {
  * STATS BLOC
  */
         .team-statistics {
-            display: table;
+            display: block;
             width: 100%;
+            @core-width: 250px;
+            @stats-tab-bg: @base-spacing;
+            position: relative;
             .core {
-                display: table-cell;
-                width: 330px;
-                background: @stats-tab-bg;
-                &:after {
-                    content: ' ';
-                    width: @base-spacing;
-                    height: 100%;
-                    display: table-cell;
+                display: block;
+                width: @core-width;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                border: 1px solid @stats-tab-border;
+                background: @light-grey;
+                text-align: center;
+                .tr {
+                }
+                .treasure {
                 }
             }
             .detail {
-                display: table-cell;
+                margin-left: @core-width + @stats-tab-bg;
+                display: block;
+                background: red;
             }
         }
 /*
@@ -647,9 +547,17 @@ body {
                         .team-name,
                         .team-metas {
                             float: left;
+                            @media @smartphones, @tablets-v {
+                                float: none;
+                            }
                         }
                         .team-metas {
                             line-height: 31px;
+                            > .league {
+                                @media @smartphones, @tablets-v {
+                                    margin-left: 0;
+                                }
+                            }
                         }
                     }
                     .team-content {
@@ -670,6 +578,77 @@ body {
                         @media @smartphones, @tablets-v, @tablets, @little-desktop {
                             padding-left: 0;
                         }
+                        .stats-container {
+                            border-spacing : 0;
+                            border-collapse : collapse;
+                            width: 100%;
+                            display: table;
+                            .block-main-stats {
+                                width: 100px;
+                                @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                                    width: 160px;
+                                }
+                                @media @smartphones, @tablets-v {
+                                    width: 100px;
+                                }
+                            }
+                            .stats-table {
+                                height: 100%;
+                            }
+                        }
+                        .stats-table {
+                            background: @stats-tab-bg;
+                            border-spacing : 0;
+                            border-collapse : collapse;
+                            width: 100%;
+                            display: table;
+                            tbody {width: 100%; display: table;}
+                            .label {
+                                font-size: 160%;
+                                @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                                    font-size: 130%;
+                                }
+                                text-transform: uppercase;
+                                display: block;
+                            }
+                            .value {
+                                font-size: 160%;
+                                @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                                    font-size: 130%;
+                                }
+                                display: block;
+                                &.positive {
+                                    color: @positive-color;
+                                }
+                                &.nul {
+                                    color: @nul-color;
+                                }
+                                &.negative {
+                                    color: @negative-color;
+                                }
+                            }
+                            > tbody > tr,
+                            > tr {
+                                > td,
+                                > th {
+                                    border-spacing : 0;
+                                    border-collapse : collapse;
+                                    border: 1px solid @stats-tab-border;
+                                    text-align: center;
+                                    padding: @base-spacing (@base-spacing/4);
+                                    @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                                        padding: 14px (@base-spacing/4);
+                                    }
+                                    > .value {
+                                        font-size: 360%;
+                                        font-weight: 700;
+                                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                                            font-size: 280%;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     .team-logo {
                         position: relative;
@@ -678,6 +657,11 @@ body {
                             float: left;
                             margin-bottom: @base-spacing;
                         }
+                        @media @smartphones, @tablets-v {
+                            width: 100px;
+                            height: 100px;
+                        }
+                        img {width: 100%; height: auto;}
                     }
                     .team-matches {
                         width: 505px;
@@ -685,6 +669,9 @@ body {
                             width: auto;
                             margin-left: 160px;
                             margin-bottom: @base-spacing;
+                        }
+                        @media @smartphones, @tablets-v {
+                            margin-left: 100px;
                         }
                         .see-all {
                             float: right;
@@ -760,10 +747,6 @@ body {
                     .stats-container {
                         td {vertical-align: top;}
                         .block-main-stats {
-                            width: 100px;
-                            @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                                width: 160px;
-                            }
                         }
                         .main-stats {
                             width: 100%;

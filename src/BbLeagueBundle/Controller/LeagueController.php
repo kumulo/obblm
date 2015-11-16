@@ -35,13 +35,6 @@ class LeagueController extends Controller
         if(!in_array($league, $leagues)) {
             throw $this->createNotFoundException('You are not involved in this league');
         }
-
-        $service = $this->get('bb.league.tools');
-        $service->setLeague($league);
-        $service->setNumberOfJourneys(11);
-
-
-        $service->renderJourneys();
         return $this->render('BbLeagueBundle::League/results.html.twig', array(
             'league' => $league,
         ));

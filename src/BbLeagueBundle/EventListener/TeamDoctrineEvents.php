@@ -7,6 +7,8 @@ use BbLeagueBundle\Entity\Team;
 use BbLeagueBundle\Entity\TeamByJourney;
 use BbLeagueBundle\Entity\Player;
 use BbLeagueBundle\Entity\PlayerByJourney;
+use BbLeagueBundle\Entity\Match;
+use BbLeagueBundle\Entity\Journey;
 
 class TeamDoctrineEvents
 {
@@ -43,16 +45,53 @@ class TeamDoctrineEvents
     {
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();
-        // Only act on "TeamByJourney" entity
+        // Only act on "TeamByJourney", "Match" entity
         if ($entity instanceof TeamByJourney) {
             $this->addJourneyMen($entity, $entityManager);
         }
+        else if($entity instanceof Match) {
+            $this->afterMatchSequence($entity, $entityManager);
+        }
     }
-    private function addJourneyMen(TeamByJourney $entity, EntitytManager $entityManager) {
+    /**
+     * Generate after match sequency (including TeamJouney entities)
+     *
+     * @param \BbLeagueBundle\Entity\Match $match
+     * @param \Doctrine\ORM\EntitytManager $entityManager
+     */
+    private function afterMatchSequence(Match $match, EntitytManager $entityManager) {
+
+        $actions_home = array();
+        $actions_visitor = array();
+
+        $this->tools = $container->get('bb.league.tools');
+        $new_journey_home = $this->tools->generateTeamJourney(
+            $match->getJourney(),
+            $match->getTeam(),
+            $actions_home,
+            $actions_visitor
+        );
+        $new_journey_visitor = $this->tools->generateTeamJourney(
+            $match->getJourney(),
+            $match->getVisitor(),
+            $actions_visitor,
+            $actions_home
+        );
+        $entityManager->persist($new_journey_home);
+        $entityManager->persist($new_journey_visitor);
+        $entityManager->flush();
+    }
+    /**
+     * Generate Team JourneyMen after an encounter
+     *
+     * @param \BbLeagueBundle\Entity\TeamByJourney $team_journey
+     * @param \Doctrine\ORM\EntitytManager $entityManager
+     */
+    private function addJourneyMen(TeamByJourney $team_journey, EntitytManager $entityManager) {
         $rules = $this->container->get('bb.rules');
-        $diff = 11 - (count($entity->getAvailaiblePlayers()) - count($entity->getInjuredPlayers()));
-        $rule = $rules->getRule($entity->getTeam()->getLeague()->getRule())->getRule();
-        $base_players = $rule['rosters'][$entity->getTeam()->getRoster()]['players'];
+        $diff = 11 - (count($team_journey->getAvailaiblePlayers()) - count($team_journey->getInjuredPlayers()));
+        $rule = $rules->getRule($team_journey->getTeam()->getLeague()->getRule())->getRule();
+        $base_players = $rule['rosters'][$team_journey->getTeam()->getRoster()]['players'];
         $base_journeyman = false;
         $base_journeyman = false;
         foreach($base_players as $key => $player) {
@@ -65,7 +104,7 @@ class TeamDoctrineEvents
             for($i = 0; $i < $diff; $i++) {
                 $player = new Player();
                 $player->setPosition(17 + $i);
-                $player->setTeam($entity->getTeam());
+                $player->setTeam($team_journey->getTeam());
                 $player->setName("Player " . ($i+1));
                 $player->setType($base_journeyman_name);
                 $jplayer = new PlayerByJourney();
@@ -82,7 +121,7 @@ class TeamDoctrineEvents
                 $entityManager->persist($player);
                 $entityManager->persist($jplayer);
             }
-            $entityManager->persist($entity);
+            $entityManager->persist($team_journey);
             $entityManager->flush();
         }
     }

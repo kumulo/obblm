@@ -21,6 +21,10 @@ class LeagueService {
         $this->translator = $translator;
     }
 
+    public function setEntityManager(EntityManager $entity_manager) {
+        $this->em = $entity_manager;
+        return $this;
+    }
     public function setNumberOfJourneys($num = 1) {
         $this->numberOfJouneys = $num;
         return $this;
@@ -49,8 +53,11 @@ class LeagueService {
             }
             if(count($j->getMatchs()) > 0) {
                 $this->league->addJourney($j);
+                $this->em->persist($j);
             }
         }
+        $this->em->persist($this->league);
+        $this->em->flush();
         return $this->league->getJourneys()->toArray();
     }
     private function renderMatchs(Journey $j) {
@@ -59,7 +66,7 @@ class LeagueService {
         while(count($temp) > 1) {
             $match = new Match();
             $match->setJourney($j);
-            $t1 = $temp->get(array_rand($temp->toArray()));
+            $t1 = $temp->first();
             $temp->removeElement($t1);
             $match->setTeam($t1);
             $not_view = new ArrayCollection( $temp->toArray() );
@@ -67,16 +74,54 @@ class LeagueService {
                 foreach($t1->getEncounters() as $encounter) {
                     $not_view->removeElement($encounter);
                 }
-                $t2 = $not_view->get(array_rand($not_view->toArray()));
+                $t2 = $not_view->first();
                 if($t2) {
                     $temp->removeElement($t2);
                     $match->setVisitor($t2);
                     $t1->addMatch($match);
                     $t2->addMatch($match);
                     $j->addMatch($match);
+                    $this->em->persist($match);
                 }
             }
         }
         $temp->clear();
+    }
+    /**
+     * Generate new TeamJouney entity
+     *
+     * @param \BbLeagueBundle\Entity\Team $team
+     * @param \BbLeagueBundle\Entity\Jouney $match_jouney
+     * @param Array $actions_give
+     * @param Array $actions_take
+
+     */
+    public function generateMatchTeamJourney(
+            Team $team,
+            Jouney $match_jouney,
+            Array $actions_give,
+            Array $actions_take) {
+
+        $last_journey = $match->getTeam()->getLastJourney();
+        $new_journey = new TeamByJourney();
+        $new_journey->setJourney($match_jouney)
+            ->setTeam($team)
+            ->setWinMatch( $last_journey->getWinMatch() + 0 )
+            ->setDrawMatch( $last_journey->getDrawMatch() + 0 )
+            ->setLostMatch( $last_journey->getLostMatch() + 0 )
+            ->setTdGive( $last_journey->getTdGive() + 0 )
+            ->setTdTake( $last_journey->getTdTake() + 0 )
+            ->setInjuryGive( $last_journey->getInjuryGive() + 0 )
+            ->setInjuryTake( $last_journey->getInjuryTake() + 0 )
+            ->setPass( $last_journey->getPass() + 0 )
+            ->setRedCard( $last_journey->getRedCard() + 0 )
+            ->setRerolls( $last_journey->getRerolls() + 0 )
+            ->setTreasure( $last_journey->getTreasure() + 0 )
+            ->setPopularity( $last_journey->getPopularity() + 0 )
+            ->setAssistants( $last_journey->getAssistants() + 0 )
+            ->setCheerleaders( $last_journey->getCheerleaders() + 0 )
+            ->setApothecary( $last_journey->getApothecary() + 0 );
+        $team->addJourney($new_journey);
+        return $new_journey;
     }
 }

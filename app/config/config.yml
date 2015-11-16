@@ -86,12 +86,15 @@ nelmio_api_doc: ~
 ornicar_gravatar: ~
 liip_imagine:
     resolvers:
-       default:
-          web_path: ~
+       profile_photos:
+          web_path:
+            web_root: %kernel.root_dir%/../web
+            cache_prefix: media/cache
 
+    cache: profile_photos
     filter_sets:
         cache: ~
         dashboard_logo:
             quality: 100
             filters:
-                thumbnail: { size: [160, 160], mode: outbound }
+                thumbnail: { size: [160, 145], mode: outbound }
