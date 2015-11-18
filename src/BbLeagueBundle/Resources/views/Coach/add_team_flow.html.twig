@@ -1,5 +1,6 @@
 {% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
 
+{% block title %}{% trans from 'form' %}form.team.add.title{% endtrans %}{% endblock %}
 {% block body %}
 {% trans_default_domain 'form' %}
 {% form_theme form 'BbLeagueBundle:Form:form_div_layout.html.twig' %}

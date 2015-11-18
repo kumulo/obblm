@@ -62,6 +62,7 @@
                 {% include 'BbLeagueBundle:Team:player-row.html.twig' with {pj: pj} %}
             </tr>
             {% endfor %}
+            {% if journey.journeyMen|length %}
             <tr>
                 <th colspan="16">Journey Men</th>
             </tr>
@@ -70,6 +71,7 @@
                 {% include 'BbLeagueBundle:Team:player-row.html.twig' with {pj: pj} %}
             </tr>
             {% endfor %}
+            {% endif %}
         </tbody>
         <tfoot class="foot-informations">
             <tr>

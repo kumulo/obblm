@@ -1,212 +1,99 @@
                             <div class="team-statistics clearfix">
                                 <div class="core clearfix">
-                                    <div class="tr clearfix">
+                                    <div class="tr clearfix base-stat-table center-all big-value">
                                         <span class="label">{{ 'layout.values.tr'|trans }}</span>
                                         <span class="value">{{ journey ? journey.tr : '0' }}</span>
                                     </div>
-                                    <div class="treasure clearfix">
+                                    <div class="treasure clearfix base-stat-table center-all big-value">
                                         <span class="label">{{ 'layout.values.treasure'|trans }}</span>
                                         <span class="value">{{ journey ? journey.treasure|bbkpo|raw : '-' }}</span>
                                     </div>
                                 </div>
                                 <div class="detail clearfix">
                                     <div class="points clearfix">
-                                        <div class="score clearfix">
+                                        <div class="base-stat-table clearfix center-all big-value">
                                             <span class="label">{{ 'layout.values.points'|trans }}</span>
                                             <span class="value">{{ journey ? journey.points : '-' }}</span>
                                         </div>
-                                        <div class="results clearfix">
-                                            <table class="clearfix">
-                                                <tr class="win">
-                                                    <td>
-                                                        <span class="label">{{ 'layout.values.victory'|trans }}</span>
-                                                        <span class="value">{{ journey ? journey.winMatch : '-' }}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr class="draw">
-                                                    <td>
-                                                        <span class="label">{{ 'layout.values.draw'|trans }}</span>
-                                                        <span class="value">{{ journey ? journey.drawMatch : '-' }}</span>
-                                                    </td>
-                                                </tr>
-                                                <tr class="loose">
-                                                    <td>
-                                                        <span class="label">{{ 'layout.values.lost'|trans }}</span>
-                                                        <span class="value">{{ journey ? journey.lostMatch : '-' }}</span>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                    </div>
+                                    <div class="matchs clearfix">
+                                        <div class="clearfix base-stat-table value-at-right">
+                                            <div class="win">
+                                                <div>
+                                                    <span class="label">{{ 'layout.values.victory'|trans }}</span>
+                                                    <span class="value positive">{{ journey ? journey.winMatch : '-' }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="draw">
+                                                <div>
+                                                    <span class="label">{{ 'layout.values.draw'|trans }}</span>
+                                                    <span class="value draw">{{ journey ? journey.drawMatch : '-' }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="loose">
+                                                <div>
+                                                    <span class="label">{{ 'layout.values.lost'|trans }}</span>
+                                                    <span class="value negative">{{ journey ? journey.lostMatch : '-' }}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="touchdowns clearfix">
-                                        <table class="clearfix details-table">
-                                            <tr>
-                                                <td>
+                                        <div class="clearfix details-table base-stat-table center-all center-all">
+                                            <div>
+                                                <div>
                                                     <span class="label">{{ 'layout.values.touchdown'|trans }}</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div>
                                                     <span class="value positive">{{ journey ? journey.tdGive : '-' }}</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div>
                                                     <span class="value negative">{{ journey ? journey.tdTake : '-' }}</span>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="injuries clearfix">
-                                        <table class="clearfix">
-                                            <tr>
-                                                <td>
+                                        <div class="clearfix base-stat-table center-all">
+                                            <div>
+                                                <div>
                                                     <span class="label">{{ 'layout.values.injury'|trans }}</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div>
                                                     <span class="value positive">{{ journey ? journey.injuryGive : '-' }}</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div>
                                                     <span class="value negative">{{ journey ? journey.injuryTake : '-' }}</span>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="others clearfix">
-                                        <table class="clearfix">
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                        <div class="clearfix base-stat-table value-at-right">
+                                            <div>
+                                                <div class="label">&nbsp;</div>
+                                            </div>
+                                            <div>
+                                                <div>
                                                     <span class="label">{{ 'layout.values.pass'|trans }}</span>
                                                     <span class="value positive">{{ journey ? journey.pass : '-' }}</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div>
                                                     <span class="label">{{ 'layout.values.cards'|trans }}</span>
                                                     <span class="value negative">{{ journey ? journey.redCard : '-' }}</span>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <table class="stats-container clearfix">
-                                <tr>
-                                    <td class="block-main-stats">
-                                        <table class="stats-table main-stats clearfix">
-                                            <tr>
-                                                <td>
-                                                    <span class="label">{{ 'layout.values.tr'|trans }}</span>
-                                                    <span class="value">{{ journey ? journey.tr : '0' }}</span>
-                                                </td>
-                                                <td>
-                                                    <span class="label">{{ 'layout.values.treasure'|trans }}</span>
-                                                    <span class="value">{{ journey ? journey.treasure|bbkpo|raw : '-' }}</span>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table class="stats-table clearfix">
-                                            <tr>
-                                                <td>
-                                                    <table class="clearfix details-table">
-                                                        <tr>
-                                                            <td class="stats-table-like">
-                                                                <span class="label">{{ 'layout.values.points'|trans }}</span>
-                                                                <span class="value">{{ journey ? journey.points : '-' }}</span>
-                                                            </td>
-                                                            <td>
-                                                                <table class="clearfix lines-table">
-                                                                    <tr>
-                                                                        <td>
-                                                                            <span class="label">{{ 'layout.values.victory'|trans }}</span>
-                                                                            <span class="value positive">{{ journey ? journey.winMatch : '-' }}</span>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <span class="label">{{ 'layout.values.draw'|trans }}</span>
-                                                                            <span class="value nul">{{ journey ? journey.drawMatch : '-' }}</span>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <span class="label">{{ 'layout.values.lost'|trans }}</span>
-                                                                            <span class="value negative">{{ journey ? journey.lostMatch : '-' }}</span>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                                <td>
-                                                    <table class="clearfix details-table">
-                                                        <tr>
-                                                            <td>
-                                                                <span class="label">{{ 'layout.values.touchdown'|trans }}</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="value positive">{{ journey ? journey.tdGive : '-' }}</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="value negative">{{ journey ? journey.tdTake : '-' }}</span>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                                <td>
-                                                    <table class="clearfix details-table">
-                                                        <tr>
-                                                            <td>
-                                                                <span class="label">{{ 'layout.values.injury'|trans }}</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="value positive">{{ journey ? journey.injuryGive : '-' }}</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="value negative">{{ journey ? journey.injuryTake : '-' }}</span>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                                <td>
-                                                    <table class="clearfix lines-table">
-                                                        <tr>
-                                                            <td>&nbsp;</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="label">{{ 'layout.values.pass'|trans }}</span>
-                                                                <span class="value positive">{{ journey ? journey.pass : '-' }}</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="label">{{ 'layout.values.cards'|trans }}</span>
-                                                                <span class="value negative">{{ journey ? journey.redCard : '-' }}</span>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>

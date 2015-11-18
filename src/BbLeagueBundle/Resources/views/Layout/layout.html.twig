@@ -37,19 +37,19 @@
                         </a>
                     </li>
                     <li>
-                        <a class="{% if app.request.attributes.get('_route') starts with 'encounters' %}active{% endif %}" href="#">
+                        <a class="{% if app.request.attributes.get('_route') starts with 'encounter_' %}active{% endif %}" href="{{ path("encounters_homepage") }}">
                             {{ include('BbLeagueBundle:Layout:Icons/matchs.html.twig') }}
                             {{ 'layout.nav_menu.my_contest'|trans|raw }}
                         </a>
                     </li>
                     <li>
-                        <a class="{% if app.request.attributes.get('_route') starts with 'league' %}active{% endif %}" href="{{ path("league_homepage") }}">
+                        <a class="{% if app.request.attributes.get('_route') starts with 'league_' %}active{% endif %}" href="{{ path("league_homepage") }}">
                             {{ include('BbLeagueBundle:Layout:Icons/calendar.html.twig') }}
                             {{ 'layout.nav_menu.tournaments'|trans|raw }}
                         </a>
                     </li>
                     <li>
-                        <a class="{% if app.request.attributes.get('_route') starts with 'coach' %}active{% endif %}" href="{{ path("coach_space") }}">
+                        <a class="{% if app.request.attributes.get('_route') starts with 'coach_' %}active{% endif %}" href="{{ path("coach_space") }}">
                             {{ include('BbLeagueBundle:Layout:Icons/coach.html.twig') }}
                             {{ 'layout.nav_menu.coach_space'|trans|raw }}
                         </a>

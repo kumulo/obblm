@@ -15,7 +15,7 @@ layout:
   nav_menu:
     dashboard: Mon tableau de bord
     my_contest: Mes matchs
-    tournaments: Leagues et tournois
+    tournaments: Ligues et tournois
     coach_space: Espace coach
     admin_space: Espace admin
   dashboard:
@@ -23,6 +23,12 @@ layout:
       title: Mon tableau de bord
       matches:
         see_all: Voir toutes mes rencontres
+  leagues:
+    index:
+      title: Les ligues en cours
+      title_alt: Les ligues participées
+      show_results: Voir le classement
+      show_calendar: Voir le calendier
   coach_space:
     index:
       title: Mon espace coach

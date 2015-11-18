@@ -13,9 +13,22 @@ class LeagueController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $leagues = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:League')->findAll();
+        return $this->renderLeagues($leagues);
+    }
+    /**
+     * @Route("/involved", name="league_involved")
+     */
+    public function involvedAction(Request $request)
+    {
         $leagues = $this->getUser()->getInvolvedLeagues();
+        return $this->renderLeagues($leagues, true);
+    }
+    private function renderLeagues($leagues, $involved = false)
+    {
         return $this->render('BbLeagueBundle::League/index.html.twig', array(
             'leagues' => $leagues,
+            'involved' => $involved
         ));
     }
     /**

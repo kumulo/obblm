@@ -20,7 +20,7 @@ class CoachController extends Controller
         ));
     }
     /**
-     * @Route("/team-add", name="team_add")
+     * @Route("/team-add", name="coach_team_add")
      */
     public function addAction(Request $request)
     {
@@ -76,7 +76,7 @@ class CoachController extends Controller
         return $journey;
     }
     /**
-     * @Route("/edit/{team_id}", name="team_edit")
+     * @Route("/edit/{team_id}", name="coach_team_edit")
      */
     public function editAction(Request $request, $team_id)
     {

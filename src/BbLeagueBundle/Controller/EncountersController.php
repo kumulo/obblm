@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class EncountersController extends Controller
 {
     /**
-     * @Route("/", name="encounters")
+     * @Route("/", name="encounters_homepage")
      */
     public function indexAction(Request $request)
     {
@@ -27,7 +27,7 @@ class EncountersController extends Controller
         ));
     }
     /**
-     * @Route("/team/{team_id}", name="team_encounters")
+     * @Route("/team/{team_id}", name="encounter_by_team")
      */
     public function encountersByTeamAction(Request $request, $team_id)
     {

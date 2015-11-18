@@ -11,7 +11,7 @@ bbl_manager_admin:
 bbl_manager_league:
     resource: "@BbLeagueBundle/Controller/LeagueController.php"
     type:     annotation
-    prefix:   /league
+    prefix:   /leagues
 
 bbl_manager_coach_space:
     resource: "@BbLeagueBundle/Controller/CoachController.php"

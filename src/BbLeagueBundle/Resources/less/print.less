@@ -1,0 +1,19 @@
+@media print {
+    .noprint,
+    .button,
+    #header {display: none;}
+    #content {
+        margin: 10px;
+        font-size: 80%;
+        -webkit-print-color-adjust:exact;
+        .content .team-statistics .core,
+        .content .team-statistics .detail,
+        .content#team-sheet table.team .players tr.odd td {
+            background-color: #f6f6f6;
+        }
+        .content .team-statistics .core .treasure:before,
+        .content#team-sheet table.team .players tr.even td {
+            background-color: #d5d5d5;
+        }
+    }
+}

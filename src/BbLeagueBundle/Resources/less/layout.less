@@ -6,6 +6,7 @@ body {
     font-weight: 300;
     font-size: 10px;
     line-height: normal;
+    height: auto;
     @media @smartphones {
         font-size: 9px;
     }
@@ -414,11 +415,10 @@ body {
         .section-header {
             position: relative;
             .section-title {
-                font-size: 240%;
+                font-size: 300%;
                 font-weight: 700;
                 text-transform: uppercase;
                 font-family: "Dosis", sans-serif;
-                margin-bottom: @base-spacing;
             }
             .section-actions {
                 position: absolute;
@@ -502,6 +502,7 @@ body {
                 }
                 &:first-child {
                     border-top: 0 none;
+                    padding-top: 0;
                 }
             }
         }
@@ -514,6 +515,59 @@ body {
             @core-width: 250px;
             @stats-tab-bg: @base-spacing;
             position: relative;
+            .base-stat-table {
+                width: 100%;
+                padding: @base-spacing 5px;
+                box-sizing: border-box;
+                .label {
+                    font-size: 160%;
+                    margin-left: 10px;
+                    line-height: 24px;
+                    text-transform: uppercase;
+                    @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                        font-size: 130%;
+                    }
+                }
+                .value {
+                    font-size: 160%;
+                    line-height: 24px;
+                    &.positive {
+                        color: @positive-color;
+                    }
+                    &.draw {
+                        color: @nul-color;
+                    }
+                    &.negative {
+                        color: @negative-color;
+                    }
+                    @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                        font-size: 130%;
+                    }
+                }
+                &.value-at-right {
+                    .value {
+                        float: right;
+                        margin-right: 10px;
+                    }
+                }
+                &.big-value {
+                    .label,
+                    .value {
+                        display: block;
+                    }
+                    .value {
+                        font-size: 360%;
+                        font-weight: 700;
+                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                            font-size: 280%;
+                        }
+                    }
+                    padding: 25px 5px;
+                }
+                &.center-all {
+                    text-align: center;
+                }
+            }
             .core {
                 display: block;
                 width: @core-width;
@@ -523,15 +577,87 @@ body {
                 border: 1px solid @stats-tab-border;
                 background: @light-grey;
                 text-align: center;
-                .tr {
+                .tr,
+                .treasure {
+                    width: 50%;
+                    float: left;
+                    padding: 25px 5px;
                 }
                 .treasure {
+                    &:before {
+                        content: '';
+                        width: 1px;
+                        background: @stats-tab-border;
+                        top: 0;
+                        bottom: 0;
+                        height: 100%;
+                        visibility: visible;
+                        position: absolute;
+                        left: 50%;
+                    }
                 }
             }
+            @numberOfBlocks: 5;
+            @blocksWidthPercent: 100% / @numberOfBlocks;
             .detail {
                 margin-left: @core-width + @stats-tab-bg;
                 display: block;
-                background: red;
+                position: relative;
+                border: 1px solid @stats-tab-border;
+                background: @light-grey;
+                > .points,
+                > .matchs,
+                > .touchdowns,
+                > .injuries,
+                > .others {
+                    float: left;
+                }
+                > .points {
+                    width: 15%;
+                }
+                > .matchs {
+                    width: 22%;
+                }
+                > .touchdowns,
+                > .injuries,
+                > .others {
+                    width: 21%;
+                    &:before {
+                        content: '';
+                        width: 1px;
+                        background: @stats-tab-border;
+                        top: 0;
+                        bottom: 0;
+                        height: 100%;
+                        visibility: visible;
+                        position: absolute;
+                    }
+                }
+                @media @smartphones, @tablets-v {
+                    > .points {
+                        width: 18%;
+                    }
+                    > .matchs {
+                        width: 28%;
+                    }
+                    > .touchdowns,
+                    > .injuries {
+                        width: 27%;
+                    }
+                    > .others {
+                        display: none;
+                    }
+                }
+            }
+            @media @smartphones, @tablets-v, @tablets {
+                @core-width: 200px;
+                font-size: 95%;
+                .core {
+                    width: @core-width;
+                }
+                .detail {
+                    margin-left: @core-width + @stats-tab-bg;
+                }
             }
         }
 /*
@@ -773,6 +899,9 @@ body {
  * TEAM SHEET
  */
         &#team-sheet {
+            > article.padding-me {
+                padding-top: 0;
+            }
             table.team {
                 display: table;
                 width: 100%;

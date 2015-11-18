@@ -1,5 +1,5 @@
 {% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
-
+{% block title %}{{ 'layout.dashboard.index.title'|trans }}{% endblock %}
 {% block body %}
     <section id="dashboard" class="content normal-content clearfix">
         <header class="section-header clearfix padding-me">
@@ -17,13 +17,13 @@
                         </header>
                         <div class="team-content clearfix">
                             {% if team.logo %}
-                            <div class="team-logo">
+                            <a class="team-logo link" href="{{ path("team_detail", {team_id: team.id}) }}">
                                 <img src="{{ team.webPath | imagine_filter('dashboard_logo') }}" />
-                            </div>
+                            </a>
                             {% else %}
-                            <div class="team-logo no-logo">
+                            <a class="team-logo link no-logo" href="{{ path("team_detail", {team_id: team.id}) }}">
                                 {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
-                            </div>
+                            </a>
                             {% endif %}
                             <div class="team-matches">
                                 <table class="matches clearfix">
@@ -36,7 +36,7 @@
                                     </tr>
                                     {% endfor %}
                                 </table>
-                                <a class="button button-ok see-all" href="{{ path('team_encounters', {team_id: team.id}) }}">{{ 'layout.dashboard.index.matches.see_all'|trans }}</a>
+                                <a class="button button-ok see-all" href="{{ path('encounter_by_team', {team_id: team.id}) }}">{{ 'layout.dashboard.index.matches.see_all'|trans }}</a>
                             </div>
                             {% set last_journey = team.getLastJourney %}
                             <div class="team-stats clearfix">

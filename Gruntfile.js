@@ -42,7 +42,10 @@ module.exports = function(grunt) {
             },
             files: {
                 ".tmp/css/app.css": [
-                    "src/BbLeagueBundle/Resources/less/**/*.less"
+                    "src/BbLeagueBundle/Resources/less/layout.less"
+                ],
+                ".tmp/css/print.css": [
+                    "src/BbLeagueBundle/Resources/less/print.less"
                 ]
             }
         }
@@ -68,7 +71,10 @@ module.exports = function(grunt) {
         },
         files: {
           'web/built/app.min.css': [
-            '.tmp/css/**/*.css'
+            '.tmp/css/layout.css'
+          ],
+          'web/built/print.min.css': [
+            '.tmp/css/print.css'
           ]
         }
       }
