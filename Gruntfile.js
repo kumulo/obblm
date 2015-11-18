@@ -71,7 +71,7 @@ module.exports = function(grunt) {
         },
         files: {
           'web/built/app.min.css': [
-            '.tmp/css/layout.css'
+            '.tmp/css/app.css'
           ],
           'web/built/print.min.css': [
             '.tmp/css/print.css'
