@@ -2,7 +2,7 @@ bb_league:
     rules:
         lrb6:
             rosters:
-                high_elf:
+                necromantic:
                     players:
                         zombi:
                             min: 0

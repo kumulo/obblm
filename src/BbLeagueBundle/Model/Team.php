@@ -113,6 +113,8 @@ abstract class Team
     {
         $this->journeys             = new \Doctrine\Common\Collections\ArrayCollection();
         $this->players              = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->matchs               = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->matchs_has_visitor   = new \Doctrine\Common\Collections\ArrayCollection();
         $this->created_at           = new \DateTime();
         $this->updated_at           = new \DateTime();
         $this->base_reroll_value    = 0;

@@ -63,11 +63,17 @@ class League
     protected $points_for_lost = 0;
 
     /**
+     * @ORM\Column(name="valid", type="boolean")
+     */
+    protected $valid;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->valid = false;
     }
 
     /**
@@ -232,6 +238,30 @@ class League
     public function getPointsForLost()
     {
         return $this->points_for_lost;
+    }
+
+    /**
+     * Set valid
+     *
+     * @param boolean $valid
+     *
+     * @return Team
+     */
+    public function setValid($valid)
+    {
+        $this->valid = $valid;
+
+        return $this;
+    }
+
+    /**
+     * Get valid
+     *
+     * @return boolean
+     */
+    public function getValid()
+    {
+        return $this->valid;
     }
 
     /**

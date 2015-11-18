@@ -20,11 +20,6 @@ class Match
      */
     protected $id;
 
-    public function __construct()
-    {
-
-    }
-
     /**
      * @ORM\ManyToOne(targetEntity="BbLeagueBundle\Entity\Team", inversedBy="matchs", cascade={"persist"})
      */
@@ -81,12 +76,12 @@ class Match
     protected $visitor_skills;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $home_dismiss;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $visitor_dismiss;
 
@@ -94,6 +89,20 @@ class Match
      * @ORM\Column(type="boolean")
      */
     protected $valid;
+
+    public function __construct()
+    {
+        $this->teams_by_journey = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->valid            = 0;
+        $this->home_actions     = array();
+        $this->visitor_actions  = array();
+        $this->home_injuries    = array();
+        $this->visitor_injuries = array();
+        $this->home_skills      = array();
+        $this->visitor_skills   = array();
+        $this->home_dismiss     = false;
+        $this->visitor_dismiss  = false;
+    }
 
     /**
      * Get id
@@ -233,5 +242,220 @@ class Match
     public function getTeamsByJourney()
     {
         return $this->teams_by_journey;
+    }
+    /**
+     * Set homeActions
+     *
+     * @param array $homeActions
+     *
+     * @return Match
+     */
+    public function setHomeActions($homeActions)
+    {
+        $this->home_actions = $homeActions;
+
+        return $this;
+    }
+
+    /**
+     * Get homeActions
+     *
+     * @return array
+     */
+    public function getHomeActions()
+    {
+        return $this->home_actions;
+    }
+
+    /**
+     * Set visitorActions
+     *
+     * @param array $visitorActions
+     *
+     * @return Match
+     */
+    public function setVisitorActions($visitorActions)
+    {
+        $this->visitor_actions = $visitorActions;
+
+        return $this;
+    }
+
+    /**
+     * Get visitorActions
+     *
+     * @return array
+     */
+    public function getVisitorActions()
+    {
+        return $this->visitor_actions;
+    }
+
+    /**
+     * Set homeInjuries
+     *
+     * @param array $homeInjuries
+     *
+     * @return Match
+     */
+    public function setHomeInjuries($homeInjuries)
+    {
+        $this->home_injuries = $homeInjuries;
+
+        return $this;
+    }
+
+    /**
+     * Get homeInjuries
+     *
+     * @return array
+     */
+    public function getHomeInjuries()
+    {
+        return $this->home_injuries;
+    }
+
+    /**
+     * Set visitorInjuries
+     *
+     * @param array $visitorInjuries
+     *
+     * @return Match
+     */
+    public function setVisitorInjuries($visitorInjuries)
+    {
+        $this->visitor_injuries = $visitorInjuries;
+
+        return $this;
+    }
+
+    /**
+     * Get visitorInjuries
+     *
+     * @return array
+     */
+    public function getVisitorInjuries()
+    {
+        return $this->visitor_injuries;
+    }
+
+    /**
+     * Set homeSkills
+     *
+     * @param array $homeSkills
+     *
+     * @return Match
+     */
+    public function setHomeSkills($homeSkills)
+    {
+        $this->home_skills = $homeSkills;
+
+        return $this;
+    }
+
+    /**
+     * Get homeSkills
+     *
+     * @return array
+     */
+    public function getHomeSkills()
+    {
+        return $this->home_skills;
+    }
+
+    /**
+     * Set visitorSkills
+     *
+     * @param array $visitorSkills
+     *
+     * @return Match
+     */
+    public function setVisitorSkills($visitorSkills)
+    {
+        $this->visitor_skills = $visitorSkills;
+
+        return $this;
+    }
+
+    /**
+     * Get visitorSkills
+     *
+     * @return array
+     */
+    public function getVisitorSkills()
+    {
+        return $this->visitor_skills;
+    }
+
+    /**
+     * Set homeDismiss
+     *
+     * @param array $homeDismiss
+     *
+     * @return Match
+     */
+    public function setHomeDismiss($homeDismiss)
+    {
+        $this->home_dismiss = $homeDismiss;
+
+        return $this;
+    }
+
+    /**
+     * Get homeDismiss
+     *
+     * @return array
+     */
+    public function getHomeDismiss()
+    {
+        return $this->home_dismiss;
+    }
+
+    /**
+     * Set visitorDismiss
+     *
+     * @param array $visitorDismiss
+     *
+     * @return Match
+     */
+    public function setVisitorDismiss($visitorDismiss)
+    {
+        $this->visitor_dismiss = $visitorDismiss;
+
+        return $this;
+    }
+
+    /**
+     * Get visitorDismiss
+     *
+     * @return array
+     */
+    public function getVisitorDismiss()
+    {
+        return $this->visitor_dismiss;
+    }
+
+    /**
+     * Set valid
+     *
+     * @param boolean $valid
+     *
+     * @return Match
+     */
+    public function setValid($valid)
+    {
+        $this->valid = $valid;
+
+        return $this;
+    }
+
+    /**
+     * Get valid
+     *
+     * @return boolean
+     */
+    public function getValid()
+    {
+        return $this->valid;
     }
 }

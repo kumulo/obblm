@@ -39,7 +39,7 @@ class LeagueService {
     }
 
     public function renderJourneys() {
-        if(!$this->league)
+        if(!$this->league || !$this->league->getValid())
         {
             return false;
         }
@@ -48,17 +48,19 @@ class LeagueService {
             $name = $this->translator->trans('specials.league_journey_count', array('%count%' => $i));
             $j->setName($name);
             $j->setLeague($this->league);
-            if($i>0) {
-                $matchs = $this->renderMatchs($j);
-            }
+            $j = $this->renderMatchs($j);
+            //dump($j->getMatchs());
             if(count($j->getMatchs()) > 0) {
                 $this->league->addJourney($j);
                 $this->em->persist($j);
             }
+            else {
+               $i = $this->numberOfJouneys;
+            }
         }
         $this->em->persist($this->league);
         $this->em->flush();
-        return $this->league->getJourneys()->toArray();
+        return $this->league;
     }
     private function renderMatchs(Journey $j) {
         $temp = new ArrayCollection( $this->avaibleTeams->toArray() );
@@ -86,6 +88,7 @@ class LeagueService {
             }
         }
         $temp->clear();
+        return $j;
     }
     /**
      * Generate new TeamJouney entity

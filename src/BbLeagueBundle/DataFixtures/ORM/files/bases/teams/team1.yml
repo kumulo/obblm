@@ -6,8 +6,9 @@ BbLeagueBundle\Entity\Team:
         name:       'Karak Helmets'
         roster:     'dwarf'
         coach:      @coach1
-        league:      @league1
+        league:     @league1
         base_reroll_value:   50000
+        journeys:   [@tj10]
 
 BbLeagueBundle\Entity\TeamByJourney:
     tj10:
@@ -21,21 +22,25 @@ BbLeagueBundle\Entity\Player:
         name:       Player <current()> / Team 1
         position:   <current()>
         type:       slayer
+        journeys:   [@pj10_<current()>]
     p1_{3..4}:
         team:       @team1
         name:       Player <current()> / Team 1
         position:   <current()>
         type:       runner
+        journeys:   [@pj10_<current()>]
     p1_{5..6}:
         team:       @team1
         name:       Player <current()> / Team 1
         position:   <current()>
         type:       blitzer
+        journeys:   [@pj10_<current()>]
     p1_{7..11}:
         team:       @team1
         name:       Player <current()> / Team 1
         position:   <current()>
         type:       blocker
+        journeys:   [@pj10_<current()>]
 
 BbLeagueBundle\Entity\PlayerByJourney:
     pj10_{1..2} (extends pj_dwarf_slayer):

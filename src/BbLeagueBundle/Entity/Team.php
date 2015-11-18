@@ -25,21 +25,24 @@ class Team extends BaseTeam
     public function getMatchs() {
         $realmatchs = new ArrayCollection();
         $matchs = array_merge(
-            iterator_to_array($this->matchs),
-            iterator_to_array($this->matchs_has_visitor)
+            ($this->matchs) ? iterator_to_array($this->matchs) : array(),
+            ($this->matchs_has_visitor) ? iterator_to_array($this->matchs_has_visitor) : array()
         );
-        foreach($matchs as $match) {
-            $realmatchs->add($match);
+        if($matchs) {
+            foreach($matchs as $match) {
+                $realmatchs->add($match);
+            }
+            $criteria = Criteria::create()
+                ->orderBy(array("id" => Criteria::ASC))
+            ;
+            return $realmatchs->matching($criteria);
         }
-        $criteria = Criteria::create()
-            ->orderBy(array("id" => Criteria::ASC))
-        ;
-        return $realmatchs->matching($criteria);
+        return $realmatchs;
     }
     public function getEncounters() {
-        $encounters = array();
+        $encounters = new ArrayCollection();
         foreach($this->getMatchs() as $match) {
-            $encounters[] = ($match->getTeam() == $this) ? $match->getVisitor() : $match->getTeam();
+            $encounters->add( ($match->getTeam() == $this) ? $match->getVisitor() : $match->getTeam() );
         }
 
         return $encounters;

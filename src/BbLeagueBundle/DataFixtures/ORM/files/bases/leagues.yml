@@ -2,29 +2,9 @@ BbLeagueBundle\Entity\League:
     league1:
         name:   'Test League'
         rule:   'lrb6'
+        teams:  [@team1, @team2, @team3, @team4, @team5, @team6, @team7, @team8]
 
 BbLeagueBundle\Entity\Journey:
     j0:
-        name:   'Start of the league'
-        league:  @league1
-    j1:
-        name:   'J1'
-        league:  @league1
-    j2:
-        name:   'J2'
-        league:  @league1
-    j3:
-        name:   'J3'
-        league:  @league1
-    j4:
-        name:   'J4'
-        league:  @league1
-    j5:
-        name:   'J5'
-        league:  @league1
-    j6:
-        name:   'J6'
-        league:  @league1
-    j7:
-        name:   'J7'
+        name:   'J0'
         league:  @league1

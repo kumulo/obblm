@@ -8,6 +8,7 @@ BbLeagueBundle\Entity\Team:
         coach:      @coach4
         league:      @league1
         base_reroll_value:   50000
+        journeys:   [@tj40]
 
 BbLeagueBundle\Entity\TeamByJourney:
     tj40:
@@ -22,21 +23,25 @@ BbLeagueBundle\Entity\Player:
         name:       Player <current()> / Team 4
         position:   <current()>
         type:       lineman
+        journeys:   [@pj40_<current()>]
     p4_7:
         team:       @team4
         name:       Player 7 / Team 4
         position:   7
         type:       thrower
+        journeys:   [@pj40_7]
     p4_{9..10}:
         team:       @team4
         name:       Player <current()> / Team 4
         position:   <current()>
         type:       catcher
+        journeys:   [@pj40_<current()>]
     p4_{13..14}:
         team:       @team4
         name:       Player <current()> / Team 4
         position:   <current()>
         type:       blitzer
+        journeys:   [@pj40_<current()>]
 
 BbLeagueBundle\Entity\PlayerByJourney:
     pj40_{1..6} (extends pj_highelf_lineman):
