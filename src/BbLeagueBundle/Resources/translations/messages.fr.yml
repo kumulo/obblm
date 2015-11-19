@@ -53,3 +53,10 @@ layout:
     cards: Cartons
 specials:
     league_journey_count: J%count%
+sheet:
+    labels:
+        coach: Coach
+        roster: Race
+        league: Ligue
+        journey: Journée
+        place: Classement

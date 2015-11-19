@@ -7,6 +7,7 @@
         </header>
         <div class="teams clearfix">
             {% for team in coach.teams %}
+                {% set dictionnary = team.league.rule %}
                 <article class="team clearfix padding-me">
                     <div class="wrapper relative clearfix">
                         <header class="team-header clearfix">
@@ -53,7 +54,7 @@
                                                 <tr>
                                                     <td class="treso">
                                                         <span class="label">{{ 'layout.values.treasure'|trans }}</span>
-                                                        <span class="value">{{ last_journey ? last_journey.treasure|bbkpo|raw : 0 }}</span>
+                                                        <span class="value">{{ last_journey ? last_journey.treasure|bbkpo(dictionnary)|raw : 0 }}</span>
                                                     </td>
                                                 </tr>
                                             </table>

@@ -19,23 +19,22 @@ class BbLeagueTwigExtension extends \Twig_Extension
         );
     }
 
-    public function injuriesFilter($injuries, $separator = ', ', $full_text = false, $forcelang = false)
+    public function injuriesFilter($injuries, $dictionnary, $separator = ', ', $full_text = false, $forcelang = false)
     {
         $a = array();
         foreach($injuries as $injury) {
-            $txt = $this->translator->trans('blood_bowl.injuries_abbr.' . $injury, array(), 'bb-dictionnary', $forcelang);
+            $txt = $this->translator->trans('blood_bowl.injuries_abbr.' . $injury, array(), $dictionnary, $forcelang);
             $a[] = ($full_text) ? $txt : '<span title="' . $txt . '">' . $injury . '</span>';
         }
         return join($separator, $a);
     }
 
-    public function skillsFilter($skills, $separator = ', ', $with_desc = false, $forcelang = false)
+    public function skillsFilter($skills, $dictionnary, $separator = ', ', $with_desc = false, $forcelang = false)
     {
         $a = array();
-
         foreach($skills as $skill) {
-            $title = $this->translator->trans('blood_bowl.skills.' . $skill . '.title', array(), 'bb-dictionnary', $forcelang);
-            $desc = $this->translator->trans('blood_bowl.skills.' . $skill . '.description', array(), 'bb-dictionnary', $forcelang);
+            $title = $this->translator->trans('blood_bowl.skills.' . $skill . '.title', array(), $dictionnary, $forcelang);
+            $desc = $this->translator->trans('blood_bowl.skills.' . $skill . '.description', array(), $dictionnary, $forcelang);
             $a[] = ($with_desc) ? '<span title="' . htmlentities( $desc ) . '">' . $title . '</span>' : $title;
         }
 
@@ -47,9 +46,9 @@ class BbLeagueTwigExtension extends \Twig_Extension
         return number_format($number, 0, $separator, $comma);
     }
 
-    public function bbKpoFilter($number, $comma = '.', $separator = ',', $forcelang = false)
+    public function bbKpoFilter($number, $dictionnary, $comma = '.', $separator = ',', $forcelang = false)
     {
-        return $this->bbPriceFilter(($number / 1000), $separator, $comma) . ' <span class="">' . $this->translator->trans('blood_bowl.kunit', array(), 'bb-dictionnary', $forcelang) . '</span>';
+        return $this->bbPriceFilter(($number / 1000), $separator, $comma) . ' <span class="">' . $this->translator->trans('blood_bowl.kunit', array(), $dictionnary, $forcelang) . '</span>';
     }
 
     public function getName()

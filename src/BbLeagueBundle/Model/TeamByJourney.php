@@ -655,6 +655,30 @@ abstract class TeamByJourney
     }
 
     /**
+     * Set apothecary
+     *
+     * @param boolean $apothecary
+     *
+     * @return TeamByJourney
+     */
+    public function setApothecary($apothecary)
+    {
+        $this->apothecary = $apothecary;
+
+        return $this;
+    }
+
+    /**
+     * Get apothecary
+     *
+     * @return boolean
+     */
+    public function getApothecary()
+    {
+        return $this->apothecary;
+    }
+
+    /**
      * @ORM\PreUpdate
      */
     public function preUpdate() {

@@ -1,4 +1,4 @@
-# To extend it add app/Resources/BbLeagueBundle/translations/bb-dictionnary.fr.yml
+# To extend it add app/Resources/BbLeagueBundle/translations/lrb6.fr.yml
 blood_bowl:
     kunit: kPo
     trait:

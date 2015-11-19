@@ -10,12 +10,13 @@
         </header>
         <div class="teams clearfix">
             {% for team in coach.teams %}
+                {% set dictionnary = team.league.rule %}
                 <article class="team clearfix padding-me">
                     <div class="wrapper relative clearfix">
                         <header class="team-header clearfix">
                             {% if team.logo %}
                             <a class="team-logo link" href="{{ path("team_detail", {team_id: team.id}) }}">
-                                <img src="{{ team.webPath | imagine_filter('dashboard_logo') }}" />
+                                <img src="{{ team.webPath | imagine_filter('sheet') }}" />
                             </a>
                             {% else %}
                             <a class="team-logo link no-logo" href="{{ path("team_detail", {team_id: team.id}) }}">
@@ -28,7 +29,7 @@
                             <div class="team-metas clearfix">
                                 <span class="race">
                                     {% set racename = 'blood_bowl.rosters.' ~ team.roster ~ '.title' %}
-                                    {{ racename|trans({},'bb-dictionnary') }}
+                                    {{ racename|trans({},dictionnary) }}
                                 </span>
                                 <span class="league"><span class="name">{{ team.league.name }}</span> <span class="format">(Format)</span></span>
                             </div>
@@ -40,7 +41,7 @@
                             </ul>
                         </footer>
                         <div>
-                            {% include 'BbLeagueBundle:Team:journey-table.html.twig' with {journey: team.getLastJourney, team: team} %}
+                            {% include 'BbLeagueBundle:Team:journey-table.html.twig' with {journey: team.getLastJourney, team: team, dictionnary: dictionnary} %}
                         </div>
                     </div>
                 </article>

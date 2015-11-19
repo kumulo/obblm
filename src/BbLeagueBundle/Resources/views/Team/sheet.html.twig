@@ -1,65 +1,66 @@
+    {% set dictionnary = team.league.rule %}
     <table class="team">
         <thead class="heading-informations">
             <tr>
                 <td colspan="16">
-                    {% include 'BbLeagueBundle:Team:journey-table.html.twig' with {journey: journey, team: team} %}
+                    {% include 'BbLeagueBundle:Team:journey-table.html.twig' with {journey: journey, team: team, dictionnary: dictionnary} %}
                 </td>
             </tr>
         </thead>
         <tbody class="players">
             <tr class="heading">
                 <th class="numeric">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.pos.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.pos.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.pos.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.pos.abbr{% endtrans %}</span>
                 </th>
                 <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.name.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.name.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.name.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.name.abbr{% endtrans %}</span>
                 </th>
                 <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.type.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.type.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.type.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.type.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.ma.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.ma.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.ma.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.ma.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.st.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.st.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.st.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.st.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.ag.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.ag.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.ag.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.ag.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.av.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.av.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.av.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.av.abbr{% endtrans %}</span>
                 </th>
                 <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.skill.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.skill.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.skill.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.skill.abbr{% endtrans %}</span>
                 </th>
                 <th>
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.injury.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.injury.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.injury.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.injury.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric notablet">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.com.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.com.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.com.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.com.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric notablet">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.td.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.td.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.td.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.td.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric notablet">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.int.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.int.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.int.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.int.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric notablet">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.cas.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.cas.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.cas.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.cas.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric notablet">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.mvp.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.mvp.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.mvp.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.mvp.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.spp.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.spp.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.spp.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.spp.abbr{% endtrans %}</span>
                 </th>
                 <th class="numeric">
-                    <span title="{% trans from 'bb-dictionnary' %}blood_bowl.trait.value.title{% endtrans %}">{% trans from 'bb-dictionnary' %}blood_bowl.trait.value.abbr{% endtrans %}</span>
+                    <span title="{% trans from dictionnary %}blood_bowl.trait.value.title{% endtrans %}">{% trans from dictionnary %}blood_bowl.trait.value.abbr{% endtrans %}</span>
                 </th>
             </tr>
             {% for i, pj in journey.basePlayers %}
             <tr class="{{ cycle(['odd', 'even'], i) }}{{ pj.injuries ? ' injured' : ''}}">
-                {% include 'BbLeagueBundle:Team:player-row.html.twig' with {pj: pj} %}
+                {% include 'BbLeagueBundle:Team:player-row.html.twig' with {pj: pj, dictionnary: dictionnary} %}
             </tr>
             {% endfor %}
             {% if journey.journeyMen|length %}
@@ -68,27 +69,79 @@
             </tr>
             {% for i, pj in journey.journeyMen %}
             <tr class="{{ cycle(['odd', 'even'], i) }} journeyman">
-                {% include 'BbLeagueBundle:Team:player-row.html.twig' with {pj: pj} %}
+                {% include 'BbLeagueBundle:Team:player-row.html.twig' with {pj: pj, dictionnary: dictionnary} %}
             </tr>
             {% endfor %}
             {% endif %}
         </tbody>
         <tfoot class="foot-informations">
             <tr>
-                <th>Rerolls</th>
-                <td>{{ journey.rerolls }} * {{ journey.team.getBaseRerollValue }} = {{ journey.getRerollsValue }}</td>
-            </tr>
-            <tr>
-                <th>Pop</th>
-                <td>{{ journey.popularity }}</td>
-            </tr>
-            <tr>
-                <th>Cheerleaders</th>
-                <td>{{ journey.cheerleaders }}</td>
-            </tr>
-            <tr>
-                <th>Assistants</th>
-                <td>{{ journey.assistants }}</td>
+                <td colspan="16">
+                    <div class="clearfix foot-statistics">
+                        <div class="clearfix core">
+                            <div class="clearfix base-stat-table value-at-right">
+                                <div>
+                                    <span class="label">{{ 'sheet.labels.coach'|trans }}</span>
+                                    <span class="value">{{ team.coach }}</span>
+                                </div>
+                                <div>
+                                    <span class="label">{{ 'sheet.labels.league'|trans }}</span>
+                                    <span class="value">{{ team.league.name }}</span>
+                                </div>
+                                <div>
+                                    <span class="label">{{ 'sheet.labels.journey'|trans }}</span>
+                                    <span class="value">{{ journey.journey.name }}</span>
+                                </div>
+                                <div>
+                                    <span class="label">{{ 'sheet.labels.place'|trans }}</span>
+                                    <span class="value">
+                                        xx / yy
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="label">{{ 'sheet.labels.roster'|trans }}</span>
+                                    <span class="value">
+                                        {% set racename = 'blood_bowl.rosters.' ~ team.roster ~ '.title' %}
+                                        {{ racename|trans({},dictionnary) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% if team.logo %}
+                        <div class="clearfix logo with-image" style="background-image: url({{ team.webPath | imagine_filter('sheet') }})">
+                            <img src="{{ team.webPath | imagine_filter('sheet') }}" />
+                        </div>
+                        {% else %}
+                        <div class="clearfix logo no-logo" href="{{ path("team_detail", {team_id: team.id}) }}">
+                            {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
+                        </div>
+                        {% endif %}
+                        <div class="clearfix detail">
+                            <div class="clearfix base-stat-table value-at-right">
+                                <div>
+                                    <span class="label">Rerolls</span>
+                                    <span class="value">{{ journey.rerolls }} * {{ journey.team.getBaseRerollValue|bbprice }} = {{ journey.getRerollsValue|bbprice }}</span>
+                                </div>
+                                <div>
+                                    <span class="label">Pop</span>
+                                    <span class="value">{{ journey.popularity }} * {{ 10000|bbprice }} = {{ (journey.popularity * 10000)|bbprice }}</span>
+                                </div>
+                                <div>
+                                    <span class="label">Cheerleaders</span>
+                                    <span class="value">{{ journey.cheerleaders }} * {{ 10000|bbprice }} = {{ (journey.cheerleaders * 10000)|bbprice }}</span>
+                                </div>
+                                <div>
+                                    <span class="label">Assistants</span>
+                                    <span class="value">{{ journey.assistants }} * {{ 10000|bbprice }} = {{ (journey.assistants * 10000)|bbprice }}</span>
+                                </div>
+                                <div>
+                                    <span class="label">Apo</span>
+                                    <span class="value">{{ (journey.apothecary * 50000)|bbprice }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
         </tfoot>
     </table>

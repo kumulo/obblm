@@ -1,4 +1,4 @@
-# To extend it add app/Resources/BbLeagueBundle/translations/bb-dictionnary.en.yml
+# To extend it add app/Resources/BbLeagueBundle/translations/lrb6.en.yml
 blood_bowl:
     skill_types:
         g: general

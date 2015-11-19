@@ -1,6 +1,21 @@
 jQuery(function() {
     // GOGOGO
+    /*
+     * HEADER
+     */
+    $('#header').each(function(i, header) {
 
+        $('#account', header).each(function(j, account) {
+           $('.title', account).click(function() {
+               $(account).toggleClass('open');
+           });
+        });
+        $('#navigation', header).each(function(j, nav) {
+           $('.league-icon', nav).click(function() {
+               $(nav).toggleClass('open');
+           });
+        });
+    });
     /*
      * DASHBOARD
      */

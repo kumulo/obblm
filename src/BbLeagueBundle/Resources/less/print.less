@@ -6,6 +6,9 @@
         margin: 10px;
         font-size: 80%;
         -webkit-print-color-adjust:exact;
+        .section-header {
+            padding-top: 0;
+        }
         .content .team-statistics .core,
         .content .team-statistics .detail,
         .content#team-sheet table.team .players tr.odd td {
@@ -14,6 +17,28 @@
         .content .team-statistics .core .treasure:before,
         .content#team-sheet table.team .players tr.even td {
             background-color: #d5d5d5;
+        }
+        .content .team-statistics,
+        .content .foot-statistics {
+            .base-stat-table {
+                font-size: 95%;
+                .label,
+                .value {
+                    line-height: 19px;
+                }
+            }
+        }
+        .content .foot-statistics {
+            .logo {
+                &.with-image {
+                    background: none !important;
+                    > img {
+                        display: block;
+                        max-height: 100%;
+                        max-width: 100%;
+                    }
+                }
+            }
         }
     }
 }
