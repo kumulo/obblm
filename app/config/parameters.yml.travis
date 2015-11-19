@@ -11,6 +11,6 @@ parameters:
     secret:            ThisTokenIsDedicatedToTravis
     use_assetic_controller: false
     locale: en
-    web_path: web/
-    upload_path: web/uploads/
-    media_cache_path: web/media/cache/
+    web_path: /../web/
+    upload_path: uploads/
+    media_cache_path: media/cache/

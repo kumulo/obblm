@@ -18,6 +18,6 @@ parameters:
     locale: en
     
     # Paths
-    web_path: web/
-    upload_path: web/uploads/
-    media_cache_path: web/media/cache/
+    web_path: /../web/
+    upload_path: uploads/
+    media_cache_path: media/cache/
