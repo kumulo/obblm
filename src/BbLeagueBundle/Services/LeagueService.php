@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use BbLeagueBundle\Entity\League;
 use BbLeagueBundle\Entity\Journey;
+use BbLeagueBundle\Entity\TeamByJourney;
 use BbLeagueBundle\Entity\Match;
 
 class LeagueService {
@@ -16,12 +17,12 @@ class LeagueService {
     private $avaibleTeams = array();
     private $isOdd = false;
 
-    public function __construct(EntityManager $entity_manager, $translator) {
+    public function __construct(\Doctrine\ORM\EntityManager $entity_manager, $translator) {
         $this->em = $entity_manager;
         $this->translator = $translator;
     }
 
-    public function setEntityManager(EntityManager $entity_manager) {
+    public function setEntityManager(\Doctrine\ORM\EntityManager $entity_manager) {
         $this->em = $entity_manager;
         return $this;
     }
@@ -100,8 +101,8 @@ class LeagueService {
 
      */
     public function generateMatchTeamJourney(
-            Team $team,
-            Jouney $match_jouney,
+            \BbLeagueBundle\Entity\Team $team,
+            \BbLeagueBundle\Entity\Jouney $match_jouney,
             Array $actions_give,
             Array $actions_take) {
 

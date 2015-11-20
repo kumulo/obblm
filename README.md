@@ -23,10 +23,17 @@ Create database
 
     php app/console doctrine:database:create
     php app/console doctrine:schema:create
-Now you can create your Super Admin User with FOSUser command lines :
+Setting up Permissions for directories
+
+    web/uploads
+    web/media
+Now you can create your Super Admin User with FOSUser command lines
 
     php app/console fos:user:create MySuperAdmin
     php app/console fos:user:promote MySuperAdmin
+OR you can load a basic test league with 8 test teams
+
+    php app/console doctrine:fixtures:load
 
 [Composer]: <http://Composer.org>
 [Node.js]: <https://nodejs.org>

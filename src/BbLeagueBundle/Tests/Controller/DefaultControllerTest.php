@@ -20,7 +20,7 @@ class DefaultControllerTest extends WebTestCase
     {
         $this->client->request('GET', '/');
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-        $this->client->request('GET', '/league/');
+        $this->client->request('GET', '/leagues/');
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
         $this->client->request('GET', '/coach/');
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());

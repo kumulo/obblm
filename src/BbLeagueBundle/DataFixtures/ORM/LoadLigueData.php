@@ -28,7 +28,6 @@ class LoadLeagueData implements FixtureInterface, ContainerAwareInterface {
         $tools->setNumberOfJourneys(99);
         $tools->setLeague($datas['league1']);
         $league = $tools->renderJourneys();
-        dump($league->getJourneys());
         /* End */
         $manager->flush();
     }

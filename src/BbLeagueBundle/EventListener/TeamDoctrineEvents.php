@@ -16,6 +16,7 @@ class TeamDoctrineEvents
     private $web_dir;
     private $upload_dir;
     private $container;
+    private $bb_rules;
 
     public function __construct($app_dir, $web_dir, $upload_dir, $container) {
         $this->app_dir = $app_dir;
@@ -31,7 +32,7 @@ class TeamDoctrineEvents
         return $this->app_dir . $this->web_dir . $this->upload_dir;
     }
     /** postLoad */
-    public function postLoad(LifecycleEventArgs $args)
+    public function postLoad(\Doctrine\ORM\Event\LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
         // Only act on "Team" entity
@@ -41,7 +42,7 @@ class TeamDoctrineEvents
         }
     }
     /** postPersist */
-    public function postPersist(LifecycleEventArgs $args)
+    public function postPersist(\Doctrine\ORM\Event\LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();
@@ -59,7 +60,7 @@ class TeamDoctrineEvents
      * @param \BbLeagueBundle\Entity\Match $match
      * @param \Doctrine\ORM\EntitytManager $entityManager
      */
-    private function afterMatchSequence(Match $match, EntitytManager $entityManager) {
+    private function afterMatchSequence(\BbLeagueBundle\Entity\Match $match, \Doctrine\ORM\EntitytManager $entityManager) {
 
         $actions_home = array();
         $actions_visitor = array();
@@ -87,7 +88,7 @@ class TeamDoctrineEvents
      * @param \BbLeagueBundle\Entity\TeamByJourney $team_journey
      * @param \Doctrine\ORM\EntitytManager $entityManager
      */
-    private function addJourneyMen(TeamByJourney $team_journey, EntitytManager $entityManager) {
+    private function addJourneyMen(\BbLeagueBundle\Entity\TeamByJourney $team_journey, \Doctrine\ORM\EntitytManager $entityManager) {
         $rules = $this->container->get('bb.rules');
         $diff = 11 - (count($team_journey->getAvailaiblePlayers()) - count($team_journey->getInjuredPlayers()));
         $rule = $rules->getRule($team_journey->getTeam()->getLeague()->getRule())->getRule();
@@ -117,7 +118,7 @@ class TeamDoctrineEvents
                 $jplayer->setSkills($base_journeyman['skills']);
                 $jplayer->setValue($base_journeyman['cost']);
                 $player->addJourney($jplayer);
-                $entity->addPlayer($jplayer);
+                $team_journey->addPlayer($jplayer);
                 $entityManager->persist($player);
                 $entityManager->persist($jplayer);
             }
