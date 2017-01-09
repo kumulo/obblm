@@ -50,7 +50,6 @@ class LeagueService {
             $j->setName($name);
             $j->setLeague($this->league);
             $j = $this->renderMatchs($j);
-            //dump($j->getMatchs());
             if(count($j->getMatchs()) > 0) {
                 $this->league->addJourney($j);
                 $this->em->persist($j);

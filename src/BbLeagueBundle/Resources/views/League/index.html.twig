@@ -12,7 +12,7 @@
                         <header class="league-header clearfix">
                             <h3 class="league-name">{{ league.name }}</h3>
                             <div class="league-metas clearfix">
-                                <span class="league"><span class="format">(Format)</span></span>
+                                <span class="league"><span class="format">({{ league.format }})</span></span>
                             </div>
                             <ul class="section-actions">
                                 <li><a class="button button-basic" href="{{ path("league_results", {league_id: league.id}) }}">{{ 'layout.leagues.index.show_results'|trans }}</a></li>

@@ -34,6 +34,12 @@ form:
       name: Nom de la ligue
       rule: Règles appliquées
       description: Description
+      format: Format de la ligue
+      number_of_journeys: Nombre de journées (0 pour infinie)
+      points_for_win: Points pour une victoire
+      points_for_draw: Points pour un match nul
+      points_for_lost: Points pour une défaite
+      number_for_playoff: Nombre de joueurs qualifiés en playoff (0 pour pas de playoff)
   rule:
     add:
       submit: Enregistrer la règle

@@ -20,6 +20,36 @@
             {{ form_errors(form.rule) }}
         </div>
         <div class="field">
+            {{form_label(form.format, 'form.league.label.format')}}
+            {{form_widget(form.format, {'attr': {class: 'ui fluid dropdown'} })}}
+            {{ form_errors(form.format) }}
+        </div>
+        <div class="field">
+            {{form_label(form.points_for_win, 'form.league.label.points_for_win')}}
+            {{form_widget(form.points_for_win) }}
+            {{ form_errors(form.points_for_win) }}
+        </div>
+        <div class="field">
+            {{form_label(form.points_for_draw, 'form.league.label.points_for_draw')}}
+            {{form_widget(form.points_for_draw) }}
+            {{ form_errors(form.points_for_draw) }}
+        </div>
+        <div class="field">
+            {{form_label(form.points_for_lost, 'form.league.label.points_for_lost')}}
+            {{form_widget(form.points_for_lost) }}
+            {{ form_errors(form.points_for_lost) }}
+        </div>
+        <div class="field">
+            {{form_label(form.number_of_journeys, 'form.league.label.number_of_journeys')}}
+            {{form_widget(form.number_of_journeys) }}
+            {{ form_errors(form.number_of_journeys) }}
+        </div>
+        <div class="field">
+            {{form_label(form.number_for_playoff, 'form.league.label.number_for_playoff')}}
+            {{form_widget(form.number_for_playoff) }}
+            {{ form_errors(form.number_for_playoff) }}
+        </div>
+        <div class="field">
             {{form_widget(form.save, {'label': 'form.league.add.submit', 'attr': {class: 'ui button'}})}}
         </div>
     {{ form_end(form) }}

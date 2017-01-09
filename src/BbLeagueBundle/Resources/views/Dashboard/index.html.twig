@@ -13,7 +13,7 @@
                         <header class="team-header clearfix">
                             <h3 class="team-name"><a class="link" href="{{ path('team_detail', {team_id: team.id}) }}">{{ team.name }}</a></h3>
                             <div class="team-metas clearfix">
-                                <span class="league"><span class="name">{{ team.league.name }}</span> <span class="format">(Format)</span></span>
+                                <span class="league"><span class="name">{{ team.league.name }}</span> <span class="format">({{ team.league.format }})</span></span>
                             </div>
                         </header>
                         <div class="team-content clearfix">

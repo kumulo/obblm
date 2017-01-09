@@ -111,6 +111,39 @@ class CoachController extends Controller
             'team' => $team,
         ));
     }
+    /**
+     * @Route("/edit/{team_id}/add-player", name="coach_team_add_player")
+     */
+    public function addPlayerAction(Request $request, $team_id)
+    {
+        $team = $this->getDoctrine()
+            ->getRepository('BbLeagueBundle:Team')
+            ->find($team_id);
+        $rule_service = $this->get('bb.rules');
+        if(!$team) {
+            throw $this->createNotFoundException('The team does not exist');
+        }
+        if($team->getValid()) {
+            $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        }
+        else if($team->getCoach() != $this->getUser()) {
+            $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        }
+        $rulename = $team->getLeague()->getRule();
+        $rulset = $rule_service->getRule($rulename);
+        // TODO : Finish the add player form
+        $form = $this->constructUpdateForm($request, $team);
+
+        if ($form->isValid()) {
+            // the validation passed, do something with the $author object
+
+        }
+
+        return $this->render('BbLeagueBundle::Coach/team_add_player.html.twig', array(
+            'form' => $form->createView(),
+            'team' => $team,
+        ));
+    }
     private function constructUpdateForm(Request $request, $team)
     {
         $form = $this->createFormBuilder($team)

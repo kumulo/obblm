@@ -1,0 +1,11 @@
+{% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
+{% trans_default_domain "form" %}
+{% form_theme form 'BbLeagueBundle:Form:form_div_layout.html.twig' %}
+{% block title %}{% trans with {'%name%': team.name} from 'form' %}form.team.edit.title{% endtrans %}{% endblock %}
+{% block body %}
+<section id="content-form" class="content has-steps normal-content clearfix">
+    <header class="section-header clearfix padding-me">
+        <h1 class="section-title">{% trans with {'%name%': team.name} from 'form' %}form.team.edit.title{% endtrans %}</h1>
+    </header>
+</section>
+{% endblock %}

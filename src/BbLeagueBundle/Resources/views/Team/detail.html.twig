@@ -7,7 +7,8 @@
             <h1 class="section-title">{{ team.name }}</h1>
             {% if team.coach == app.user and not team.valid %}
             <ul class="section-actions">
-                <li><a class="button button-basic" href="{{ path("coach_team_edit", {team_id: team.id}) }}">{{ 'layout.coach_space.index.team_edit'|trans }}</a></li>
+                <li><a class="button button-ok" href="{{ path('coach_team_add_player', {team_id: team.id}) }}">{{ 'layout.coach_space.index.add_player'|trans }}</a></li>
+                <li><a class="button button-basic" href="{{ path('coach_team_edit', {team_id: team.id}) }}">{{ 'layout.coach_space.index.team_edit'|trans }}</a></li>
             </ul>
             {% endif %}
         </header>

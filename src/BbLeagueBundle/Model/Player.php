@@ -43,6 +43,12 @@ class Player
     protected $position;
 
     /**
+     * @ORM\Column(name="seasons", type="integer", length=2)
+     * @Assert\NotBlank()
+     */
+    protected $seasons = 1;
+
+    /**
      * @ORM\Column(name="type", type="string", length=255)
      * @Assert\NotBlank()
      */
@@ -108,6 +114,30 @@ class Player
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set seasons
+     *
+     * @param integer $seasons
+     *
+     * @return Player
+     */
+    public function setSeasons($seasons)
+    {
+        $this->seasons = $seasons;
+
+        return $this;
+    }
+
+    /**
+     * Get seasons
+     *
+     * @return integer
+     */
+    public function getSeasons()
+    {
+        return $this->seasons;
     }
 
     /**

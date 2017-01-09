@@ -45,6 +45,24 @@ class League
     protected $rule;
 
     /**
+     * @ORM\Column(name="format", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    protected $format;
+
+    /**
+     * @ORM\Column(name="number_of_journeys", type="integer", length=5)
+     * @Assert\NotBlank()
+     */
+    protected $number_of_journeys = 11;
+
+    /**
+     * @ORM\Column(name="number_for_playoff", type="integer", length=3)
+     * @Assert\NotBlank()
+     */
+    protected $number_for_playoff = 8;
+
+    /**
      * @ORM\Column(name="points_for_win", type="integer", length=2)
      * @Assert\NotBlank()
      */
@@ -114,6 +132,30 @@ class League
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set format
+     *
+     * @param string $format
+     *
+     * @return League
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
+
+        return $this;
+    }
+
+    /**
+     * Get format
+     *
+     * @return string
+     */
+    public function getFormat()
+    {
+        return $this->format;
     }
 
     /**
@@ -244,6 +286,54 @@ class League
     public function getPointsForLost()
     {
         return $this->points_for_lost;
+    }
+
+    /**
+     * Set numberOfJourneys
+     *
+     * @param integer $numberOfJourneys
+     *
+     * @return League
+     */
+    public function setNumberOfJourneys($numberOfJourneys)
+    {
+        $this->number_of_journeys = $numberOfJourneys;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfJourneys
+     *
+     * @return integer
+     */
+    public function getNumberOfJourneys()
+    {
+        return $this->number_of_journeys;
+    }
+
+    /**
+     * Set numberOfJourneys
+     *
+     * @param integer $numberOfJourneys
+     *
+     * @return League
+     */
+    public function setNumberForPlayoff($numberForPlayoff)
+    {
+        $this->number_for_playoff = $numberForPlayoff;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfJourneys
+     *
+     * @return integer
+     */
+    public function getNumberForPlayoff()
+    {
+        return $this->number_for_playoff;
     }
 
     /**

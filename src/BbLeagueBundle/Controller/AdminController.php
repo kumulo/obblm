@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BbLeagueBundle\Entity\League;
+use BbLeagueBundle\Entity\Journey;
 use BbLeagueBundle\Entity\Rule;
 
 class AdminController extends Controller
@@ -74,9 +75,16 @@ class AdminController extends Controller
         if ($form->isValid()) {
             // the validation passed, do something with the $author object
             $em = $this->getDoctrine()->getManager();
-            $em->persist($league);
-            $em->flush();
 
+            if($league->getFormat() == 'OPEN' && !$league->getJourneys()->first()) {
+                $j0 = new Journey();
+                $j0->setName('Enroll journey');
+                $j0->setLeague($league);
+                $league->addJourney($j0);
+            }
+            $em->persist($league);
+            $em->persist($j0);
+            $em->flush();
             return $this->redirectToRoute('admin_homepage');
         }
 

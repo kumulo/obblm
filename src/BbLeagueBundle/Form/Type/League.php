@@ -22,6 +22,12 @@ class League extends AbstractType
                 'required' => true,
                 'choices' => $rules
             ))
+            ->add('format', null)
+            ->add('number_of_journeys', null)
+            ->add('points_for_win', null)
+            ->add('points_for_draw', null)
+            ->add('points_for_lost', null)
+            ->add('number_for_playoff', null)
             ->add('save', 'submit')
         ;
     }

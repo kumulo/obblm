@@ -45,8 +45,8 @@
             </div>
             <div class="field">
                 <label>{% trans from 'form' %}form.team.label.roster{% endtrans %}</label>
-                {% set rostername = 'blood_bowl.rosters.' ~ flow.formData.roster ~ '.title' %}
-                {{ rostername|trans({}, 'bb-dictionnary') }}
+                {% set rostername = 'lrb6.rosters.' ~ flow.formData.roster ~ '.title' %}
+                {{ rostername|trans({}, flow.formData.league.rule) }}
             </div>
         {% endif %}
 
