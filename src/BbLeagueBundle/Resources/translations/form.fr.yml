@@ -42,3 +42,15 @@ form:
       rule_key: Nom technique de la règle
       base_rule: Créer la règle à partir de
       description: Description
+  encounter:
+    sheet:
+      title: Feuille de match
+      steps:
+        step1:
+          title: Séquence d'avant match
+        step2:
+          title: Actions du match
+        step3:
+          title: Séquence d'après match
+    label:
+      weather: Météo

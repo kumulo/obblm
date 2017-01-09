@@ -1,0 +1,83 @@
+{% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
+{% form_theme sheet 'BbLeagueBundle:Form:form_div_layout.html.twig' %}
+{% block body %}
+
+<section id="content-form" class="content normal-content clearfix">
+    <header class="section-header clearfix padding-me">
+        <h1 class="section-title">{% trans from 'form' %}form.encounter.sheet.title{% endtrans %}</h1>
+    </header>
+    <div id="encoutersheet" class="clearfix">
+    {{ form_start(sheet, {attr: {class: 'ui form'} }) }}
+        <div class="ui two column stackable grid clearfix">
+            <div class="left-part column home">
+                <div class="head-informations">
+                    {% if encounter.team.logo %}
+                    <img src="{{ encounter.team.webPath | imagine_filter('dashboard_logo') }}" />
+                    {% else %}
+                    {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
+                    {% endif %}
+                    <h2>{{ encounter.team.name }}</h2>
+                </div>
+                <ul id="home-actions" class="actions field" data-prototype="{{ form_widget(sheet.home_actions.vars.prototype)|e('html_attr') }}">
+                {% for action in sheet.home_actions %}
+                    <li class="action">{{ form_row(action) }}</li>
+                {% endfor %}
+                </ul>
+                <a href="#" class="add-another-action" list-selector="#home-actions" list-count="{{ sheet.home_actions|length }}">Add an action</a>
+            </div>
+            <div class="right-part column visitor">
+                <div class="head-informations">
+                    {% if encounter.visitor.logo %}
+                    <img src="{{ encounter.visitor.webPath | imagine_filter('dashboard_logo') }}" />
+                    {% else %}
+                    {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
+                    {% endif %}
+                    <h2>{{ encounter.visitor.name }}</h2>
+                </div>
+                <ul id="visitor-actions" class="actions field" data-prototype="{{ form_widget(sheet.visitor_actions.vars.prototype)|e('html_attr') }}">
+                {% for action in sheet.visitor_actions %}
+                    <li class="action">{{ form_row(action) }}</li>
+                {% endfor %}
+                </ul>
+                <a href="#" class="add-another-action" list-selector="#visitor-actions" list-count="{{ sheet.visitor_actions|length }}">Add an action</a>
+            </div>
+        </div>
+        {{ form_errors(sheet) }}
+        <div class="field">
+            {{form_label(sheet.weather, 'form.encounter.label.weather')}}
+            {{form_widget(sheet.weather)}}
+            {{ form_errors(sheet.weather) }}
+        </div>
+        <div class="field">
+            {{form_widget(sheet.save, {'label': 'form.encounter.sheet.submit', 'attr': {class: 'ui button'}})}}
+        </div>
+    {{ form_end(sheet) }}
+    </div>
+</section>
+{% endblock body %}
+{% block javascripts %}
+<script type="text/javascript">
+    // keep track of how many email fields have been rendered
+
+    $(document).ready(function() {
+        $('#encouter-sheet .add-another-action').click(function(e) {
+            e.preventDefault();
+
+            var thelist  = $( $(e.target).attr('list-selector') );
+            var thecount = parseInt( $(e.target).attr('list-count') );
+
+            // grab the prototype template
+            var newWidget = thelist.attr('data-prototype');
+            // replace the "__name__" used in the id and name of the prototype
+            // with a number that's unique to your emails
+            // end name attribute looks like name="contact[emails][2]"
+            newWidget = newWidget.replace(/__name__/g, thecount);
+            $(e.target).attr('list-count', thecount+1);
+
+            // create a new list element and add it to the list
+            var newLi = $('<li></li>').html(newWidget);
+            newLi.appendTo(thelist);
+        });
+    })
+</script>
+{% endblock javascripts %}

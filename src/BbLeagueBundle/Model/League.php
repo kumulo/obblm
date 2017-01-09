@@ -68,6 +68,12 @@ class League
     protected $valid;
 
     /**
+     * @ORM\OneToOne(targetEntity="BbLeagueBundle\Entity\Journey")
+     * @ORM\JoinColumn(name="current_journey", referencedColumnName="id")
+     */
+    protected $current_journey;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -262,6 +268,30 @@ class League
     public function getValid()
     {
         return $this->valid;
+    }
+
+    /**
+     * Set current_journey
+     *
+     * @param \BbLeagueBundle\Entity\Journey $journey
+     *
+     * @return Team
+     */
+    public function setCurrentJourney($journey)
+    {
+        $this->current_journey = $journey;
+
+        return $this;
+    }
+
+    /**
+     * Get current_journey
+     *
+     * @return \BbLeagueBundle\Entity\Journey
+     */
+    public function getCurrentJourney()
+    {
+        return $this->current_journey;
     }
 
     /**

@@ -1,5 +1,5 @@
 # To extend it add app/Resources/BbLeagueBundle/translations/lrb6.en.yml
-blood_bowl:
+lrb6:
     skill_types:
         g: general
         s: strength

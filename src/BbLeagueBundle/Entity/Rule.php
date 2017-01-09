@@ -56,6 +56,7 @@ class Rule extends BaseRule
         $datas = $this->getRule();
         return ($datas['max_team_cost']) ? $datas['max_team_cost'] : 0;
     }
+
     /**
      * Get Experience Level For Experience Value
      *

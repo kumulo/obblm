@@ -1,5 +1,5 @@
 # To extend it add app/Resources/BbLeagueBundle/translations/lrb6.fr.yml
-blood_bowl:
+lrb6:
     kunit: kPo
     trait:
         pos:

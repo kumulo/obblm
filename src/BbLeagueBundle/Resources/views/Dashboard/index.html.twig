@@ -11,18 +11,18 @@
                 <article class="team clearfix padding-me">
                     <div class="wrapper relative clearfix">
                         <header class="team-header clearfix">
-                            <h3 class="team-name"><a class="link" href="{{ path("team_detail", {team_id: team.id}) }}">{{ team.name }}</a></h3>
+                            <h3 class="team-name"><a class="link" href="{{ path('team_detail', {team_id: team.id}) }}">{{ team.name }}</a></h3>
                             <div class="team-metas clearfix">
                                 <span class="league"><span class="name">{{ team.league.name }}</span> <span class="format">(Format)</span></span>
                             </div>
                         </header>
                         <div class="team-content clearfix">
                             {% if team.logo %}
-                            <a class="team-logo link" href="{{ path("team_detail", {team_id: team.id}) }}">
+                            <a class="team-logo link" href="{{ path('team_detail', {team_id: team.id}) }}">
                                 <img src="{{ team.webPath | imagine_filter('dashboard_logo') }}" />
                             </a>
                             {% else %}
-                            <a class="team-logo link no-logo" href="{{ path("team_detail", {team_id: team.id}) }}">
+                            <a class="team-logo link no-logo" href="{{ path('team_detail', {team_id: team.id}) }}">
                                 {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
                             </a>
                             {% endif %}
@@ -32,7 +32,7 @@
                                     <tr class="{{ cycle(['odd', 'even'], i) }}">
                                         <td class="journey">{{ match.journey.name }}</td>
                                         {% set versus = (match.team == team) ? match.visitor : match.team %}
-                                        <td class="versus"><a class="link" href="{{ path("team_detail", {team_id: versus.id}) }}"><span class="team-name">{{ versus.name }}</span> <span class="coach">{{ versus.coach.username }}</span></a></td>
+                                        <td class="versus"><a class="link" href="{{ path('team_detail', {team_id: versus.id}) }}"><span class="team-name">{{ versus.name }}</span> <span class="coach">{{ versus.coach.username }}</span></a></td>
                                         <td class="tr">{{ versus.getLastJourney.tr }}</td>
                                     </tr>
                                     {% endfor %}

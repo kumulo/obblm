@@ -33,8 +33,8 @@ class BbLeagueTwigExtension extends \Twig_Extension
     {
         $a = array();
         foreach($skills as $skill) {
-            $title = $this->translator->trans('blood_bowl.skills.' . $skill . '.title', array(), $dictionnary, $forcelang);
-            $desc = $this->translator->trans('blood_bowl.skills.' . $skill . '.description', array(), $dictionnary, $forcelang);
+            $title = $this->translator->trans('lrb6.skills.' . $skill . '.title', array(), $dictionnary, $forcelang);
+            $desc = $this->translator->trans('lrb6.skills.' . $skill . '.description', array(), $dictionnary, $forcelang);
             $a[] = ($with_desc) ? '<span title="' . htmlentities( $desc ) . '">' . $title . '</span>' : $title;
         }
 
@@ -48,7 +48,7 @@ class BbLeagueTwigExtension extends \Twig_Extension
 
     public function bbKpoFilter($number, $dictionnary, $comma = '.', $separator = ',', $forcelang = false)
     {
-        return $this->bbPriceFilter(($number / 1000), $separator, $comma) . ' <span class="">' . $this->translator->trans('blood_bowl.kunit', array(), $dictionnary, $forcelang) . '</span>';
+        return $this->bbPriceFilter(($number / 1000), $separator, $comma) . ' <span class="">' . $this->translator->trans('lrb6.kunit', array(), $dictionnary, $forcelang) . '</span>';
     }
 
     public function getName()

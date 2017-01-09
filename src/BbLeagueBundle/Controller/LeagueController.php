@@ -45,7 +45,7 @@ class LeagueController extends Controller
         }
 
         $leagues = $this->getUser()->getInvolvedLeagues()->toArray();
-        if(!in_array($league, $leagues)) {
+        if(!$this->getUser()->hasRole('ROLE_SUPER_ADMIN') && !in_array($league, $leagues)) {
             throw $this->createNotFoundException('You are not involved in this league');
         }
         return $this->render('BbLeagueBundle::League/results.html.twig', array(

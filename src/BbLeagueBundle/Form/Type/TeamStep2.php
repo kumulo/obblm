@@ -23,7 +23,7 @@ class TeamStep2 extends AbstractType
 
         $rosters_choice = array();
         foreach($rule['rosters'] as $kroster => $roster) {
-            $rosters_choice[$kroster] = $this->translator->trans('blood_bowl.rosters.' . $kroster . '.title', array(), 'bb-dictionnary');
+            $rosters_choice[$kroster] = $this->translator->trans($krule . '.rosters.' . $kroster . '.title', array(), $krule);
         }
         asort($rosters_choice);
         $builder

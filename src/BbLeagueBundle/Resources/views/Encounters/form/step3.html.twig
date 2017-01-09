@@ -1,0 +1,19 @@
+
+<div class="ui two column stackable grid clearfix">
+    <div class="left-part column home">
+        <ul id="home-skills" class="skills field" data-prototype="{{ form_widget(sheet.home_skills.vars.prototype)|e('html_attr') }}">
+        {% for skill in sheet.home_skills %}
+            <li class="action">{{ form_row(skill) }}</li>
+        {% endfor %}
+        </ul>
+        <a href="#" class="add-another-action" list-selector="#home-skills" list-count="{{ sheet.home_skills|length }}">Add a skill</a>
+    </div>
+    <div class="right-part column visitor">
+        <ul id="visitor-skills" class="skills field" data-prototype="{{ form_widget(sheet.visitor_skills.vars.prototype)|e('html_attr') }}">
+        {% for skill in sheet.visitor_skills %}
+            <li class="action">{{ form_row(skill) }}</li>
+        {% endfor %}
+        </ul>
+        <a href="#" class="add-another-action" list-selector="#visitor-skills" list-count="{{ sheet.visitor_skills|length }}">Add a skill</a>
+    </div>
+</div>
