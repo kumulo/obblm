@@ -59,54 +59,51 @@ class EncountersController extends Controller
         }
         return $objects;
     }
-    private function parseStep2($encounter) {
+    private function parseDatasForForm($encounter) {
         $repoP = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:Player');
 
-        // Actions
+        // Home
         $actions = $this->idToPlayers($encounter->getHomeActions(), $repoP);
         $encounter->setHomeActions($actions);
 
-        $actions = $this->idToPlayers($encounter->getVisitorActions(), $repoP);
-        $encounter->setVisitorActions($actions);
-
-        // Injuries
         $injuries = $this->idToPlayers($encounter->getHomeInjuries(), $repoP);
         $encounter->setHomeInjuries($injuries);
 
-        $injuries = $this->idToPlayers($encounter->getVisitorInjuries(), $repoP);
-        $encounter->setVisitorInjuries($injuries);
-
-        // Skills
         $skills = $this->idToPlayers($encounter->getHomeSkills(), $repoP);
         $encounter->setHomeSkills($skills);
+
+        // Visitor
+        $actions = $this->idToPlayers($encounter->getVisitorActions(), $repoP);
+        $encounter->setVisitorActions($actions);
+
+        $injuries = $this->idToPlayers($encounter->getVisitorInjuries(), $repoP);
+        $encounter->setVisitorInjuries($injuries);
 
         $skills = $this->idToPlayers($encounter->getVisitorSkills(), $repoP);
         $encounter->setVisitorSkills($skills);
 
         return $encounter;
     }
-    private function parseStepSave($encounter) {
-        $repoP = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:Player');
+    private function parseDatasForSave($encounter) {
 
-        // Actions
-        $actions = $this->playersToId($encounter->getHomeActions(), $repoP);
+        // Home
+        $actions = $this->playersToId($encounter->getHomeActions());
         $encounter->setHomeActions($actions);
 
-        $actions = $this->playersToId($encounter->getVisitorActions(), $repoP);
-        $encounter->setVisitorActions($actions);
-
-        // Injuries
-        $injuries = $this->playersToId($encounter->getHomeInjuries(), $repoP);
+        $injuries = $this->playersToId($encounter->getHomeInjuries());
         $encounter->setHomeInjuries($injuries);
 
-        $injuries = $this->playersToId($encounter->getVisitorInjuries(), $repoP);
-        $encounter->setVisitorInjuries($injuries);
-
-        // Skills
-        $skills = $this->playersToId($encounter->getHomeSkills(), $repoP);
+        $skills = $this->playersToId($encounter->getHomeSkills());
         $encounter->setHomeSkills($skills);
 
-        $skills = $this->playersToId($encounter->getVisitorSkills(), $repoP);
+        // Visitor
+        $actions = $this->playersToId($encounter->getVisitorActions());
+        $encounter->setVisitorActions($actions);
+
+        $injuries = $this->playersToId($encounter->getVisitorInjuries());
+        $encounter->setVisitorInjuries($injuries);
+
+        $skills = $this->playersToId($encounter->getVisitorSkills());
         $encounter->setVisitorSkills($skills);
 
         return $encounter;
@@ -133,7 +130,7 @@ class EncountersController extends Controller
                 $encounter->getVisitor()->getCoach() != $this->getUser()) {
             $this->denyAccessUnlessGranted('ROLE_ADMIN');
         }
-        $encounter = $this->parseStep2($encounter);
+        $encounter = $this->parseDatasForForm($encounter);
 
         $form = $this->createForm('obbml_forms_user_encounter', $encounter);
 
@@ -141,7 +138,7 @@ class EncountersController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $encounter = $this->parseStepSave($encounter);
+            $encounter = $this->parseDatasForSave($encounter);
 
             $em->persist($encounter);
             $em->flush();
