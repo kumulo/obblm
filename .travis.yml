@@ -11,16 +11,15 @@ node_js:
   - "4.0"
 
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS obblm;'
   - composer self-update
   - npm install
-  - cp app/config/parameters.yml.travis app/config/parameters.yml
 
 install:
-  - composer install --no-scripts
+  - composer install
   - grunt
 
 before_script:
+  - cp app/config/parameters.yml.travis app/config/parameters.yml
   - php app/console doctrine:database:create --env=test
   - php app/console doctrine:schema:create --env=test
   - php app/console doctrine:fixtures:load --env=test -n
