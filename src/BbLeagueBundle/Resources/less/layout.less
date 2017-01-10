@@ -1197,6 +1197,36 @@ body {
         #encoutersheet {
             .ui.form {
                 max-width: 80%;
+                .head-informations {
+                    position: relative;
+                    min-height: 145px;
+                    padding-left: 180px;
+                    .team-logo {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 160px;
+                        min-height: 145px;
+                        > img {
+                            max-width: 100%;
+                            max-height: 100%;
+                        }
+                        &.no-logo {
+                            background: @league-icon-bg;
+                            svg {
+                                fill: @white;
+                                display: block;
+                                width: auto;
+                                max-width: 80%;
+                                max-height: 90%;
+                                margin: 5% 10%;
+                                path {
+                                    fill: @white;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 {% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
 {% form_theme sheet 'BbLeagueBundle:Form:form_div_layout.html.twig' %}
+{% set dictionnary = encounter.journey.league.rule %}
 {% block body %}
 
 <section id="content-form" class="content normal-content clearfix">
@@ -7,47 +8,61 @@
         <h1 class="section-title">{% trans from 'form' %}form.encounter.sheet.title{% endtrans %}</h1>
     </header>
     <div id="encoutersheet" class="clearfix">
-    {{ form_start(sheet, {attr: {class: 'ui form'} }) }}
+    {{ form_start(sheet, {attr: {class: 'ui form'}}) }}
+        {{ form_errors(sheet) }}
         <div class="ui two column stackable grid clearfix">
             <div class="left-part column home">
                 <div class="head-informations">
                     {% if encounter.team.logo %}
-                    <img src="{{ encounter.team.webPath | imagine_filter('dashboard_logo') }}" />
+                    <span class="team-logo">
+                        <img src="{{ encounter.team.webPath | imagine_filter('dashboard_logo') }}" />
+                    </span>
                     {% else %}
-                    {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
+                    <span class="team-logo no-logo">
+                        {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
+                    </span>
                     {% endif %}
                     <h2>{{ encounter.team.name }}</h2>
+                    <div class="core clearfix">
+                        <div class="tr clearfix base-stat-table center-all big-value">
+                            <span class="label">{{ 'layout.values.tr'|trans }}</span>
+                            <span class="value">{{ encounter.team.getLastJourney ? encounter.team.getLastJourney.tr : '0' }}</span>
+                        </div>
+                        <div class="treasure clearfix base-stat-table center-all big-value">
+                            <span class="label">{{ 'layout.values.treasure'|trans }}</span>
+                            <span class="value">{{ encounter.team.getLastJourney ? encounter.team.getLastJourney.treasure|bbkpo(dictionnary)|raw : '-' }}</span>
+                        </div>
+                    </div>
                 </div>
-                <ul id="home-actions" class="actions field" data-prototype="{{ form_widget(sheet.home_actions.vars.prototype)|e('html_attr') }}">
-                {% for action in sheet.home_actions %}
-                    <li class="action">{{ form_row(action) }}</li>
-                {% endfor %}
-                </ul>
-                <a href="#" class="add-another-action" list-selector="#home-actions" list-count="{{ sheet.home_actions|length }}">Add an action</a>
             </div>
             <div class="right-part column visitor">
                 <div class="head-informations">
                     {% if encounter.visitor.logo %}
-                    <img src="{{ encounter.visitor.webPath | imagine_filter('dashboard_logo') }}" />
+                    <span class="team-logo">
+                        <img src="{{ encounter.visitor.webPath | imagine_filter('dashboard_logo') }}" />
+                    </span>
                     {% else %}
-                    {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
+                    <span class="team-logo no-logo">
+                        {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
+                    </span>
                     {% endif %}
                     <h2>{{ encounter.visitor.name }}</h2>
+                    <div class="core clearfix">
+                        <div class="tr clearfix base-stat-table center-all big-value">
+                            <span class="label">{{ 'layout.values.tr'|trans }}</span>
+                            <span class="value">{{ encounter.visitor.getLastJourney ? encounter.visitor.getLastJourney.tr : '0' }}</span>
+                        </div>
+                        <div class="treasure clearfix base-stat-table center-all big-value">
+                            <span class="label">{{ 'layout.values.treasure'|trans }}</span>
+                            <span class="value">{{ encounter.visitor.getLastJourney ? encounter.visitor.getLastJourney.treasure|bbkpo(dictionnary)|raw : '-' }}</span>
+                        </div>
+                    </div>
                 </div>
-                <ul id="visitor-actions" class="actions field" data-prototype="{{ form_widget(sheet.visitor_actions.vars.prototype)|e('html_attr') }}">
-                {% for action in sheet.visitor_actions %}
-                    <li class="action">{{ form_row(action) }}</li>
-                {% endfor %}
-                </ul>
-                <a href="#" class="add-another-action" list-selector="#visitor-actions" list-count="{{ sheet.visitor_actions|length }}">Add an action</a>
             </div>
         </div>
-        {{ form_errors(sheet) }}
-        <div class="field">
-            {{form_label(sheet.weather, 'form.encounter.label.weather')}}
-            {{form_widget(sheet.weather)}}
-            {{ form_errors(sheet.weather) }}
-        </div>
+        {% include 'BbLeagueBundle:Encounters:form/step1.html.twig' %}
+        {% include 'BbLeagueBundle:Encounters:form/step2.html.twig' %}
+        {% include 'BbLeagueBundle:Encounters:form/step3.html.twig' %}
         <div class="field">
             {{form_widget(sheet.save, {'label': 'form.encounter.sheet.submit', 'attr': {class: 'ui button'}})}}
         </div>
@@ -60,12 +75,12 @@
     // keep track of how many email fields have been rendered
 
     $(document).ready(function() {
-        $('#encouter-sheet .add-another-action').click(function(e) {
+        $('#encoutersheet select').dropdown();
+        $('#encoutersheet .add-another-action').click(function(e) {
             e.preventDefault();
 
             var thelist  = $( $(e.target).attr('list-selector') );
             var thecount = parseInt( $(e.target).attr('list-count') );
-
             // grab the prototype template
             var newWidget = thelist.attr('data-prototype');
             // replace the "__name__" used in the id and name of the prototype
@@ -76,7 +91,17 @@
 
             // create a new list element and add it to the list
             var newLi = $('<li></li>').html(newWidget);
+            newLi.append('<a href="#" class="delrow">Delete row</a>');
             newLi.appendTo(thelist);
+            $( "a.delrow", newLi ).click( function(e) {
+                e.preventDefault();
+                newLi.remove();
+            });
+            $('select', newLi).dropdown();
+        });
+        $( "#encounter a.delrow" ).click( function(e) {
+            e.preventDefault();
+            e.target.parent().remove();
         });
     })
 </script>

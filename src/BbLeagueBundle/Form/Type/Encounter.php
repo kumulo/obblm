@@ -23,14 +23,26 @@ class Encounter extends AbstractType
                 'entry_type' => Action::class,
                 'allow_add'  => true,
             ))
-            ->add('home_injuries', null)
-            ->add('home_skills', null)
+            ->add('home_injuries', CollectionType::class, array(
+                'entry_type' => Injury::class,
+                'allow_add'  => true,
+            ))
             ->add('visitor_actions', CollectionType::class, array(
                 'entry_type' => Action::class,
                 'allow_add'  => true,
             ))
-            ->add('visitor_injuries', null)
-            ->add('visitor_skills', null)
+            ->add('visitor_injuries', CollectionType::class, array(
+                'entry_type' => Injury::class,
+                'allow_add'  => true,
+            ))
+            ->add('home_skills', CollectionType::class, array(
+                'entry_type' => Injury::class,
+                'allow_add'  => true,
+            ))
+            ->add('visitor_skills', CollectionType::class, array(
+                'entry_type' => Injury::class,
+                'allow_add'  => true,
+            ))
             ->add('save', 'submit')
         ;
     }

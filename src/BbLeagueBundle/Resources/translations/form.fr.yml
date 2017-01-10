@@ -51,6 +51,7 @@ form:
   encounter:
     sheet:
       title: Feuille de match
+      submit: Enregistrer la feuille de match
       steps:
         step1:
           title: Séquence d'avant match
@@ -58,5 +59,15 @@ form:
           title: Actions du match
         step3:
           title: Séquence d'après match
+      buttons:
+        add_action: Add an action
+        add_injury: Add an injury
+        add_skill: Add a skill
     label:
       weather: Météo
+      home_actions: Mes actions
+      visitor_actions: Actions de mon adversaire
+      home_injuries: Mes blessures
+      visitor_injuries: Blessures de mon adversaire
+      home_skills: Mes compétences
+      visitor_skills: Compétences de mon adversaire

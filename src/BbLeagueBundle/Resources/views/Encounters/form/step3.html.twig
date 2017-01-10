@@ -1,19 +1,25 @@
 
 <div class="ui two column stackable grid clearfix">
     <div class="left-part column home">
+        {{form_label(sheet.home_skills, 'form.encounter.label.home_skills')}}
         <ul id="home-skills" class="skills field" data-prototype="{{ form_widget(sheet.home_skills.vars.prototype)|e('html_attr') }}">
         {% for skill in sheet.home_skills %}
             <li class="action">{{ form_row(skill) }}</li>
         {% endfor %}
         </ul>
-        <a href="#" class="add-another-action" list-selector="#home-skills" list-count="{{ sheet.home_skills|length }}">Add a skill</a>
+        <a href="#" class="add-another-action" list-selector="#home-skills" list-count="{{ sheet.home_skills|length }}">{% trans from 'form' %}form.encounter.sheet.buttons.add_skill{% endtrans %}</a>
+        {{form_widget(sheet.home_skills)}}
+        {{ form_errors(sheet.home_skills) }}
     </div>
     <div class="right-part column visitor">
+        {{form_label(sheet.visitor_skills, 'form.encounter.label.visitor_skills')}}
         <ul id="visitor-skills" class="skills field" data-prototype="{{ form_widget(sheet.visitor_skills.vars.prototype)|e('html_attr') }}">
         {% for skill in sheet.visitor_skills %}
             <li class="action">{{ form_row(skill) }}</li>
         {% endfor %}
         </ul>
-        <a href="#" class="add-another-action" list-selector="#visitor-skills" list-count="{{ sheet.visitor_skills|length }}">Add a skill</a>
+        <a href="#" class="add-another-action" list-selector="#visitor-skills" list-count="{{ sheet.visitor_skills|length }}">{% trans from 'form' %}form.encounter.sheet.buttons.add_skill{% endtrans %}</a>
+        {{form_widget(sheet.visitor_skills)}}
+        {{ form_errors(sheet.visitor_skills) }}
     </div>
 </div>
