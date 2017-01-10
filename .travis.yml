@@ -17,12 +17,13 @@ before_install:
   - cp app/config/parameters.yml.travis app/config/parameters.yml
 
 install:
-  - composer install
+  - composer install --no-scripts
   - grunt
 
 before_script:
   - php app/console doctrine:database:create --env=test
   - php app/console doctrine:schema:create --env=test
   - php app/console doctrine:fixtures:load --env=test -n
+  - php app/console cache:clear --env=test
 
 script: phpunit -c app
