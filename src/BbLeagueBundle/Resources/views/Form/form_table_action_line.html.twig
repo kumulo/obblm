@@ -1,0 +1,45 @@
+{% use "form_div_layout.html.twig" %}
+
+{%- block form_row -%}
+    <td>
+        <span>
+            {{- form_label(form) -}}
+        </span>
+        <span>
+            {{- form_errors(form) -}}
+            {{- form_widget(form) -}}
+        </span>
+    </td>
+{%- endblock form_row -%}
+
+{%- block button_row -%}
+    <tr>
+        <td></td>
+        <td>
+            {{- form_widget(form) -}}
+        </td>
+    </tr>
+{%- endblock button_row -%}
+
+{%- block hidden_row -%}
+    <tr style="display: none">
+        <td colspan="2">
+            {{- form_widget(form) -}}
+        </td>
+    </tr>
+{%- endblock hidden_row -%}
+
+{%- block form_widget_compound -%}
+    <tr {{ block('widget_container_attributes') }}>
+        {{- block('form_rows') -}}
+        <td class="delete buttons"><a href="#{{ form.vars.id }}" class="delrow ui button negative flipable"><span class="text">{% trans from 'form' %}form.buttons.delete_row{% endtrans %}</span><i class="remove icon"></i></a></td>
+    </tr>
+    {%- if form.parent is empty and errors|length > 0 -%}
+    <tr>
+        <td colspan="9">
+            {{- form_errors(form) -}}
+        </td>
+    </tr>
+    {%- endif -%}
+    {{- form_rest(form) -}}
+{%- endblock form_widget_compound -%}

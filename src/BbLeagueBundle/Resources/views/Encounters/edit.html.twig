@@ -12,7 +12,8 @@
         {{ form_errors(sheet) }}
         <div class="ui two column stackable grid clearfix">
             <div class="left-part column home">
-                <div class="head-informations">
+                <h2 class="title team-name">{{ encounter.team.name }}</h2>
+                <div class="head-informations clearfix">
                     {% if encounter.team.logo %}
                     <span class="team-logo">
                         <img src="{{ encounter.team.webPath | imagine_filter('dashboard_logo') }}" />
@@ -22,21 +23,25 @@
                         {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
                     </span>
                     {% endif %}
-                    <h2>{{ encounter.team.name }}</h2>
                     <div class="core clearfix">
-                        <div class="tr clearfix base-stat-table center-all big-value">
+                        <div class="tr base-stat-table center-all big-value">
                             <span class="label">{{ 'layout.values.tr'|trans }}</span>
                             <span class="value">{{ encounter.team.getLastJourney ? encounter.team.getLastJourney.tr : '0' }}</span>
                         </div>
-                        <div class="treasure clearfix base-stat-table center-all big-value">
+                        <div class="treasure base-stat-table center-all big-value">
                             <span class="label">{{ 'layout.values.treasure'|trans }}</span>
                             <span class="value">{{ encounter.team.getLastJourney ? encounter.team.getLastJourney.treasure|bbkpo(dictionnary)|raw : '-' }}</span>
                         </div>
                     </div>
+                    <div>
+                        <span class="label">Pop</span>
+                        <span class="value">{{ encounter.team.getLastJourney ? encounter.team.getLastJourney.popularity : '-' }}</span>
+                    </div>
                 </div>
             </div>
             <div class="right-part column visitor">
-                <div class="head-informations">
+                <h2 class="title team-name">{{ encounter.visitor.name }}</h2>
+                <div class="head-informations clearfix">
                     {% if encounter.visitor.logo %}
                     <span class="team-logo">
                         <img src="{{ encounter.visitor.webPath | imagine_filter('dashboard_logo') }}" />
@@ -46,23 +51,29 @@
                         {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
                     </span>
                     {% endif %}
-                    <h2>{{ encounter.visitor.name }}</h2>
                     <div class="core clearfix">
-                        <div class="tr clearfix base-stat-table center-all big-value">
+                        <div class="tr base-stat-table center-all big-value">
                             <span class="label">{{ 'layout.values.tr'|trans }}</span>
                             <span class="value">{{ encounter.visitor.getLastJourney ? encounter.visitor.getLastJourney.tr : '0' }}</span>
                         </div>
-                        <div class="treasure clearfix base-stat-table center-all big-value">
+                        <div class="treasure base-stat-table center-all big-value">
                             <span class="label">{{ 'layout.values.treasure'|trans }}</span>
                             <span class="value">{{ encounter.visitor.getLastJourney ? encounter.visitor.getLastJourney.treasure|bbkpo(dictionnary)|raw : '-' }}</span>
                         </div>
                     </div>
+                    <div>
+                        <span class="label">Pop</span>
+                        <span class="value">{{ encounter.visitor.getLastJourney ? encounter.visitor.getLastJourney.popularity : '-' }}</span>
+                    </div>
                 </div>
             </div>
         </div>
-        {% include 'BbLeagueBundle:Encounters:form/step1.html.twig' %}
-        {% include 'BbLeagueBundle:Encounters:form/step2.html.twig' %}
-        {% include 'BbLeagueBundle:Encounters:form/step3.html.twig' %}
+        <h2 class="title">{% trans from 'form' %}form.encounter.sheet.steps.step1.title{% endtrans %}</h2>
+        <div class="clearfix">{% include 'BbLeagueBundle:Encounters:form/step1.html.twig' %}</div>
+        <h2 class="title">{% trans from 'form' %}form.encounter.sheet.steps.step2.title{% endtrans %}</h2>
+        <div class="clearfix">{% include 'BbLeagueBundle:Encounters:form/step2.html.twig' %}</div>
+        <h2 class="title">{% trans from 'form' %}form.encounter.sheet.steps.step3.title{% endtrans %}</h2>
+        <div class="clearfix">{% include 'BbLeagueBundle:Encounters:form/step3.html.twig' %}</div>
         <div class="field">
             {{form_widget(sheet.save, {'label': 'form.encounter.sheet.submit', 'attr': {class: 'ui button'}})}}
         </div>
@@ -79,29 +90,34 @@
         $('#encoutersheet .add-another-action').click(function(e) {
             e.preventDefault();
 
-            var thelist  = $( $(e.target).attr('list-selector') );
-            var thecount = parseInt( $(e.target).attr('list-count') );
+            var thelist  = $( $(e.currentTarget).attr('list-selector') );
+            var thecount = parseInt( $(e.currentTarget).attr('list-count') );
             // grab the prototype template
             var newWidget = thelist.attr('data-prototype');
             // replace the "__name__" used in the id and name of the prototype
             // with a number that's unique to your emails
             // end name attribute looks like name="contact[emails][2]"
             newWidget = newWidget.replace(/__name__/g, thecount);
-            $(e.target).attr('list-count', thecount+1);
+            $(e.currentTarget).attr('list-count', thecount+1);
 
             // create a new list element and add it to the list
-            var newLi = $('<li></li>').html(newWidget);
-            newLi.append('<a href="#" class="delrow">Delete row</a>');
+            var newLi = $(newWidget);
+            var widgetId = newLi.attr('id');
+            $(".delrow", newLi).attr('href', '#'+widgetId);
             newLi.appendTo(thelist);
-            $( "a.delrow", newLi ).click( function(e) {
+            $( ".delrow", newLi ).click( function(e) {
                 e.preventDefault();
-                newLi.remove();
+                var lineId = $(e.currentTarget).attr('href');
+                $(lineId).remove();
+                return false;
             });
             $('select', newLi).dropdown();
         });
-        $( "#encounter a.delrow" ).click( function(e) {
+        $( "#encoutersheet .lineaction .delrow" ).click( function(e) {
             e.preventDefault();
-            e.target.parent().remove();
+            var lineId = $(e.currentTarget).attr('href');
+            $(lineId).remove();
+            return false;
         });
     })
 </script>

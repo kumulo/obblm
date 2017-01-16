@@ -56,6 +56,16 @@ class Team extends BaseTeam
         return $this->getJourneys()->first();
     }
 
+    public function getTeamJourney($requested_journey)
+    {
+        foreach($this->getJourneys() as $journey) {
+            if($requested_journey == $journey->getJourney()) return $journey;
+        }
+        dump($requested_journey);
+        dump($this->getJourneys());
+        return $this->getLastJourney();
+    }
+
 
     protected $abs_path;
     protected $web_path;

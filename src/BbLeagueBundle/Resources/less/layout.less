@@ -34,6 +34,34 @@ body {
         -webkit-appearance: none;
         border-radius: 0;
     }
+    /* personnal UI*/
+    .ui {
+        &.button {
+            &.flipable {
+                overflow: hidden;
+                white-space: nowrap;
+                .text {
+                    -webkit-transition: margin-left .2s ease-out, margin-right .2s ease-out;
+                    -moz-transition: margin-left .2s ease-out, margin-right .2s ease-out;
+                    -o-transition: margin-left .2s ease-out, margin-right .2s ease-out;
+                    transition: margin-left .2s ease-out, margin-right .2s ease-out;
+                    display: inline-block;
+                    white-space: nowrap;
+                    margin-left: -250px;
+                }
+                .icon {
+                    position: absolute;
+                    right: .45em;
+                }
+                &:hover {
+                    padding-right: 2.6em;
+                    .text {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
 }
 .dashboard-chart {
 	width		: 96%;
@@ -1196,7 +1224,16 @@ body {
  */
         #encoutersheet {
             .ui.form {
-                max-width: 80%;
+                max-width: 100%;
+                .title {
+                    padding: 20px 0;
+                    font-size: 140%;
+                    font-weight: 300;
+                    text-transform: uppercase;
+                    &.team-name {
+                        padding-top: 0;
+                    }
+                }
                 .head-informations {
                     position: relative;
                     min-height: 145px;
@@ -1223,6 +1260,78 @@ body {
                                 path {
                                     fill: @white;
                                 }
+                            }
+                        }
+                    }
+                    .core {
+                        text-align: center;
+                        display: block;
+                        width: 250px;
+                        position: relative;
+                        border: 1px solid #d5d5d5;
+                        background: #f6f6f6;
+                        .base-stat-table {
+                            width: 100%;
+                            padding: 20px 5px;
+                            box-sizing: border-box;
+                            &.big-value {
+                                padding: 25px 5px;
+                                .label,
+                                .value {
+                                    display: block;
+                                }
+                            }
+                            &.center-all {
+                                text-align: center;
+                            }
+                            .label {
+                                font-size: 110%;
+                                margin-left: 10px;
+                                line-height: 24px;
+                                text-transform: uppercase;
+                            }
+                            .value {
+                                font-size: 230%;
+                                font-weight: 700;
+                            }
+                        }
+                        .tr {
+                            width: 50%;
+                            float: left;
+                            padding: 25px 5px;
+                        }
+                        .treasure {
+                            &:before {
+                                content: '';
+                                width: 1px;
+                                background: #d5d5d5;
+                                top: 0;
+                                bottom: 0;
+                                height: 100%;
+                                visibility: visible;
+                                position: absolute;
+                                left: 50%;
+                            }
+                        }
+                    }
+                }
+                .grid {
+                    .column {
+                        &.home,
+                        &.visitor {
+                            position: relative;
+                            .add-another-action {
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                            }
+                            .delete {
+                                position: relative;
+                            }
+                            .delrow {
+                                position: absolute;
+                                right: 0;
+                                bottom: 0;
                             }
                         }
                     }

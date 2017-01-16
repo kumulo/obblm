@@ -5,6 +5,7 @@ form:
     next: Suivant
     reset: Recommencer
     finish: Terminer
+    delete_row: Supprimer la ligne
   team:
     edit:
       submit: Modifier l'équipe
@@ -60,9 +61,9 @@ form:
         step3:
           title: Séquence d'après match
       buttons:
-        add_action: Add an action
-        add_injury: Add an injury
-        add_skill: Add a skill
+        add_action: Ajouter une action
+        add_injury: Ajouter une blessure
+        add_skill: Ajouter une compétence
     label:
       weather: Météo
       home_actions: Mes actions
