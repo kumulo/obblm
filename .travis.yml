@@ -15,7 +15,7 @@ before_install:
   - npm install
 
 install:
-  - composer install
+  - php -d memory_limit=-1 composer.phar install
   - grunt
 
 before_script:
