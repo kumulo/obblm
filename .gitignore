@@ -24,3 +24,4 @@ composer.lock
 /web/uploads/teams/*
 /logs/
 /src/Bn/
+/package-lock.json
