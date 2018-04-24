@@ -32,8 +32,7 @@
 		</service>
         <service id="bb.forms.user.team"
                 class="%bb.forms.user.team.flow%"
-                parent="craue.form.flow"
-                scope="request">
+                parent="craue.form.flow">
 			<argument type="service" id="translator" />
 			<argument type="service" id="bb.rules" />
         </service>
@@ -43,8 +42,7 @@
         </service>
         <service id="bb.forms.encounter.sheet"
                 class="%bb.forms.encounter.sheet.flow%"
-                parent="craue.form.flow"
-                scope="request">
+                parent="craue.form.flow">
 			<argument type="service" id="translator" />
 			<argument type="service" id="bb.rules" />
         </service>

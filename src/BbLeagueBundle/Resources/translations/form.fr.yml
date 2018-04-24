@@ -9,7 +9,7 @@ form:
   team:
     edit:
       submit: Modifier l'équipe
-      title: Modifier l'équipe : %name%
+      title: "Modifier l'équipe : %name%"
     add:
       submit: Créer mon équipe
       title: Créer une équipe

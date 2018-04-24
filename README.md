@@ -12,7 +12,7 @@ This project uses [Composer], [Node.js] modules ([Bower] & [Grunt]) and first of
 ## Requirements :
 - [Composer]
 - [Node.js]: >= 4.0.*
-- PHP: >= 5.5.*
+- PHP: >= 5.6.*
 
 ## Installation :
     npm install
@@ -21,19 +21,19 @@ This project uses [Composer], [Node.js] modules ([Bower] & [Grunt]) and first of
     grunt
 Create database
 
-    php app/console doctrine:database:create
-    php app/console doctrine:schema:create
+    php bin/console doctrine:database:create
+    php bin/console doctrine:schema:create
 Setting up Permissions for directories
 
     web/uploads
     web/media
 Now you can create your Super Admin User with FOSUser command lines
 
-    php app/console fos:user:create MySuperAdmin
-    php app/console fos:user:promote MySuperAdmin
+    php bin/console fos:user:create MySuperAdmin
+    php bin/console fos:user:promote MySuperAdmin
 OR you can load a basic test league with 8 test teams
 
-    php app/console doctrine:fixtures:load
+    php bin/console doctrine:fixtures:load
 
 [Composer]: <http://Composer.org>
 [Node.js]: <https://nodejs.org>

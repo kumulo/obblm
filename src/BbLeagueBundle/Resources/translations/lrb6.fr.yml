@@ -426,7 +426,7 @@ lrb6:
             description: Les Prêtres-Mages enseignaient déjà le Blood Bowl des milliers d’années avant qu’il ne soit découvert par le Nain Roze-El. Ce n’est donc pas une surprise si les Hommes-Lézards jouent au Blood Bowl. Alignant un subtil mélange de dextérité et de force, les équipes de Lustrie peuvent tenir la distance contre une équipe puissante comme celle du Chaos mais sont tout aussi capables d’égaler le jeu de course des Skavens.
         necromantic:
             title: Nécromantique
-            description: Les Égarés et Damnés ne rôdent pas toujours dans les forêts et les cimetières du Vieux Monde. Parfois ils se rassemblent pour chasser ceux dont l’âme n’est pas maudite. Trouvant le repos dans de terribles explosions de violence incontrôlée, ces groupes font de leur mieux pour apaiser leurs souffrances : ils arrivent pour jouer une bonne partie de Blowd Bowl.
+            description: "Les Égarés et Damnés ne rôdent pas toujours dans les forêts et les cimetières du Vieux Monde. Parfois ils se rassemblent pour chasser ceux dont l’âme n’est pas maudite. Trouvant le repos dans de terribles explosions de violence incontrôlée, ces groupes font de leur mieux pour apaiser leurs souffrances : ils arrivent pour jouer une bonne partie de Blowd Bowl."
             positions:
                 golem: Golem de Chair
                 werewolf: Loup-garou nécromantique
@@ -435,7 +435,7 @@ lrb6:
                 zombi: Zombie
         norse:
             title: Nordique
-            description: Les équipes nordiques ont une réputation d’insatiable férocité aussi bien sur le terrain que dans la vie courante. Il faut dire que le Nordique moyen est un psychopathe dangereux qui, lorsqu’il ne passe pas sa vie dans les solitudes glacées et mélancoliques du grand nord, ne pense qu’à trois choses : la bière, les femmes, et un bon gros carnage pour parfaire le tout !
+            description: "Les équipes nordiques ont une réputation d’insatiable férocité aussi bien sur le terrain que dans la vie courante. Il faut dire que le Nordique moyen est un psychopathe dangereux qui, lorsqu’il ne passe pas sa vie dans les solitudes glacées et mélancoliques du grand nord, ne pense qu’à trois choses : la bière, les femmes, et un bon gros carnage pour parfaire le tout !"
         nurgle:
             title: Nurgle
             description: Les équipes de Nurgle sont un type d’équipe du Chaos où les joueurs vénèrent le dieu Nurgle. Nurgle est le dieu du Chaos de la corruption et de la maladie et il récompense ses joueurs d’une maladie plutôt déplaisante connue sous le nom de Pourriture de Nurgle. Le fait que les équipes de Nurgle dégagent une odeur affreuse est plus reconnu que prouvé. La vérité est qu’ils sont faits de chair à demi décomposée surmontée d’un nuage de mouches, et que quiconque s’approche suffisamment près pour se faire vraiment une idée de l’odeur, est inévitablement frappé de l’une des pires maladies de Nurgle et généralement meurt avant d’avoir pu suggérer une nouvelle forme d’hygiène corporelle.
