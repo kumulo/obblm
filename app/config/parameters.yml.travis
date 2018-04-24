@@ -14,3 +14,5 @@ parameters:
     web_path: /../web/
     upload_path: uploads/
     media_cache_path: media/cache/
+    fos_user_from_name: Admin
+    fos_user_from_email: admin@localhost
