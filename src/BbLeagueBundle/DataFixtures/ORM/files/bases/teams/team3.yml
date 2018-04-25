@@ -5,36 +5,36 @@ BbLeagueBundle\Entity\Team:
     team3:
         name:       'Nourn Corsairs'
         roster:     'ogre'
-        coach:      @coach3
-        league:      @league1
+        coach:      '@coach3'
+        league:      '@league1'
         base_reroll_value:   70000
-        journeys:   [@tj30]
+        journeys:   ['@tj30']
 
 BbLeagueBundle\Entity\TeamByJourney:
     tj30:
-        team:           @team3
-        journey:        @j0
+        team:           '@team3'
+        journey:        '@j0'
         rerolls:        3
         apothecary:     1
 
 BbLeagueBundle\Entity\Player:
     p3_{1..4}:
-        team:       @team3
-        name:       Player <current()> / Team 3
-        position:   <current()>
+        team:       '@team3'
+        name:       Player '<current()>' / Team 3
+        position:   '<current()>'
         type:       ogre
-        journeys:   [@pj30_<current()>]
+        journeys:   ['@pj30_<current()>']
     p3_{7..15}:
-        team:       @team3
-        name:       Player <current()> / Team 3
-        position:   <current()>
+        team:       '@team3'
+        name:       Player '<current()>' / Team 3
+        position:   '<current()>'
         type:       snotling
-        journeys:   [@pj30_<current()>]
+        journeys:   ['@pj30_<current()>']
 
 BbLeagueBundle\Entity\PlayerByJourney:
     pj30_{1..4} (extends pj_ogre_ogre):
-        player: @p3_<current()>
-        journey: @tj30
+        player: '@p3_<current()>'
+        journey: '@tj30'
     pj30_{7..15} (extends pj_ogre_snotling):
-        player: @p3_<current()>
-        journey: @tj30
+        player: '@p3_<current()>'
+        journey: '@tj30'
