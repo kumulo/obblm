@@ -21,7 +21,7 @@
             <tag name="twig.extension" />
             <argument type="service" id="translator" />
         </service>
-		<service id="bb.rules" class="%bb.rosters.class%">
+		<service id="bb.rules" class="%bb.rosters.class%" public="true">
 			<argument type="service" id="doctrine.orm.entity_manager" />
 			<argument type="service" id="translator" />
 			<argument>%bb_league.rules%</argument>

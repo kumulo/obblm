@@ -19,3 +19,4 @@
 /web/built/*
 /node_modules/
 /.tmp/
+/.rules/

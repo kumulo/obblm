@@ -7,17 +7,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-class DefaultControllerTest extends WebTestCase
+class DataTest extends WebTestCase
 {
     private $client = null;
     private $container = null;
 
-    public function setUp()
+    protected function createWebClient()
     {
-        $this->client = static::createClient(array('environment' => 'test'));
+        if(!$this->client) {
+            $this->client = static::createClient(array('environment' => 'test'));
+        }
     }
     public function testIndex()
     {
+        $this->createWebClient();
         $this->client->request('GET', '/');
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
         $this->client->request('GET', '/leagues/');
@@ -43,6 +46,7 @@ class DefaultControllerTest extends WebTestCase
     }*/
     public function testLeague()
     {
+        $this->createWebClient();
         $container = $this->client->getContainer();
         $em = $container->get('doctrine');
         $repo = $em->getRepository('BbLeagueBundle:League');
@@ -55,6 +59,7 @@ class DefaultControllerTest extends WebTestCase
     }
     public function testTeams()
     {
+        $this->createWebClient();
         $container = $this->client->getContainer();
         $em = $container->get('doctrine');
         $repo = $em->getRepository('BbLeagueBundle:Team');
@@ -82,6 +87,7 @@ class DefaultControllerTest extends WebTestCase
     // TODO : Add more data tests
     public function testService()
     {
+        $this->createWebClient();
         $rules = $this->client->getContainer()->get('bb.rules');
         $rule = $rules->getRule('lrb6');
         $this->assertEquals('1000000', $rule->getMaxTeamCost());
@@ -93,7 +99,7 @@ class DefaultControllerTest extends WebTestCase
     /*
      * This is broken
      */
-    private function logInAsUser()
+    /*private function logInAsUser()
     {
         $session = $this->client->getContainer()->get('session');
 
@@ -116,5 +122,5 @@ class DefaultControllerTest extends WebTestCase
 
         $cookie = new Cookie($session->getName(), $session->getId());
         $this->client->getCookieJar()->set($cookie);
-    }
+    }*/
 }

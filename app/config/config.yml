@@ -23,7 +23,6 @@ framework:
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ~
     session:
         handler_id: session.handler.native_file
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
@@ -37,11 +36,13 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         bb_rules: "@bb.rules"
+    paths:
+        '%kernel.project_dir%/src/BBLeagueBundle/Resources/views': FOSUser
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
-    use_controller: %use_assetic_controller%
+    use_controller: "%use_assetic_controller%"
     bundles:
         - BbLeagueBundle
     #java: /usr/bin/java
@@ -88,7 +89,7 @@ liip_imagine:
     resolvers:
        profile_photos:
           web_path:
-            web_root: %kernel.root_dir%/../web
+            web_root: "%kernel.root_dir%/../web"
             cache_prefix: media/cache
 
     cache: profile_photos
