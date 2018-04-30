@@ -12,7 +12,7 @@ This project uses [Composer], [Node.js] modules ([Bower] & [Grunt]) and first of
 ## Requirements :
 - [Composer]
 - [Node.js]: >= 4.0.*
-- PHP: >= 5.6.*
+- PHP: >= 7.1.*
 
 ## Installation :
     npm install

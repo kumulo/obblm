@@ -4,7 +4,7 @@ checks:
         duplication: true
 
 filter:
-    excluded_paths: [ "vendor/*", ".tmp/*", "bin/*","app/*","web/*" ]
+    excluded_paths: [ "vendor/*", ".tmp/*", "var/*", "bin/*","app/*","web/*" ]
 
 tools:
     php_analyzer: true
