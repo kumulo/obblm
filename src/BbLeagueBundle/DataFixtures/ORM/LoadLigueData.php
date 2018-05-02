@@ -7,6 +7,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+use Nelmio\Alice\Fixtures;
+
 use BbLeagueBundle\Entity\League;
 
 class LoadLigueData implements FixtureInterface, ContainerAwareInterface {
@@ -19,7 +21,7 @@ class LoadLigueData implements FixtureInterface, ContainerAwareInterface {
 
     public function load(ObjectManager $manager) {
         /* Load Features */
-        $datas = \Nelmio\Alice\Fixtures::load(__DIR__.'/files/datas.yml', $manager);
+        $datas = Fixtures::load(__DIR__.'/files/datas.yml', $manager);
         $manager->flush();
 
         /* Generate Random Matchs */
