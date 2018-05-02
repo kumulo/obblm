@@ -24,7 +24,7 @@ framework:
     default_locale:  "%locale%"
     trusted_hosts:   ~
     session:
-        handler_id: session.handler.native_file
+        handler_id: ~
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
     fragments:       ~
     http_method_override: true
@@ -83,8 +83,19 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-nelmio_api_doc: ~
+nelmio_api_doc:
+    documentation:
+        info:
+            title: OBBLM Api!
+            api_version: 1.0.0
+    areas:
+        path_patterns: # an array of regexps
+            - ^/api(?!/doc$)
+        host_patterns:
+            - ^api\.
+
 ornicar_gravatar: ~
+
 liip_imagine:
     resolvers:
        profile_photos:

@@ -4,16 +4,17 @@ namespace BbLeagueBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 use FOS\RestBundle\Controller\FOSRestController;
 
 class ApiV1Controller extends FOSRestController
 {
     /**
      * @Route("/", name="api_home")
-     * @ApiDoc(
-     *  description="API test route",
-     *  output="Array"
+     * @SWG\Response(
+     *  response=200,
+     *  description="API test route"
      * )
      */
     public function indexAction(Request $request)
@@ -30,17 +31,9 @@ class ApiV1Controller extends FOSRestController
     }
     /**
      * @Route("/me", name="api_me")
-     * @ApiDoc(
-     *  description="Me and myself",
-     *  statusCodes={
-     *         200="Returned when successful",
-     *         403="Returned when the user is not authenticated",
-     *         404={
-     *           "Returned when the user is not found",
-     *           "Returned when something else is not found"
-     *         }
-     *     },
-     *  output="BbLeagueBundle\Entity\User"
+     * @SWG\Response(
+     *  response=200,
+     *  description="Me and myself"
      * )
      */
     public function meAction(Request $request)
@@ -67,16 +60,9 @@ class ApiV1Controller extends FOSRestController
     }
     /**
      * @Route("/me/teams", name="api_myteams")
-     * @ApiDoc(
-     *  description="Get my teams",
-     *  statusCodes={
-     *         200="Returned when successful",
-     *         403="Returned when the user is not authenticated",
-     *         404={
-     *           "Returned when the user is not found",
-     *           "Returned when something else is not found"
-     *         }
-     *     }
+     * @SWG\Response(
+     *  response=200,
+     *  description="Get my teams"
      * )
      */
     public function myTeamsAction(Request $request)
