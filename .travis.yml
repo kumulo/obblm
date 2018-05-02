@@ -14,8 +14,10 @@ matrix:
   fast_finish: true
   include:
     - php: 7.1
+    - php: 7.2
     - php: hhvm
   allow_failures:
+    - php: 7.2
     - php: hhvm
 
 env:
@@ -38,6 +40,6 @@ before_script:
   - php bin/console doctrine:database:create --env=test
   - php bin/console doctrine:schema:create --env=test
   - php bin/console doctrine:fixtures:load --env=test -n
-  - php bin/console cache:clear --env=test
+  - php bin/console cache:clear --no-warmup --env=test
 
 script: vendor/bin/phpunit
