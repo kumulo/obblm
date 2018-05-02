@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use BbLeagueBundle\Entity\League;
 
-class LoadLeagueData implements FixtureInterface, ContainerAwareInterface {
+class LoadLigueData implements FixtureInterface, ContainerAwareInterface {
 
     private $container;
 
