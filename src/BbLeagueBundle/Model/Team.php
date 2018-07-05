@@ -101,8 +101,11 @@ abstract class Team
     public $logo;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\File\UploadedFile
-     * @Assert\File(maxSize="6000000", mimeTypes={ "image/jpeg", "image/jpg", "image/png", "image/svg" })
+     * @Assert\File(
+     *     maxSize="6000000",
+     *     mimeTypes={ "image/jpeg", "image/jpg", "image/png", "image/svg" },
+     *     mimeTypesMessage = "Please upload a valid image"
+     * )
      */
     public $file;
 

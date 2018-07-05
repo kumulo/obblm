@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BbLeagueBundle\Entity\Team;
 use BbLeagueBundle\Entity\TeamByJourney;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CoachController extends Controller
 {
@@ -148,8 +150,8 @@ class CoachController extends Controller
     {
         $form = $this->createFormBuilder($team)
                 ->add('name')
-                ->add('file', 'file')
-                ->add('save', 'submit')
+                ->add('file', FileType::class)
+                ->add('save', SubmitType::class)
                 ->getForm();
 
         return $form->handleRequest($request);
