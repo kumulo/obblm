@@ -7,8 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BbLeagueBundle\Entity\Team;
 use BbLeagueBundle\Entity\TeamByJourney;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use BbLeagueBundle\Form\EditTeam;
 
 class CoachController extends Controller
 {
@@ -96,9 +98,10 @@ class CoachController extends Controller
             $this->denyAccessUnlessGranted('ROLE_ADMIN');
         }
 
-        $form = $this->constructUpdateForm($request, $team);
+        $form = $this->createForm(EditTeam::class, $team);
+        $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             // the validation passed, do something with the $author object
             $team->upload();
             $em = $this->getDoctrine()->getManager();

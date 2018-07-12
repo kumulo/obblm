@@ -15,9 +15,15 @@
                 {{form_errors(form.name)}}
             </div>
             <div class="field">
-                {{form_label(form.file, 'form.team.label.logo')}}
-                {{form_widget(form.file)}}
-                {{form_errors(form.file)}}
+                {{form_label(form.logo, 'form.team.label.logo')}}
+                {{form_widget(form.logo)}}
+                {{form_errors(form.logo)}}
+            </div>
+            <div class="field">
+                {% for player in form.players %}
+                    {{form_widget(player)}}
+                    {{form_errors(player)}}
+                {% endfor %}
             </div>
             <div class="field">
                 {{form_widget(form.save, {'label': 'form.league.edit.submit', 'attr': {class: 'ui button'}})}}
