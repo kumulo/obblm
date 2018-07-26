@@ -1,0 +1,41 @@
+<?php
+
+namespace BbLeagueBundle\Services;
+
+use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Translation\DataCollectorTranslator;
+use Symfony\Component\VarDumper\VarDumper;
+
+class TieBreakService {
+
+    private $em;
+    private $translator;
+    private $tiebreaks;
+    private $handlers;
+    private $container;
+
+
+    public function __construct(EntityManager $entity_manager,
+                                DataCollectorTranslator $translator,
+                                iterable $handlers) {
+        $this->em = $entity_manager;
+        $this->translator = $translator;
+        $this->handlers = $handlers;
+
+        $this->tiebreaks = new ArrayCollection();
+    }
+
+    /*
+     * @return ArrayCollection
+     */
+    public function getTieBreaks() {
+
+    }
+
+    public function addTieBreak($tiebreak) {
+        VarDumper::dump('TieBreak added : ' . get_class($tiebreak));
+        VarDumper::dump($tiebreak);
+        $this->tiebreaks->add($tiebreak);
+    }
+}

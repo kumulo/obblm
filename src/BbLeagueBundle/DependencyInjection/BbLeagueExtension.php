@@ -24,6 +24,9 @@ class BbLeagueExtension extends Extension implements PrependExtensionInterface
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('tiebreaks.yml');
     }
     public function prepend( ContainerBuilder $container )
     {

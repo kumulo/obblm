@@ -1,0 +1,15 @@
+services:
+
+    bblm.tiebreaks.victory:
+        class: BbLeagueBundle\Services\TieBreaks\VictoryTieBreak
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags: ['bblm.tiebreaks']
+
+    bblm.tiebreaks:
+        class: BbLeagueBundle\Services\TieBreakService
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@translator'
+            - !tagged bblm.tiebreaks
+        public: true
