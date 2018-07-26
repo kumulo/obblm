@@ -5,7 +5,6 @@ namespace BbLeagueBundle\Services;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Translation\DataCollectorTranslator;
-use Symfony\Component\VarDumper\VarDumper;
 
 class TieBreakService {
 
@@ -34,8 +33,6 @@ class TieBreakService {
     }
 
     public function addTieBreak($tiebreak) {
-        VarDumper::dump('TieBreak added : ' . get_class($tiebreak));
-        VarDumper::dump($tiebreak);
         $this->tiebreaks->add($tiebreak);
     }
 }
