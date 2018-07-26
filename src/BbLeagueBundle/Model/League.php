@@ -92,6 +92,15 @@ class League
     protected $current_journey;
 
     /**
+     * @ORM\ManyToMany(targetEntity="BbLeagueBundle\Entity\Coach")
+     * @ORM\JoinTable(name="bbl_league_commissioner",
+     *      joinColumns={@ORM\JoinColumn(name="league_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="coach_id", referencedColumnName="id", unique=true)}
+     *      )
+     */
+    protected $commissioners;
+
+    /**
      * Constructor
      */
     public function __construct()

@@ -64,4 +64,44 @@ abstract class Coach extends BaseUser
     {
         return $this->teams;
     }
+
+    /**
+     * Many Coachs have Many Leagues to manage.
+     * @ORM\ManyToMany(targetEntity="BbLeagueBundle\Entity\League", mappedBy="ommissioners")
+     */
+    private $managed_leagues;
+
+    /**
+     * Add league to Manage
+     *
+     * @param \BbLeagueBundle\Entity\League $league
+     *
+     * @return Coach
+     */
+    public function addManagedLeagues(\BbLeagueBundle\Entity\League $league)
+    {
+        $this->managed_leagues[] = $league;
+
+        return $this;
+    }
+
+    /**
+     * Remove league to Manage
+     *
+     * @param \BbLeagueBundle\Entity\League $league
+     */
+    public function removeManagedLeagues(\BbLeagueBundle\Entity\League $league)
+    {
+        $this->managed_leagues->removeElement($league);
+    }
+
+    /**
+     * Get Managed leagues
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getManagedLeagues()
+    {
+        return $this->managed_leagues;
+    }
 }
