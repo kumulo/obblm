@@ -21,11 +21,6 @@ class LeagueService {
         $this->em = $entity_manager;
         $this->translator = $translator;
     }
-
-    public function setEntityManager(\Doctrine\ORM\EntityManager $entity_manager) {
-        $this->em = $entity_manager;
-        return $this;
-    }
     public function setNumberOfJourneys($num = 1) {
         $this->numberOfJouneys = $num;
         return $this;

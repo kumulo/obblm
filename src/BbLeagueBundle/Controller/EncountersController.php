@@ -111,7 +111,7 @@ class EncountersController extends Controller
     /**
      * @Route("/encounter/{encounter_id}", name="encounter_sheet")
      */
-    public function encounterSheet(Request $request, $encounter_id)
+    public function encounterSheetAction(Request $request, $encounter_id)
     {
         $em = $this->get('doctrine')->getManager();
         $repo  = $em->getRepository('BbLeagueBundle:Match');
