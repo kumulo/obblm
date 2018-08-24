@@ -29,7 +29,7 @@ class TieBreakService {
      * @return ArrayCollection
      */
     public function getTieBreaks() {
-
+        return $this->tiebreaks;
     }
 
     public function addTieBreak($tiebreak) {

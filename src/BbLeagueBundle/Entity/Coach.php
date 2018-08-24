@@ -5,7 +5,7 @@ namespace BbLeagueBundle\Entity;
 
 use BbLeagueBundle\Model\Coach as BaseCoach;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -18,6 +18,6 @@ class Coach extends BaseCoach
         foreach($this->teams as $team) {
             $result[] = $team->getLeague();
         }
-        return new Collections\ArrayCollection($result);
+        return new ArrayCollection($result);
     }
 }

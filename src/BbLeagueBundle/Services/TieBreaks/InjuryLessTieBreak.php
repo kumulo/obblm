@@ -2,12 +2,12 @@
 
 namespace BbLeagueBundle\Services\TieBreaks;
 
-class VictoryTieBreak extends TieBreak {
+class InjuryLessTieBreak extends TieBreak {
 
     public function updateTieBreakQuery($query) {
-        return $query->addOrderBy('victory', 'ASC');
+        return $query->addOrderBy('injury_taken', 'DESC');
     }
     public function getName() {
-        return 'tiebreak.victory';
+        return 'tiebreak.injury.taken';
     }
 }

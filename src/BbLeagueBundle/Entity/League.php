@@ -9,7 +9,7 @@ use BbLeagueBundle\Entity\Team;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BbLeagueBundle\Repository\LeagueRepository")
  * @ORM\Table(name="bbl_league")
  */
 class League extends BaseLeague

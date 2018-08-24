@@ -27,7 +27,7 @@ class EditTeam extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('logo', FileType::class)
+            ->add('logo', FileType::class, array('data_class' => null))
             ->add('players', CollectionType::class, array(
                 'entry_type'   => PlayerType::class,
                 'by_reference' => true,

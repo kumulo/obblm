@@ -6,6 +6,30 @@ services:
             - '@doctrine.orm.entity_manager'
         tags: ['bblm.tiebreaks']
 
+    bblm.tiebreaks.injury.taken:
+        class: BbLeagueBundle\Services\TieBreaks\InjuryLessTieBreak
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags: ['bblm.tiebreaks']
+
+    bblm.tiebreaks.injury.given:
+        class: BbLeagueBundle\Services\TieBreaks\InjuryPlusTieBreak
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags: ['bblm.tiebreaks']
+
+    bblm.tiebreaks.touchdown.scored:
+        class: BbLeagueBundle\Services\TieBreaks\TouchdownPlusTieBreak
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags: ['bblm.tiebreaks']
+
+    bblm.tiebreaks.touchdown.taken:
+        class: BbLeagueBundle\Services\TieBreaks\TouchdownLessTieBreak
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags: ['bblm.tiebreaks']
+
     bblm.tiebreaks:
         class: BbLeagueBundle\Services\TieBreakService
         arguments:

@@ -10,5 +10,9 @@ interface TieBreakInterface
     /*
      * Function to use to update the query
      */
-    public function updateTieBreakQuery ();
+    public function updateTieBreakQuery ($query);
+    /*
+     * Function to get the name in translations
+     */
+    public function getName();
 }
