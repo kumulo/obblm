@@ -21,5 +21,6 @@
 /node_modules/
 /.tmp/
 /.rules/
+/.idea/
 /.composer/
 /app/Resources/lib/
