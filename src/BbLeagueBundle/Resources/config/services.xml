@@ -10,7 +10,6 @@
         <parameter key="bb.forms.user.team.flow">BbLeagueBundle\Form\CreateTeamFlow</parameter>
         <parameter key="bb.forms.encounter.sheet.flow">BbLeagueBundle\Form\MatchSheetFlow</parameter>
         <parameter key="bb.forms.user.encounter.class">BbLeagueBundle\Form\Type\Encounter</parameter>
-        <parameter key="bb.forms.admin.league.class">BbLeagueBundle\Form\Type\League</parameter>
         <parameter key="bb.forms.admin.rule.class">BbLeagueBundle\Form\Type\Rule</parameter>
         <parameter key="bb.twig.extension.class">BbLeagueBundle\Twig\BbLeagueTwigExtension</parameter>
         <parameter key="bb.team.events.class">BbLeagueBundle\EventListener\TeamDoctrineEvents</parameter>
@@ -45,10 +44,6 @@
                 parent="craue.form.flow">
 			<argument type="service" id="translator" />
 			<argument type="service" id="bb.rules" />
-        </service>
-        <service id="bb.forms.admin.league" class="%bb.forms.admin.league.class%">
-			<argument type="service" id="bb.rules" />
-            <tag name="form.type" alias="obbml_forms_admin_league" />
         </service>
         <service id="bb.forms.admin.rule" class="%bb.forms.admin.rule.class%">
 			<argument type="service" id="bb.rules" />

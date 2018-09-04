@@ -13,7 +13,7 @@
                     </h2>
                     {% for key , league in leagues %}
                         {% if league.id is defined %}
-                        <a href="{{ path("admin_league_edit", {league_id: league.id}) }}">
+                        <a href="{{ path("admin_league_edit", {league: league.id}) }}">
                         {% endif %}
                         <article class="league clearfix">
                             <h3 class="league-name">{{ league.name }}</h3>

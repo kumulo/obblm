@@ -81,6 +81,22 @@ class League
     protected $points_for_lost = 0;
 
     /**
+     * @ORM\Column(name="tie_break_1", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    protected $tie_break_1 = "";
+
+    /**
+     * @ORM\Column(name="tie_break_2", type="string", length=255)
+     */
+    protected $tie_break_2 = "";
+
+    /**
+     * @ORM\Column(name="tie_break_3", type="string", length=255)
+     */
+    protected $tie_break_3 = "";
+
+    /**
      * @ORM\Column(name="valid", type="boolean")
      */
     protected $valid;
@@ -283,6 +299,78 @@ class League
     public function setPointsForLost($pointsForLost)
     {
         $this->points_for_lost = $pointsForLost;
+
+        return $this;
+    }
+
+    /**
+     * Get tie_break_1
+     *
+     * @return string
+     */
+    public function getTieBreak1()
+    {
+        return $this->tie_break_1;
+    }
+
+    /**
+     * Set tie_break_1
+     *
+     * @param string $tie_break_1
+     *
+     * @return League
+     */
+    public function setTieBreak1($tie_break_1)
+    {
+        $this->tie_break_1 = $tie_break_1;
+
+        return $this;
+    }
+
+    /**
+     * Get tie_break_2
+     *
+     * @return string
+     */
+    public function getTieBreak2()
+    {
+        return $this->tie_break_2;
+    }
+
+    /**
+     * Set tie_break_2
+     *
+     * @param string $tie_break_2
+     *
+     * @return League
+     */
+    public function setTieBreak2($tie_break_2)
+    {
+        $this->tie_break_2 = $tie_break_2;
+
+        return $this;
+    }
+
+    /**
+     * Get tie_break_3
+     *
+     * @return string
+     */
+    public function getTieBreak3()
+    {
+        return $this->tie_break_3;
+    }
+
+    /**
+     * Set tie_break_3
+     *
+     * @param string $tie_break_3
+     *
+     * @return League
+     */
+    public function setTieBreak3($tie_break_3)
+    {
+        $this->tie_break_3 = $tie_break_3;
 
         return $this;
     }

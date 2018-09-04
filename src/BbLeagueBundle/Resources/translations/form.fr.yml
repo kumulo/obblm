@@ -41,6 +41,9 @@ form:
       points_for_draw: Points pour un match nul
       points_for_lost: Points pour une défaite
       number_for_playoff: Nombre de joueurs qualifiés en playoff (0 pour pas de playoff)
+      tie_break_1: Tiebreak 1
+      tie_break_2: Tiebreak 2
+      tie_break_3: Tiebreak 3
   rule:
     add:
       submit: Enregistrer la règle

@@ -2,7 +2,8 @@
 
 namespace BbLeagueBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use BbLeagueBundle\Form\Type\LeagueType;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BbLeagueBundle\Entity\League;
@@ -38,7 +39,7 @@ class AdminController extends Controller
 
         $league = new League();
 
-        $form = $this->createForm('obbml_forms_admin_league', $league);
+        $form = $this->createForm(LeagueType::class, $league);
 
         $form->handleRequest($request);
 
@@ -56,19 +57,19 @@ class AdminController extends Controller
         ));
     }
     /**
-     * @Route("/league/edit/{league_id}", name="admin_league_edit")
+     * @Route("/league/edit/{league}", name="admin_league_edit")
      */
-    public function adminLeagueEditAction(Request $request, $league_id)
+    public function adminLeagueEditAction(Request $request, League $league)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $repo = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:League');
-
-        $league  = $repo->find($league_id);
         if(!$league) {
             return $this->redirectToRoute('admin_homepage');
         }
-        $form = $this->createForm('obbml_forms_admin_league', $league);
+        $form = $this->createForm(LeagueType::class, $league, [
+            'rules' => $this->get('bb.rules')->getRulesForForm(),
+            'available_tiebreaks' => $this->get('bblm.tiebreaks')->getTieBreaksForForm(),
+        ]);
 
         $form->handleRequest($request);
 
@@ -81,16 +82,16 @@ class AdminController extends Controller
                 $j0->setName('Enroll journey');
                 $j0->setLeague($league);
                 $league->addJourney($j0);
+                $em->persist($j0);
             }
             $em->persist($league);
-            $em->persist($j0);
             $em->flush();
             return $this->redirectToRoute('admin_homepage');
         }
 
-        return $this->render('BbLeagueBundle::Admin/league/add.html.twig', array(
+        return $this->render('BbLeagueBundle::Admin/league/add.html.twig', [
             'form' => $form->createView(),
-        ));
+        ]);
     }
     /**
      * @Route("/rule/add", name="admin_rule_add")

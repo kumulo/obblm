@@ -21,3 +21,37 @@ layout:
       team_edit: Edit team
       team_delete: Delete team
       my_teams: My teams
+  admin_space:
+    index:
+      title: Administrateur board
+  values:
+    tr: TR
+    score: Score
+    treasure: Treasure
+    points: Points
+    victory: Victories
+    draw: Draws
+    lost: Looses
+    touchdown: Touchdown
+    injury: Casulties
+    pass: Pass
+    cards: Fouls
+
+specials:
+  league_journey_count: J%count%
+sheet:
+  labels:
+    coach: Coach
+    roster: Roster
+    league: League
+    journey: Journey
+    place: Score board
+
+tiebreaks:
+  victory: (+) Victories
+  injury:
+    taken: (-) Casulties got
+    given: (+) Casulties done
+  touchdown:
+    taken: (-) Touchdowns got
+    scored: (+) Touchdowns scored

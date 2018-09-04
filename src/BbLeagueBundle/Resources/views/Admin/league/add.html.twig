@@ -50,6 +50,21 @@
             {{ form_errors(form.number_for_playoff) }}
         </div>
         <div class="field">
+            {{form_label(form.tie_break_1, 'form.league.label.tie_break_1')}}
+            {{form_widget(form.tie_break_1, {'attr': {class: 'ui fluid dropdown'} }) }}
+            {{ form_errors(form.tie_break_1) }}
+        </div>
+        <div class="field">
+            {{form_label(form.tie_break_2, 'form.league.label.tie_break_2')}}
+            {{form_widget(form.tie_break_2, {'attr': {class: 'ui fluid dropdown'} }) }}
+            {{ form_errors(form.tie_break_2) }}
+        </div>
+        <div class="field">
+            {{form_label(form.tie_break_3, 'form.league.label.tie_break_3')}}
+            {{form_widget(form.tie_break_3, {'attr': {class: 'ui fluid dropdown'} }) }}
+            {{ form_errors(form.tie_break_3) }}
+        </div>
+        <div class="field">
             {{form_widget(form.save, {'label': 'form.league.add.submit', 'attr': {class: 'ui button'}})}}
         </div>
     {{ form_end(form) }}

@@ -26,10 +26,10 @@ class RulesService {
         $rules = array();
         foreach($this->available_rules as $key => $rule) {
             if($rule->getId()) {
-                $rules[$rule->getRuleKey()] = $rule->getName();
+                $rules[$rule->getName()] = $rule->getRuleKey();
             }
             else {
-                $rules[$key] = $this->translator->trans('rules.' . $key . '.title', array(), 'rules');
+                $rules[$this->translator->trans('rules.' . $key . '.title', array(), 'rules')] = $key;
             }
         }
         return $rules;

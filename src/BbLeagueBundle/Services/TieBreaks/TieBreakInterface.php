@@ -15,4 +15,8 @@ interface TieBreakInterface
      * Function to get the name in translations
      */
     public function getName();
+    /*
+     * Function to get the name in translations
+     */
+    public function getClassName();
 }

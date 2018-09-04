@@ -60,3 +60,11 @@ sheet:
         league: Ligue
         journey: Journée
         place: Classement
+tiebreak:
+  victory: (+) De victoires
+  injury:
+    taken: (-) Sorties encaissés
+    given: (+) Sorties causées
+  touchdown:
+    taken: (-) Touchdowns encaissés
+    scored: (+) Touchdowns marqués

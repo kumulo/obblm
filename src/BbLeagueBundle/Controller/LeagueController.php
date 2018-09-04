@@ -2,9 +2,10 @@
 
 namespace BbLeagueBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\VarDumper\VarDumper;
 
 class LeagueController extends Controller
 {
@@ -36,7 +37,6 @@ class LeagueController extends Controller
      */
     public function resultsAction(Request $request, $league_id)
     {
-
         $repo = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:League');
 
         $league  = $repo->find($league_id);
@@ -48,6 +48,10 @@ class LeagueController extends Controller
         if(!$this->getUser()->hasRole('ROLE_SUPER_ADMIN') && !in_array($league, $leagues)) {
             throw $this->createNotFoundException('You are not involved in this league');
         }
+        
+        $tiebreaks = $this->get('bblm.tiebreaks');
+        VarDumper::dump($tiebreaks);
+        
         return $this->render('BbLeagueBundle::League/results.html.twig', array(
             'league' => $league,
         ));
