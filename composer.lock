@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98cb11d827f5a9f6c2128f57b1b912c2",
+    "content-hash": "92c922ae27c68f4d28c16259de81e994",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1479,12 +1479,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "d41c5a9b95075e6bd95ffa11746514e3e9630539"
+                "reference": "44b626e503d29193b338ad672f7fc63018f27245"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/d41c5a9b95075e6bd95ffa11746514e3e9630539",
-                "reference": "d41c5a9b95075e6bd95ffa11746514e3e9630539",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/44b626e503d29193b338ad672f7fc63018f27245",
+                "reference": "44b626e503d29193b338ad672f7fc63018f27245",
                 "shasum": ""
             },
             "require": {
@@ -1547,7 +1547,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2018-08-07T11:18:06+00:00"
+            "time": "2018-08-30T11:39:52+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -2319,20 +2319,20 @@
         },
         {
             "name": "nelmio/api-doc-bundle",
-            "version": "v3.2.1",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "2c72aa4efff07862514aaf2cf078fabc58c465d6"
+                "reference": "99833189fd963ba75c5b6a99d91fe5485201c0f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/2c72aa4efff07862514aaf2cf078fabc58c465d6",
-                "reference": "2c72aa4efff07862514aaf2cf078fabc58c465d6",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/99833189fd963ba75c5b6a99d91fe5485201c0f3",
+                "reference": "99833189fd963ba75c5b6a99d91fe5485201c0f3",
                 "shasum": ""
             },
             "require": {
-                "exsyst/swagger": "~0.3|~0.4",
+                "exsyst/swagger": "^0.4.1",
                 "php": "^7.0",
                 "phpdocumentor/reflection-docblock": "^3.1|^4.0",
                 "symfony/framework-bundle": "^3.4|^4.0",
@@ -2354,12 +2354,13 @@
                 "symfony/console": "^3.4|^4.0",
                 "symfony/dom-crawler": "^3.4|^4.0",
                 "symfony/form": "^3.4|^4.0",
-                "symfony/phpunit-bridge": "^3.4",
+                "symfony/phpunit-bridge": "^3.4|^4.0",
                 "symfony/property-access": "^3.4|^4.0",
                 "symfony/stopwatch": "^3.4|^4.0",
                 "symfony/templating": "^3.4|^4.0",
                 "symfony/twig-bundle": "^3.4|^4.0",
-                "symfony/validator": "^3.4|^4.0"
+                "symfony/validator": "^3.4|^4.0",
+                "willdurand/hateoas-bundle": "^1.0"
             },
             "suggest": {
                 "api-platform/core": "For using an API oriented framework.",
@@ -2397,7 +2398,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2018-04-27T17:36:50+00:00"
+            "time": "2018-08-29T23:10:36+00:00"
         },
         {
             "name": "ornicar/gravatar-bundle",
@@ -3816,20 +3817,20 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "f50e17fa4edd6216f7fe5b908f04e64ba1d19a9e"
+                "reference": "5bb5c2d4b0d5cf10672015b68519a199e6ac27c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/f50e17fa4edd6216f7fe5b908f04e64ba1d19a9e",
-                "reference": "f50e17fa4edd6216f7fe5b908f04e64ba1d19a9e",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/5bb5c2d4b0d5cf10672015b68519a199e6ac27c1",
+                "reference": "5bb5c2d4b0d5cf10672015b68519a199e6ac27c1",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": "~2.4@stable",
+                "doctrine/common": "~2.4",
                 "ext-xml": "*",
                 "fig/link-util": "^1.0",
                 "php": "^5.5.9|>=7.0.8",
@@ -3917,7 +3918,7 @@
                 "doctrine/data-fixtures": "1.0.*",
                 "doctrine/dbal": "~2.4",
                 "doctrine/doctrine-bundle": "~1.4",
-                "doctrine/orm": "~2.4,>=2.4.5,<=2.7.0",
+                "doctrine/orm": "~2.4,>=2.4.5",
                 "egulias/email-validator": "~1.2,>=1.2.8|~2.0",
                 "monolog/monolog": "~1.11",
                 "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
@@ -3967,7 +3968,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2018-08-01T14:48:04+00:00"
+            "time": "2018-08-28T06:06:28+00:00"
         },
         {
             "name": "twig/extensions",
@@ -5517,16 +5518,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "4519412e6b503e3ca4ef43fb6a92b75fb5667824"
+                "reference": "f4fde1ede82c7ca2a4f06cf48521a185b26c0fed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/4519412e6b503e3ca4ef43fb6a92b75fb5667824",
-                "reference": "4519412e6b503e3ca4ef43fb6a92b75fb5667824",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/f4fde1ede82c7ca2a4f06cf48521a185b26c0fed",
+                "reference": "f4fde1ede82c7ca2a4f06cf48521a185b26c0fed",
                 "shasum": ""
             },
             "require": {
@@ -5579,7 +5580,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:19:56+00:00"
+            "time": "2018-08-27T15:17:06+00:00"
         },
         {
             "name": "theseer/tokenizer",

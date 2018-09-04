@@ -16,6 +16,7 @@
     "require": {
         "php": ">=7.1",
         "craue/formflow-bundle": "~3.0",
+        "doctrine/common": "^2.8.1",
         "doctrine/doctrine-bundle": "~1.6",
         "doctrine/doctrine-fixtures-bundle": "~3.0",
         "doctrine/orm": "~2.5",

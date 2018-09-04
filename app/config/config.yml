@@ -30,6 +30,9 @@ framework:
     http_method_override: true
 #    validation: { enable_annotations: true }
 
+sensio_framework_extra:
+    router:      { annotations: false }
+
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"

@@ -2,6 +2,7 @@
 
 namespace BbLeagueBundle\Tests\Controller;
 
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Cookie;
