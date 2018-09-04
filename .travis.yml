@@ -21,7 +21,7 @@ matrix:
     - php: hhvm
 
 env:
-  - SYMFONY_VERSION="3.4.*" DB=mysql
+  - SYMFONY_VERSION="3.4.*" DB=mysql SYMFONY_DEPRECATIONS_HELPER="/src/"
 
 node_js:
   - "4.1"
