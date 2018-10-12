@@ -1,26 +1,55 @@
-{% form_theme sheet.home_skills.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
-{% form_theme sheet.visitor_skills.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
-<div class="ui two column stackable grid clearfix">
-    <div class="left-part column home">
-        {{form_label(sheet.home_skills, 'form.encounter.label.home_skills')}}
-        <table id="home-skills" class="skills field" data-prototype="{{ form_widget(sheet.home_skills.vars.prototype)|e('html_attr') }}">
-        {% for skill in sheet.home_skills %}
-            {{ form_widget(skill, { 'attr': {'class': 'lineaction'}}) }}
-        {% endfor %}
-        </table>
-        <a href="#" class="add-another-action ui button positive flipable" list-selector="#home-skills" list-count="{{ sheet.home_skills|length }}"><span class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_skill{% endtrans %}</span><i class="plus icon"></i></a>
-        {{form_widget(sheet.home_skills)}}
-        {{ form_errors(sheet.home_skills) }}
+{% extends 'BbLeagueBundle:Encounters:form/encounter-form.html.twig' %}
+
+{% block encounterstep %}
+    {% form_theme sheet.home_skills.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
+    {% form_theme sheet.visitor_skills.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
+    <h2 class="title">{% trans from 'form' %}form.encounter.sheet.steps.step3.title{% endtrans %}</h2>
+    <div class="ui two column stackable grid clearfix">
+        <div class="left-part column home">
+            {{ form_label(sheet.home_skills, 'form.encounter.label.home_skills') }}
+            <table id="home-skills" class="skills field"
+                   data-prototype="{{ form_widget(sheet.home_skills.vars.prototype)|e('html_attr') }}">
+                {% for skill in sheet.home_skills %}
+                    {{ form_widget(skill, { 'attr': {'class': 'lineaction'}}) }}
+                {% endfor %}
+            </table>
+            <a href="#" class="add-another-action ui button positive flipable" list-selector="#home-skills"
+               list-count="{{ sheet.home_skills|length }}"><span
+                        class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_skill{% endtrans %}</span><i
+                        class="plus icon"></i></a>
+            {{ form_widget(sheet.home_skills) }}
+            {{ form_errors(sheet.home_skills) }}
+        </div>
+        <div class="right-part column visitor">
+            {{ form_label(sheet.visitor_skills, 'form.encounter.label.visitor_skills') }}
+            <table id="visitor-skills" class="skills field"
+                   data-prototype="{{ form_widget(sheet.visitor_skills.vars.prototype)|e('html_attr') }}">
+                {% for skill in sheet.visitor_skills %}
+                    {{ form_widget(skill, { 'attr': {'class': 'lineaction'}}) }}
+                {% endfor %}
+            </table>
+            <a href="#" class="add-another-action ui button positive flipable" list-selector="#visitor-skills"
+               list-count="{{ sheet.visitor_skills|length }}"><span
+                        class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_skill{% endtrans %}</span><i
+                        class="plus icon"></i></a>
+            {{ form_widget(sheet.visitor_skills) }}
+            {{ form_errors(sheet.visitor_skills) }}
+        </div>
     </div>
-    <div class="right-part column visitor">
-        {{form_label(sheet.visitor_skills, 'form.encounter.label.visitor_skills')}}
-        <table id="visitor-skills" class="skills field" data-prototype="{{ form_widget(sheet.visitor_skills.vars.prototype)|e('html_attr') }}">
-        {% for skill in sheet.visitor_skills %}
-           {{ form_widget(skill, { 'attr': {'class': 'lineaction'}}) }}
-        {% endfor %}
-        </table>
-        <a href="#" class="add-another-action ui button positive flipable" list-selector="#visitor-skills" list-count="{{ sheet.visitor_skills|length }}"><span class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_skill{% endtrans %}</span><i class="plus icon"></i></a>
-        {{form_widget(sheet.visitor_skills)}}
-        {{ form_errors(sheet.visitor_skills) }}
+    <div class="ui two column stackable grid clearfix">
+        <div class="left-part column home">
+            {{ form_label(sheet.home_money, 'form.encounter.label.home_money') }}
+            {{ form_widget(sheet.home_money) }}
+            {{ form_errors(sheet.home_money) }}
+        </div>
+        <div class="right-part column visitor">
+            {{ form_label(sheet.visitor_money, 'form.encounter.label.visitor_money') }}
+            {{ form_widget(sheet.visitor_money) }}
+            {{ form_errors(sheet.visitor_money) }}
+        </div>
     </div>
-</div>
+    <div class="field">
+        <input type="submit" value="{% trans from 'form' %}form.encounter.sheet.submit{% endtrans %}" class="ui button">
+    </div>
+    {{ form_end(sheet) }}
+{% endblock %}

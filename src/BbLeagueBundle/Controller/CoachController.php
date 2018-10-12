@@ -2,15 +2,14 @@
 
 namespace BbLeagueBundle\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use BbLeagueBundle\Entity\Team;
 use BbLeagueBundle\Entity\TeamByJourney;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use BbLeagueBundle\Form\EditTeam;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use BbLeagueBundle\Form\EditTeam;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class CoachController extends Controller
 {
@@ -31,7 +30,7 @@ class CoachController extends Controller
         $team = new Team();
         $team->setCoach($this->getUser());
 
-        $flow = $this->get('bb.forms.user.team'); // must match the flow's service id
+        $flow = $this->get('bb.forms.user.team'); // must encounter the flow's service id
         $flow->bind($team);
         $form = $flow->createForm();
         if ($flow->isValid($form)) {

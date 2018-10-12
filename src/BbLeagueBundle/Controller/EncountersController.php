@@ -2,9 +2,14 @@
 
 namespace BbLeagueBundle\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
+use BbLeagueBundle\Entity\Encounter;
+use BbLeagueBundle\Entity\Team;
+use BbLeagueBundle\Form\EncounterStep1Type;
+use BbLeagueBundle\Form\EncounterStep2Type;
+use BbLeagueBundle\Form\EncounterStep3Type;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class EncountersController extends Controller
 {
@@ -18,22 +23,19 @@ class EncountersController extends Controller
         ));
     }
     /**
-     * @Route("/{match_id}", name="encounter")
+     * @Route("/{encounter}", name="encounter")
      */
-    public function encounterDetailAction(Request $request, $match_id)
+    public function encounterDetailAction(Request $request, Encounter $encounter)
     {
         return $this->render('BbLeagueBundle::Encounters/index.html.twig', array(
             'coach' => $this->getUser(),
         ));
     }
     /**
-     * @Route("/team/{team_id}", name="encounter_by_team")
+     * @Route("/team/{team}", name="encounter_by_team")
      */
-    public function encountersByTeamAction(Request $request, $team_id)
+    public function encountersByTeamAction(Request $request, Team $team)
     {
-        $repo = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:Team');
-        $team  = $repo->find($team_id);
-
         if(!$team) {
             throw $this->createNotFoundException('The team does not exist');
         }
@@ -59,7 +61,9 @@ class EncountersController extends Controller
         }
         return $objects;
     }
-    private function parseDatasForForm($encounter) {
+
+    private function parseDatasForForm(Encounter $encounter)
+    {
         $repoP = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:Player');
 
         // Home
@@ -84,7 +88,9 @@ class EncountersController extends Controller
 
         return $encounter;
     }
-    private function parseDatasForSave($encounter) {
+
+    private function parseDatasForSave(Encounter $encounter)
+    {
 
         // Home
         $actions = $this->playersToId($encounter->getHomeActions());
@@ -109,30 +115,36 @@ class EncountersController extends Controller
         return $encounter;
     }
     /**
-     * @Route("/encounter/{encounter_id}", name="encounter_sheet")
+     * @Route("/encounter/{encounter}", name="encounter_sheet")
      */
-    public function encounterSheetAction(Request $request, $encounter_id)
+    public function encounterSheetAction(Request $request, Encounter $encounter)
     {
         $em = $this->get('doctrine')->getManager();
-        $repo  = $em->getRepository('BbLeagueBundle:Match');
-        $repoP = $em->getRepository('BbLeagueBundle:Player');
 
-        $encounter = $repo->find($encounter_id);
-        $template = 'BbLeagueBundle::Encounters/edit.html.twig';
+        $template = 'BbLeagueBundle::Encounters/form/step1.html.twig';
         if(!$encounter) {
-            throw $this->createNotFoundException('The team does not exist');
+            throw $this->createNotFoundException('The encounter does not exist');
         }
-        if($encounter->getValid()) {
+        if ($encounter->getValid()) {
             //$this->denyAccessUnlessGranted('ROLE_ADMIN');
             $template = 'BbLeagueBundle::Encounters/view.html.twig';
-        }
-        else if($encounter->getTeam()->getCoach() != $this->getUser() &&
+        } else {
+            if ($encounter->getTeam()->getCoach() != $this->getUser() &&
                 $encounter->getVisitor()->getCoach() != $this->getUser()) {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN');
+                $this->denyAccessUnlessGranted('ROLE_ADMIN');
+            }
         }
         $encounter = $this->parseDatasForForm($encounter);
 
-        $form = $this->createForm('obbml_forms_user_encounter', $encounter);
+        $rule = $this->get('bb.rules')->getRule('lrb6');
+
+        $form = $this->createForm(
+            EncounterStep1Type::class,
+            $encounter,
+            [
+                'rule' => $rule,
+            ]
+        );
 
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -143,7 +155,111 @@ class EncountersController extends Controller
             $em->persist($encounter);
             $em->flush();
 
-            return $this->redirectToRoute('encounter_sheet', array('encounter_id' => $encounter->getId()));
+            return $this->redirectToRoute('encounter_sheet_step2', array('encounter' => $encounter->getId()));
+        }
+
+        return $this->render(
+            $template,
+            array(
+                'encounter' => $encounter,
+                'sheet' => $form->createView(),
+            )
+        );
+    }
+
+    /**
+     * @Route("/encounter/{encounter}/actions", name="encounter_sheet_step2")
+     */
+    public function encounterSheetStep2Action(Request $request, Encounter $encounter)
+    {
+        $em = $this->get('doctrine')->getManager();
+
+        $template = 'BbLeagueBundle::Encounters/form/step2.html.twig';
+        if (!$encounter) {
+            throw $this->createNotFoundException('The encounter does not exist');
+        }
+        if ($encounter->getValid()) {
+            //$this->denyAccessUnlessGranted('ROLE_ADMIN');
+            $template = 'BbLeagueBundle::Encounters/view.html.twig';
+        } else {
+            if ($encounter->getTeam()->getCoach() != $this->getUser() &&
+                $encounter->getVisitor()->getCoach() != $this->getUser()) {
+                $this->denyAccessUnlessGranted('ROLE_ADMIN');
+            }
+        }
+        $encounter = $this->parseDatasForForm($encounter);
+
+        $rule = $this->get('bb.rules')->getRule('lrb6');
+
+        $form = $this->createForm(
+            EncounterStep2Type::class,
+            $encounter,
+            [
+                'rule' => $rule,
+            ]
+        );
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $encounter = $this->parseDatasForSave($encounter);
+
+            $em->persist($encounter);
+            $em->flush();
+
+            return $this->redirectToRoute('encounter_sheet', array('encounter' => $encounter->getId()));
+        }
+
+        return $this->render(
+            $template,
+            array(
+                'encounter' => $encounter,
+                'sheet' => $form->createView(),
+            )
+        );
+    }
+
+    /**
+     * @Route("/encounter/{encounter}/endgame", name="encounter_sheet_step3")
+     */
+    public function encounterSheetStep3Action(Request $request, Encounter $encounter)
+    {
+        $em = $this->get('doctrine')->getManager();
+
+        $template = 'BbLeagueBundle::Encounters/form/step3.html.twig';
+        if (!$encounter) {
+            throw $this->createNotFoundException('The encounter does not exist');
+        }
+        if($encounter->getValid()) {
+            //$this->denyAccessUnlessGranted('ROLE_ADMIN');
+            $template = 'BbLeagueBundle::Encounters/view.html.twig';
+        }
+        else if($encounter->getTeam()->getCoach() != $this->getUser() &&
+            $encounter->getVisitor()->getCoach() != $this->getUser()) {
+            $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        }
+        $encounter = $this->parseDatasForForm($encounter);
+
+        $rule = $this->get('bb.rules')->getRule('lrb6');
+
+        $form = $this->createForm(
+            EncounterStep3Type::class,
+            $encounter,
+            [
+                'rule' => $rule,
+            ]);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $encounter = $this->parseDatasForSave($encounter);
+
+            $em->persist($encounter);
+            $em->flush();
+
+            return $this->redirectToRoute('encounter_sheet', array('encounter' => $encounter->getId()));
         }
         return $this->render($template, array(
             'encounter' => $encounter,

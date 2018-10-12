@@ -58,8 +58,8 @@
                     <span title="{% trans from dictionnary %}lrb6.trait.value.title{% endtrans %}">{% trans from dictionnary %}lrb6.trait.value.abbr{% endtrans %}</span>
                 </th>
             </tr>
-            {% for i, pj in journey.basePlayers %}
-            <tr class="{{ cycle(['odd', 'even'], i) }}{{ pj.injuries ? ' injured' : ''}}">
+            {% for pj in journey.basePlayers %}
+                <tr class="{{ cycle(['odd', 'even'], loop.index) }}{{ pj.injuries ? ' injured' : '' }}">
                 {% include 'BbLeagueBundle:Team:player-row.html.twig' with {pj: pj, dictionnary: dictionnary} %}
             </tr>
             {% endfor %}

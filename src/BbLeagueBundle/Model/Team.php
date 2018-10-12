@@ -75,14 +75,14 @@ abstract class Team
     protected $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="BbLeagueBundle\Entity\Match", mappedBy="team", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="BbLeagueBundle\Entity\Encounter", mappedBy="team", cascade={"persist"})
      */
-    protected $matchs;
+    protected $encounters;
 
     /**
-     * @ORM\OneToMany(targetEntity="BbLeagueBundle\Entity\Match", mappedBy="visitor", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="BbLeagueBundle\Entity\Encounter", mappedBy="visitor", cascade={"persist"})
      */
-    protected $matchs_has_visitor;
+    protected $encounters_has_visitor;
 
     /**
      * @ORM\Column(name="base_reroll_value", type="integer", length=8)
@@ -116,8 +116,8 @@ abstract class Team
     {
         $this->journeys             = new \Doctrine\Common\Collections\ArrayCollection();
         $this->players              = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->matchs               = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->matchs_has_visitor   = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->encounters = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->encounters_has_visitor = new \Doctrine\Common\Collections\ArrayCollection();
         $this->created_at           = new \DateTime();
         $this->updated_at           = new \DateTime();
         $this->base_reroll_value    = 0;
@@ -313,71 +313,71 @@ abstract class Team
     }
 
     /**
-     * Add match
+     * Add encounter
      *
-     * @param \BbLeagueBundle\Entity\Match $match
+     * @param \BbLeagueBundle\Entity\Encounter $encounter
      *
      * @return Team
      */
-    public function addMatch(\BbLeagueBundle\Entity\Match $match)
+    public function addEncounter(\BbLeagueBundle\Entity\Encounter $encounter)
     {
-        $this->matchs[] = $match;
+        $this->encounters[] = $encounter;
 
         return $this;
     }
 
     /**
-     * Remove match
+     * Remove encounter
      *
-     * @param \BbLeagueBundle\Entity\Match $match
+     * @param \BbLeagueBundle\Entity\Encounter $encounter
      */
-    public function removeMatch(\BbLeagueBundle\Entity\Match $match)
+    public function removeEncounter(\BbLeagueBundle\Entity\Encounter $encounter)
     {
-        $this->matchs->removeElement($match);
+        $this->encounters->removeElement($encounter);
     }
 
     /**
-     * Get matchs
+     * Get encounters
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMatchs()
+    public function getEncounters()
     {
-        return $this->matchs;
+        return $this->encounters;
     }
 
     /**
-     * Add matchsHasVisitor
+     * Add encountersHasVisitor
      *
-     * @param \BbLeagueBundle\Entity\Match $matchsHasVisitor
+     * @param \BbLeagueBundle\Entity\Encounter $encountersHasVisitor
      *
      * @return Team
      */
-    public function addMatchsHasVisitor(\BbLeagueBundle\Entity\Match $matchsHasVisitor)
+    public function addEncountersHasVisitor(\BbLeagueBundle\Entity\Encounter $encountersHasVisitor)
     {
-        $this->matchs_has_visitor[] = $matchsHasVisitor;
+        $this->encounters_has_visitor[] = $encountersHasVisitor;
 
         return $this;
     }
 
     /**
-     * Remove matchsHasVisitor
+     * Remove encountersHasVisitor
      *
-     * @param \BbLeagueBundle\Entity\Match $matchsHasVisitor
+     * @param \BbLeagueBundle\Entity\Encounter $encountersHasVisitor
      */
-    public function removeMatchsHasVisitor(\BbLeagueBundle\Entity\Match $matchsHasVisitor)
+    public function removeEncountersHasVisitor(\BbLeagueBundle\Entity\Encounter $encountersHasVisitor)
     {
-        $this->matchs_has_visitor->removeElement($matchsHasVisitor);
+        $this->encounters_has_visitor->removeElement($encountersHasVisitor);
     }
 
     /**
-     * Get matchsHasVisitor
+     * Get encountersHasVisitor
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMatchsHasVisitor()
+    public function getEncountersHasVisitor()
     {
-        return $this->matchs_has_visitor;
+        return $this->encounters_has_visitor;
     }
 
     /**

@@ -4,10 +4,8 @@
 namespace BbLeagueBundle\Entity;
 
 use BbLeagueBundle\Model\Team as BaseTeam;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use BbLeagueBundle\Entity\TeamByJourney;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -17,38 +15,40 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Team extends BaseTeam
 {
 
+    protected $last_journey;
+
     /**
-     * Get matchs
+     * Get encounters
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMatchs() {
-        $realmatchs = new ArrayCollection();
-        $matchs = array_merge(
-            ($this->matchs) ? iterator_to_array($this->matchs) : array(),
-            ($this->matchs_has_visitor) ? iterator_to_array($this->matchs_has_visitor) : array()
+    /*public function getEncounters() {
+        $realencounters = new ArrayCollection();
+        $encounters = array_merge(
+            ($this->encounters) ? iterator_to_array($this->encounters) : array(),
+            ($this->encounters_has_visitor) ? iterator_to_array($this->encounters_has_visitor) : array()
         );
-        if($matchs) {
-            foreach($matchs as $match) {
-                $realmatchs->add($match);
+        if($encounters) {
+            foreach($encounters as $encounter) {
+                $realencounters->add($encounter);
             }
             $criteria = Criteria::create()
                 ->orderBy(array("id" => Criteria::ASC))
             ;
-            return $realmatchs->matching($criteria);
+            return $realencounters->encountering($criteria);
         }
-        return $realmatchs;
-    }
-    public function getEncounters() {
+        return $realencounters;
+    }*/
+    public function getContestants()
+    {
         $encounters = new ArrayCollection();
-        foreach($this->getMatchs() as $match) {
-            $encounters->add( ($match->getTeam() == $this) ? $match->getVisitor() : $match->getTeam() );
+        /** @var Encounter $encounter */
+        foreach ($this->encounters as $encounter) {
+            $encounters->add(($encounter->getTeam() == $this) ? $encounter->getVisitor() : $encounter->getTeam());
         }
 
         return $encounters;
     }
-
-    protected $last_journey;
 
     public function getLastJourney()
     {
@@ -61,8 +61,6 @@ class Team extends BaseTeam
         foreach($this->getJourneys() as $journey) {
             if($requested_journey == $journey->getJourney()) return $journey;
         }
-        dump($requested_journey);
-        dump($this->getJourneys());
         return $this->getLastJourney();
     }
 

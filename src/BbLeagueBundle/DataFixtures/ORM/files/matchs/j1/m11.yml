@@ -5,7 +5,7 @@ BbLeagueBundle\Entity\TeamByJourney:
     tj11:
         team:           '@team1'
         journey:        '@j1'
-        match:          '@m11'
+        encounter:      '@m11'
         draw_match:     1
         td_give:        1
         td_take:        1
@@ -15,7 +15,7 @@ BbLeagueBundle\Entity\TeamByJourney:
     tj21:
         team:           '@team2'
         journey:        '@j1'
-        match:          '@m11'
+        encounter:      '@m11'
         draw_match:     1
         td_give:        1
         td_take:        1

@@ -1,28 +1,31 @@
 {% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
 
 {% block body %}
-    <ul>
-    {% for i, team in coach.teams %}
-        <li class="{{ cycle(['odd', 'even'], i) }}">
-            <h2>{{ team.name }}</h2>
-            <ul>
-            {% for j, match in team.matchs %}
-                <li class="{{ cycle(['odd', 'even'], j) }}">
-                    {{ match.journey.name }}
-                    <div>{{ match.team.name }} VS {{ match.visitor.name }}</div>
-                    {% if team.league.currentJourney >= match.journey %}
-                    <div>
-                        {% if match.valid %}
-                        Journée close
-                        {% else %}
-                        <a class="button button-basic" href="{{ path('encounter_sheet', {encounter_id: match.id}) }}">{{ 'layout.leagues.index.show_results'|trans }}</a>
-                        {% endif %}
-                    </div>
-                    {% endif %}
+    <section id="content-form" class="content normal-content clearfix">
+        <ul>
+            {% for i, team in coach.teams %}
+                <li class="{{ cycle(['odd', 'even'], i) }}">
+                    <h2>{{ team.name }}</h2>
+                    <ul>
+                        {% for j, encounter in team.encounters %}
+                            <li class="{{ cycle(['odd', 'even'], j) }}">
+                                {{ encounter.journey.name }}
+                                <div>{{ encounter.team.name }} VS {{ encounter.visitor.name }}</div>
+                                {% if team.league.currentJourney >= encounter.journey %}
+                                    <div>
+                                        {% if match.valid %}
+                                            Journée close
+                                        {% else %}
+                                            <a class="button button-basic"
+                                               href="{{ path('encounter_sheet', {encounter_id: encounter.id}) }}">{{ 'layout.leagues.index.show_results'|trans }}</a>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </li>
             {% endfor %}
-            </ul>
-        </li>
-    {% endfor %}
-    </ul>
+        </ul>
+    </section>
 {% endblock body %}

@@ -69,9 +69,12 @@ form:
         add_skill: Ajouter une compétence
     label:
       weather: Météo
+      field: Terrain
       home_actions: Mes actions
       visitor_actions: Actions de mon adversaire
       home_injuries: Mes blessures
       visitor_injuries: Blessures de mon adversaire
       home_skills: Mes compétences
       visitor_skills: Compétences de mon adversaire
+      home_money: Mes gains
+      visitor_money: Gains de mon adversaire

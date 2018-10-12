@@ -35,10 +35,10 @@ abstract class Journey
     protected $teams;
 
     /**
-     * @ORM\OneToMany(targetEntity="BbLeagueBundle\Entity\Match", mappedBy="journey", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="BbLeagueBundle\Entity\Encounter", mappedBy="journey", cascade={"remove"})
      * @ORM\OrderBy({"id" = "DESC"})
      */
-    protected $matchs;
+    protected $encounters;
 
     /**
      * @ORM\ManyToOne(targetEntity="BbLeagueBundle\Entity\League", inversedBy="journeys", cascade={"persist"})
@@ -144,36 +144,36 @@ abstract class Journey
     }
 
     /**
-     * Add match
+     * Add encounter
      *
-     * @param \BbLeagueBundle\Entity\Match $match
+     * @param \BbLeagueBundle\Entity\Encounter $encounter
      *
      * @return Journey
      */
-    public function addMatch(\BbLeagueBundle\Entity\Match $match)
+    public function addEncounter(\BbLeagueBundle\Entity\Encounter $encounter)
     {
-        $this->matchs[] = $match;
+        $this->encounters[] = $encounter;
 
         return $this;
     }
 
     /**
-     * Remove match
+     * Remove encounter
      *
-     * @param \BbLeagueBundle\Entity\Match $match
+     * @param \BbLeagueBundle\Entity\Encounter $encounter
      */
-    public function removeMatch(\BbLeagueBundle\Entity\Match $match)
+    public function removeEncounter(\BbLeagueBundle\Entity\Encounter $encounter)
     {
-        $this->matchs->removeElement($match);
+        $this->encounters->removeElement($encounter);
     }
 
     /**
-     * Get matchs
+     * Get encounters
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMatchs()
+    public function getEncounters()
     {
-        return $this->matchs;
+        return $this->encounters;
     }
 }

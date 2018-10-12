@@ -52,6 +52,11 @@ class LeagueType extends AbstractType
         ]);
 
     }
+
+    public function getBlockPrefix()
+    {
+        return 'weather';
+    }
     public function getName()
     {
         return 'obbml_forms_admin_league';

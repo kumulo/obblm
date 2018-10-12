@@ -4,11 +4,12 @@
 namespace BbLeagueBundle\Entity;
 
 use BbLeagueBundle\Model\TeamByJourney as BaseTeamByJourney;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\Mapping as ORM;
+use Faker\Test\Provider\Collection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BbLeagueBundle\Repository\TeamByJourneyRepository")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="bbl_team_by_journey")
  */
@@ -33,6 +34,7 @@ class TeamByJourney extends BaseTeamByJourney
     }
 
     public function getAvailaiblePlayers() {
+        /** @var Collection $playerCollection */
         $playerCollection = $this->getPlayers();
         $criteria = Criteria::create()
             ->where(Criteria::expr()->eq("dismiss", false))
@@ -68,9 +70,9 @@ class TeamByJourney extends BaseTeamByJourney
         $league = $this->team->getLeague();
         $this->points = 0;
 
-        $this->points += $this->win_match  * $league->getPointsForWin();
-        $this->points += $this->draw_match * $league->getPointsForDraw();
-        $this->points += $this->lost_match * $league->getPointsForLost();
+        $this->points += $this->win_encounter * $league->getPointsForWin();
+        $this->points += $this->draw_encounter * $league->getPointsForDraw();
+        $this->points += $this->lost_encounter * $league->getPointsForLost();
     }
 
     public function getRosterRules()
@@ -147,9 +149,9 @@ class TeamByJourney extends BaseTeamByJourney
             'assistants'    => $this->assistants,
             'cheerleaders'  => $this->cheerleaders,
             'points'        => $this->getPoints(),
-            'win_match'     => $this->win_match,
-            'draw_match'    => $this->draw_match,
-            'lost_match'    => $this->lost_match,
+            'win_encounter' => $this->win_encounter,
+            'draw_encounter' => $this->draw_encounter,
+            'lost_encounter' => $this->lost_encounter,
             'td_give'       => $this->td_give,
             'td_take'       => $this->td_take,
             'injury_give'   => $this->injury_give,

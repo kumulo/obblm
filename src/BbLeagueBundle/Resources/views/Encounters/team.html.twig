@@ -2,10 +2,10 @@
 
 {% block body %}
     <ul>
-    {% for i, match in team.matchs %}
+        {% for i, encounter in team.encounters %}
         <li class="{{ cycle(['odd', 'even'], i) }}">
-            {{ match.journey.name }}
-            <div>{{ match.team.name }} VS {{ match.visitor.name }}</div>
+            {{ encounter.journey.name }}
+            <div>{{ encounter.team.name }} VS {{ encounter.visitor.name }}</div>
         </li>
     {% endfor %}
     </ul>

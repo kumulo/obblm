@@ -1,17 +1,18 @@
 <?php
-// src/BbLeagueBundle/Model/Match.php
+// src/BbLeagueBundle/Model/Encounter.php
 
 /*
- * Match has a Team
- * Match has a "visitor" Team
+ * Encounter has a Team
+ * Encounter has a "visitor" Team
  */
 
 namespace BbLeagueBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /** @ORM\MappedSuperclass */
-class Match
+class Encounter
 {
     /**
      * @ORM\Id
@@ -21,22 +22,22 @@ class Match
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BbLeagueBundle\Entity\Team", inversedBy="matchs", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="BbLeagueBundle\Entity\Team", inversedBy="encounters", cascade={"persist"})
      */
     protected $team;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BbLeagueBundle\Entity\Team", inversedBy="matchs_has_visitor", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="BbLeagueBundle\Entity\Team", inversedBy="encounters_has_visitor", cascade={"persist"})
      */
     protected $visitor;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BbLeagueBundle\Entity\Journey", inversedBy="matchs", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="BbLeagueBundle\Entity\Journey", inversedBy="encounters", cascade={"persist"})
      */
     protected $journey;
 
     /**
-     * @ORM\OneToMany(targetEntity="BbLeagueBundle\Entity\TeamByJourney", mappedBy="match", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="BbLeagueBundle\Entity\TeamByJourney", mappedBy="encounter", cascade={"remove"})
      */
     protected $teams_by_journey;
 
@@ -44,6 +45,11 @@ class Match
      * @ORM\Column(type="integer", nullable=true)
      */
     protected $weather;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $field;
 
     /**
      * @ORM\Column(type="array", nullable=true)
@@ -86,13 +92,23 @@ class Match
     protected $visitor_dismiss;
 
     /**
+     * @ORM\Column(type="integer", options={"default"="0"})
+     */
+    protected $home_money;
+
+    /**
+     * @ORM\Column(type="integer", options={"default"="0"})
+     */
+    protected $visitor_money;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     protected $valid;
 
     public function __construct()
     {
-        $this->teams_by_journey = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->teams_by_journey = new ArrayCollection();
         $this->valid            = 0;
         $this->home_actions     = array();
         $this->visitor_actions  = array();
@@ -102,6 +118,8 @@ class Match
         $this->visitor_skills   = array();
         $this->home_dismiss     = false;
         $this->visitor_dismiss  = false;
+        $this->home_money = 0;
+        $this->visitor_money = 0;
     }
 
     /**
@@ -119,7 +137,7 @@ class Match
      *
      * @param integer $weather
      *
-     * @return Match
+     * @return Encounter
      */
     public function setWeather($weather)
     {
@@ -139,13 +157,37 @@ class Match
     }
 
     /**
+     * Set field
+     *
+     * @param string $field
+     *
+     * @return Encounter
+     */
+    public function setField($field)
+    {
+        $this->field = $field;
+
+        return $this;
+    }
+
+    /**
+     * Get field
+     *
+     * @return string
+     */
+    public function getField()
+    {
+        return $this->field;
+    }
+
+    /**
      * Set team
      *
      * @param \BbLeagueBundle\Entity\Team $team
      *
-     * @return Match
+     * @return Encounter
      */
-    public function setTeam(\BbLeagueBundle\Entity\Team $team = null)
+    public function setTeam(Team $team = null)
     {
         $this->team = $team;
 
@@ -167,7 +209,7 @@ class Match
      *
      * @param \BbLeagueBundle\Entity\Team $visitor
      *
-     * @return Match
+     * @return Encounter
      */
     public function setVisitor(\BbLeagueBundle\Entity\Team $visitor = null)
     {
@@ -191,7 +233,7 @@ class Match
      *
      * @param \BbLeagueBundle\Entity\Journey $journey
      *
-     * @return Match
+     * @return Encounter
      */
     public function setJourney(\BbLeagueBundle\Entity\Journey $journey = null)
     {
@@ -215,7 +257,7 @@ class Match
      *
      * @param \BbLeagueBundle\Entity\TeamByJourney $teamsByJourney
      *
-     * @return Match
+     * @return Encounter
      */
     public function addTeamsByJourney(\BbLeagueBundle\Entity\TeamByJourney $teamsByJourney)
     {
@@ -243,12 +285,13 @@ class Match
     {
         return $this->teams_by_journey;
     }
+
     /**
      * Set homeActions
      *
      * @param array $homeActions
      *
-     * @return Match
+     * @return Encounter
      */
     public function setHomeActions($homeActions)
     {
@@ -272,7 +315,7 @@ class Match
      *
      * @param array $visitorActions
      *
-     * @return Match
+     * @return Encounter
      */
     public function setVisitorActions($visitorActions)
     {
@@ -296,7 +339,7 @@ class Match
      *
      * @param array $homeInjuries
      *
-     * @return Match
+     * @return Encounter
      */
     public function setHomeInjuries($homeInjuries)
     {
@@ -320,7 +363,7 @@ class Match
      *
      * @param array $visitorInjuries
      *
-     * @return Match
+     * @return Encounter
      */
     public function setVisitorInjuries($visitorInjuries)
     {
@@ -344,7 +387,7 @@ class Match
      *
      * @param array $homeSkills
      *
-     * @return Match
+     * @return Encounter
      */
     public function setHomeSkills($homeSkills)
     {
@@ -368,7 +411,7 @@ class Match
      *
      * @param array $visitorSkills
      *
-     * @return Match
+     * @return Encounter
      */
     public function setVisitorSkills($visitorSkills)
     {
@@ -390,9 +433,9 @@ class Match
     /**
      * Set homeDismiss
      *
-     * @param array $homeDismiss
+     * @param bool $homeDismiss
      *
-     * @return Match
+     * @return Encounter
      */
     public function setHomeDismiss($homeDismiss)
     {
@@ -404,7 +447,7 @@ class Match
     /**
      * Get homeDismiss
      *
-     * @return array
+     * @return bool
      */
     public function getHomeDismiss()
     {
@@ -414,9 +457,9 @@ class Match
     /**
      * Set visitorDismiss
      *
-     * @param array $visitorDismiss
+     * @param bool $visitorDismiss
      *
-     * @return Match
+     * @return Encounter
      */
     public function setVisitorDismiss($visitorDismiss)
     {
@@ -428,7 +471,7 @@ class Match
     /**
      * Get visitorDismiss
      *
-     * @return array
+     * @return bool
      */
     public function getVisitorDismiss()
     {
@@ -440,7 +483,7 @@ class Match
      *
      * @param boolean $valid
      *
-     * @return Match
+     * @return Encounter
      */
     public function setValid($valid)
     {
@@ -457,5 +500,53 @@ class Match
     public function getValid()
     {
         return $this->valid;
+    }
+
+    /**
+     * Set home_money
+     *
+     * @param integer $home_money
+     *
+     * @return Encounter
+     */
+    public function setHomeMoney($home_money)
+    {
+        $this->home_money = $home_money;
+
+        return $this;
+    }
+
+    /**
+     * Get home_money
+     *
+     * @return boolean
+     */
+    public function getHomeMoney()
+    {
+        return $this->home_money;
+    }
+
+    /**
+     * Set visitor_money
+     *
+     * @param integer $visitor_money
+     *
+     * @return Encounter
+     */
+    public function setVisitorMoney($visitor_money)
+    {
+        $this->visitor_money = $visitor_money;
+
+        return $this;
+    }
+
+    /**
+     * Get visitor_money
+     *
+     * @return boolean
+     */
+    public function getVisitorMoney()
+    {
+        return $this->visitor_money;
     }
 }

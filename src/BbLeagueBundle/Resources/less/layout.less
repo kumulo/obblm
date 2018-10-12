@@ -1,89 +1,122 @@
 @import "vars.less";
 
 body {
-    background: @body-bg;
-    font-family: "Lato", sans-serif;
-    font-weight: 300;
-    font-size: 10px;
-    line-height: normal;
-    height: auto;
-    @media @smartphones {
-        font-size: 9px;
-    }
+  background: @body-bg;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: normal;
+  height: auto;
+  @media @smartphones {
+    font-size: 9px;
+  }
+  color: @font-color;
+  strong, b {
+    font-weight: 700;
+  }
+  em, i {
+    font-style: italic;
+  }
+  sup {
+    vertical-align: top;
+    font-size: 60%;
+  }
+  a {
     color: @font-color;
-    strong, b {font-weight: 700;}
-    em, i {font-style: italic;}
-    sup {vertical-align: top; font-size: 60%;}
-    a {color: @font-color;}
-    a:hover {text-decoration: none;}
-    .marge_auto {margin-left: auto; margin-right: auto;}
-    .ui-tabs-hide {display: none;}
-    .imgBt {display: block; background-position: top left; background-repeat: no-repeat; background-color: transparent; border: none; outline: 0 none; padding: 0; margin: 0; cursor: pointer;}
-    a.imgBt:hover,
-    input.imgBt:hover {background-position: bottom left;}
-    .imgBt span {display: none;}
-
-    a, input, .with-transition {
-      -webkit-transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
-      -moz-transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
-      -o-transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
-      transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
-    }
-    input[type=submit],
-    button {
-        -webkit-appearance: none;
-        border-radius: 0;
-    }
-    /* personnal UI*/
-    .ui {
-        &.button {
-            &.flipable {
-                overflow: hidden;
-                white-space: nowrap;
-                .text {
-                    -webkit-transition: margin-left .2s ease-out, margin-right .2s ease-out;
-                    -moz-transition: margin-left .2s ease-out, margin-right .2s ease-out;
-                    -o-transition: margin-left .2s ease-out, margin-right .2s ease-out;
-                    transition: margin-left .2s ease-out, margin-right .2s ease-out;
-                    display: inline-block;
-                    white-space: nowrap;
-                    margin-left: -250px;
-                }
-                .icon {
-                    position: absolute;
-                    right: .45em;
-                }
-                &:hover {
-                    padding-right: 2.6em;
-                    .text {
-                        margin-left: 0;
-                    }
-                }
-            }
-        }
-    }
-}
-.dashboard-chart {
-	width		: 96%;
-	height		: 200px;
-	font-size	: 11px;
- 	margin-left: auto;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  .marge_auto {
+    margin-left: auto;
     margin-right: auto;
+  }
+  .ui-tabs-hide {
+    display: none;
+  }
+  .imgBt {
+    display: block;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    outline: 0 none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  a.imgBt:hover,
+  input.imgBt:hover {
+    background-position: bottom left;
+  }
+  .imgBt span {
+    display: none;
+  }
+
+  a, input, .with-transition {
+    -webkit-transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
+    -moz-transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
+    -o-transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
+    transition: background-color .2s ease-out, color .2s ease-out, text-decoration .2s ease-out, border-color .2s ease-out;
+  }
+  input[type=submit],
+  button {
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+  /* personnal UI*/
+  .ui {
+    &.button {
+      &.flipable {
+        overflow: hidden;
+        white-space: nowrap;
+        .text {
+          -webkit-transition: margin-left .2s ease-out, margin-right .2s ease-out;
+          -moz-transition: margin-left .2s ease-out, margin-right .2s ease-out;
+          -o-transition: margin-left .2s ease-out, margin-right .2s ease-out;
+          transition: margin-left .2s ease-out, margin-right .2s ease-out;
+          display: inline-block;
+          white-space: nowrap;
+          margin-left: -250px;
+        }
+        .icon {
+          position: absolute;
+          right: .45em;
+        }
+        &:hover {
+          padding-right: 2.6em;
+          .text {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dashboard-chart {
+  width: 96%;
+  height: 200px;
+  font-size: 11px;
+  margin-left: auto;
+  margin-right: auto;
+  color: @white;
+  .charts-background();
+  circle {
+    fill: @white;
+  }
+  text {
+    font-weight: 300;
     color: @white;
-    .charts-background();
-    circle {
-        fill: @white;
-    }
-    text {
-        font-weight: 300;
-        color: @white;
-        fill: @white;
-        text-shadow: 1px 1px rgba(0,0,0,0.3);
-    }
-    path {
-        stroke: @white;
-    }
-    a {display: none !important;}
+    fill: @white;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  path {
+    stroke: @white;
+  }
+  a {
+    display: none !important;
+  }
 }
 
 .amcharts-graph-g1 .amcharts-graph-fill {
@@ -97,1300 +130,1393 @@ body {
 .amcharts-cursor-fill {
   filter: url(#shadow);
 }
+
 .button {
-    .border-radius();
-    display: inline-block;
-    padding: 5px 10px;
-    color: @white;
-    text-decoration: none;
-    font-size: 140%;
-    border: 1px solid;
-    &.button-basic {
-        border-color: @black;
-        background: @black;
-        &:hover {
-            color: @black;
-        }
-    }
-    &.button-ok {
-        border-color: @positive-color;
-        background: @positive-color;
-        &:hover {
-            color: @positive-color;
-        }
-    }
-    &.button-not {
-        border-color: @negative-color;
-        background: @negative-color;
-        &:hover {
-            color: @negative-color;
-        }
-    }
+  .border-radius();
+  display: inline-block;
+  padding: 5px 10px;
+  color: @white;
+  text-decoration: none;
+  font-size: 140%;
+  border: 1px solid;
+  &.button-basic {
+    border-color: @black;
+    background: @black;
     &:hover {
-        background: @white;
+      color: @black;
     }
+  }
+  &.button-ok {
+    border-color: @positive-color;
+    background: @positive-color;
+    &:hover {
+      color: @positive-color;
+    }
+  }
+  &.button-not {
+    border-color: @negative-color;
+    background: @negative-color;
+    &:hover {
+      color: @negative-color;
+    }
+  }
+  &:hover {
+    background: @white;
+  }
 }
+
 /*
  * LOGIN
  */
 #login-box {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    display: table;
-    right: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: table;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background: @dark-grey;
+  > .row {
+    display: table-row;
     height: 100%;
-    width: 100%;
-    background: @dark-grey;
-    > .row {
-        display: table-row;
-        height: 100%;
-        > .cell {
-            display: table-cell;
-            vertical-align: middle;
-            height: 100%;
-            @media @smartphones {
-                vertical-align: top;
+    > .cell {
+      display: table-cell;
+      vertical-align: middle;
+      height: 100%;
+      @media @smartphones {
+        vertical-align: top;
+      }
+      #login-form {
+        display: block;
+        max-width: 400px;
+        margin: 0 auto;
+        background: @light-grey;
+        .wrapper {
+          padding: @base-spacing;
+          &.logo-wrapper {
+            background: @league-icon-bg;
+            svg {
+              fill: @white;
+              display: block;
+              width: auto;
+              height: 100px;
+              margin: 0 auto;
+              path {
+                fill: @white;
+              }
             }
-            #login-form {
-                display: block;
-                max-width: 400px;
-                margin: 0 auto;
-                background: @light-grey;
-                .wrapper {
-                    padding: @base-spacing;
-                    &.logo-wrapper {
-                        background: @league-icon-bg;
-                        svg {
-                            fill: @white;
-                            display: block;
-                            width: auto;
-                            height: 100px;
-                            margin: 0 auto;
-                            path {
-                                fill: @white;
-                            }
-                        }
-                    }
-                    &.title-wrapper {
-                        margin-top: (@base-spacing/2);
-                        padding: (@base-spacing/2) @base-spacing;
-                        text-align: center;
-                        font-size: 260%;
-                        text-transform: uppercase;
-                    }
-                    &.input-wrapper {
-                        padding: (@base-spacing/2) @base-spacing;
-                        font-size: 160%;
-                        label {
-                            float: left;
-                            width: 50%;
-                            padding: 10px 0;
-                            box-sizing: border-box;
-                        }
-                        input {
-                            float: right;
-                            width: 50%;
-                            padding: 10px;
-                            box-sizing: border-box;
-                            border: 1px solid @mid-grey;
-                        }
-                    }
-                    &.checkbox-wrapper {
-                        padding: (@base-spacing/2) @base-spacing;
-                        font-size: 160%;
-                        text-align: center;
-                        label {
-                            margin-left: 10px;
-                        }
-                    }
-                    &.submit-wrapper {
-                        margin-top: (@base-spacing/2);
-                        padding: 0;
-                        #_submit {
-                            background: @league-icon-bg;
-                            color: @white;
-                            display: block;
-                            border: 2px solid @league-icon-bg;
-                            text-align: center;
-                            font-size: 200%;
-                            text-transform: uppercase;
-                            width: 100%;
-                            padding: 20px 0;
-                            &:hover {
-                                background: @white;
-                                color: @league-icon-bg;
-                            }
-                        }
-                    }
-                }
+          }
+          &.title-wrapper {
+            margin-top: (@base-spacing/2);
+            padding: (@base-spacing/2) @base-spacing;
+            text-align: center;
+            font-size: 260%;
+            text-transform: uppercase;
+          }
+          &.input-wrapper {
+            padding: (@base-spacing/2) @base-spacing;
+            font-size: 160%;
+            label {
+              float: left;
+              width: 50%;
+              padding: 10px 0;
+              box-sizing: border-box;
             }
+            input {
+              float: right;
+              width: 50%;
+              padding: 10px;
+              box-sizing: border-box;
+              border: 1px solid @mid-grey;
+            }
+          }
+          &.checkbox-wrapper {
+            padding: (@base-spacing/2) @base-spacing;
+            font-size: 160%;
+            text-align: center;
+            label {
+              margin-left: 10px;
+            }
+          }
+          &.submit-wrapper {
+            margin-top: (@base-spacing/2);
+            padding: 0;
+            #_submit {
+              background: @league-icon-bg;
+              color: @white;
+              display: block;
+              border: 2px solid @league-icon-bg;
+              text-align: center;
+              font-size: 200%;
+              text-transform: uppercase;
+              width: 100%;
+              padding: 20px 0;
+              &:hover {
+                background: @white;
+                color: @league-icon-bg;
+              }
+            }
+          }
         }
+      }
     }
+  }
 }
+
 /*
  * HEADER
  */
 #header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index: 3;
+  border-bottom: 2px solid @header-border-color;
+  background: @header-bg;
+  @media @smartphones {
+    height: 50px;
+  }
+  .league-icon {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    width: 100px;
     height: 100px;
-    z-index: 3;
-    border-bottom: 2px solid @header-border-color;
-    background: @header-bg;
-    @media @smartphones {
-        height: 50px;
+    background: @league-icon-bg;
+    svg {
+      fill: @white;
+      display: block;
+      max-width: 70%;
+      max-height: 70%;
+      width: auto;
+      height: auto;
+      margin: 15% auto;
+      path {
+        fill: @white;
+      }
     }
-    .league-icon {
+    @media @smartphones, @tablets-v {
+      svg {
+        display: none;
+      }
+
+      &:before {
+        content: '\f0c9';
+        font-size: 40px;
+        line-height: 100px;
+        color: #fff;
+        font-family: 'Icons';
+        width: 100%;
         display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100px;
-        height: 100px;
-        background: @league-icon-bg;
-        svg {
-            fill: @white;
+        text-align: center;
+      }
+    }
+    @media @smartphones {
+      width: 50px;
+      height: 50px;
+      &:before {
+        font-size: 30px;
+        line-height: 50px;
+      }
+    }
+  }
+  .site-title {
+    padding-left: 120px;
+    line-height: 100px;
+    font-size: 360%;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: "Dosis", sans-serif;
+    @media @smartphones {
+      font-size: 160%;
+      padding-left: 60px;
+      line-height: 50px;
+    }
+  }
+  #account {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .title {
+      img {
+        vertical-align: middle;
+        margin-right: 10px;
+        .border-radius(50px);
+      }
+      line-height: 100px;
+      font-size: 140%;
+      padding: 0 @base-spacing;
+      background: @mid-grey;
+      @media @smartphones {
+        font-size: 120%;
+        line-height: 50px;
+        img {
+          height: 35px;
+        }
+      }
+    }
+    .nav {
+      ul {
+        background: @mid-grey;
+        display: none;
+        li {
+          a {
             display: block;
-            max-width: 70%;
-            max-height: 70%;
+            padding: (@base-spacing/2) @base-spacing;
+            text-decoration: none;
+            font-size: 140%;
+            &:hover {
+              background: @white;
+            }
+          }
+        }
+      }
+    }
+    &:hover {
+      .nav {
+        ul {
+          display: block;
+        }
+      }
+    }
+  }
+  #navigation {
+    > ul {
+      z-index: 2;
+      position: fixed;
+      top: 100px;
+      left: 0;
+      bottom: 0;
+      width: 100px;
+      background: @nav-bg;
+      > li {
+        border-bottom: 2px solid @nav-item-border-color;
+        @media @smartphones {
+        }
+        > a {
+          display: block;
+          color: @nav-link-color;
+          text-align: center;
+          padding-top: 10px;
+          height: 100px;
+          text-decoration: none;
+          font-size: 120%;
+          text-transform: uppercase;
+          line-height: 1.2em;
+          @media @smartphones, @tablets-v {
+            padding: 10px;
+            height: auto;
+            white-space: nowrap;
+            text-align: left;
+          }
+          > .icon {
             width: auto;
             height: auto;
-            margin: 15% auto;
+            max-height: 42px;
+            display: block;
+            margin: 0 auto 10px;
+            fill: @nav-icon-color;
             path {
-                fill: @white;
+              fill: @nav-icon-color;
             }
+            @media @smartphones, @tablets-v {
+              max-width: 50px;
+              width: auto;
+              vg height: auto;
+              display: inline;
+              margin: 0 10px 0 0;
+              vertical-align: middle;
+            }
+            @media @smartphones {
+              max-width: 40px;
+              max-height: 30px;
+            }
+          }
+          &:hover,
+          &.active {
+            color: @nav-link-color-hover;
+            background: @nav-link-bg-hover;
+            > .icon {
+              fill: @nav-link-color-hover;
+              path {
+                fill: @nav-link-color-hover;
+              }
+            }
+          }
         }
-        @media @smartphones, @tablets-v {
-            svg {
-                display: none;
-            }
-            &:before {
-                content: '\f0c9';
-                font-size: 40px;
-                line-height: 100px;
-                color: #fff;
-                font-family: 'Icons';
-                width: 100%;
-                display: block;
-                text-align: center;
-            }
-        }
-        @media @smartphones {
-            width: 50px;
-            height: 50px;
-            &:before {
-                font-size: 30px;
-                line-height: 50px;
-            }
-        }
+      }
     }
-    .site-title {
-        padding-left: 120px;
-        line-height: 100px;
-        font-size: 360%;
+    @media @smartphones, @tablets-v {
+      > ul {
+        width: 50%;
+        visibility: hidden;
+        top: 100px;
+        left: -75%;
+        -webkit-transition: left .2s ease-out;
+        -moz-transition: left .2s ease-out;
+        -o-transition: left .2s ease-out;
+        transition: left .2s ease-out;
+      }
+
+      &:before {
+        content: '';
+        visibility: hidden;
+        position: fixed;
+        z-index: 1;
+        top: 100px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        background: #000;
+        -webkit-transition: opacity .2s ease-out;
+        -moz-transition: opacity .2s ease-out;
+        -o-transition: opacity .2s ease-out;
+        transition: opacity .2s ease-out;
+      }
+    }
+    @media @smartphones {
+      > ul {
+        width: 75%;
+        top: 50px;
+      }
+
+      &:before {
+        top: 50px;
+      }
+    }
+    &.open {
+      @media @smartphones, @tablets-v {
+        .league-icon {
+          &:before {
+            content: '\f00d';
+          }
+        }
+
+        > ul {
+          z-index: 99;
+          visibility: visible;
+          left: 0;
+        }
+
+        &:before {
+          visibility: visible;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+#content {
+  margin: 100px 0 0 100px;
+  @media @smartphones, @tablets-v {
+    margin-left: 0;
+  }
+  @media @smartphones {
+    margin-top: 50px;
+  }
+  .padding-me {
+    padding: @base-spacing;
+  }
+  .normal-content {
+    .section-header {
+      position: relative;
+      .section-title {
+        font-size: 300%;
         font-weight: 700;
         text-transform: uppercase;
         font-family: "Dosis", sans-serif;
-        @media @smartphones {
-            font-size: 160%;
-            padding-left: 60px;
-            line-height: 50px;
-        }
-    }
-    #account {
+      }
+      .section-actions {
         position: absolute;
-        top: 0;
-        right: 0;
-        .title {
-            img {
-                vertical-align: middle;
-                margin-right: 10px;
-                .border-radius(50px);
-            }
-            line-height: 100px;
-            font-size: 140%;
-            padding: 0 @base-spacing;
-            background: @mid-grey;
-            @media @smartphones {
-                font-size: 120%;
-                line-height: 50px;
-                img {
-                    height: 35px;
-                }
-            }
-        }
-        .nav {
-            ul {
-                background: @mid-grey;
-                display: none;
-                li {
-                    a {
-                        display: block;
-                        padding: (@base-spacing/2) @base-spacing;
-                        text-decoration: none;
-                        font-size: 140%;
-                        &:hover {
-                            background: @white;
-                        }
-                    }
-                }
-            }
-        }
-        &:hover {
-            .nav {
-                ul{
-                    display: block;
-                }
-            }
-        }
+        right: @base-spacing;
+        top: @base-spacing;
+      }
     }
-    #navigation {
-        > ul {
-            z-index: 2;
-            position: fixed;
-            top: 100px;
-            left: 0;
-            bottom: 0;
-            width: 100px;
-            background: @nav-bg;
-            > li {
-                border-bottom: 2px solid @nav-item-border-color;
-                @media @smartphones {
-                }
-                > a {
-                    display: block;
-                    color: @nav-link-color;
-                    text-align: center;
-                    padding-top: 10px;
-                    height: 100px;
-                    text-decoration: none;
-                    font-size: 120%;
-                    text-transform: uppercase;
-                    line-height: 1.2em;
-                    @media @smartphones, @tablets-v {
-                        padding: 10px;
-                        height: auto;
-                        white-space: nowrap;
-                        text-align: left;
-                    }
-                    > .icon {
-                        width: auto;
-                        height: auto;
-                        max-height: 42px;
-                        display: block;
-                        margin: 0 auto 10px;
-                        fill: @nav-icon-color;
-                        path {
-                            fill: @nav-icon-color;
-                        }
-                        @media @smartphones, @tablets-v {
-                            max-width: 50px;
-                            width: auto;vg
-                            height: auto;
-                            display: inline;
-                            margin: 0 10px 0 0;
-                            vertical-align: middle;
-                        }
-                        @media @smartphones {
-                            max-width: 40px;
-                            max-height: 30px;
-                        }
-                    }
-                    &:hover,
-                    &.active {
-                        color: @nav-link-color-hover;
-                        background: @nav-link-bg-hover;
-                        > .icon {
-                            fill: @nav-link-color-hover;
-                            path {
-                                fill: @nav-link-color-hover;
-                            }
-                        }
-                    }
-                }
+  }
+  .content {
+    /*
+     * TEAM LIST
+     */
+    .teams {
+      > .team {
+        position: relative;
+        .separator();
+        .wrapper {
+          padding-left: 180px;
+          min-height: 150px;
+        }
+        .team-header {
+          margin-bottom: 5px;
+          .team-name {
+            font-size: 240%;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: "Dosis", sans-serif;
+            color: @team-name-color;
+          }
+          .team-metas {
+            > .race {
+              display: inline-block;
+              font-size: 200%;
+              font-weight: 600;
+              text-transform: uppercase;
+              color: @team-race-color;
             }
+            > .league {
+              display: inline-block;
+              margin-left: 10px;
+              > .name {
+                font-size: 200%;
+                color: @team-league-color;
+              }
+              > .format {
+                font-size: 140%;
+                font-style: italic;
+                color: @team-league-format;
+              }
+            }
+          }
+        }
+        .team-actions {
+          position: absolute;
+          right: 0;
+          top: 0;
+          li {
+            display: inline-block;
+            margin-left: 3px;
+          }
+        }
+        .team-logo {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 160px;
+          min-height: 145px;
+          > img {
+            max-width: 100%;
+            max-height: 100%;
+          }
+          &.no-logo {
+            background: @league-icon-bg;
+            svg {
+              fill: @white;
+              display: block;
+              width: auto;
+              max-width: 80%;
+              max-height: 90%;
+              margin: 5% 10%;
+              path {
+                fill: @white;
+              }
+            }
+          }
+        }
+        &:first-child {
+          border-top: 0 none;
+          padding-top: 0;
+        }
+      }
+    }
+    /*
+     * STATS BLOC
+     */
+    .team-statistics,
+    .foot-statistics {
+      display: block;
+      width: 100%;
+      @core-width: 250px;
+      @stats-tab-spacing: @base-spacing;
+      position: relative;
+      .base-stat-table {
+        width: 100%;
+        padding: @base-spacing 5px;
+        box-sizing: border-box;
+        .label {
+          font-size: 160%;
+          margin-left: 10px;
+          line-height: 24px;
+          text-transform: uppercase;
+          @media @smartphones, @tablets-v, @tablets, @little-desktop {
+            font-size: 130%;
+          }
+        }
+        .value {
+          font-size: 160%;
+          line-height: 24px;
+          &.positive {
+            color: @positive-color;
+          }
+          &.draw {
+            color: @nul-color;
+          }
+          &.negative {
+            color: @negative-color;
+          }
+          @media @smartphones, @tablets-v, @tablets, @little-desktop {
+            font-size: 130%;
+          }
+        }
+        &.value-at-right {
+          .value {
+            float: right;
+            margin-right: 10px;
+          }
+        }
+        &.big-value {
+          .label,
+          .value {
+            display: block;
+          }
+          .value {
+            font-size: 360%;
+            font-weight: 700;
+            @media @smartphones, @tablets-v, @tablets, @little-desktop {
+              font-size: 280%;
+            }
+          }
+          padding: 25px 5px;
+        }
+        &.center-all {
+          text-align: center;
+        }
+      }
+      .core {
+        display: block;
+        width: @core-width;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        border: 1px solid @stats-tab-border;
+        background: @light-grey;
+        @media @smartphones {
+          display: block;
+          position: relative;
+          width: 100%;
+        }
+        .tr,
+        .treasure {
+          width: 50%;
+          float: left;
+          padding: 25px 5px;
+        }
+        .treasure {
+          &:before {
+            content: '';
+            width: 1px;
+            background: @stats-tab-border;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            visibility: visible;
+            position: absolute;
+            left: 50%;
+          }
+        }
+      }
+      @numberOfBlocks: 5;
+      @blocksWidthPercent: 100% / @numberOfBlocks;
+      .detail {
+        margin-left: @core-width + @stats-tab-spacing;
+        display: block;
+        position: relative;
+        border: 1px solid @stats-tab-border;
+        background: @light-grey;
+        > .points,
+        > .matchs,
+        > .touchdowns,
+        > .injuries,
+        > .others {
+          float: left;
+        }
+        > .points {
+          width: 15%;
+        }
+        > .matchs {
+          width: 22%;
+        }
+        > .touchdowns,
+        > .injuries,
+        > .others {
+          width: 21%;
+          &:before {
+            content: '';
+            width: 1px;
+            background: @stats-tab-border;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            visibility: visible;
+            position: absolute;
+          }
         }
         @media @smartphones, @tablets-v {
-            > ul {
-                width: 50%;
-                visibility: hidden;
-                top: 100px;
-                left: -75%;
-                -webkit-transition: left .2s ease-out;
-                -moz-transition: left .2s ease-out;
-                -o-transition: left .2s ease-out;
-                transition: left .2s ease-out;
-            }
-            &:before {
-                content: '';
-                visibility: hidden;
-                position: fixed;
-                z-index: 1;
-                top: 100px;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                opacity: 0;
-                background: #000;
-                -webkit-transition: opacity .2s ease-out;
-                -moz-transition: opacity .2s ease-out;
-                -o-transition: opacity .2s ease-out;
-                transition: opacity .2s ease-out;
-            }
+          > .points {
+            width: 18%;
+          }
+
+          > .matchs {
+            width: 28%;
+          }
+
+          > .touchdowns,
+          > .injuries {
+            width: 27%;
+          }
+
+          > .others {
+            display: none;
+          }
         }
-        @media @smartphones {
-            > ul {
-                width: 75%;
-                top: 50px;
-            }
-            &:before {
-                top: 50px;
-            }
+      }
+      @media @smartphones, @tablets-v, @tablets {
+        @core-width: 200px;
+        font-size: 95%;
+        .base-stat-table {
+          .label,
+          .value {
+            line-height: 19px;
+          }
         }
-        &.open {
-            @media @smartphones, @tablets-v {
-                .league-icon {
-                    &:before {
-                        content: '\f00d';
-                    }
-                }
-                > ul {
-                    z-index: 99;
-                    visibility: visible;
-                    left: 0;
-                }
-                &:before {
-                    visibility: visible;
-                    opacity: 0.5;
-                }
-            }
+
+        .core {
+          width: @core-width;
         }
-    }
-}
-#content {
-    margin: 100px 0 0 100px;
-    @media @smartphones, @tablets-v {
-        margin-left: 0;
-    }
-    @media @smartphones {
-        margin-top: 50px;
-    }
-    .padding-me {
-        padding: @base-spacing;
-    }
-    .normal-content {
-        .section-header {
-            position: relative;
-            .section-title {
-                font-size: 300%;
-                font-weight: 700;
-                text-transform: uppercase;
-                font-family: "Dosis", sans-serif;
-            }
-            .section-actions {
-                position: absolute;
-                right: @base-spacing;
-                top: @base-spacing;
-            }
+
+        .detail {
+          margin-left: @core-width + @stats-tab-spacing;
         }
-    }
-    .content {
-/*
- * TEAM LIST
- */
-        .teams {
-            > .team {
-                position: relative;
-                .separator();
-                .wrapper {
-                    padding-left: 180px;
-                    min-height: 150px;
-                }
-                .team-header {
-                    margin-bottom: 5px;
-                    .team-name {
-                        font-size: 240%;
-                        font-weight: 700;
-                        text-transform: uppercase;
-                        font-family: "Dosis", sans-serif;
-                        color: @team-name-color;
-                    }
-                    .team-metas {
-                        > .race {
-                            display: inline-block;
-                            font-size: 200%;
-                            font-weight: 600;
-                            text-transform: uppercase;
-                            color: @team-race-color;
-                        }
-                        > .league {
-                            display: inline-block;
-                            margin-left: 10px;
-                            > .name {
-                                font-size: 200%;
-                                color: @team-league-color;
-                            }
-                            > .format {
-                                font-size: 140%;
-                                font-style: italic;
-                                color: @team-league-format;
-                            }
-                        }
-                    }
-                }
-                .team-actions {
-                    position: absolute;
-                    right: 0;
-                    top: 0;
-                    li {
-                        display: inline-block;
-                        margin-left: 3px;
-                    }
-                }
-                .team-logo {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 160px;
-                    min-height: 145px;
-                    > img {
-                        max-width: 100%;
-                        max-height: 100%;
-                    }
-                    &.no-logo {
-                        background: @league-icon-bg;
-                        svg {
-                            fill: @white;
-                            display: block;
-                            width: auto;
-                            max-width: 80%;
-                            max-height: 90%;
-                            margin: 5% 10%;
-                            path {
-                                fill: @white;
-                            }
-                        }
-                    }
-                }
-                &:first-child {
-                    border-top: 0 none;
-                    padding-top: 0;
-                }
-            }
+      }
+      @media @smartphones {
+        .core {
+          width: 100%;
+          .tr,
+          .treasure {
+            padding: 15px 5px;
+          }
         }
-/*
- * STATS BLOC
- */
-        .team-statistics,
-        .foot-statistics {
+
+        .detail {
+          margin-left: 0;
+          .base-stat-table {
+            padding: 10px 5px;
+          }
+          .big-value {
+            padding: 15px 5px;
+          }
+        }
+      }
+    }
+    .team-statistics {
+      .core {
+        text-align: center;
+      }
+    }
+    .foot-statistics {
+      @core-width: 250px;
+      @logo-width: 150px;
+      @stats-tab-spacing: @base-spacing;
+      .logo {
+        position: absolute;
+        top: 0;
+        left: @core-width + @stats-tab-spacing;
+        bottom: 0;
+        width: @logo-width;
+        overflow: hidden;
+        &.with-image {
+          background: transparent no-repeat center center;
+          background-size: cover;
+          > img {
+            display: none;
+          }
+        }
+        &.no-logo {
+          background: @league-icon-bg;
+          svg {
+            fill: @league-icon-color;
             display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin: 5%;
+          }
+        }
+      }
+      .detail {
+        margin-left: @core-width + @stats-tab-spacing + @logo-width + @stats-tab-spacing;
+      }
+      @media @smartphones, @tablets-v, @tablets {
+        @core-width: 200px;
+        .logo {
+          left: @core-width + @stats-tab-spacing;
+        }
+
+        .detail {
+          margin-left: @core-width + @stats-tab-spacing + @logo-width + @stats-tab-spacing;
+        }
+      }
+      @media @smartphones, @tablets-v {
+        .core {
+          display: none;
+        }
+
+        .logo {
+          left: 0;
+        }
+
+        .detail {
+          margin-left: @logo-width + @stats-tab-spacing;
+        }
+      }
+      @media @smartphones {
+        .logo {
+          display: none;
+        }
+
+        .detail {
+          margin-left: 0;
+        }
+      }
+    }
+    /*
+     * DASHBOARD
+     */
+    &#dashboard {
+      .teams {
+        > .team {
+          .wrapper {
+            padding-left: 0;
+          }
+          .team-header {
+            .team-name,
+            .team-metas {
+              float: left;
+              @media @smartphones, @tablets-v {
+                float: none;
+              }
+            }
+            .team-metas {
+              line-height: 31px;
+              > .league {
+                @media @smartphones, @tablets-v {
+                  margin-left: 0;
+                }
+              }
+            }
+          }
+          .team-content {
+            display: table;
             width: 100%;
-            @core-width: 250px;
-            @stats-tab-spacing: @base-spacing;
-            position: relative;
-            .base-stat-table {
-                width: 100%;
-                padding: @base-spacing 5px;
-                box-sizing: border-box;
-                .label {
-                    font-size: 160%;
-                    margin-left: 10px;
-                    line-height: 24px;
-                    text-transform: uppercase;
-                    @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                        font-size: 130%;
-                    }
-                }
-                .value {
-                    font-size: 160%;
-                    line-height: 24px;
-                    &.positive {
-                        color: @positive-color;
-                    }
-                    &.draw {
-                        color: @nul-color;
-                    }
-                    &.negative {
-                        color: @negative-color;
-                    }
-                    @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                        font-size: 130%;
-                    }
-                }
-                &.value-at-right {
-                    .value {
-                        float: right;
-                        margin-right: 10px;
-                    }
-                }
-                &.big-value {
-                    .label,
-                    .value {
-                        display: block;
-                    }
-                    .value {
-                        font-size: 360%;
-                        font-weight: 700;
-                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                            font-size: 280%;
-                        }
-                    }
-                    padding: 25px 5px;
-                }
-                &.center-all {
-                    text-align: center;
-                }
+          }
+          .team-logo,
+          .team-matches,
+          .team-stats {
+            display: table-cell;
+            padding-left: @base-spacing;
+            vertical-align: top;
+            @media @smartphones, @tablets-v, @tablets, @little-desktop {
+              display: block;
             }
-            .core {
-                display: block;
-                width: @core-width;
-                height: 100%;
-                left: 0;
-                position: absolute;
-                border: 1px solid @stats-tab-border;
-                background: @light-grey;
-                @media @smartphones {
-                    display: block;
-                    position: relative;
-                    width: 100%;
-                }
-                .tr,
-                .treasure {
-                    width: 50%;
-                    float: left;
-                    padding: 25px 5px;
-                }
-                .treasure {
-                    &:before {
-                        content: '';
-                        width: 1px;
-                        background: @stats-tab-border;
-                        top: 0;
-                        bottom: 0;
-                        height: 100%;
-                        visibility: visible;
-                        position: absolute;
-                        left: 50%;
-                    }
-                }
+          }
+          .team-stats {
+            @media @smartphones, @tablets-v, @tablets, @little-desktop {
+              padding-left: 0;
             }
-            @numberOfBlocks: 5;
-            @blocksWidthPercent: 100% / @numberOfBlocks;
-            .detail {
-                margin-left: @core-width + @stats-tab-spacing;
-                display: block;
-                position: relative;
-                border: 1px solid @stats-tab-border;
-                background: @light-grey;
-                > .points,
-                > .matchs,
-                > .touchdowns,
-                > .injuries,
-                > .others {
-                    float: left;
-                }
-                > .points {
-                    width: 15%;
-                }
-                > .matchs {
-                    width: 22%;
-                }
-                > .touchdowns,
-                > .injuries,
-                > .others {
-                    width: 21%;
-                    &:before {
-                        content: '';
-                        width: 1px;
-                        background: @stats-tab-border;
-                        top: 0;
-                        bottom: 0;
-                        height: 100%;
-                        visibility: visible;
-                        position: absolute;
-                    }
+            .stats-container {
+              border-spacing: 0;
+              border-collapse: collapse;
+              width: 100%;
+              display: table;
+              .block-main-stats {
+                width: 100px;
+                @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                  width: 160px;
                 }
                 @media @smartphones, @tablets-v {
-                    > .points {
-                        width: 18%;
-                    }
-                    > .matchs {
-                        width: 28%;
-                    }
-                    > .touchdowns,
-                    > .injuries {
-                        width: 27%;
-                    }
-                    > .others {
-                        display: none;
-                    }
+                  width: 100px;
                 }
+              }
+              .stats-table {
+                height: 100%;
+              }
             }
-            @media @smartphones, @tablets-v, @tablets {
-                @core-width: 200px;
-                font-size: 95%;
-                .base-stat-table {
-                    .label,
-                    .value {
-                        line-height: 19px;
+            .stats-table {
+              background: @stats-tab-bg;
+              border-spacing: 0;
+              border-collapse: collapse;
+              width: 100%;
+              display: table;
+              tbody {
+                width: 100%;
+                display: table;
+              }
+              .label {
+                font-size: 160%;
+                @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                  font-size: 130%;
+                }
+                text-transform: uppercase;
+                display: block;
+              }
+              .value {
+                font-size: 160%;
+                @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                  font-size: 130%;
+                }
+                display: block;
+                &.positive {
+                  color: @positive-color;
+                }
+                &.nul {
+                  color: @nul-color;
+                }
+                &.negative {
+                  color: @negative-color;
+                }
+              }
+              > tbody > tr,
+              > tr {
+                > td,
+                > th {
+                  border-spacing: 0;
+                  border-collapse: collapse;
+                  border: 1px solid @stats-tab-border;
+                  text-align: center;
+                  padding: @base-spacing (@base-spacing/4);
+                  @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                    padding: 14px (@base-spacing/4);
+                  }
+                  > .value {
+                    font-size: 360%;
+                    font-weight: 700;
+                    @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                      font-size: 280%;
                     }
+                  }
                 }
-                .core {
-                    width: @core-width;
-                }
-                .detail {
-                    margin-left: @core-width + @stats-tab-spacing;
-                }
+              }
             }
-            @media @smartphones {
-                .core {
-                    width: 100%;
-                    .tr,
-                    .treasure {
-                        padding: 15px 5px;
-                    }
-                }
-                .detail {
-                    margin-left: 0;
-                    .base-stat-table {
-                        padding: 10px 5px;
-                    }
-                    .big-value {
-                        padding: 15px 5px;
-                    }
-                }
-            }
-        }
-        .team-statistics {
-            .core {
-                text-align: center;
-            }
-        }
-        .foot-statistics {
-            @core-width: 250px;
-            @logo-width: 150px;
-            @stats-tab-spacing: @base-spacing;
-            .logo {
-                position: absolute;
-                top: 0;
-                left: @core-width + @stats-tab-spacing;
-                bottom: 0;
-                width: @logo-width;
-                overflow: hidden;
-                &.with-image {
-                    background: transparent no-repeat center center;
-                    background-size: cover;
-                    > img {
-                        display: none;
-                    }
-                }
-                &.no-logo {
-                    background: @league-icon-bg;
-                    svg {
-                        fill: @league-icon-color;
-                        display: block;
-                        max-width: 90%;
-                        max-height: 90%;
-                        margin: 5%;
-                    }
-                }
-            }
-            .detail {
-                margin-left: @core-width + @stats-tab-spacing + @logo-width + @stats-tab-spacing;
-            }
-            @media @smartphones, @tablets-v, @tablets {
-                @core-width: 200px;
-                .logo {
-                    left: @core-width + @stats-tab-spacing;
-                }
-                .detail {
-                    margin-left: @core-width + @stats-tab-spacing + @logo-width + @stats-tab-spacing;
-                }
+          }
+          .team-logo {
+            position: relative;
+            padding-left: 0;
+            @media @smartphones, @tablets-v, @tablets, @little-desktop {
+              float: left;
+              margin-bottom: @base-spacing;
             }
             @media @smartphones, @tablets-v {
-                .core {display: none;}
-                .logo {
-                    left: 0;
+              width: 100px;
+              height: 100px;
+            }
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+          .team-matches {
+            width: 505px;
+            @media @smartphones, @tablets-v, @tablets, @little-desktop {
+              width: auto;
+              margin-left: 160px;
+              margin-bottom: @base-spacing;
+            }
+            @media @smartphones, @tablets-v {
+              margin-left: 100px;
+            }
+            .see-all {
+              float: right;
+              margin-top: 5px;
+              @media @smartphones, @tablets-v, @tablets, @little-desktop {
+                float: none;
+                position: absolute;
+                top: 0;
+                right: 0;
+              }
+            }
+            .matches {
+              width: 100%;
+              border-spacing: 0;
+              border-collapse: collapse;
+              display: table;
+              tr {
+                td {
+                  background: @mid-grey;
+                  padding: 5px 10px;
+                  font-size: 140%;
+                  border: 2px solid @white;
+                  &.journey {
+                    text-align: center;
+                    width: 30px;
+                  }
+                  &.versus {
+                    background: @chart-dark;
+                    color: @white;
+                    padding: 0;
+                    > a {
+                      padding: 5px 10px;
+                      display: block;
+                      color: @white;
+                      text-decoration: none;
+                      &:hover {
+                        color: @chart-dark;
+                        background: @white;
+                        text-decoration: none;
+                      }
+                    }
+                    .team-name {
+                      text-transform: uppercase;
+                      font-weight: 700;
+                      font-style: italic;
+                    }
+                    .coach {
+                      float: right;
+                      font-style: italic;
+                    }
+                  }
+                  &.tr {
+                    text-align: center;
+                    width: 40px;
+                    background: @dark-mid-grey;
+                    color: @white;
+                  }
                 }
-                .detail {
-                    margin-left: @logo-width + @stats-tab-spacing;
+                &.even {
+                  td {
+                    &.versus {
+                      background: @chart-clear;
+                      color: inherit;
+                      > a {
+                        color: inherit;
+                      }
+                    }
+                  }
                 }
+              }
+            }
+          }
+          .stats-container {
+            td {
+              vertical-align: top;
+            }
+            .block-main-stats {
+            }
+            .main-stats {
+              width: 100%;
+              .treso {
+                font-size: 60%;
+              }
+              > tbody > tr > td {
+                padding: @base-spacing (@base-spacing/4);
+              }
+            }
+            .chart {
+              position: relative;
+              padding-left: @base-spacing;
+              .dashboard-chart {
+                height: 100%;
+                position: absolute;
+              }
+            }
+          }
+        }
+      }
+    }
+    /*
+     * LEAGUE RESULT
+     */
+    &#league-results {
+      > article.padding-me {
+        padding-top: 0;
+      }
+      table.results {
+        display: table;
+        width: 100%;
+        .teams {
+          &:before {
+            content: '';
+            display: block;
+            height: 1px;
+            margin-top: 20px;
+          }
+          .numeric {
+            text-align: center;
+            &.positive {
+              color: @positive-color;
+            }
+            &.draw {
+              color: @nul-color;
+            }
+            &.negative {
+              color: @negative-color;
+            }
+          }
+          th {
+            background: @black;
+            color: @white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 140%;
+            padding: 5px;
+            @media @smartphones {
+              display: none;
+            }
+          }
+          tr {
+            td {
+              font-size: 140%;
+              padding: 5px;
+            }
+            &.odd {
+              td {
+                background: @mid-grey;
+              }
+            }
+            &.even {
+              td {
+                background: @light-grey;
+              }
+            }
+          }
+        }
+      }
+    }
+    /*
+     * TEAM SHEET
+     */
+    &#team-sheet {
+      > article.padding-me {
+        padding-top: 0;
+      }
+      table.team {
+        display: table;
+        width: 100%;
+        .players {
+          &:before {
+            content: '';
+            display: block;
+            height: 1px;
+            margin-top: 20px;
+          }
+          .numeric {
+            text-align: center;
+          }
+          th {
+            background: @black;
+            color: @white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 140%;
+            padding: 5px;
+            @media @smartphones {
+              display: none;
+            }
+          }
+          tr {
+            td {
+              font-size: 140%;
+              padding: 5px;
+              &.skills {
+                max-width: 25%;
+              }
+              &.value {
+                text-align: right;
+              }
+              &:before {
+                content: attr(data-th) ": ";
+                font-weight: 700;
+                width: 5em;
+                display: inline-block;
+                @media @largerthantiny {
+                  display: none;
+                }
+              }
+              @media @smartphones {
+                display: block;
+                text-align: left !important;
+                max-width: 100% !important;
+              }
+              &.notablet {
+                @media @smartphones {
+                  display: none;
+                }
+              }
+            }
+            &.odd {
+              td {
+                background: @mid-grey;
+              }
+            }
+            &.even {
+              td {
+                background: @light-grey;
+              }
+            }
+            &.injured {
+              td {
+                background: @negative-bg-color;
+              }
+            }
+            &.journeyman {
+              td {
+                background: @nul-bg-color;
+              }
             }
             @media @smartphones {
-                .logo {display: none;}
-                .detail {
-                    margin-left: 0;
-                }
+              display: block;
             }
+          }
+          @media @smartphones {
+            display: block;
+          }
         }
-/*
- * DASHBOARD
- */
-        &#dashboard {
-            .teams {
-                > .team {
-                    .wrapper {
-                        padding-left: 0;
-                    }
-                    .team-header {
-                        .team-name,
-                        .team-metas {
-                            float: left;
-                            @media @smartphones, @tablets-v {
-                                float: none;
-                            }
-                        }
-                        .team-metas {
-                            line-height: 31px;
-                            > .league {
-                                @media @smartphones, @tablets-v {
-                                    margin-left: 0;
-                                }
-                            }
-                        }
-                    }
-                    .team-content {
-                        display: table;
-                        width: 100%;
-                    }
-                    .team-logo,
-                    .team-matches,
-                    .team-stats {
-                        display: table-cell;
-                        padding-left: @base-spacing;
-                        vertical-align: top;
-                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                            display: block;
-                        }
-                    }
-                    .team-stats {
-                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                            padding-left: 0;
-                        }
-                        .stats-container {
-                            border-spacing : 0;
-                            border-collapse : collapse;
-                            width: 100%;
-                            display: table;
-                            .block-main-stats {
-                                width: 100px;
-                                @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                                    width: 160px;
-                                }
-                                @media @smartphones, @tablets-v {
-                                    width: 100px;
-                                }
-                            }
-                            .stats-table {
-                                height: 100%;
-                            }
-                        }
-                        .stats-table {
-                            background: @stats-tab-bg;
-                            border-spacing : 0;
-                            border-collapse : collapse;
-                            width: 100%;
-                            display: table;
-                            tbody {width: 100%; display: table;}
-                            .label {
-                                font-size: 160%;
-                                @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                                    font-size: 130%;
-                                }
-                                text-transform: uppercase;
-                                display: block;
-                            }
-                            .value {
-                                font-size: 160%;
-                                @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                                    font-size: 130%;
-                                }
-                                display: block;
-                                &.positive {
-                                    color: @positive-color;
-                                }
-                                &.nul {
-                                    color: @nul-color;
-                                }
-                                &.negative {
-                                    color: @negative-color;
-                                }
-                            }
-                            > tbody > tr,
-                            > tr {
-                                > td,
-                                > th {
-                                    border-spacing : 0;
-                                    border-collapse : collapse;
-                                    border: 1px solid @stats-tab-border;
-                                    text-align: center;
-                                    padding: @base-spacing (@base-spacing/4);
-                                    @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                                        padding: 14px (@base-spacing/4);
-                                    }
-                                    > .value {
-                                        font-size: 360%;
-                                        font-weight: 700;
-                                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                                            font-size: 280%;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .team-logo {
-                        position: relative;
-                        padding-left: 0;
-                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                            float: left;
-                            margin-bottom: @base-spacing;
-                        }
-                        @media @smartphones, @tablets-v {
-                            width: 100px;
-                            height: 100px;
-                        }
-                        img {width: 100%; height: auto;}
-                    }
-                    .team-matches {
-                        width: 505px;
-                        @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                            width: auto;
-                            margin-left: 160px;
-                            margin-bottom: @base-spacing;
-                        }
-                        @media @smartphones, @tablets-v {
-                            margin-left: 100px;
-                        }
-                        .see-all {
-                            float: right;
-                            margin-top: 5px;
-                            @media @smartphones, @tablets-v, @tablets, @little-desktop {
-                                float: none;
-                                position: absolute;
-                                top: 0;
-                                right: 0;
-                            }
-                        }
-                        .matches {
-                            width: 100%;
-                            border-spacing: 0;
-                            border-collapse: collapse;
-                            display: table;
-                            tr {
-                                td {
-                                    background: @mid-grey;
-                                    padding: 5px 10px;
-                                    font-size: 140%;
-                                    border: 2px solid @white;
-                                    &.journey {
-                                        text-align: center;
-                                        width: 30px;
-                                    }
-                                    &.versus {
-                                        background: @chart-dark;
-                                        color: @white;
-                                        padding: 0;
-                                        > a {
-                                            padding: 5px 10px;
-                                            display: block;
-                                            color: @white;
-                                            text-decoration: none;
-                                            &:hover {
-                                                color: @chart-dark;
-                                                background: @white;
-                                                text-decoration: none;
-                                            }
-                                        }
-                                        .team-name {
-                                            text-transform: uppercase;
-                                            font-weight: 700;
-                                            font-style: italic;
-                                        }
-                                        .coach {
-                                            float: right;
-                                            font-style: italic;
-                                        }
-                                    }
-                                    &.tr {
-                                        text-align: center;
-                                        width: 40px;
-                                        background: @dark-mid-grey;
-                                        color: @white;
-                                    }
-                                }
-                                &.even {
-                                    td {
-                                        &.versus {
-                                            background: @chart-clear;
-                                            color: inherit;
-                                            > a {
-                                                color: inherit;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .stats-container {
-                        td {vertical-align: top;}
-                        .block-main-stats {
-                        }
-                        .main-stats {
-                            width: 100%;
-                            .treso {
-                                font-size: 60%;
-                            }
-                            > tbody > tr > td {
-                                padding: @base-spacing (@base-spacing/4);
-                            }
-                        }
-                        .chart {
-                            position: relative;
-                            padding-left: @base-spacing;
-                            .dashboard-chart {
-                                height: 100%;
-                                position: absolute;
-                            }
-                        }
-                    }
-                }
+        .foot-informations {
+          &:before {
+            content: '';
+            display: block;
+            height: 1px;
+            margin-top: 20px;
+          }
+          @media @smartphones {
+            display: block;
+            tr,
+            td {
+              display: block;
             }
+          }
         }
-/*
- * TEAM SHEET
- */
-        &#team-sheet {
-            > article.padding-me {
-                padding-top: 0;
+        .heading-informations {
+          @media @smartphones {
+            display: block;
+            tr,
+            td {
+              display: block;
             }
-            table.team {
-                display: table;
-                width: 100%;
-                .players {
-                    &:before {
-                        content: '';
-                        display: block;
-                        height: 1px;
-                        margin-top: 20px;
-                    }
-                    .numeric {
-                        text-align: center;
-                    }
-                    th {
-                        background: @black;
-                        color: @white;
-                        font-weight: 700;
-                        text-transform: uppercase;
-                        font-size: 140%;
-                        padding: 5px;
-                        @media @smartphones {
-                            display: none;
-                        }
-                    }
-                    tr {
-                        td {
-                            font-size: 140%;
-                            padding: 5px;
-                            &.skills {
-                                max-width: 25%;
-                            }
-                            &.value {
-                                text-align: right;
-                            }
-                            &:before {
-                                content: attr(data-th) ": ";
-                                font-weight: 700;
-                                width: 5em;
-                                display: inline-block;
-                                @media @largerthantiny {
-                                    display: none;
-                                }
-                            }
-                            @media @smartphones {
-                                display: block;
-                                text-align: left !important;
-                                max-width: 100% !important;
-                            }
-                            &.notablet {
-                                @media @smartphones {
-                                    display: none;
-                                }
-                            }
-                        }
-                        &.odd {
-                            td {
-                                background: @light-grey;
-                            }
-                        }
-                        &.even {
-                            td {
-                                background: @mid-grey;
-                            }
-                        }
-                        &.injured {
-                            td {
-                                background: @negative-bg-color;
-                            }
-                        }
-                        &.journeyman {
-                            td {
-                                background: @nul-bg-color;
-                            }
-                        }
-                        @media @smartphones {
-                            display: block;
-                        }
-                    }
-                    @media @smartphones {
-                        display: block;
-                    }
-                }
-                .foot-informations {
-                    &:before {
-                        content: '';
-                        display: block;
-                        height: 1px;
-                        margin-top: 20px;
-                    }
-                    @media @smartphones {
-                        display: block;
-                        tr,
-                        td {
-                            display: block;
-                        }
-                    }
-                }
-                .heading-informations {
-                    @media @smartphones {
-                        display: block;
-                        tr,
-                        td {
-                            display: block;
-                        }
-                    }
-                }
-                @media @smartphones {
-                    display: block;
-                }
-            }
+          }
         }
+        @media @smartphones {
+          display: block;
+        }
+      }
     }
-/*
- * FORMS
- */
-    #content-form {
-        form {
-            padding: 0 @base-spacing;
-            box-sizing: border-box;
-            max-width: 500px;
-            font-size: 140%;
-            .steps {
-                margin-bottom: @base-spacing;
-                .steplist {
-                    > li {
-                        float: left;
-                        margin-left: @base-spacing;
-                        list-style: decimal inside;
-                        &:first-child {
-                            margin-left: 0;
-                        }
-                        &.done_step {
-                            color: @positive-color;
-                        }
-                        &.current_step {
-                            color: @nul-color;
-                        }
-                    }
-                }
+  }
+  /*
+   * FORMS
+   */
+  #content-form {
+    form {
+      padding: 0 @base-spacing;
+      box-sizing: border-box;
+      max-width: 500px;
+      font-size: 140%;
+      .steps {
+        margin-bottom: @base-spacing;
+        .steplist {
+          > li {
+            float: left;
+            margin-left: @base-spacing;
+            list-style: decimal inside;
+            &:first-child {
+              margin-left: 0;
             }
-            .form-infos {
-                margin-bottom: @base-spacing;
-                .border-radius();
-                border: 1px solid @nul-color;
-                background: @nul-bg-color;
-                color: @nul-color;
-                padding: (@base-spacing/2) @base-spacing;
-                font-size: 140%;
+            &.done_step {
+              color: @positive-color;
             }
+            &.current_step {
+              color: @nul-color;
+            }
+          }
         }
-/*
- * ENCOUNTER SHEET
- */
-        #encoutersheet {
-            .ui.form {
-                max-width: 100%;
-                .title {
-                    padding: 20px 0;
-                    font-size: 140%;
-                    font-weight: 300;
-                    text-transform: uppercase;
-                    &.team-name {
-                        padding-top: 0;
-                    }
-                }
-                .head-informations {
-                    position: relative;
-                    min-height: 145px;
-                    padding-left: 180px;
-                    .team-logo {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 160px;
-                        min-height: 145px;
-                        > img {
-                            max-width: 100%;
-                            max-height: 100%;
-                        }
-                        &.no-logo {
-                            background: @league-icon-bg;
-                            svg {
-                                fill: @white;
-                                display: block;
-                                width: auto;
-                                max-width: 80%;
-                                max-height: 90%;
-                                margin: 5% 10%;
-                                path {
-                                    fill: @white;
-                                }
-                            }
-                        }
-                    }
-                    .core {
-                        text-align: center;
-                        display: block;
-                        width: 250px;
-                        position: relative;
-                        border: 1px solid #d5d5d5;
-                        background: #f6f6f6;
-                        .base-stat-table {
-                            width: 100%;
-                            padding: 20px 5px;
-                            box-sizing: border-box;
-                            &.big-value {
-                                padding: 25px 5px;
-                                .label,
-                                .value {
-                                    display: block;
-                                }
-                            }
-                            &.center-all {
-                                text-align: center;
-                            }
-                            .label {
-                                font-size: 110%;
-                                margin-left: 10px;
-                                line-height: 24px;
-                                text-transform: uppercase;
-                            }
-                            .value {
-                                font-size: 230%;
-                                font-weight: 700;
-                            }
-                        }
-                        .tr {
-                            width: 50%;
-                            float: left;
-                            padding: 25px 5px;
-                        }
-                        .treasure {
-                            &:before {
-                                content: '';
-                                width: 1px;
-                                background: #d5d5d5;
-                                top: 0;
-                                bottom: 0;
-                                height: 100%;
-                                visibility: visible;
-                                position: absolute;
-                                left: 50%;
-                            }
-                        }
-                    }
-                }
-                .grid {
-                    .column {
-                        &.home,
-                        &.visitor {
-                            position: relative;
-                            .add-another-action {
-                                position: absolute;
-                                right: 0;
-                                top: 0;
-                            }
-                            .delete {
-                                position: relative;
-                            }
-                            .delrow {
-                                position: absolute;
-                                right: 0;
-                                bottom: 0;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+      }
+      .form-infos {
+        margin-bottom: @base-spacing;
+        .border-radius();
+        border: 1px solid @nul-color;
+        background: @nul-bg-color;
+        color: @nul-color;
+        padding: (@base-spacing/2) @base-spacing;
+        font-size: 140%;
+      }
     }
-/*
- * ADMIN
- */
-    #espace-admin {
-        .admin-block {
-            .admin-block-name {
-                font-size: 240%;
-                font-weight: 700;
+    /*
+     * ENCOUNTER SHEET
+     */
+    #encoutersheet {
+      .ui.form {
+        max-width: 100%;
+        .title {
+          padding: 20px 0;
+          font-size: 140%;
+          font-weight: 300;
+          text-transform: uppercase;
+          &.team-name {
+            padding-top: 0;
+          }
+        }
+        .head-informations {
+          position: relative;
+          min-height: 145px;
+          padding-left: 180px;
+          .team-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 160px;
+            min-height: 145px;
+            > img {
+              max-width: 100%;
+              max-height: 100%;
+            }
+            &.no-logo {
+              background: @league-icon-bg;
+              svg {
+                fill: @white;
+                display: block;
+                width: auto;
+                max-width: 80%;
+                max-height: 90%;
+                margin: 5% 10%;
+                path {
+                  fill: @white;
+                }
+              }
+            }
+          }
+          .core {
+            text-align: center;
+            display: block;
+            width: 250px;
+            position: relative;
+            border: 1px solid #d5d5d5;
+            background: #f6f6f6;
+            .base-stat-table {
+              width: 100%;
+              padding: 20px 5px;
+              box-sizing: border-box;
+              &.big-value {
+                padding: 25px 5px;
+                .label,
+                .value {
+                  display: block;
+                }
+              }
+              &.center-all {
+                text-align: center;
+              }
+              .label {
+                font-size: 110%;
+                margin-left: 10px;
+                line-height: 24px;
                 text-transform: uppercase;
-                font-family: Dosis,sans-serif;
-                color: @font-color;
+              }
+              .value {
+                font-size: 230%;
+                font-weight: 700;
+              }
             }
-            .leagues {
-                .league {
-                    .league-name {
-                        font-size: 200%;
-                        color: @font-color;
-                    }
-                    .league-metas {
-                        font-size: 140%;
-                    }
-                }
+            .tr {
+              width: 50%;
+              float: left;
+              padding: 25px 5px;
             }
-            .rules {
-                .rule {
-                    .rule-name {
-                        font-size: 200%;
-                        color: @font-color;
-                    }
-                    .rule-metas {
-                        font-size: 140%;
-                    }
-                }
+            .treasure {
+              &:before {
+                content: '';
+                width: 1px;
+                background: #d5d5d5;
+                top: 0;
+                bottom: 0;
+                height: 100%;
+                visibility: visible;
+                position: absolute;
+                left: 50%;
+              }
             }
+          }
         }
+        .grid {
+          .column {
+            &.home,
+            &.visitor {
+              position: relative;
+              .add-another-action {
+                position: absolute;
+                right: 0;
+                top: 0;
+              }
+              .delete {
+                position: relative;
+              }
+              .delrow {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+              }
+            }
+          }
+        }
+      }
     }
+  }
+  /*
+   * ADMIN
+   */
+  #espace-admin {
+    .admin-block {
+      .admin-block-name {
+        font-size: 240%;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: Dosis, sans-serif;
+        color: @font-color;
+      }
+      .leagues {
+        .league {
+          .league-name {
+            font-size: 200%;
+            color: @font-color;
+          }
+          .league-metas {
+            font-size: 140%;
+          }
+        }
+      }
+      .rules {
+        .rule {
+          .rule-name {
+            font-size: 200%;
+            color: @font-color;
+          }
+          .rule-metas {
+            font-size: 140%;
+          }
+        }
+      }
+    }
+  }
 }
+
 /*
  * DEFAULT RESPONSIVE
  */
 .nomobile {
-    @media @smartphones {
-        display: none;
-    }
+  @media @smartphones {
+    display: none;
+  }
 }
+
 .notablet-v {
-    @media @smartphones, @tablets-v {
-        display: none;
-    }
+  @media @smartphones, @tablets-v {
+    display: none;
+  }
 }
+
 .notablet {
-    @media @smartphones, @tablets-v, @tablets {
-        display: none;
-    }
+  @media @smartphones, @tablets-v, @tablets {
+    display: none;
+  }
 }

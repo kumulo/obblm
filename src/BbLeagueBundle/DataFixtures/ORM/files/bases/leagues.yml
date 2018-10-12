@@ -9,3 +9,24 @@ BbLeagueBundle\Entity\Journey:
     j0:
         name:   'J0'
         league:  '@league1'
+    j1:
+        name:   'J1'
+        league:  '@league1'
+    j2:
+        name:   'J2'
+        league:  '@league1'
+    j3:
+        name:   'J3'
+        league:  '@league1'
+    j4:
+        name:   'J4'
+        league:  '@league1'
+    j5:
+        name:   'J5'
+        league:  '@league1'
+    j6:
+        name:   'J6'
+        league:  '@league1'
+    j7:
+        name:   'J7'
+        league:  '@league1'

@@ -2,22 +2,25 @@
 
 namespace BbLeagueBundle\Services;
 
-use Doctrine\ORM\EntityManager;
-use Doctrine\Common\Collections\ArrayCollection;
-use BbLeagueBundle\Entity\League;
+use BbLeagueBundle\Entity\Encounter;
 use BbLeagueBundle\Entity\Journey;
+use BbLeagueBundle\Entity\League;
+use BbLeagueBundle\Entity\Team;
 use BbLeagueBundle\Entity\TeamByJourney;
-use BbLeagueBundle\Entity\Match;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 
 class LeagueService {
     private $em;
     private $translator;
+    /** @var League $league */
     private $league = false;
     private $numberOfJouneys = 1;
     private $avaibleTeams = array();
     private $isOdd = false;
 
-    public function __construct(\Doctrine\ORM\EntityManager $entity_manager, $translator) {
+    public function __construct(EntityManager $entity_manager, $translator)
+    {
         $this->em = $entity_manager;
         $this->translator = $translator;
     }
@@ -44,8 +47,8 @@ class LeagueService {
             $name = $this->translator->trans('specials.league_journey_count', array('%count%' => $i));
             $j->setName($name);
             $j->setLeague($this->league);
-            $j = $this->renderMatchs($j);
-            if(count($j->getMatchs()) > 0) {
+            $j = $this->renderEncounters($j);
+            if (count($j->getEncounters()) > 0) {
                 $this->league->addJourney($j);
                 $this->em->persist($j);
             }
@@ -57,15 +60,20 @@ class LeagueService {
         $this->em->flush();
         return $this->league;
     }
-    private function renderMatchs(Journey $j) {
+
+    private function renderEncounters(Journey $j)
+    {
         $temp = new ArrayCollection( $this->avaibleTeams->toArray() );
 
         while(count($temp) > 1) {
-            $match = new Match();
-            $match->setJourney($j);
+            $encounter = new Encounter();
+            $encounter->setJourney($j);
+            /** @var Team $t1
+             * @var Team $t2
+             */
             $t1 = $temp->first();
             $temp->removeElement($t1);
-            $match->setTeam($t1);
+            $encounter->setTeam($t1);
             $not_view = new ArrayCollection( $temp->toArray() );
             if(count($not_view) > 0) {
                 foreach($t1->getEncounters() as $encounter) {
@@ -74,11 +82,11 @@ class LeagueService {
                 $t2 = $not_view->first();
                 if($t2) {
                     $temp->removeElement($t2);
-                    $match->setVisitor($t2);
-                    $t1->addMatch($match);
-                    $t2->addMatch($match);
-                    $j->addMatch($match);
-                    $this->em->persist($match);
+                    $encounter->setVisitor($t2);
+                    $t1->addEncounter($encounter);
+                    $t2->addEncounter($encounter);
+                    $j->addEncounter($encounter);
+                    $this->em->persist($encounter);
                 }
             }
         }
@@ -89,24 +97,23 @@ class LeagueService {
      * Generate new TeamJouney entity
      *
      * @param \BbLeagueBundle\Entity\Team $team
-     * @param \BbLeagueBundle\Entity\Jouney $match_jouney
+     * @param \BbLeagueBundle\Entity\Jouney $encounter_jouney
      * @param Array $actions_give
      * @param Array $actions_take
-
-     */
-    public function generateMatchTeamJourney(
-            \BbLeagueBundle\Entity\Team $team,
-            \BbLeagueBundle\Entity\Jouney $match_jouney,
-            Array $actions_give,
+ */
+    public function generateEncounterTeamJourney(
+        \BbLeagueBundle\Entity\Team $team,
+        \BbLeagueBundle\Entity\Jouney $encounter_jouney,
+        Array $actions_give,
             Array $actions_take) {
 
-        $last_journey = $match->getTeam()->getLastJourney();
+        $last_journey = $encounter->getTeam()->getLastJourney();
         $new_journey = new TeamByJourney();
-        $new_journey->setJourney($match_jouney)
+        $new_journey->setJourney($encounter_jouney)
             ->setTeam($team)
-            ->setWinMatch( $last_journey->getWinMatch() + 0 )
-            ->setDrawMatch( $last_journey->getDrawMatch() + 0 )
-            ->setLostMatch( $last_journey->getLostMatch() + 0 )
+            ->setWinEncounter($last_journey->getWinEncounter() + 0)
+            ->setDrawEncounter($last_journey->getDrawEncounter() + 0)
+            ->setLostEncounter($last_journey->getLostEncounter() + 0)
             ->setTdGive( $last_journey->getTdGive() + 0 )
             ->setTdTake( $last_journey->getTdTake() + 0 )
             ->setInjuryGive( $last_journey->getInjuryGive() + 0 )

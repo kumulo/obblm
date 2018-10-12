@@ -57,6 +57,7 @@ sheet:
     labels:
         coach: Coach
         roster: Race
+        team: Equipe
         league: Ligue
         journey: Journée
         place: Classement

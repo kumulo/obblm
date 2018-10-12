@@ -7,6 +7,7 @@
 
 namespace BbLeagueBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -513,5 +514,26 @@ class League
     public function getJourneys()
     {
         return $this->journeys;
+    }
+
+    /**
+     * Get tiebreaks
+     *
+     * @return ArrayCollection[]TieBreakInterface
+     */
+    public function getTieBreaks()
+    {
+        $tiebreaks = new ArrayCollection();
+        if ($this->tie_break_1) {
+            $tiebreaks->add($this->tie_break_1);
+        }
+        if ($this->tie_break_2) {
+            $tiebreaks->add($this->tie_break_2);
+        }
+        if ($this->tie_break_3) {
+            $tiebreaks->add($this->tie_break_3);
+        }
+
+        return $tiebreaks;
     }
 }

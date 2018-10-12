@@ -2,13 +2,13 @@
 
 namespace BbLeagueBundle\Controller;
 
+use BbLeagueBundle\Entity\Journey;
+use BbLeagueBundle\Entity\League;
+use BbLeagueBundle\Entity\Rule;
 use BbLeagueBundle\Form\Type\LeagueType;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use BbLeagueBundle\Entity\League;
-use BbLeagueBundle\Entity\Journey;
-use BbLeagueBundle\Entity\Rule;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends Controller
 {
@@ -30,6 +30,7 @@ class AdminController extends Controller
             'leagues' => $leagues,
         ));
     }
+
     /**
      * @Route("/league/add", name="admin_league_add")
      */
@@ -56,6 +57,7 @@ class AdminController extends Controller
             'form' => $form->createView(),
         ));
     }
+
     /**
      * @Route("/league/edit/{league}", name="admin_league_edit")
      */
@@ -86,6 +88,7 @@ class AdminController extends Controller
             }
             $em->persist($league);
             $em->flush();
+
             return $this->redirectToRoute('admin_homepage');
         }
 
@@ -93,6 +96,7 @@ class AdminController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
     /**
      * @Route("/rule/add", name="admin_rule_add")
      */
@@ -106,10 +110,10 @@ class AdminController extends Controller
         $form = $this->createForm('obbml_forms_admin_rule', $rule);
 
         $form->add('base_rule', 'choice', array(
-                'required' => true,
-                'mapped' => false,
-                'choices' => $bb->getRulesForForm()
-            ));
+            'required' => true,
+            'mapped' => false,
+            'choices' => $bb->getRulesForForm()
+        ));
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -129,19 +133,18 @@ class AdminController extends Controller
             'form' => $form->createView(),
         ));
     }
+
     /**
-     * @Route("/rule/edit/{rule_id}", name="admin_rule_edit")
+     * @Route("/rule/edit/{rule}", name="admin_rule_edit")
      */
-    public function adminRuleEditAction(Request $request, $rule_id)
+    public function adminRuleEditAction(Request $request, Rule $rule)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $repo = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:Rule');
-
-        $rule  = $repo->find($rule_id);
         if(!$rule) {
             return $this->redirectToRoute('admin_homepage');
         }
+
         $bb = $this->get('bb.rules');
         $base_rule = $bb->getRule('lrb6');
         $rule->setRule($base_rule->getRule());

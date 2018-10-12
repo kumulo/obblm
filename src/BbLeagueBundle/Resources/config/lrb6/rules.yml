@@ -17,6 +17,14 @@ bb_league:
                 average_bonus: 30000
                 agility_bonus: 40000
                 strength_bonus: 50000
+            fields:
+                default:
+                    weather:
+                    - blizzard
+                    - rain
+                    - normal
+                    - sunny
+                    - hot
             injuries:
                 badly_hurt:
                     from: 11

@@ -2,10 +2,12 @@
 
 namespace BbLeagueBundle\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
+use BbLeagueBundle\Entity\League;
+use BbLeagueBundle\Entity\TeamByJourney;
+use BbLeagueBundle\Repository\TeamByJourneyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\VarDumper\VarDumper;
+use Symfony\Component\Routing\Annotation\Route;
 
 class LeagueController extends Controller
 {
@@ -33,13 +35,10 @@ class LeagueController extends Controller
         ));
     }
     /**
-     * @Route("/results/{league_id}", name="league_results")
+     * @Route("/results/{league}", name="league_results")
      */
-    public function resultsAction(Request $request, $league_id)
+    public function resultsAction(Request $request, League $league)
     {
-        $repo = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:League');
-
-        $league  = $repo->find($league_id);
         if(!$league) {
             throw $this->createNotFoundException('The league does not exist');
         }
@@ -50,10 +49,13 @@ class LeagueController extends Controller
         }
         
         $tiebreaks = $this->get('bblm.tiebreaks');
-        VarDumper::dump($tiebreaks);
-        
+        /** @var TeamByJourneyRepository $repository */
+        $repository = $this->getDoctrine()->getRepository(TeamByJourney::class);
+        $teams = $repository->findTeamsByLeagueWithTiebreaks($league, $tiebreaks);
+
         return $this->render('BbLeagueBundle::League/results.html.twig', array(
             'league' => $league,
+            'journeyteams' => $teams,
         ));
     }
 }

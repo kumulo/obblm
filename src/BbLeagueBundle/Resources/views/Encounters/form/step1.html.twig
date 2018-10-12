@@ -1,5 +1,20 @@
-<div class="field">
-    {{form_label(sheet.weather, 'form.encounter.label.weather')}}
-    {{form_widget(sheet.weather)}}
-    {{ form_errors(sheet.weather) }}
-</div>
+{% extends 'BbLeagueBundle:Encounters:form/encounter-form.html.twig' %}
+
+{% block encounterstep %}
+    <h2 class="title">{% trans from 'form' %}form.encounter.sheet.steps.step1.title{% endtrans %}</h2>
+    <div class="field">
+        {{ form_label(sheet.weather, 'form.encounter.label.weather') }}
+        {{ form_widget(sheet.weather) }}
+        {{ form_errors(sheet.weather) }}
+    </div>
+    <div class="field">
+        {{ form_label(sheet.field, 'form.encounter.label.field') }}
+        {{ form_widget(sheet.field) }}
+        {{ form_errors(sheet.field) }}
+    </div>
+    <div class="field">
+        <input type="submit" value="{% trans from 'form' %}form.encounter.sheet.submit{% endtrans %}" class="ui button">
+    </div>
+    {{ form_end(sheet) }}
+{% endblock %}
+

@@ -1,56 +1,78 @@
-{{ form_errors(sheet) }}
-{% form_theme sheet.home_actions.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
-{% form_theme sheet.visitor_actions.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
-{% form_theme sheet.home_injuries.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
-{% form_theme sheet.visitor_injuries.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
-<div class="ui two column stackable grid clearfix">
-    <div class="left-part column home">
-        {{form_label(sheet.home_actions, 'form.encounter.label.home_actions')}}
-        <table id="home-actions" class="actions field" data-prototype="{{ form_widget(sheet.home_actions.vars.prototype, { 'attr': {'class': 'lineaction'}})|e('html_attr') }}">
-        {% for action in sheet.home_actions %}
-            {{ form_widget(action, { 'attr': {'class': 'lineaction'}}) }}
-        {% endfor %}
-        </table>
-        <a href="#" class="add-another-action ui button positive flipable" list-selector="#home-actions" list-count="{{ sheet.home_actions|length }}"><span class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_action{% endtrans %}</span><i class="plus icon"></i></a>
-        {{form_widget(sheet.home_actions)}}
-        {{ form_errors(sheet.home_actions) }}
+{% extends 'BbLeagueBundle:Encounters:form/encounter-form.html.twig' %}
+
+{% block encounterstep %}
+    {% form_theme sheet.home_actions.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
+    {% form_theme sheet.visitor_actions.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
+    {% form_theme sheet.home_injuries.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
+    {% form_theme sheet.visitor_injuries.vars.prototype 'BbLeagueBundle:Form:form_table_action_line.html.twig' %}
+    <h2 class="title">{% trans from 'form' %}form.encounter.sheet.steps.step2.title{% endtrans %}</h2>
+    <div class="ui two column stackable grid clearfix">
+        <div class="left-part column home">
+            {{ form_label(sheet.home_actions, 'form.encounter.label.home_actions') }}
+            <table id="home-actions" class="actions field"
+                   data-prototype="{{ form_widget(sheet.home_actions.vars.prototype, { 'attr': {'class': 'lineaction'}})|e('html_attr') }}">
+                {% for action in sheet.home_actions %}
+                    {{ form_widget(action, { 'attr': {'class': 'lineaction'}}) }}
+                {% endfor %}
+            </table>
+            <a href="#" class="add-another-action ui button positive flipable" list-selector="#home-actions"
+               list-count="{{ sheet.home_actions|length }}"><span
+                        class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_action{% endtrans %}</span><i
+                        class="plus icon"></i></a>
+            {{ form_widget(sheet.home_actions) }}
+            {{ form_errors(sheet.home_actions) }}
+        </div>
+        <div class="right-part column visitor">
+            {{ form_label(sheet.visitor_actions, 'form.encounter.label.visitor_actions') }}
+            <table id="visitor-actions" class="actions field"
+                   data-prototype="{{ form_widget(sheet.visitor_actions.vars.prototype)|e('html_attr') }}">
+                {% for action in sheet.visitor_actions %}
+                    {{ form_widget(action, { 'attr': {'class': 'lineaction'}}) }}
+                {% endfor %}
+            </table>
+            <a href="#" class="add-another-action ui button positive flipable" list-selector="#visitor-actions"
+               list-count="{{ sheet.visitor_actions|length }}"><span
+                        class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_action{% endtrans %}</span><i
+                        class="plus icon"></i></a>
+            {{ form_widget(sheet.visitor_actions) }}
+            {{ form_errors(sheet.visitor_actions) }}
+        </div>
     </div>
-    <div class="right-part column visitor">
-        {{form_label(sheet.visitor_actions, 'form.encounter.label.visitor_actions')}}
-        <table id="visitor-actions" class="actions field" data-prototype="{{ form_widget(sheet.visitor_actions.vars.prototype)|e('html_attr') }}">
-        {% for action in sheet.visitor_actions %}
-            {{ form_widget(action, { 'attr': {'class': 'lineaction'}}) }}
-        {% endfor %}
-        </table>
-        <a href="#" class="add-another-action ui button positive flipable" list-selector="#visitor-actions" list-count="{{ sheet.visitor_actions|length }}"><span class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_action{% endtrans %}</span><i class="plus icon"></i></a>
-        {{form_widget(sheet.visitor_actions)}}
-        {{ form_errors(sheet.visitor_actions) }}
+    <div class="ui two column stackable grid clearfix">
+        <div class="left-part column home">
+            {{ form_label(sheet.home_injuries, 'form.encounter.label.home_injuries') }}
+            <table id="home-injuries" class="injuries field"
+                   data-prototype="{{ form_widget(sheet.home_injuries.vars.prototype)|e('html_attr') }}">
+                {% for injury in sheet.home_injuries %}
+                    {{ form_widget(injury, { 'attr': {'class': 'lineaction'}}) }}
+                {% endfor %}
+            </table>
+            <a href="#" class="add-another-action ui button positive flipable" list-selector="#home-injuries"
+               list-count="{{ sheet.home_injuries|length }}">
+                <span class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_injury{% endtrans %}</span>
+                <i class="plus icon"></i>
+            </a>
+            {{ form_widget(sheet.home_injuries) }}
+            {{ form_errors(sheet.home_injuries) }}
+        </div>
+        <div class="right-part column visitor">
+            {{ form_label(sheet.visitor_injuries, 'form.encounter.label.visitor_injuries') }}
+            <table id="visitor-injuries" class="injuries field"
+                   data-prototype="{{ form_widget(sheet.visitor_injuries.vars.prototype)|e('html_attr') }}">
+                {% for injury in sheet.visitor_injuries %}
+                    {{ form_widget(injury, { 'attr': {'class': 'lineaction'}}) }}
+                {% endfor %}
+            </table>
+            <a href="#" class="add-another-action ui button positive flipable" list-selector="#visitor-injuries"
+               list-count="{{ sheet.visitor_injuries|length }}"><span
+                        class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_injury{% endtrans %}</span><i
+                        class="plus icon"></i></a>
+            {{ form_widget(sheet.visitor_injuries) }}
+            {{ form_errors(sheet.visitor_injuries) }}
+        </div>
     </div>
-</div>
-<div class="ui two column stackable grid clearfix">
-    <div class="left-part column home">
-        {{form_label(sheet.home_injuries, 'form.encounter.label.home_injuries')}}
-        <table id="home-injuries" class="injuries field" data-prototype="{{ form_widget(sheet.home_injuries.vars.prototype)|e('html_attr') }}">
-        {% for injury in sheet.home_injuries %}
-            {{ form_widget(injury, { 'attr': {'class': 'lineaction'}}) }}
-        {% endfor %}
-        </table>
-        <a href="#" class="add-another-action ui button positive flipable" list-selector="#home-injuries" list-count="{{ sheet.home_injuries|length }}">
-            <span class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_injury{% endtrans %}</span>
-            <i class="plus icon"></i>
-        </a>
-        {{form_widget(sheet.home_injuries)}}
-        {{ form_errors(sheet.home_injuries) }}
+    <div class="field">
+        <input type="submit" value="{% trans from 'form' %}form.encounter.sheet.submit{% endtrans %}" class="ui button">
     </div>
-    <div class="right-part column visitor">
-        {{form_label(sheet.visitor_injuries, 'form.encounter.label.visitor_injuries')}}
-        <table id="visitor-injuries" class="injuries field" data-prototype="{{ form_widget(sheet.visitor_injuries.vars.prototype)|e('html_attr') }}">
-        {% for injury in sheet.visitor_injuries %}
-            {{ form_widget(injury, { 'attr': {'class': 'lineaction'}}) }}
-        {% endfor %}
-        </table>
-        <a href="#" class="add-another-action ui button positive flipable" list-selector="#visitor-injuries" list-count="{{ sheet.visitor_injuries|length }}"><span class="text">{% trans from 'form' %}form.encounter.sheet.buttons.add_injury{% endtrans %}</span><i class="plus icon"></i></a>
-        {{form_widget(sheet.visitor_injuries)}}
-        {{ form_errors(sheet.visitor_injuries) }}
-    </div>
-</div>
+    {{ form_end(sheet) }}
+{% endblock %}

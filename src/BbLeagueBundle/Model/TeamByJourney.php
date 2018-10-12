@@ -34,9 +34,9 @@ abstract class TeamByJourney
     protected $journey;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BbLeagueBundle\Entity\Match", inversedBy="teams_by_journey", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="BbLeagueBundle\Entity\Encounter", inversedBy="teams_by_journey", cascade={"persist"})
      */
-    protected $match;
+    protected $encounter;
 
     /**
      * @ORM\OneToMany(targetEntity="BbLeagueBundle\Entity\PlayerByJourney", mappedBy="journey", cascade={"remove"})
@@ -45,19 +45,19 @@ abstract class TeamByJourney
     protected $players;
 
     /**
-     * @ORM\Column(name="win_match", type="smallint")
+     * @ORM\Column(name="win_encounter", type="smallint")
      */
-    protected $win_match;
+    protected $win_encounter;
 
     /**
-     * @ORM\Column(name="draw_match", type="smallint")
+     * @ORM\Column(name="draw_encounter", type="smallint")
      */
-    protected $draw_match;
+    protected $draw_encounter;
 
     /**
-     * @ORM\Column(name="lost_match", type="smallint")
+     * @ORM\Column(name="lost_encounter", type="smallint")
      */
-    protected $lost_match;
+    protected $lost_encounter;
 
     /**
      * @ORM\Column(name="td_give", type="smallint")
@@ -141,9 +141,9 @@ abstract class TeamByJourney
         $this->popularity   = 0;
         $this->assistants   = 0;
         $this->cheerleaders = 0;
-        $this->win_match    = 0;
-        $this->draw_match   = 0;
-        $this->lost_match   = 0;
+        $this->win_encounter = 0;
+        $this->draw_encounter = 0;
+        $this->lost_encounter = 0;
         $this->td_give      = 0;
         $this->td_take      = 0;
         $this->injury_give  = 0;
@@ -165,75 +165,75 @@ abstract class TeamByJourney
     }
 
     /**
-     * Set winMatch
+     * Set winEncounter
      *
-     * @param integer $winMatch
+     * @param integer $winEncounter
      *
      * @return TeamByJourney
      */
-    public function setWinMatch($winMatch)
+    public function setWinEncounter($winEncounter)
     {
-        $this->win_match = $winMatch;
+        $this->win_encounter = $winEncounter;
 
         return $this;
     }
 
     /**
-     * Get winMatch
+     * Get winEncounter
      *
      * @return integer
      */
-    public function getWinMatch()
+    public function getWinEncounter()
     {
-        return $this->win_match;
+        return $this->win_encounter;
     }
 
     /**
-     * Set drawMatch
+     * Set drawEncounter
      *
-     * @param integer $drawMatch
+     * @param integer $drawEncounter
      *
      * @return TeamByJourney
      */
-    public function setDrawMatch($drawMatch)
+    public function setDrawEncounter($drawEncounter)
     {
-        $this->draw_match = $drawMatch;
+        $this->draw_encounter = $drawEncounter;
 
         return $this;
     }
 
     /**
-     * Get drawMatch
+     * Get drawEncounter
      *
      * @return integer
      */
-    public function getDrawMatch()
+    public function getDrawEncounter()
     {
-        return $this->draw_match;
+        return $this->draw_encounter;
     }
 
     /**
-     * Set lostMatch
+     * Set lostEncounter
      *
-     * @param integer $lostMatch
+     * @param integer $lostEncounter
      *
      * @return TeamByJourney
      */
-    public function setLostMatch($lostMatch)
+    public function setLostEncounter($lostEncounter)
     {
-        $this->lost_match = $lostMatch;
+        $this->lost_encounter = $lostEncounter;
 
         return $this;
     }
 
     /**
-     * Get lostMatch
+     * Get lostEncounter
      *
      * @return integer
      */
-    public function getLostMatch()
+    public function getLostEncounter()
     {
-        return $this->lost_match;
+        return $this->lost_encounter;
     }
 
     /**
@@ -511,27 +511,27 @@ abstract class TeamByJourney
     }
 
     /**
-     * Set match
+     * Set encounter
      *
-     * @param \BbLeagueBundle\Entity\Match $match
+     * @param \BbLeagueBundle\Entity\Encounter $encounter
      *
      * @return TeamByJourney
      */
-    public function setMatch(\BbLeagueBundle\Entity\Match $match = null)
+    public function setEncounter(\BbLeagueBundle\Entity\Encounter $encounter = null)
     {
-        $this->match = $match;
+        $this->encounter = $encounter;
 
         return $this;
     }
 
     /**
-     * Get match
+     * Get encounter
      *
-     * @return \BbLeagueBundle\Entity\Match
+     * @return \BbLeagueBundle\Entity\Encounter
      */
-    public function getMatch()
+    public function getEncounter()
     {
-        return $this->match;
+        return $this->encounter;
     }
 
     /**

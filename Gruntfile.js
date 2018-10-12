@@ -119,7 +119,7 @@ module.exports = function(grunt) {
             flatten: true,
             options: {
                 process: function (content, srcpath) {
-                    return content.replace(/themes\/default\/assets\//g, "/built/");
+                    return content.replace(/.\/themes\/default\/assets\//g, "/built/");
                 },
             }
         },
@@ -159,5 +159,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['css', 'javascript']);
   grunt.registerTask('fonts', ['googlefonts', 'copy:fontIcons', 'copy:fonts']);
   grunt.registerTask('javascript', ['uglify:libs', 'uglify:dist']);
-  grunt.registerTask('css', ['fonts', 'copy:cssLibs', 'less', 'cssmin']);
+    grunt.registerTask('onlycss', ['less', 'cssmin']);
+    grunt.registerTask('css', ['fonts', 'copy:cssLibs', 'onlycss']);
 };

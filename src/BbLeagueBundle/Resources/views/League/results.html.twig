@@ -1,25 +1,46 @@
 {% extends 'BbLeagueBundle:Layout:layout.html.twig' %}
 {% block title %}{{ league.name }}{% endblock %}
 {% block body %}
-    <section id="dashboard" class="content normal-content clearfix">
+    <section id="league-results" class="content normal-content clearfix">
         <header class="section-header clearfix padding-me">
             <h1 class="section-title">{{ league.name }}</h1>
         </header>
-        <div class="leagues clearfix">
-            {% for team in league.teams %}
-                <article class="league clearfix padding-me">
-                    <div class="wrapper relative clearfix">
-                        <header class="league-header clearfix">
-                            <h3 class="league-name">{{ team.name }}</h3>
-                        </header>
-                        <div class="league-content clearfix">
-                            {{ team.getLastJourney.getPoints }}
-                        </div>
-                    </div>
-                </article>
-                {% else %}
-                Pas encore inscrit dans une league
-            {% endfor %}
-        </div>
+        <article class="clearfix padding-me">
+            <table class="results">
+                <thead class="heading-informations">
+                </thead>
+                <tbody class="teams">
+                <tr class="heading">
+                    <th>{{ 'sheet.labels.team'|trans }}</th>
+                    <th>{{ 'sheet.labels.coach'|trans }}</th>
+                    <th class="numeric">{{ 'layout.values.score'|trans }}</th>
+                    <th class="numeric">{{ 'layout.values.victory'|trans }}</th>
+                    <th class="numeric">{{ 'layout.values.draw'|trans }}</th>
+                    <th class="numeric">{{ 'layout.values.lost'|trans }}</th>
+                    <th class="numeric">{{ 'layout.values.touchdown'|trans }}</th>
+                    <th class="numeric">{{ 'layout.values.injury'|trans }}</th>
+                    <th class="numeric">{{ 'layout.values.pass'|trans }}</th>
+                    <th class="numeric">{{ 'layout.values.cards'|trans }}</th>
+                    <th class="numeric">{{ 'layout.values.tr'|trans }}</th>
+                </tr>
+                {% for journeyteam in journeyteams %}
+                    {% set team = journeyteam.team %}
+                    <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+                        <td>{{ team.name }}</td>
+                        <td>{{ team.coach }}</td>
+                        <td class="numeric">{{ journeyteam.getPoints }}</td>
+                        <td class="numeric positive">{{ journeyteam.getWinEncounter }}</td>
+                        <td class="numeric draw">{{ journeyteam.getDrawEncounter }}</td>
+                        <td class="numeric negative">{{ journeyteam.getLostEncounter }}</td>
+                        <td class="numeric positive">{{ journeyteam.getTdGive }}</td>
+                        <td class="numeric positive">{{ journeyteam.getInjuryGive }}</td>
+                        <td class="numeric">{{ journeyteam.getPass }}</td>
+                        <td class="numeric">{{ journeyteam.getRedCard }}</td>
+                        <td class="numeric">{{ journeyteam.getTr }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </article>
     </section>
 {% endblock %}

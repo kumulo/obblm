@@ -36,7 +36,7 @@
                     </h2>
                     {% for key , rule in rules %}
                         {% if rule.id is defined and rule.id %}
-                        <a href="{{ path("admin_rule_edit", {rule_id: rule.id}) }}">
+                            <a href="{{ path("admin_rule_edit", {rule: rule.id}) }}">
                         {% else %}
                         {% set title = 'rules.' ~ key ~ '.title' %}
                         {% endif %}

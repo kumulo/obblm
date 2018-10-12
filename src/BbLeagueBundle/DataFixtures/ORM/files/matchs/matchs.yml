@@ -1,4 +1,4 @@
-BbLeagueBundle\Entity\Match:
+BbLeagueBundle\Entity\Encounter:
     m11:
         journey:        '@j1'
         team:           '@team1'

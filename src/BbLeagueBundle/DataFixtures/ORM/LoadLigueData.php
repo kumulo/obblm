@@ -2,14 +2,12 @@
 
 namespace BbLeagueBundle\DataFixtures\ORM;
 
+use BbLeagueBundle\Services\LeagueService;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Nelmio\Alice\Fixtures;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
-use Nelmio\Alice\Fixtures;
-
-use BbLeagueBundle\Entity\League;
 
 class LoadLigueData implements FixtureInterface, ContainerAwareInterface {
 
@@ -24,12 +22,13 @@ class LoadLigueData implements FixtureInterface, ContainerAwareInterface {
         $datas = Fixtures::load(__DIR__.'/files/datas.yml', $manager);
         $manager->flush();
 
-        /* Generate Random Matchs */
+        /* Generate Random Encounters */
         $datas['league1']->setValid(true);
+        /** @var LeagueService $tools */
         $tools = $this->container->get('bb.league.tools');
         $tools->setNumberOfJourneys(99);
         $tools->setLeague($datas['league1']);
-        $league = $tools->renderJourneys();
+        //$league = $tools->renderJourneys();
         /* End */
         $manager->flush();
     }

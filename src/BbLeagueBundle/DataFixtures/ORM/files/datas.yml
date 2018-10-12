@@ -2,3 +2,4 @@ include:
     - bases/coachs.yml
     - bases/leagues.yml
     - bases/teams.yml
+    - matchs/matchs.yml

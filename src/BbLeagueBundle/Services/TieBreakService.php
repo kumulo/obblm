@@ -3,8 +3,8 @@
 namespace BbLeagueBundle\Services;
 
 use BbLeagueBundle\Services\TieBreaks\TieBreakInterface;
-use Doctrine\ORM\EntityManager;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Translation\DataCollectorTranslator;
 
 class TieBreakService {
@@ -32,11 +32,21 @@ class TieBreakService {
         return $this->tiebreaks;
     }
     public function getTieBreaksForForm() {
+        $tiebreaks = [];
         foreach ($this->tiebreaks as $key => $tiebreak) {
             /** @var TieBreakInterface $tiebreak */
             $tiebreaks[$key] = $tiebreak->getName();
         }
         return $tiebreaks;
+    }
+
+    public function get($key)
+    {
+        if (!isset($this->tiebreaks[$key])) {
+            return false;
+        }
+
+        return $this->tiebreaks[$key];
     }
     public function addTieBreak(TieBreakInterface $tiebreak) {
         $this->tiebreaks->offsetSet($tiebreak->getName(), $tiebreak);
