@@ -3,7 +3,7 @@ BbLeagueBundle\Entity\League:
         name:   'Test League'
         rule:   'lrb6'
         format: 'OPEN'
-        current_journey: 0
+        current_journey: '@j0'
         teams:  ['@team1', '@team2', '@team3', '@team4', '@team5', '@team6', '@team7', '@team8']
 
 BbLeagueBundle\Entity\Journey:
