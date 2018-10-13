@@ -112,7 +112,7 @@
                             <img src="{{ team.webPath | imagine_filter('sheet') }}" />
                         </div>
                         {% else %}
-                        <div class="clearfix logo no-logo" href="{{ path("team_detail", {team_id: team.id}) }}">
+                            <div class="clearfix logo no-logo" href="{{ path("team_detail", {team: team.id}) }}">
                             {{ include('BbLeagueBundle:Layout:Icons/logo-league.html.twig') }}
                         </div>
                         {% endif %}

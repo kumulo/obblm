@@ -5,39 +5,43 @@ namespace BbLeagueBundle\Controller;
 use BbLeagueBundle\Entity\League;
 use BbLeagueBundle\Entity\TeamByJourney;
 use BbLeagueBundle\Repository\TeamByJourneyRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LeagueController extends Controller
 {
     /**
      * @Route("/", name="league_homepage")
+     * @Template(template="BbLeagueBundle::League/index.html.twig")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $leagues = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:League')->findAll();
-        return $this->renderLeagues($leagues);
+
+        return [
+            'leagues' => $leagues,
+            'involved' => false,
+        ];
     }
     /**
      * @Route("/involved", name="league_involved")
+     * @Template(template="BbLeagueBundle::League/index.html.twig")
      */
-    public function involvedAction(Request $request)
+    public function involvedAction()
     {
         $leagues = $this->getUser()->getInvolvedLeagues();
-        return $this->renderLeagues($leagues, true);
-    }
-    private function renderLeagues($leagues, $involved = false)
-    {
-        return $this->render('BbLeagueBundle::League/index.html.twig', array(
+
+        return [
             'leagues' => $leagues,
-            'involved' => $involved
-        ));
+            'involved' => true,
+        ];
     }
     /**
      * @Route("/results/{league}", name="league_results")
+     * @Template(template="BbLeagueBundle::League/results.html.twig")
      */
-    public function resultsAction(Request $request, League $league)
+    public function resultsAction(League $league)
     {
         if(!$league) {
             throw $this->createNotFoundException('The league does not exist');
@@ -53,9 +57,9 @@ class LeagueController extends Controller
         $repository = $this->getDoctrine()->getRepository(TeamByJourney::class);
         $teams = $repository->findTeamsByLeagueWithTiebreaks($league, $tiebreaks);
 
-        return $this->render('BbLeagueBundle::League/results.html.twig', array(
+        return [
             'league' => $league,
             'journeyteams' => $teams,
-        ));
+        ];
     }
 }

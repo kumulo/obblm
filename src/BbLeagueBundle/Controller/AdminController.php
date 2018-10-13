@@ -6,6 +6,7 @@ use BbLeagueBundle\Entity\Journey;
 use BbLeagueBundle\Entity\League;
 use BbLeagueBundle\Entity\Rule;
 use BbLeagueBundle\Form\Type\LeagueType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +15,7 @@ class AdminController extends Controller
 {
     /**
      * @Route("/", name="admin_homepage")
+     * @Template(template="BbLeagueBundle:Admin:index.html.twig")
      */
     public function indexAction(Request $request)
     {
@@ -25,14 +27,15 @@ class AdminController extends Controller
 
         $leagues  = $repo->findAll();
 
-        return $this->render('BbLeagueBundle:Admin:index.html.twig', array(
+        return [
             'rules' => $rules,
             'leagues' => $leagues,
-        ));
+        ];
     }
 
     /**
      * @Route("/league/add", name="admin_league_add")
+     * @Template(template="BbLeagueBundle::Admin/league/add.html.twig")
      */
     public function adminLeagueAddAction(Request $request)
     {
@@ -53,13 +56,14 @@ class AdminController extends Controller
             return $this->redirectToRoute('admin_homepage');
         }
 
-        return $this->render('BbLeagueBundle::Admin/league/add.html.twig', array(
+        return [
             'form' => $form->createView(),
-        ));
+        ];
     }
 
     /**
      * @Route("/league/edit/{league}", name="admin_league_edit")
+     * @Template(template="BbLeagueBundle::Admin/league/add.html.twig")
      */
     public function adminLeagueEditAction(Request $request, League $league)
     {
@@ -92,13 +96,14 @@ class AdminController extends Controller
             return $this->redirectToRoute('admin_homepage');
         }
 
-        return $this->render('BbLeagueBundle::Admin/league/add.html.twig', [
+        return [
             'form' => $form->createView(),
-        ]);
+        ];
     }
 
     /**
      * @Route("/rule/add", name="admin_rule_add")
+     * @Template(template="BbLeagueBundle::Admin/rule/add.html.twig")
      */
     public function adminRuleAddAction(Request $request)
     {
@@ -129,13 +134,14 @@ class AdminController extends Controller
             return $this->redirectToRoute('admin_homepage');
         }
 
-        return $this->render('BbLeagueBundle::Admin/rule/add.html.twig', array(
+        return [
             'form' => $form->createView(),
-        ));
+        ];
     }
 
     /**
      * @Route("/rule/edit/{rule}", name="admin_rule_edit")
+     * @Template(template="BbLeagueBundle::Admin/rule/add.html.twig")
      */
     public function adminRuleEditAction(Request $request, Rule $rule)
     {
@@ -160,8 +166,8 @@ class AdminController extends Controller
             return $this->redirectToRoute('admin_homepage');
         }
 
-        return $this->render('BbLeagueBundle::Admin/rule/add.html.twig', array(
+        return [
             'form' => $form->createView(),
-        ));
+        ];
     }
 }

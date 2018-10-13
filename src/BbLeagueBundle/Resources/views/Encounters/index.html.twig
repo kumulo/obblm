@@ -13,11 +13,11 @@
                                 <div>{{ encounter.team.name }} VS {{ encounter.visitor.name }}</div>
                                 {% if team.league.currentJourney >= encounter.journey %}
                                     <div>
-                                        {% if match.valid %}
+                                        {% if encounter.valid %}
                                             Journée close
                                         {% else %}
                                             <a class="button button-basic"
-                                               href="{{ path('encounter_sheet', {encounter_id: encounter.id}) }}">{{ 'layout.leagues.index.show_results'|trans }}</a>
+                                               href="{{ path('encounter_sheet', {encounter: encounter.id}) }}">{{ 'layout.leagues.index.show_results'|trans }}</a>
                                         {% endif %}
                                     </div>
                                 {% endif %}

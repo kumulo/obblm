@@ -15,7 +15,9 @@
                                 <span class="league"><span class="format">({{ league.format }})</span></span>
                             </div>
                             <ul class="section-actions">
-                                <li><a class="button button-basic" href="{{ path("league_results", {league_id: league.id}) }}">{{ 'layout.leagues.index.show_results'|trans }}</a></li>
+                                <li><a class="button button-basic"
+                                       href="{{ path("league_results", {league: league.id}) }}">{{ 'layout.leagues.index.show_results'|trans }}</a>
+                                </li>
                             </ul>
                         </header>
                         <div class="league-content clearfix">

@@ -5,6 +5,7 @@ namespace BbLeagueBundle\Controller;
 use BbLeagueBundle\Entity\Team;
 use BbLeagueBundle\Entity\TeamByJourney;
 use BbLeagueBundle\Form\EditTeam;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,17 +16,19 @@ class CoachController extends Controller
 {
     /**
      * @Route("/", name="coach_space")
+     * @Template(template="BbLeagueBundle::Coach/index.html.twig")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        return $this->render('BbLeagueBundle::Coach/index.html.twig', array(
+        return [
             'coach' => $this->getUser(),
-        ));
+        ];
     }
     /**
      * @Route("/team-add", name="coach_team_add")
+     * @Template(template="BbLeagueBundle::Coach/add_team_flow.html.twig")
      */
-    public function addAction(Request $request)
+    public function addAction()
     {
         $team = new Team();
         $team->setCoach($this->getUser());
@@ -48,7 +51,10 @@ class CoachController extends Controller
             }
         }
 
-        return $this->render('BbLeagueBundle:Coach:add_team_flow.html.twig', array( 'form' => $form->createView(), 'flow' => $flow ));
+        return [
+            'form' => $form->createView(),
+            'flow' => $flow,
+        ];
     }
     private function saveBaseTeam($team) {
         $rule = $this->get('bb.rules')->getRule($team->getLeague()->getRule())->getRule();
@@ -79,14 +85,11 @@ class CoachController extends Controller
         return $journey;
     }
     /**
-     * @Route("/edit/{team_id}", name="coach_team_edit")
+     * @Route("/edit/{team}", name="coach_team_edit")
+     * @Template(template="BbLeagueBundle::Coach/add_team_flow.html.twig")
      */
-    public function editAction(Request $request, $team_id)
+    public function editAction(Request $request, Team $team)
     {
-        $team = $this->getDoctrine()
-            ->getRepository('BbLeagueBundle:Team')
-            ->find($team_id);
-
         if(!$team) {
             throw $this->createNotFoundException('The team does not exist');
         }
@@ -110,19 +113,17 @@ class CoachController extends Controller
             return $this->redirectToRoute('coach_space');
         }
 
-        return $this->render('BbLeagueBundle::Coach/edit_team.html.twig', array(
+        return [
             'form' => $form->createView(),
             'team' => $team,
-        ));
+        ];
     }
     /**
-     * @Route("/edit/{team_id}/add-player", name="coach_team_add_player")
+     * @Route("/edit/{team}/add-player", name="coach_team_add_player")
+     * @Template(template="BbLeagueBundle::Coach/team_add_player.html.twig")
      */
-    public function addPlayerAction(Request $request, $team_id)
+    public function addPlayerAction(Request $request, Team $team)
     {
-        $team = $this->getDoctrine()
-            ->getRepository('BbLeagueBundle:Team')
-            ->find($team_id);
         $rule_service = $this->get('bb.rules');
         if(!$team) {
             throw $this->createNotFoundException('The team does not exist');
@@ -143,10 +144,10 @@ class CoachController extends Controller
 
         }
 
-        return $this->render('BbLeagueBundle::Coach/team_add_player.html.twig', array(
+        return [
             'form' => $form->createView(),
             'team' => $team,
-        ));
+        ];
     }
     private function constructUpdateForm(Request $request, $team)
     {

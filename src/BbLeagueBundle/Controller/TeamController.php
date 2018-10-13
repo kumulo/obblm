@@ -2,20 +2,21 @@
 
 namespace BbLeagueBundle\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
+use BbLeagueBundle\Entity\Journey;
+use BbLeagueBundle\Entity\Team;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class TeamController extends Controller
 {
     /**
-     * @Route("/{team_id}", name="team_detail")
+     * @Route("/{team}", name="team_detail")
+     * @Template(template="BbLeagueBundle::Team/detail.html.twig")
      */
-    public function indexAction(Request $request, $team_id)
+    public function indexAction(Team $team)
     {
-        $repo = $this->get('doctrine')->getManager()->getRepository('BbLeagueBundle:Team');
-
-        $team  = $repo->find($team_id);
         if(!$team) {
             throw $this->createNotFoundException('The team does not exist');
         }
@@ -24,31 +25,32 @@ class TeamController extends Controller
         if(!$journey) {
             throw $this->createNotFoundException('The journey does not exist');
         }
-        return $this->render('BbLeagueBundle::Team/detail.html.twig', array(
+
+        return [
             'team' => $team,
             'journey' => $journey
-        ));
+        ];
     }
     /**
-     * @Route("/{team_id}/{journey_id}", name="team_journey")
+     * @Route("/{team}/{journey}", name="team_journey")
+     * @Template(template="BbLeagueBundle::Team/detail.html.twig")
      */
-    public function journeyAction(Request $request, $team_id, $journey_id)
+    public function journeyAction(Request $request, Team $team, Journey $journey)
     {
-        $em = $this->get('doctrine')->getManager();
-
-        $team  = $em->getRepository('BbLeagueBundle:Team')->find($team_id);
         if(!$team) {
             throw $this->createNotFoundException('The team does not exist');
         }
 
-        $journey  = $em->getRepository('BbLeagueBundle:TeamByJourney')->findOneBy(array('team' => $team_id, 'journey' => $journey_id));
-        if(!$journey) {
+        $team_journey = $em->getRepository('BbLeagueBundle:TeamByJourney')->findOneBy(
+            array('team' => $team, 'journey' => $journey)
+        );
+        if (!$team_journey) {
             throw $this->createNotFoundException('The journey does not exist');
         }
 
-        return $this->render('BbLeagueBundle::Team/detail.html.twig', array(
+        return [
             'team' => $team,
-            'journey' => $journey
-        ));
+            'journey' => $team_journey,
+        ];
     }
 }

@@ -2,19 +2,20 @@
 
 namespace BbLeagueBundle\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
     /**
      * @Route(name="homepage")
+     * @Template(template="BbLeagueBundle::Dashboard/index.html.twig")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        return $this->render('BbLeagueBundle::Dashboard/index.html.twig', array(
+        return [
             'coach' => $this->getUser()
-        ));
+        ];
     }
 }
