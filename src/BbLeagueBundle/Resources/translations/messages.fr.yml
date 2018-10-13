@@ -29,6 +29,8 @@ layout:
       title_alt: Les ligues participées
       show_results: Voir le classement
       show_calendar: Voir le calendier
+      show_sheet: Feuille de match
+      update_sheet: Renseigner la feuille de match
   coach_space:
     index:
       title: Mon espace coach

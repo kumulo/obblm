@@ -4,9 +4,8 @@
 namespace BbLeagueBundle\Entity;
 
 use BbLeagueBundle\Model\League as BaseLeague;
-use Doctrine\ORM\Mapping as ORM;
-use BbLeagueBundle\Entity\Team;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="BbLeagueBundle\Repository\LeagueRepository")

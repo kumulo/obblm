@@ -15,6 +15,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class League
 {
     /**
+     * Formats
+     */
+    const OPEN = "OPEN";
+    const BY_JOURNEYS = "BY_JOURNEYS";
+    const TOURNAMENT = "TOURNAMENT";
+
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")

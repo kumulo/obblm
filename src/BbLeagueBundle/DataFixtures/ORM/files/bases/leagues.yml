@@ -2,8 +2,11 @@ BbLeagueBundle\Entity\League:
     league1:
         name:   'Test League'
         rule:   'lrb6'
-        format: 'OPEN'
+        format: 'LEAGUE'
         current_journey: '@j0'
+        tie_break_1: 'tiebreak.victory'
+        tie_break_2: 'tiebreak.touchdown.scored'
+        tie_break_3: 'tiebreak.injury.given'
         teams:  ['@team1', '@team2', '@team3', '@team4', '@team5', '@team6', '@team7', '@team8']
 
 BbLeagueBundle\Entity\Journey:

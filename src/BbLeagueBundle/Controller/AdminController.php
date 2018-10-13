@@ -83,7 +83,7 @@ class AdminController extends Controller
             // the validation passed, do something with the $author object
             $em = $this->getDoctrine()->getManager();
 
-            if($league->getFormat() == 'OPEN' && !$league->getJourneys()->first()) {
+            if ($league->getFormat() == League::OPEN && !$league->getJourneys()->first()) {
                 $j0 = new Journey();
                 $j0->setName('Enroll journey');
                 $j0->setLeague($league);

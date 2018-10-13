@@ -58,34 +58,19 @@ class EncountersController extends Controller
      */
     public function encounterSheetAction(Request $request, Encounter $encounter)
     {
-        if(!$encounter) {
-            throw $this->createNotFoundException('The encounter does not exist');
-        }
-        if ($encounter->getValid()) {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        } else {
-            if ($encounter->getTeam()->getCoach() != $this->getUser() &&
-                $encounter->getVisitor()->getCoach() != $this->getUser()) {
-                $this->denyAccessUnlessGranted('ROLE_ADMIN');
-            }
-        }
-        $encounter = $this->parseDatasForForm($encounter);
+        $this->checkRightsForEncounter($encounter);
 
         $form = $this->createForm(
             EncounterStep1Type::class,
-            $encounter,
+            $this->parseDatasForForm($encounter),
             [
                 'rule' => $this->get('bb.rules')->getRule('lrb6'),
             ]
-        );
+        )->handleRequest($request);
 
-        $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-            $encounter = $this->parseDatasForSave($encounter);
-
-            $em->persist($encounter);
+            $em->persist($this->parseDatasForSave($encounter));
             $em->flush();
 
             return $this->redirectToRoute('encounter_sheet_step2', array('encounter' => $encounter->getId()));
@@ -103,34 +88,19 @@ class EncountersController extends Controller
      */
     public function encounterSheetStep2Action(Request $request, Encounter $encounter)
     {
-        if (!$encounter) {
-            throw $this->createNotFoundException('The encounter does not exist');
-        }
-        if ($encounter->getValid()) {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        } else {
-            if ($encounter->getTeam()->getCoach() != $this->getUser() &&
-                $encounter->getVisitor()->getCoach() != $this->getUser()) {
-                $this->denyAccessUnlessGranted('ROLE_ADMIN');
-            }
-        }
-        $encounter = $this->parseDatasForForm($encounter);
+        $this->checkRightsForEncounter($encounter);
 
         $form = $this->createForm(
             EncounterStep2Type::class,
-            $encounter,
+            $this->parseDatasForForm($encounter),
             [
                 'rule' => $this->get('bb.rules')->getRule('lrb6'),
             ]
-        );
+        )->handleRequest($request);
 
-        $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-            $encounter = $this->parseDatasForSave($encounter);
-
-            $em->persist($encounter);
+            $em->persist($this->parseDatasForSave($encounter));
             $em->flush();
 
             return $this->redirectToRoute('encounter_sheet', array('encounter' => $encounter->getId()));
@@ -148,35 +118,21 @@ class EncountersController extends Controller
      */
     public function encounterSheetStep3Action(Request $request, Encounter $encounter)
     {
-        if (!$encounter) {
-            throw $this->createNotFoundException('The encounter does not exist');
-        }
-        if($encounter->getValid()) {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        }
-        else if($encounter->getTeam()->getCoach() != $this->getUser() &&
-            $encounter->getVisitor()->getCoach() != $this->getUser()) {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        }
-        $encounter = $this->parseDatasForForm($encounter);
+        $this->checkRightsForEncounter($encounter);
 
         $rule = $this->get('bb.rules')->getRule('lrb6');
 
         $form = $this->createForm(
             EncounterStep3Type::class,
-            $encounter,
+            $this->parseDatasForForm($encounter),
             [
                 'rule' => $rule,
             ]
-        );
+        )->handleRequest($request);
 
-        $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-            $encounter = $this->parseDatasForSave($encounter);
-
-            $em->persist($encounter);
+            $em->persist($this->parseDatasForSave($encounter));
             $em->flush();
 
             return $this->redirectToRoute('encounter_sheet', array('encounter' => $encounter->getId()));
@@ -186,6 +142,21 @@ class EncountersController extends Controller
             'encounter' => $encounter,
             'sheet' => $form->createView()
         ];
+    }
+
+    private function checkRightsForEncounter(Encounter $encounter)
+    {
+        if (!$encounter) {
+            throw $this->createNotFoundException('The encounter does not exist');
+        }
+        if ($encounter->getValid()) {
+            $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        } else {
+            if ($encounter->getTeam()->getCoach() != $this->getUser() && $encounter->getVisitor()->getCoach(
+                ) != $this->getUser()) {
+                $this->denyAccessUnlessGranted('ROLE_ADMIN');
+            }
+        }
     }
 
     private function playersToId($objects)

@@ -2,12 +2,11 @@
 
 namespace BbLeagueBundle\Services\TieBreaks;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 
 interface TieBreakInterface
 {
-    public function __construct(EntityManager $em);
+    public function __construct($options = []);
     /*
      * Function to use to update the query
      */
