@@ -135,7 +135,6 @@ class CoachController extends Controller
             $this->denyAccessUnlessGranted('ROLE_ADMIN');
         }
         $rulename = $team->getLeague()->getRule();
-        $rulset = $rule_service->getRule($rulename);
         // TODO : Finish the add player form
         $form = $this->constructUpdateForm($request, $team);
 

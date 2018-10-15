@@ -17,7 +17,6 @@ class LeagueService {
     private $league = false;
     private $numberOfJouneys = 1;
     private $avaibleTeams = array();
-    private $isOdd = false;
 
     public function __construct(EntityManager $entity_manager, $translator)
     {
@@ -31,9 +30,6 @@ class LeagueService {
     public function setLeague(League $league) {
         $this->league = $league;
         $this->avaibleTeams = $this->league->getTeams();
-        if(!count($this->avaibleTeams)%2) {
-            $this->isOdd = true;
-        }
         return $this;
     }
 
@@ -96,20 +92,13 @@ class LeagueService {
     /**
      * Generate new TeamJouney entity
      *
-     * @param \BbLeagueBundle\Entity\Team $team
-     * @param \BbLeagueBundle\Entity\Jouney $encounter_jouney
-     * @param Array $actions_give
-     * @param Array $actions_take
- */
-    public function generateEncounterTeamJourney(
-        \BbLeagueBundle\Entity\Team $team,
-        \BbLeagueBundle\Entity\Jouney $encounter_jouney,
-        Array $actions_give,
-            Array $actions_take) {
-
-        $last_journey = $encounter->getTeam()->getLastJourney();
+     * @param Team $team
+     * @param Journey $encounter_jouney
+     */
+    public function generateEncounterTeamJourney(Team $team, Journey $encounter_journey) {
+        $last_journey = $team->getLastJourney();
         $new_journey = new TeamByJourney();
-        $new_journey->setJourney($encounter_jouney)
+        $new_journey->setJourney($encounter_journey)
             ->setTeam($team)
             ->setWinEncounter($last_journey->getWinEncounter() + 0)
             ->setDrawEncounter($last_journey->getDrawEncounter() + 0)

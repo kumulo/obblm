@@ -12,7 +12,6 @@ class EncounterStep2Type extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $baserule = $options['rule']->getRule();
         /** @var \BbLeagueBundle\Entity\Encounter $encounter */
         $encounter = $builder->getData();
         $builder

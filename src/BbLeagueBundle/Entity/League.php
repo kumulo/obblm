@@ -16,7 +16,7 @@ class League extends BaseLeague
     public function getTeams() {
         $teams = $this->teams;
         $iterator = $teams->getIterator();
-        $iterator->uasort(function ($a, $b) {
+        $iterator->uasort(function (Team $a, Team $b) {
             return ($a->getLastJourney()->getPoints() > $b->getLastJourney()->getPoints()) ? -1 : 1;
         });
         $r = new ArrayCollection(iterator_to_array($iterator));
