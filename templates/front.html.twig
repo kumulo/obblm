@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <script>
+        window.user = {{ user|raw }};
+    </script>
+
+    <div id="obblm">
+        <obblm-app
+            entrypoint="{{ path('api_entrypoint') }}"
+        ></obblm-app>
+    </div>
+{% endblock %}

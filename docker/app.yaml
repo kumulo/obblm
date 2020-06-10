@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: docker/app/Dockerfile
+    image: php-symfony-${APP_ENV-dev}:latest
+    environment:
+      - APP_ENV=${APP_ENV-dev}
+      - CORS_ALLOW_ORIGIN=${CORS_ALLOW_ORIGIN}
+    volumes:
+      - ../:/var/www/symfony:cached
+    networks:
+      - frontend
+      - backend

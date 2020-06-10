@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  pma:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8080:80
+    networks:
+      - backend

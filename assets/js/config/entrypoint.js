@@ -1,0 +1,1 @@
+export const ENTRYPOINT = 'https://web/api';

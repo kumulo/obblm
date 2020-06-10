@@ -1,0 +1,9 @@
+version: "3.8"
+
+volumes:
+  vardir:
+  dbdump:
+
+networks:
+  frontend:
+  backend:

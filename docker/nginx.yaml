@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  web:
+    image: nginx:latest
+    environment:
+      - HOST_LIST:${HOST_LIST-localhost}
+      - PORT:${PORT-80}
+      - APP_ENV=${APP_ENV-dev}
+      - FASTCGI_PASS=app:9000
+      - BODY_SIZE_LIMIT_M=20
+      - TIMEOUT_S=190
+    depends_on:
+      - app
+    ports:
+      - 80:80
+    command: /bin/bash -c "/var/www/symfony/docker/nginx/vhost.sh --basedir=/var/www/symfony --template-file=/var/www/symfony/docker/nginx/vhost.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    volumes:
+      - ../:/var/www/symfony:ro,cached
+      - ../var/log:/var/www/symfony/var/log:cached
+    networks:
+      - frontend
