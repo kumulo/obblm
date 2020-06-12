@@ -3,16 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\CompetitionRepository;
+use App\Repository\ChampionshipRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass=CompetitionRepository::class)
+ * @ORM\Entity(repositoryClass=ChampionshipRepository::class)
  */
-class Competition
+class Championship
 {
     /**
      * @ORM\Id()
@@ -27,7 +27,7 @@ class Competition
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=League::class, inversedBy="competitions")
+     * @ORM\ManyToOne(targetEntity=League::class, inversedBy="championships")
      * @ORM\JoinColumn(nullable=false)
      */
     private $league;
@@ -63,17 +63,17 @@ class Competition
     private $number_of_journeys;
 
     /**
-     * @ORM\OneToMany(targetEntity=Journey::class, mappedBy="competition", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Journey::class, mappedBy="championship", orphanRemoval=true)
      */
     private $journeys;
 
     /**
-     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="competition", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="championship", orphanRemoval=true)
      */
     private $games;
 
     /**
-     * @ORM\OneToMany(targetEntity=Team::class, mappedBy="competition")
+     * @ORM\OneToMany(targetEntity=Team::class, mappedBy="championship")
      */
     private $teams;
 
@@ -197,7 +197,7 @@ class Competition
     {
         if (!$this->journeys->contains($journey)) {
             $this->journeys[] = $journey;
-            $journey->setCompetition($this);
+            $journey->setChampionship($this);
         }
 
         return $this;
@@ -208,8 +208,8 @@ class Competition
         if ($this->journeys->contains($journey)) {
             $this->journeys->removeElement($journey);
             // set the owning side to null (unless already changed)
-            if ($journey->getCompetition() === $this) {
-                $journey->setCompetition(null);
+            if ($journey->getChampionship() === $this) {
+                $journey->setChampionship(null);
             }
         }
 
@@ -228,7 +228,7 @@ class Competition
     {
         if (!$this->games->contains($game)) {
             $this->games[] = $game;
-            $game->setCompetition($this);
+            $game->setChampionship($this);
         }
 
         return $this;
@@ -239,8 +239,8 @@ class Competition
         if ($this->games->contains($game)) {
             $this->games->removeElement($game);
             // set the owning side to null (unless already changed)
-            if ($game->getCompetition() === $this) {
-                $game->setCompetition(null);
+            if ($game->getChampionship() === $this) {
+                $game->setChampionship(null);
             }
         }
 
@@ -259,7 +259,7 @@ class Competition
     {
         if (!$this->teams->contains($team)) {
             $this->teams[] = $team;
-            $team->setCompetition($this);
+            $team->setChampionship($this);
         }
 
         return $this;
@@ -270,8 +270,8 @@ class Competition
         if ($this->teams->contains($team)) {
             $this->teams->removeElement($team);
             // set the owning side to null (unless already changed)
-            if ($team->getCompetition() === $this) {
-                $team->setCompetition(null);
+            if ($team->getChampionship() === $this) {
+                $team->setChampionship(null);
             }
         }
 

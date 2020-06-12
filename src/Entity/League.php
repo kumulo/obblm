@@ -27,13 +27,13 @@ class League
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Competition::class, mappedBy="league", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Championship::class, mappedBy="league", orphanRemoval=true)
      */
-    private $competitions;
+    private $championships;
 
     public function __construct()
     {
-        $this->competitions = new ArrayCollection();
+        $this->championships = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,30 +54,30 @@ class League
     }
 
     /**
-     * @return Collection|Competition[]
+     * @return Collection|Championship[]
      */
-    public function getCompetitions(): Collection
+    public function getChampionships(): Collection
     {
-        return $this->competitions;
+        return $this->championships;
     }
 
-    public function addCompetition(Competition $competition): self
+    public function addChampionship(Championship $championship): self
     {
-        if (!$this->competitions->contains($competition)) {
-            $this->competitions[] = $competition;
-            $competition->setLeague($this);
+        if (!$this->championships->contains($championship)) {
+            $this->championships[] = $championship;
+            $championship->setLeague($this);
         }
 
         return $this;
     }
 
-    public function removeCompetition(Competition $competition): self
+    public function removeChampionship(Championship $championship): self
     {
-        if ($this->competitions->contains($competition)) {
-            $this->competitions->removeElement($competition);
+        if ($this->championships->contains($championship)) {
+            $this->championships->removeElement($championship);
             // set the owning side to null (unless already changed)
-            if ($competition->getLeague() === $this) {
-                $competition->setLeague(null);
+            if ($championship->getLeague() === $this) {
+                $championship->setLeague(null);
             }
         }
 

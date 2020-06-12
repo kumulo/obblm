@@ -22,7 +22,7 @@ final class Version20200604163906 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE competition ADD auto_validate_games TINYINT(1) NOT NULL, ADD number_of_journeys INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE championship ADD auto_validate_games TINYINT(1) NOT NULL, ADD number_of_journeys INT DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +30,6 @@ final class Version20200604163906 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE competition DROP auto_validate_games, DROP number_of_journeys');
+        $this->addSql('ALTER TABLE championship DROP auto_validate_games, DROP number_of_journeys');
     }
 }

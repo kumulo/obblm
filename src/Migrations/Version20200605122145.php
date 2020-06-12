@@ -22,9 +22,9 @@ final class Version20200605122145 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE team ADD competition_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE team ADD CONSTRAINT FK_C4E0A61F7B39D312 FOREIGN KEY (competition_id) REFERENCES competition (id)');
-        $this->addSql('CREATE INDEX IDX_C4E0A61F7B39D312 ON team (competition_id)');
+        $this->addSql('ALTER TABLE team ADD championship_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE team ADD CONSTRAINT FK_C4E0A61F7B39D312 FOREIGN KEY (championship_id) REFERENCES championship (id)');
+        $this->addSql('CREATE INDEX IDX_C4E0A61F7B39D312 ON team (championship_id)');
         $this->addSql('ALTER TABLE game ADD home_team_id INT NOT NULL, ADD visitor_team_id INT NOT NULL');
         $this->addSql('ALTER TABLE game ADD CONSTRAINT FK_232B318C9C4C13F6 FOREIGN KEY (home_team_id) REFERENCES team (id)');
         $this->addSql('ALTER TABLE game ADD CONSTRAINT FK_232B318CEB7F4866 FOREIGN KEY (visitor_team_id) REFERENCES team (id)');
@@ -44,6 +44,6 @@ final class Version20200605122145 extends AbstractMigration
         $this->addSql('ALTER TABLE game DROP home_team_id, DROP visitor_team_id');
         $this->addSql('ALTER TABLE team DROP FOREIGN KEY FK_C4E0A61F7B39D312');
         $this->addSql('DROP INDEX IDX_C4E0A61F7B39D312 ON team');
-        $this->addSql('ALTER TABLE team DROP competition_id');
+        $this->addSql('ALTER TABLE team DROP championship_id');
     }
 }

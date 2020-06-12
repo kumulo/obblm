@@ -27,10 +27,10 @@ class Journey
     private $number;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Competition::class, inversedBy="journeys")
+     * @ORM\ManyToOne(targetEntity=Championship::class, inversedBy="journeys")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $competition;
+    private $championship;
 
     /**
      * @ORM\OneToMany(targetEntity=Game::class, mappedBy="journey")
@@ -59,14 +59,14 @@ class Journey
         return $this;
     }
 
-    public function getCompetition(): ?Competition
+    public function getChampionship(): ?Championship
     {
-        return $this->competition;
+        return $this->championship;
     }
 
-    public function setCompetition(?Competition $competition): self
+    public function setChampionship(?Championship $championship): self
     {
-        $this->competition = $competition;
+        $this->championship = $championship;
 
         return $this;
     }

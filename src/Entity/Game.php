@@ -35,10 +35,10 @@ class Game
     private $validated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Competition::class, inversedBy="games")
+     * @ORM\ManyToOne(targetEntity=Championship::class, inversedBy="games")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $competition;
+    private $championship;
 
     /**
      * @ORM\ManyToOne(targetEntity=Journey::class, inversedBy="games")
@@ -98,14 +98,14 @@ class Game
         return $this;
     }
 
-    public function getCompetition(): ?Competition
+    public function getChampionship(): ?Championship
     {
-        return $this->competition;
+        return $this->championship;
     }
 
-    public function setCompetition(?Competition $competition): self
+    public function setChampionship(?Championship $championship): self
     {
-        $this->competition = $competition;
+        $this->championship = $championship;
 
         return $this;
     }
