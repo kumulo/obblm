@@ -31,6 +31,16 @@ class League
      */
     private $championships;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Coach::class, inversedBy="admin_leagues")
+     */
+    private $owner;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_private = false;
+
     public function __construct()
     {
         $this->championships = new ArrayCollection();
@@ -80,6 +90,35 @@ class League
                 $championship->setLeague(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOwner(): ?Coach
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?Coach $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function isPrivate(): ?bool
+    {
+        return $this->is_private;
+    }
+
+    public function getIsPrivate(): ?bool
+    {
+        return $this->is_private;
+    }
+
+    public function setIsPrivate(bool $is_private): self
+    {
+        $this->is_private = $is_private;
 
         return $this;
     }

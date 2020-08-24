@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>
+        {{ team.name }}
+        {% if team.championship %}
+            ({{ team.championship.name }})
+        {% endif %}
+    </h1>
+    <nav class="action">
+    {% if(is_granted('team.edit', team)) %}
+        <a href="{{ path('team_edit', {'team': team.id}) }}">Edit</a> -
+        <a href="{{ path('team_delete', {'team': team.id}) }}">Delete</a>
+    {% endif %}
+    </nav>
+{% endblock %}

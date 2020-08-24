@@ -7,7 +7,7 @@
 
     <div id="obblm">
         <obblm-app
-            entrypoint="{{ path('api_entrypoint') }}"
+            entrypoint="{{ absolute_url(path('api_entrypoint')) }}"
         ></obblm-app>
     </div>
 {% endblock %}

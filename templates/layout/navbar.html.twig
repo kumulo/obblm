@@ -1,0 +1,30 @@
+<nav>
+    <h2>Navigation</h2>
+    <ul>
+        <li>
+            <a href="{{ path('home') }}">Dashboard</a>
+        </li>
+        <li>
+            <a href="{{ path('my_teams') }}">My teams</a>
+        </li>
+        <li>
+            <a href="{{ path('my_championships') }}">My Championships</a>
+        </li>
+        {% if(is_granted('ROLE_ADMIN')) %}
+        <li>
+            Admin
+            <ul>
+                <li>
+                    <a href="{{ path('admin_leagues') }}">Leagues</a>
+                </li>
+                <li>
+                    <a href="{{ path('admin_rules') }}">Rules</a>
+                </li>
+                <li>
+                    <a href="{{ path('admin_users') }}">Users</a>
+                </li>
+            </ul>
+        </li>
+        {% endif %}
+    </ul>
+</nav>

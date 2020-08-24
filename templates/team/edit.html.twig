@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Edit {{ team.name }}</h1>
+    <h2>{{ team.championship ? team.championship.name : team.rule.name }}</h2>
+    {{ form_start( form ) }}
+    {{ form_rest( form ) }}
+    <input type="submit" value="Submit" />
+    {{ form_end( form ) }}
+{% endblock %}

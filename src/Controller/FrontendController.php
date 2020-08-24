@@ -11,7 +11,7 @@ class FrontendController extends AbstractController {
      * @Route("/", name="home")
      */
     public function home(SerializerInterface $serializer) {
-        return $this->render('front.html.twig', [
+        return $this->render('dashboard/index.html.twig', [
             'user' => $serializer->serialize($this->getUser(), 'json'),
         ]);
     }

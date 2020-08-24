@@ -3,8 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\Championship;
+use App\Entity\Coach;
+use App\Entity\Team;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * @method Championship|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,37 +18,40 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ChampionshipRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    protected $security;
+    public function __construct(ManagerRegistry $registry, TokenStorageInterface $security)
     {
+        $this->security = $security;
         parent::__construct($registry, Championship::class);
     }
 
-    // /**
-    //  * @return Championship[] Returns an array of Championship objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    /**
+     * @return QueryBuilder
+     */
+    public function getCoachChampionships() {
+        $user = $this->security->getToken()->getUser();
+        return $this->createQueryBuilder('champ')
+            ->join(Team::class, 'team')
+            ->join(Coach::class, 'manager')
+            ->where('team.coach = :coach')
+            ->orWhere('manager = :coach')
+            ->setParameter(':coach', $user);
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Championship
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    /**
+     * @return Championship[]
+     */
+    public function findCoachChampionships() {
+        $qb = $this->getCoachChampionships();
+        return $qb->getQuery()->getResult();
     }
-    */
+
+    /**
+     * @return Championship[]
+     */
+    public function findCoachAllowedChampionships() {
+        $qb = $this->getCoachChampionships();
+        // TODO : add some other criteria
+        return $qb->getQuery()->getResult();
+    }
 }

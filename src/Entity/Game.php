@@ -42,17 +42,18 @@ class Game
 
     /**
      * @ORM\ManyToOne(targetEntity=Journey::class, inversedBy="games")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $journey;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="games")
+     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="games_as_home")
      * @ORM\JoinColumn(nullable=false)
      */
     private $home_team;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="games")
+     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="games_as_visitor")
      * @ORM\JoinColumn(nullable=false)
      */
     private $visitor_team;

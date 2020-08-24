@@ -33,7 +33,7 @@ class Championship
     private $league;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=50)
      */
     private $format;
 
@@ -55,7 +55,7 @@ class Championship
     /**
      * @ORM\Column(type="boolean")
      */
-    private $auto_validate_games;
+    private $auto_validate_games = false;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -77,11 +77,33 @@ class Championship
      */
     private $teams;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_private = false;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Coach::class, inversedBy="managed_championships")
+     */
+    private $managers;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_locked = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Rule::class, inversedBy="championships")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $rule;
+
     public function __construct()
     {
         $this->journeys = new ArrayCollection();
         $this->games = new ArrayCollection();
         $this->teams = new ArrayCollection();
+        $this->managers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -274,6 +296,78 @@ class Championship
                 $team->setChampionship(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isPrivate(): ?bool
+    {
+        return $this->is_private;
+    }
+
+    public function getIsPrivate(): ?bool
+    {
+        return $this->is_private;
+    }
+
+    public function setIsPrivate(bool $is_private): self
+    {
+        $this->is_private = $is_private;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Coach[]
+     */
+    public function getManagers(): Collection
+    {
+        return $this->managers;
+    }
+
+    public function addManager(Coach $manager): self
+    {
+        if (!$this->managers->contains($manager)) {
+            $this->managers[] = $manager;
+        }
+
+        return $this;
+    }
+
+    public function removeManager(Coach $manager): self
+    {
+        if ($this->managers->contains($manager)) {
+            $this->managers->removeElement($manager);
+        }
+
+        return $this;
+    }
+
+    public function isLocked(): ?bool
+    {
+        return $this->is_locked;
+    }
+
+    public function getIsLocked(): ?bool
+    {
+        return $this->is_locked;
+    }
+
+    public function setIsLocked(bool $is_locked): self
+    {
+        $this->is_locked = $is_locked;
+
+        return $this;
+    }
+
+    public function getRule(): ?Rule
+    {
+        return $this->rule;
+    }
+
+    public function setRule(?Rule $rule): self
+    {
+        $this->rule = $rule;
 
         return $this;
     }

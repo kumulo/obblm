@@ -3,18 +3,20 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\CoachRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass=CoachRepository::class)
+ * @UniqueEntity("email")
  */
 class Coach implements UserInterface
 {
@@ -27,13 +29,14 @@ class Coach implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private $roles = ['ROLE_USER'];
 
     /**
      * @var string The hashed password
@@ -54,9 +57,21 @@ class Coach implements UserInterface
      */
     private $teams;
 
+    /**
+     * @ORM\OneToMany(targetEntity=League::class, mappedBy="owner")
+     */
+    private $admin_leagues;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Championship::class, mappedBy="managers")
+     */
+    private $managed_championships;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
+        $this->admin_leagues = new ArrayCollection();
+        $this->managed_championships = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,5 +193,68 @@ class Coach implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|League[]
+     */
+    public function getAdminLeagues(): Collection
+    {
+        return $this->admin_leagues;
+    }
+
+    public function addAdminLeague(League $adminLeague): self
+    {
+        if (!$this->admin_leagues->contains($adminLeague)) {
+            $this->admin_leagues[] = $adminLeague;
+            $adminLeague->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdminLeague(League $adminLeague): self
+    {
+        if ($this->admin_leagues->contains($adminLeague)) {
+            $this->admin_leagues->removeElement($adminLeague);
+            // set the owning side to null (unless already changed)
+            if ($adminLeague->getOwner() === $this) {
+                $adminLeague->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Championship[]
+     */
+    public function getManagedChampionships(): Collection
+    {
+        return $this->managed_championships;
+    }
+
+    public function addManagedChampionship(Championship $managedChampionship): self
+    {
+        if (!$this->managed_championships->contains($managedChampionship)) {
+            $this->managed_championships[] = $managedChampionship;
+            $managedChampionship->addManager($this);
+        }
+
+        return $this;
+    }
+
+    public function removeManagedChampionship(Championship $managedChampionship): self
+    {
+        if ($this->managed_championships->contains($managedChampionship)) {
+            $this->managed_championships->removeElement($managedChampionship);
+            $managedChampionship->removeManager($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->email;
     }
 }

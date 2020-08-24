@@ -1,0 +1,11 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+    <ul>
+        {% for championship in championships %}
+            <li>{{ championship.name }}</li>
+        {% else %}
+            <li>Nothing to see here</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
