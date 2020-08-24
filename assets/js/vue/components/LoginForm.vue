@@ -40,7 +40,7 @@
                 this.error = '';
 
                 axios
-                    .post('/login', {
+                    .post('/api/login', {
                         email: this.email,
                         password: this.password
                     })

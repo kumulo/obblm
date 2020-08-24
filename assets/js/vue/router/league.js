@@ -9,8 +9,7 @@ export default {
         {
             name: 'LeagueList',
             path: '',
-            //component: () => import('../components/League/List')
-            component: () => import('../components/League')
+            component: () => import('../components/League/index')
         },
         {
             name: 'LeagueAdd',

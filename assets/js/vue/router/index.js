@@ -1,8 +1,8 @@
 import LeagueRoutes from './league';
-import CompetitionRoutes from './competition';
+import ChampionshipRoutes from './championship';
 export default {
     routes: [
         LeagueRoutes,
-        CompetitionRoutes
+        ChampionshipRoutes
     ]
 }

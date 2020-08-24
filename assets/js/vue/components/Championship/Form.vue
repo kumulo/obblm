@@ -11,6 +11,8 @@
     import { find, get, isUndefined } from 'lodash';
     import { mapFields } from 'vuex-map-fields';
     import { mapActions } from 'vuex';
+    import store from '../../store';
+    import schema from '../../schema';
 
     export default {
         props: {

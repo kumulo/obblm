@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-app v-if="this.user">
         <v-navigation-drawer
                 v-model="drawer"
                 app
@@ -14,7 +14,7 @@
                         <v-list-item-title>Dashboard</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item link :to="{name: 'competitions'}">
+                <v-list-item link :to="{name: 'championships'}">
                     <v-list-item-action>
                         <v-icon>emoji_events</v-icon>
                     </v-list-item-action>
@@ -45,11 +45,8 @@
                 fluid
             >
                 <v-row>
-                    <v-col v-if="this.user">
+                    <v-col>
                         <router-view></router-view>
-                    </v-col>
-                    <v-col class="shrink" v-else>
-                        <loginForm></loginForm>
                     </v-col>
                 </v-row>
             </v-container>
@@ -58,6 +55,9 @@
         <v-footer app>
             <span>&copy; 2020</span>
         </v-footer>
+    </v-app>
+    <v-app class="shrink" v-else>
+        <loginForm></loginForm>
     </v-app>
 </template>
 
@@ -87,6 +87,8 @@
         }),
         mounted() {
             store.entrypoint = this.entrypoint;
+            this.$store.commit('loadSchema');
+            console.log(this.$store);
             if (window.user) {
                 this.user = window.user;
             }
