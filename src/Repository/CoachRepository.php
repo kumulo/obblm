@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Coach;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -15,7 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @method Coach[]    findAll()
  * @method Coach[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CoachRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
+class CoachRepository extends ServiceEntityRepository implements UserLoaderInterface, PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -34,5 +35,15 @@ class CoachRepository extends ServiceEntityRepository implements PasswordUpgrade
         $user->setPassword($newEncodedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
+    }
+
+    public function loadUserByUsername($usernameOrEmail)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.username = :username_or_email')
+            ->orWhere('c.email = :username_or_email')
+            ->getQuery()
+            ->setParameter(':username_or_email', $usernameOrEmail)
+            ->getOneOrNullResult();
     }
 }

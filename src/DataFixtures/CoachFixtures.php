@@ -22,7 +22,8 @@ class CoachFixtures extends Fixture
     public function load(ObjectManager $em)
     {
         $coach = (new Coach())
-            ->setEmail('admin@obblm.com');
+            ->setEmail('admin@obblm.com')
+            ->setUsername('admin');
         $password = $this->encoder->encodePassword($coach, 'admin');
         $coach->setPassword($password);
         $coach->setRoles([
@@ -31,7 +32,8 @@ class CoachFixtures extends Fixture
         $em->persist($coach);
         $this->addReference(self::ADMIN_USER_REFERENCE, $coach);
         $coach = (new Coach())
-            ->setEmail('manager@obblm.com');
+            ->setEmail('manager@obblm.com')
+            ->setUsername('manager');
         $password = $this->encoder->encodePassword($coach, 'manager');
         $coach->setPassword($password);
         $coach->setRoles([
@@ -40,7 +42,8 @@ class CoachFixtures extends Fixture
         $em->persist($coach);
         $this->addReference(self::MANAGER_USER_REFERENCE, $coach);
         $coach = (new Coach())
-            ->setEmail('coach@obblm.com');
+            ->setEmail('coach@obblm.com')
+            ->setUsername('coach');
         $password = $this->encoder->encodePassword($coach, 'coach');
         $coach->setPassword($password);
         $em->persist($coach);

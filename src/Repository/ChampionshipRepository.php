@@ -29,13 +29,12 @@ class ChampionshipRepository extends ServiceEntityRepository
      * @return QueryBuilder
      */
     public function getCoachChampionships() {
-        $user = $this->security->getToken()->getUser();
         return $this->createQueryBuilder('champ')
-            ->join(Team::class, 'team')
-            ->join(Coach::class, 'manager')
-            ->where('team.coach = :coach')
-            ->orWhere('manager = :coach')
-            ->setParameter(':coach', $user);
+            ->leftJoin('champ.managers', 'manager')
+            ->where('manager = :coach')
+            ->leftJoin('champ.teams', 'team')
+            ->orWhere('team.coach = :coach')
+            ->setParameter(':coach', $this->security->getToken()->getUser());
     }
 
     /**
@@ -51,6 +50,10 @@ class ChampionshipRepository extends ServiceEntityRepository
      */
     public function findCoachAllowedChampionships() {
         $qb = $this->getCoachChampionships();
+        $qb
+            ->leftJoin('champ.guests', 'guest')
+            ->orWhere('guest = :coach')
+            ->orWhere('champ.is_private = false');
         // TODO : add some other criteria
         return $qb->getQuery()->getResult();
     }

@@ -2,6 +2,10 @@
 
 namespace App;
 
+use App\Service\ChampionshipFormat\ChampionshipFormatInterface;
+use App\Service\ChampionshipFormat\ChampionshipFormatsPass;
+use App\Service\TieBreaker\TieBreakerInterface;
+use App\Service\TieBreaker\TieBreaksPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -50,5 +54,17 @@ class Kernel extends BaseKernel
         $routes->import($confDir.'/{routes}/'.$this->environment.'/*'.self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir.'/{routes}/*'.self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir.'/{routes}'.self::CONFIG_EXTS, '/', 'glob');
+    }
+
+    protected function build(ContainerBuilder $container): void
+    {
+        $container->registerForAutoconfiguration(TieBreakerInterface::class)
+            ->addTag('bblm.tiebreaks')
+        ;
+        $container->registerForAutoconfiguration(ChampionshipFormatInterface::class)
+            ->addTag('bblm.championship_format')
+        ;
+        $container->addCompilerPass(new TieBreaksPass());
+        $container->addCompilerPass(new ChampionshipFormatsPass());
     }
 }

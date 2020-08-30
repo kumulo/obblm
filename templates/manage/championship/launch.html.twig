@@ -1,0 +1,14 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+    <h1>{{ championship.name }}</h1>
+    <h2>{{ championship.format|trans }}</h2>
+
+    <div>
+        <p>Are you sure you want to use launch this championship ?</p>
+        <p>
+            <a href="{{ path('championship_manage_confirm_launch', {'championship': championship.id, 'confirm': 'yes'}) }}">Yes</a>
+            <a href="{{ path('championship_manage_confirm_launch', {'championship': championship.id, 'confirm': 'no'}) }}">No</a>
+        </p>
+    </div>
+{% endblock %}

@@ -25,3 +25,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # this config only applies to the services created by this file
+    _instanceof:
+        # services whose classes are instances of CustomInterface will be tagged automatically
+        App\Service\TieBreaker\TieBreakerInterface:
+            tags: ['bblm.tiebreaks']

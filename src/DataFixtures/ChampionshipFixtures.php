@@ -4,6 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Championship;
 use App\Entity\Rule;
+use App\Service\ChampionshipFormat\OpenChampionshipFormat;
+use App\Service\TieBreaker\InjuryPlusTieBreak;
+use App\Service\TieBreaker\TouchdownPlusTieBreak;
+use App\Service\TieBreaker\VictoryTieBreak;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -18,10 +22,11 @@ class ChampionshipFixtures extends Fixture implements DependentFixtureInterface
         $championship = (new Championship())
             ->setName('Championship test')
             ->setRule($rule)
-            ->setFormat('open')
-            ->setTieBreak1('test')
-            ->setTieBreak2('test')
-            ->setTieBreak3('test')
+            ->setFormat(OpenChampionshipFormat::FORMAT)
+            ->setTieBreak1(VictoryTieBreak::KEY)
+            ->setTieBreak2(TouchdownPlusTieBreak::KEY)
+            ->setTieBreak3(InjuryPlusTieBreak::KEY)
+            ->setMaxTeams(16)
             ->setLeague($this->getReference(LeagueFixtures::LEAGUE_REFERENCE))
             ->addManager($this->getReference(CoachFixtures::MANAGER_USER_REFERENCE));
         $em->persist($championship);

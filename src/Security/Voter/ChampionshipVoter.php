@@ -5,7 +5,6 @@ use App\Entity\Championship;
 use App\Entity\Coach;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Component\VarDumper\VarDumper;
 
 class ChampionshipVoter extends Voter
 {
@@ -57,16 +56,40 @@ class ChampionshipVoter extends Voter
     private function canView(Championship $championship, Coach $coach)
     {
         // if they can edit, they can view
-        if ($this->canManage($championship, $coach)) {
+        if ($this->canEdit($championship, $coach)) {
             return true;
         }
-
-        // the Championship or League object are `isPrivate()` ?
-        return !($championship->isPrivate() || $championship->getLeague()->isPrivate());
+        // the Championship or League object are not `isPrivate()` ?
+        if(!($championship->isPrivate() || $championship->getLeague()->isPrivate()))
+        {
+            return true;
+        }
+        else {
+            foreach($championship->getTeams() as $team) {
+                if($team->getCoach() === $coach) {
+                    return true;
+                }
+            }
+            foreach($championship->getGuests() as $guest) {
+                if($guest === $coach) {
+                    return true;
+                }
+            }
+            // TODO : add invitation to guest transformation to account creation and remove loop
+            foreach($championship->getInvitations() as $invitation) {
+                if($invitation->getEmail() === $coach->getEmail()) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private function canEdit(Championship $championship, Coach $coach)
     {
+        if ($this->canManage($championship, $coach)) {
+            return true;
+        }
         // this assumes that the League has the Coach as Owner
         return $coach === $championship->getLeague()->getOwner();
     }

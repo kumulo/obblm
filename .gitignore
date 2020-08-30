@@ -1,4 +1,6 @@
+###> PHPStorm files ###
 /.idea
+###< PHPStorm files ###
 
 ###> symfony/framework-bundle ###
 /.env

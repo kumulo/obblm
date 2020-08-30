@@ -2,8 +2,16 @@
 
 namespace App\Service\TieBreaker;
 
-use App\Traits\ServiceKeyTrait;
+use App\Traits\ClassNameAsKeyTrait;
 
 abstract class AbstractTieBreaker implements TieBreakerInterface {
-    use ServiceKeyTrait;
+    use ClassNameAsKeyTrait;
+
+    const KEY = 'tiebreak.default';
+    const ENDS_WITH_PLAYOFF = true;
+
+    public function getKey():string
+    {
+        return get_class($this)::KEY;
+    }
 }

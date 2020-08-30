@@ -1,0 +1,20 @@
+<tr>
+    <td>{{ player.number }}</td>
+    <td>{{ player.name }}</td>
+    <td>{{ player|type|trans({}, 'lrb6') }}</td>
+    <td>{{ player|characteristics('ma') }}</td>
+    <td>{{ player|characteristics('st') }}</td>
+    <td>{{ player|characteristics('ag') }}</td>
+    <td>{{ player|characteristics('av') }}</td>
+    <td>
+        {% for skill in player|skills %}
+            {% set skill_name = 'lrb6.skills.' ~ skill ~ '.title' %}
+            {% set skill_text = 'lrb6.skills.' ~ skill ~ '.description' %}
+            <span title="{{ skill_text|trans({}, 'lrb6') }}">{{ skill_name|trans({}, 'lrb6') }}</span>
+        {% else %}
+            None
+        {% endfor %}
+    </td>
+    <td></td>
+    <td>{{ player|value|price }}</td>
+</tr>

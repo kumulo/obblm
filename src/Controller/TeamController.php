@@ -5,15 +5,14 @@ namespace App\Controller;
 use App\Entity\Championship;
 use App\Entity\Rule;
 use App\Entity\Team;
-use App\Form\Team\EditTeamForm;
-use App\Form\TeamRulesSelectorForm;
+use App\Form\Team\EditTeamType;
+use App\Form\Team\TeamRulesSelectorForm;
 use App\Security\Voter\TeamVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
-use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Class TeamController
@@ -57,7 +56,7 @@ class TeamController extends AbstractController {
             }
         }
 
-        return $this->render('team/create.rules-choice.html.twig', [
+        return $this->render('form/team/create.rules-choice.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -68,16 +67,21 @@ class TeamController extends AbstractController {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
         $team = (new Team())
-            ->setRule($rule);
+            ->setRule($rule)
+            ->setCoach($this->getUser());
         $form = $this->createForm(TeamRulesSelectorForm::class, $team);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() and $form->isValid()) {
-
+            $team = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($team);
+            $em->flush();
+            return $this->redirectToRoute('team_detail', ['team' => $team->getId()]);
         }
 
-        return $this->render('team/create.rules-choice.html.twig', [
+        return $this->render('form/team/create.rules-choice.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -88,16 +92,21 @@ class TeamController extends AbstractController {
         $this->denyAccessUnlessGranted('championship.view', $championship);
 
         $team = (new Team())
-            ->setChampionship($championship);
+            ->setChampionship($championship)
+            ->setCoach($this->getUser());
         $form = $this->createForm(TeamRulesSelectorForm::class, $team);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() and $form->isValid()) {
-
+            $team = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($team);
+            $em->flush();
+            return $this->redirectToRoute('team_detail', ['team' => $team->getId()]);
         }
 
-        return $this->render('team/create.rules-choice.html.twig', [
+        return $this->render('form/team/create.rules-choice.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -116,18 +125,19 @@ class TeamController extends AbstractController {
     public function edit(Team $team, Request $request): Response {
         $this->denyAccessUnlessGranted(TeamVoter::EDIT, $team);
 
-        $form = $this->createForm(EditTeamForm::class, $team);
+        $form = $this->createForm(EditTeamType::class, $team);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            $team = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($team);
             $em->flush();
-            return $this->redirectToRoute('my_teams');
+            return $this->redirectToRoute('team_detail', ['team' => $team->getId()]);
         }
 
-        return $this->render('team/edit.html.twig', [
+        return $this->render('form/team/edit.html.twig', [
             'form' => $form->createView(),
             'team' => $team
         ]);

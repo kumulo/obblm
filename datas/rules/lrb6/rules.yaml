@@ -2,6 +2,11 @@ rules:
     lrb6:
         post_bb_2020: false
         max_team_cost: 1000000
+        sidelines_cost:
+            apothecary: 50000
+            cheerleaders: 10000
+            assistants: 10000
+            popularity: 10000
         experience:
             0: rookie
             6: experienced

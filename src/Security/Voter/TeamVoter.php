@@ -73,6 +73,6 @@ class TeamVoter extends Voter
     private function canEdit(Team $team, Coach $coach)
     {
         // this assumes that the Team object has a `getOwner()` method
-        return ($coach === $team->getCoach() && !$team->getChampionship()->isLocked());
+        return ($coach === $team->getCoach() && !$team->isLockedByManagment() && !($team->getChampionship() ? $team->getChampionship()->isLocked() : false));
     }
 }

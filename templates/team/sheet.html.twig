@@ -1,0 +1,2 @@
+{% set sheet = team.championship ? team.championship.rule.ruleKey : team.rule.ruleKey %}
+{% include 'team/table.' ~ sheet ~ '.html.twig' with { 'team': team } %}

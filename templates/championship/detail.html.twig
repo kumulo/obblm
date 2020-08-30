@@ -1,0 +1,12 @@
+{% extends 'base.html.twig'%}
+
+{% block body%}
+<h1>{{ championship.name }}</h1>
+<ul>
+    {% for team in teams %}
+    <li><a href="{{ path('championship_team', {'championship': championship.id, 'team': team.id }) }}">{{ team.name }}</a> ({{ team|calculate_value }})</li>
+    {% else %}
+    <li>No team registred yet!</li>
+    {% endfor %}
+</ul>
+{% endblock%}

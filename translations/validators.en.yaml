@@ -1,0 +1,6 @@
+constraints:
+  team:
+    composition:
+      violation: The team can contain max {{ limit }} of {{ player_type }}.
+    value:
+      violation: The team value must be lower than {{ limit }}. Your team value is at {{ current }}

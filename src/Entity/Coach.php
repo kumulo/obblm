@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=CoachRepository::class)
  * @UniqueEntity("email")
  */
-class Coach implements UserInterface
+class Coach implements UserInterface, EmailObjectInterface
 {
     /**
      * @ORM\Id()
@@ -67,11 +67,43 @@ class Coach implements UserInterface
      */
     private $managed_championships;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Championship::class, mappedBy="guests")
+     */
+    private $championships;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $first_name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $last_name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $hash;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
         $this->admin_leagues = new ArrayCollection();
         $this->managed_championships = new ArrayCollection();
+        $this->championships = new ArrayCollection();
+        $this->active = false;
     }
 
     public function getId(): ?int
@@ -98,7 +130,7 @@ class Coach implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
 
     /**
@@ -256,5 +288,93 @@ class Coach implements UserInterface
 
     public function __toString() {
         return $this->email;
+    }
+
+    /**
+     * @return Collection|Championship[]
+     */
+    public function getChampionships(): Collection
+    {
+        return $this->championships;
+    }
+
+    public function addChampionship(Championship $championship): self
+    {
+        if (!$this->championships->contains($championship)) {
+            $this->championships[] = $championship;
+            $championship->addGuest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChampionship(Championship $championship): self
+    {
+        if ($this->championships->contains($championship)) {
+            $this->championships->removeElement($championship);
+            $championship->removeGuest($this);
+        }
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->first_name;
+    }
+
+    public function setFirstName(?string $first_name): self
+    {
+        $this->first_name = $first_name;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->last_name;
+    }
+
+    public function setLastName(?string $last_name): self
+    {
+        $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getHash(): ?string
+    {
+        return $this->hash;
+    }
+
+    public function setHash(?string $hash): self
+    {
+        $this->hash = $hash;
+
+        return $this;
     }
 }

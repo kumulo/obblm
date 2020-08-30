@@ -17,6 +17,7 @@
         "symfony/http-client": "*",
         "symfony/intl": "*",
         "symfony/mailer": "*",
+        "symfony/messenger": "5.1.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/notifier": "*",
         "symfony/orm-pack": "*",

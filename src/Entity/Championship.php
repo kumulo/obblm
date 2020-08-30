@@ -84,13 +84,9 @@ class Championship
 
     /**
      * @ORM\ManyToMany(targetEntity=Coach::class, inversedBy="managed_championships")
+     * @ORM\JoinTable(name="championship_manager")
      */
     private $managers;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $is_locked = false;
 
     /**
      * @ORM\ManyToOne(targetEntity=Rule::class, inversedBy="championships")
@@ -98,12 +94,34 @@ class Championship
      */
     private $rule;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $max_teams;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ChampionshipInvitation::class, mappedBy="championship", orphanRemoval=true, cascade={"persist", "remove"})
+     */
+    private $invitations;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Coach::class, inversedBy="championships")
+     */
+    private $guests;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_locked = false;
+
     public function __construct()
     {
         $this->journeys = new ArrayCollection();
         $this->games = new ArrayCollection();
         $this->teams = new ArrayCollection();
         $this->managers = new ArrayCollection();
+        $this->invitations = new ArrayCollection();
+        $this->guests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -368,6 +386,75 @@ class Championship
     public function setRule(?Rule $rule): self
     {
         $this->rule = $rule;
+
+        return $this;
+    }
+
+    public function getMaxTeams(): ?int
+    {
+        return $this->max_teams;
+    }
+
+    public function setMaxTeams(int $max_teams): self
+    {
+        $this->max_teams = $max_teams;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ChampionshipInvitation[]
+     */
+    public function getInvitations(): Collection
+    {
+        return $this->invitations;
+    }
+
+    public function addInvitation(ChampionshipInvitation $invitation): self
+    {
+        if (!$this->invitations->contains($invitation)) {
+            $this->invitations[] = $invitation;
+            $invitation->setChampionship($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvitation(ChampionshipInvitation $invitation): self
+    {
+        if ($this->invitations->contains($invitation)) {
+            $this->invitations->removeElement($invitation);
+            // set the owning side to null (unless already changed)
+            if ($invitation->getChampionship() === $this) {
+                $invitation->setChampionship(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Coach[]
+     */
+    public function getGuests(): Collection
+    {
+        return $this->guests;
+    }
+
+    public function addGuest(Coach $guest): self
+    {
+        if (!$this->guests->contains($guest)) {
+            $this->guests[] = $guest;
+        }
+
+        return $this;
+    }
+
+    public function removeGuest(Coach $guest): self
+    {
+        if ($this->guests->contains($guest)) {
+            $this->guests->removeElement($guest);
+        }
 
         return $this;
     }

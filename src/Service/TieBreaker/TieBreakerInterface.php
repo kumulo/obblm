@@ -8,5 +8,5 @@ interface TieBreakerInterface {
      *
      * @return string
      */
-    public function getKey();
+    public function getKey():string;
 }

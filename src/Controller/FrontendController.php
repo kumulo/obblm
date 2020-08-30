@@ -12,7 +12,7 @@ class FrontendController extends AbstractController {
      */
     public function home(SerializerInterface $serializer) {
         return $this->render('dashboard/index.html.twig', [
-            'user' => $serializer->serialize($this->getUser(), 'json'),
+            //'user' => $serializer->serialize($this->getUser(), 'json'),
         ]);
     }
 }

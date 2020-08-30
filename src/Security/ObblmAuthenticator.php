@@ -48,13 +48,13 @@ class ObblmAuthenticator extends AbstractFormLoginAuthenticator implements Passw
     public function getCredentials(Request $request)
     {
         $credentials = [
-            'email' => $request->request->get('email'),
+            'login' => $request->request->get('login'),
             'password' => $request->request->get('password'),
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
         $request->getSession()->set(
             Security::LAST_USERNAME,
-            $credentials['email']
+            $credentials['login']
         );
 
         return $credentials;
@@ -67,7 +67,7 @@ class ObblmAuthenticator extends AbstractFormLoginAuthenticator implements Passw
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $this->entityManager->getRepository(Coach::class)->findOneBy(['email' => $credentials['email']]);
+        $user = $this->entityManager->getRepository(Coach::class)->loadUserByUsername($credentials['login']);
 
         if (!$user) {
             // fail authentication with a custom error

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlayerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,9 +36,26 @@ class Player
     private $number;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      */
-    private $position;
+    private $type;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PlayerVersion::class, mappedBy="player", orphanRemoval=true)
+     * @ORM\OrderBy({"id"="DESC"})
+     */
+    private $versions;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $dead;
+
+    public function __construct()
+    {
+        $this->versions = new ArrayCollection();
+        $this->dead = false;
+    }
 
     public function getId(): ?int
     {
@@ -79,14 +98,57 @@ class Player
         return $this;
     }
 
-    public function getPosition(): ?string
+    public function getType(): ?string
     {
-        return $this->position;
+        return $this->type;
     }
 
-    public function setPosition(string $position): self
+    public function setType(string $type): self
     {
-        $this->position = $position;
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PlayerVersion[]
+     */
+    public function getVersions(): Collection
+    {
+        return $this->versions;
+    }
+
+    public function addVersion(PlayerVersion $version): self
+    {
+        if (!$this->versions->contains($version)) {
+            $this->versions[] = $version;
+            $version->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVersion(PlayerVersion $version): self
+    {
+        if ($this->versions->contains($version)) {
+            $this->versions->removeElement($version);
+            // set the owning side to null (unless already changed)
+            if ($version->getPlayer() === $this) {
+                $version->setPlayer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDead(): ?bool
+    {
+        return $this->dead;
+    }
+
+    public function setDead(bool $dead): self
+    {
+        $this->dead = $dead;
 
         return $this;
     }
