@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Listener;
+namespace BBlm\Listener;
 
-use App\Service\LocalizerService;
+use BBlm\Service\LocalizerService;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 
 class LocaleListener implements EventSubscriberInterface
@@ -82,7 +83,7 @@ class LocaleListener implements EventSubscriberInterface
 
     /**
      * @param ResponseEvent $event
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function setContentLanguage(ResponseEvent $event)
     {

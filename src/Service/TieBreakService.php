@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Service;
+namespace BBlm\Service;
 
-use App\Service\TieBreaker\TieBreakerInterface;
+use BBlm\Entity\Championship;
+use BBlm\Service\TieBreaker\TieBreakerInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
-use Symfony\Component\Translation\DataCollectorTranslator;
 
 class TieBreakService {
 
@@ -34,7 +33,7 @@ class TieBreakService {
         return $tiebreaks;
     }
 
-    public function get($key)
+    public function get($key):?TieBreakerInterface
     {
         if (!isset($this->tiebreaks[$key])) {
             return false;
@@ -44,5 +43,24 @@ class TieBreakService {
     }
     public function addTieBreak(TieBreakerInterface $tiebreak) {
         $this->tiebreaks->offsetSet($tiebreak->getKey(), $tiebreak);
+    }
+
+    public function applyTieBreaks(Championship $championship, ArrayCollection $collection) {
+        $criteria = Criteria::create();
+        $ordering = ['points' => 'DESC'];
+        if($championship->getTieBreak1()) {
+            $tb = $this->get($championship->getTieBreak1());
+            $ordering = array_merge($ordering, $tb->getOrderingForCriteria());
+        }
+        if($championship->getTieBreak2()) {
+            $tb = $this->get($championship->getTieBreak2());
+            $ordering = array_merge($ordering, $tb->getOrderingForCriteria());
+        }
+        if($championship->getTieBreak3()) {
+            $tb = $this->get($championship->getTieBreak3());
+            $ordering = array_merge($ordering, $tb->getOrderingForCriteria());
+        }
+        $criteria->orderBy($ordering);
+        return $collection->matching($criteria);
     }
 }

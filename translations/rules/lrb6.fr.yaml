@@ -68,58 +68,58 @@ lrb6:
   injuries:
     badly_hurt:
       name: Commotion
-      effet: Aucun effet à long terme
+      effect: Aucun effet à long terme
     broken_ribs:
       name: Côtes cassées
-      effet: Rate le prochain match
+      effect: Rate le prochain match
     groin_strain:
       name: Ligaments Arrachés
-      effet: Rate le prochain match
+      effect: Rate le prochain match
     gouged_eye:
       name: Œil Crevé
-      effet: Rate le prochain match
+      effect: Rate le prochain match
     broken_jaw:
       name: Mâchoire Fracassée
-      effet: Rate le prochain match
+      effect: Rate le prochain match
     fractured_arm:
       name: Bras Fracturé
-      effet: Rate le prochain match
+      effect: Rate le prochain match
     fractured_leg:
       name: Jambe Cassée
-      effet: Rate le prochain match
+      effect: Rate le prochain match
     smashed_hand:
       name: Main Écrasée
-      effet: Rate le prochain match
+      effect: Rate le prochain match
     pinched_nerve:
       name: Nerf Coincé
-      effet: Rate le prochain match
+      effect: Rate le prochain match
     damaged_back:
       name: Dos Abîmé
-      effet: Blessure Persistante
+      effect: Blessure Persistante
     smashed_knee:
       name: Genou Déboîté
-      effet: Blessure Persistante
+      effect: Blessure Persistante
     smashed_hip:
       name: Hanche Démise
-      effet: -1 M
+      effect: -1 M
     smashed_ankle:
       name: Cheville Détruite
-      effet: -1 M
+      effect: -1 M
     smashed_concussion:
       name: Commotion grave
-      effet: -1 AR
+      effect: -1 AR
     smashed_skull:
       name: Traumatisme Crânien
-      effet: -1 AR
+      effect: -1 AR
     broken_neck:
       name: Cou Brisé
-      effet: -1 AG
+      effect: -1 AG
     smashed_collar:
       name: Clavicule Défoncée
-      effet: -1 F
+      effect: -1 F
     dead:
       name: MORT
-      effet: Mort !
+      effect: Mort !
   injuries_abbr:
     M: Rate le prochain match
     P: Blessure Persistante

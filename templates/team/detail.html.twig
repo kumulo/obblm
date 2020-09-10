@@ -7,7 +7,7 @@
         <a href="{{ path('team_delete', {'team': team.id}) }}">Delete</a>
     {% endif %}
     </nav>
-    <section>
+    <section class="row">
         <header>
             <h1>{{ team.name }} ({{ team|tr }})</h1>
             {% if team.championship %}

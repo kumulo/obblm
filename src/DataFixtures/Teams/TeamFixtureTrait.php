@@ -1,12 +1,12 @@
 <?php
 
-namespace App\DataFixtures\Teams;
+namespace BBlm\DataFixtures\Teams;
 
-use App\Entity\Championship;
-use App\Entity\Coach;
-use App\Entity\Player;
-use App\Entity\Team;
-use App\Service\PlayerService;
+use BBlm\Entity\Championship;
+use BBlm\Entity\Coach;
+use BBlm\Entity\Player;
+use BBlm\Entity\Team;
+use BBlm\Service\PlayerService;
 
 trait TeamFixtureTrait {
     protected $championship;
@@ -30,6 +30,10 @@ trait TeamFixtureTrait {
          *   name
          *   roster
          *   rerolls
+         *   popularity
+         *   cheerleaders
+         *   assistants
+         *   rerolls
          *   apothecary
          *   positions
          *     type_key: quantity
@@ -37,12 +41,15 @@ trait TeamFixtureTrait {
         $team = (new Team())
             ->setName($data['name'])
             ->setRoster($data['roster'])
-            ->setApothecary($data['apothecary'])
+            ->setApothecary($data['apothecary'] ?? false)
             ->setCoach($this->coach)
             ->setChampionship($this->championship)
-            ->setRerolls($data['rerolls']);
+            ->setPopularity($data['popularity'] ?? 0)
+            ->setCheerleaders($data['cheerleaders'] ?? 0)
+            ->setAssistants($data['assistants'] ?? 0)
+            ->setRerolls($data['rerolls'] ?? 0);
 
-        $player_number = 0;
+        $player_number = 1;
         foreach($data['positions'] as $type => $quantity) {
             for($i = 0; $i < $quantity; $i++) {
                 $player = (new Player())

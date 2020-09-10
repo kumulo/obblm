@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Controller\Manager;
+namespace BBlm\Controller\Manager;
 
-use App\Entity\Championship;
-use App\Event\ChampionshipLaunchedEvent;
-use App\Event\ChampionshipUpdateEvent;
-use App\Form\Championship\ManageChampionshipForm;
+use BBlm\Entity\Championship;
+use BBlm\Entity\Encounter;
+use BBlm\Event\ChampionshipLaunchedEvent;
+use BBlm\Event\ChampionshipUpdateEvent;
+use BBlm\Event\EncounterValidatedEvent;
+use BBlm\Form\Championship\ManageChampionshipForm;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Class ManagerController
- * @package App\Controller\Manager
+ * @package BBlm\Controller\Manager
  *
  * @Route("/manage/championships")
  */
@@ -26,6 +27,7 @@ class ChampionshipManagerController extends AbstractController {
         $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('todo.html.twig', []);
     }
+
     /**
      * @Route("/{championship}", name="championship_manage_detail")
      */
@@ -35,6 +37,7 @@ class ChampionshipManagerController extends AbstractController {
             'championship' => $championship
         ]);
     }
+
     /**
      * @Route("/{championship}/manage", name="championship_manage_edit")
      */
@@ -63,13 +66,14 @@ class ChampionshipManagerController extends AbstractController {
             'form' => $form->createView()
         ]);
     }
+
     /**
      * @Route("/{championship}/manage/launch", name="championship_manage_confirm_launch")
      */
     public function confirmLaunch(Championship $championship, EventDispatcherInterface $dispatcher, Request $request) {
 
-        if($confirm = $request->get('confirm')) {
-            if ($confirm === "yes") {
+        if($confirm = (int) $request->get('confirm')) {
+            if ($confirm === 1) {
                 $em = $this->getDoctrine()->getManager();
                 $championship->setIsLocked(true);
                 $event = new ChampionshipLaunchedEvent($championship);
@@ -84,6 +88,7 @@ class ChampionshipManagerController extends AbstractController {
             'championship' => $championship
         ]);
     }
+
     /**
      * @Route("/{championship}/delete", name="championship_manage_delete")
      */
@@ -91,6 +96,25 @@ class ChampionshipManagerController extends AbstractController {
         $this->denyAccessUnlessGranted('championship.manage', $championship);
         return $this->render('todo.html.twig', [
             'championship' => $championship
+        ]);
+    }
+
+    /**
+     * @Route("/{championship}/encounter-validate/{encounter}", name="championship_manage_validate_encounter")
+     */
+    public function validateEncounter(Championship $championship, Encounter $encounter, Request $request, EventDispatcherInterface $dispatcher) {
+        $this->denyAccessUnlessGranted('championship.manage', $championship);
+        if($confirm = (int) $request->get('confirm')) {
+            if ($confirm === 1) {
+                $event = new EncounterValidatedEvent($encounter, $this->getUser());
+                $dispatcher->dispatch($event, EncounterValidatedEvent::NAME);
+                return $this->redirectToRoute('championship_detail', ['championship' => $championship->getId()]);
+            }
+        }
+        return $this->render('encounter/detail.html.twig', [
+            'championship' => $championship,
+            'encounter' => $encounter,
+            'is_validation' => true
         ]);
     }
 }

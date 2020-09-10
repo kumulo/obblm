@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\TieBreaker;
+namespace BBlm\Service\TieBreaker;
 
 interface TieBreakerInterface {
     /**
@@ -9,4 +9,5 @@ interface TieBreakerInterface {
      * @return string
      */
     public function getKey():string;
+    public function getOrderingForCriteria():array;
 }

@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Entity;
+namespace BBlm\Entity;
 
-use App\Repository\PlayerVersionRepository;
+use BBlm\Repository\PlayerVersionRepository;
+use BBlm\Service\PlayerService;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=PlayerVersionRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class PlayerVersion
 {
@@ -24,6 +26,12 @@ class PlayerVersion
     private $player;
 
     /**
+     * @ORM\ManyToOne(targetEntity=TeamVersion::class, inversedBy="playerVersions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $teamVersion;
+
+    /**
      * @ORM\Column(type="array")
      */
     private $characteristics = [];
@@ -39,19 +47,34 @@ class PlayerVersion
     private $injuries = [];
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $value;
+    private $actions = [];
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $dead;
+    private $missing_next_game = false;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $actions = [];
+    private $dead = false;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $spp = 0;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $spp_level;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $value;
 
     public function getId(): ?int
     {
@@ -118,15 +141,48 @@ class PlayerVersion
         return $this;
     }
 
+    public function getMissingNextGame(): ?bool
+    {
+        return $this->missing_next_game;
+    }
+
+    public function isMissingNextGame(): ?bool
+    {
+        return $this->getMissingNextGame();
+    }
+
+    public function setMissingNextGame(bool $missing_next_game): self
+    {
+        $this->missing_next_game = $missing_next_game;
+        return $this;
+    }
+
     public function getDead(): ?bool
     {
         return $this->dead;
+    }
+
+    public function isDead(): ?bool
+    {
+        return $this->getDead();
     }
 
     public function setDead(bool $dead): self
     {
         $this->dead = $dead;
         $this->getPlayer()->setDead($this->dead);
+        return $this;
+    }
+
+    public function getSpp(): ?int
+    {
+        return $this->spp;
+    }
+
+    public function setSpp(int $spp): self
+    {
+        $this->spp = $spp;
+
         return $this;
     }
 
@@ -138,6 +194,47 @@ class PlayerVersion
     public function setActions(?array $actions): self
     {
         $this->actions = $actions;
+
+        return $this;
+    }
+
+    public function getTeamVersion(): ?TeamVersion
+    {
+        return $this->teamVersion;
+    }
+
+    public function setTeamVersion(?TeamVersion $teamVersion): self
+    {
+        $this->teamVersion = $teamVersion;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PostLoad
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function loadDefaultDatas(): void
+    {
+        if($this->getPlayer()) {
+            if(!$this->getCharacteristics()) {
+                $this->setCharacteristics(PlayerService::getPlayerCharacteristics($this->getPlayer()));
+            }
+            if(!$this->getSkills()) {
+                $this->setSkills(PlayerService::getPlayerSkills($this->getPlayer()));
+            }
+        }
+    }
+
+    public function getSppLevel(): ?string
+    {
+        return $this->spp_level;
+    }
+
+    public function setSppLevel(string $spp_level): self
+    {
+        $this->spp_level = $spp_level;
 
         return $this;
     }

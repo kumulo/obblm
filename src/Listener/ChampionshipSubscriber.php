@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Listener;
+namespace BBlm\Listener;
 
-use App\Entity\ChampionshipInvitation;
-use App\Entity\Coach;
-use App\Event\ActivateCoachEvent;
-use App\Event\ChampionshipLaunchedEvent;
-use App\Event\ChampionshipUpdateEvent;
-use App\Event\RegisterCoachEvent;
-use App\Event\SendInvitationMessageEvent;
-use App\Service\ChampionshipFormat\ChampionshipFormatInterface;
-use App\Service\ChampionshipService;
+use BBlm\Entity\ChampionshipInvitation;
+use BBlm\Entity\Coach;
+use BBlm\Event\ChampionshipLaunchedEvent;
+use BBlm\Event\ChampionshipUpdateEvent;
+use BBlm\Event\EncounterValidatedEvent;
+use BBlm\Event\RegisterCoachEvent;
+use BBlm\Event\SendEncounterValidationMessageEvent;
+use BBlm\Event\SendInvitationMessageEvent;
+use BBlm\Service\ChampionshipFormat\ChampionshipFormatInterface;
+use BBlm\Service\ChampionshipService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\VarDumper\VarDumper;
 
 class ChampionshipSubscriber implements EventSubscriberInterface
 {
@@ -22,7 +22,9 @@ class ChampionshipSubscriber implements EventSubscriberInterface
     protected $dispatcher;
     protected $championshipService;
 
-    public function __construct(EntityManagerInterface $em, EventDispatcherInterface $dispatcher, ChampionshipService $championshipService) {
+    public function __construct(EntityManagerInterface $em,
+                                EventDispatcherInterface $dispatcher,
+                                ChampionshipService $championshipService) {
         $this->em = $em;
         $this->dispatcher = $dispatcher;
         $this->championshipService = $championshipService;
@@ -34,6 +36,7 @@ class ChampionshipSubscriber implements EventSubscriberInterface
             ChampionshipUpdateEvent::NAME => 'onChampionshipUpdate',
             RegisterCoachEvent::NAME => 'onCoachRegistred',
             ChampionshipLaunchedEvent::NAME => 'onChampionshipLaunch',
+            EncounterValidatedEvent::NAME => 'onEncounterValidated'
         ];
     }
 
@@ -84,8 +87,21 @@ class ChampionshipSubscriber implements EventSubscriberInterface
         $format = $this->championshipService->getFormat($championship->getFormat());
 
         $format->onLaunched($championship);
+    }
 
-        VarDumper::dump($format);
-        exit;
+    public function onEncounterValidated(EncounterValidatedEvent $event) {
+        $encounter = $event->getEncounter();
+        $validator = $event->getValidator();
+        $format = $this->championshipService->getFormat($encounter->getChampionship()->getFormat());
+        $format->validateEncounter($encounter);
+        if($validator instanceof Coach) {
+            $encounter->setValidatedBy($validator);
+        }
+        $this->em->persist($encounter);
+        $this->em->flush();
+        if($encounter->getValidatedAt() && $validator) {
+            $event = new SendEncounterValidationMessageEvent($encounter);
+            $this->dispatcher->dispatch($event, SendEncounterValidationMessageEvent::NAME);
+        }
     }
 }

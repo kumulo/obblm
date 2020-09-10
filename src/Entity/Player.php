@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace BBlm\Entity;
 
-use App\Repository\PlayerRepository;
+use BBlm\Repository\PlayerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -41,7 +41,7 @@ class Player
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity=PlayerVersion::class, mappedBy="player", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=PlayerVersion::class, fetch="EAGER", mappedBy="player", orphanRemoval=true)
      * @ORM\OrderBy({"id"="DESC"})
      */
     private $versions;
@@ -49,12 +49,22 @@ class Player
     /**
      * @ORM\Column(type="boolean")
      */
-    private $dead;
+    private $dead = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity=EncounterAction::class, mappedBy="player", orphanRemoval=true)
+     */
+    private $encounterActions;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $fire = false;
 
     public function __construct()
     {
         $this->versions = new ArrayCollection();
-        $this->dead = false;
+        $this->encounterActions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,6 +159,49 @@ class Player
     public function setDead(bool $dead): self
     {
         $this->dead = $dead;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EncounterAction[]
+     */
+    public function getEncounterActions(): Collection
+    {
+        return $this->encounterActions;
+    }
+
+    public function addEncounterAction(EncounterAction $encounterAction): self
+    {
+        if (!$this->encounterActions->contains($encounterAction)) {
+            $this->encounterActions[] = $encounterAction;
+            $encounterAction->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEncounterAction(EncounterAction $encounterAction): self
+    {
+        if ($this->encounterActions->contains($encounterAction)) {
+            $this->encounterActions->removeElement($encounterAction);
+            // set the owning side to null (unless already changed)
+            if ($encounterAction->getPlayer() === $this) {
+                $encounterAction->setPlayer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getFire(): ?bool
+    {
+        return $this->fire;
+    }
+
+    public function setFire(bool $fire): self
+    {
+        $this->fire = $fire;
 
         return $this;
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller\Manager;
+namespace BBlm\Controller\Manager;
 
-use App\Entity\League;
-use App\Form\League\ManageLeagueForm;
-use App\Security\Voter\LeagueVoter;
+use BBlm\Entity\League;
+use BBlm\Form\League\ManageLeagueForm;
+use BBlm\Security\Voter\LeagueVoter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class ManagerController
- * @package App\Controller\Manager
+ * @package BBlm\Controller\Manager
  *
  * @Route("/manage/leagues")
  */

@@ -9,6 +9,7 @@ services:
     environment:
       - APP_ENV=${APP_ENV-dev}
       - CORS_ALLOW_ORIGIN=${CORS_ALLOW_ORIGIN}
+      - MESSENGER_TRANSPORT_DSN=${MESSENGER_TRANSPORT_DSN}
     volumes:
       - ../:/var/www/symfony:cached
     networks:

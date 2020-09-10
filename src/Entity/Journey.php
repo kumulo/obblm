@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Entity;
+namespace BBlm\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\JourneyRepository;
+use BBlm\Repository\JourneyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -33,13 +33,13 @@ class Journey
     private $championship;
 
     /**
-     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="journey")
+     * @ORM\OneToMany(targetEntity=Encounter::class, mappedBy="journey")
      */
-    private $games;
+    private $encounters;
 
     public function __construct()
     {
-        $this->games = new ArrayCollection();
+        $this->encounters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -72,30 +72,30 @@ class Journey
     }
 
     /**
-     * @return Collection|Game[]
+     * @return Collection|Encounter[]
      */
-    public function getGames(): Collection
+    public function getEncounters(): Collection
     {
-        return $this->games;
+        return $this->encounters;
     }
 
-    public function addGame(Game $game): self
+    public function addEncounter(Encounter $encounter): self
     {
-        if (!$this->games->contains($game)) {
-            $this->games[] = $game;
-            $game->setJourney($this);
+        if (!$this->encounters->contains($encounter)) {
+            $this->encounters[] = $encounter;
+            $encounter->setJourney($this);
         }
 
         return $this;
     }
 
-    public function removeGame(Game $game): self
+    public function removeEncounter(Encounter $encounter): self
     {
-        if ($this->games->contains($game)) {
-            $this->games->removeElement($game);
+        if ($this->encounters->contains($encounter)) {
+            $this->encounters->removeElement($encounter);
             // set the owning side to null (unless already changed)
-            if ($game->getJourney() === $this) {
-                $game->setJourney(null);
+            if ($encounter->getJourney() === $this) {
+                $encounter->setJourney(null);
             }
         }
 

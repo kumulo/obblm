@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace BBlm\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class AdminController
- * @package App\Controller\Admin
+ * @package BBlm\Controller\Admin
  *
  * @Route("/admin")
  */

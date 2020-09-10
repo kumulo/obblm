@@ -1,20 +1,31 @@
 <?php
 
-namespace App\Form\Team;
+namespace BBlm\Form\Team;
 
-use App\Entity\Championship;
-use App\Entity\Rule;
-use App\Entity\Team;
-use App\Service\RuleService;
-use App\Service\TeamService;
+use BBlm\Entity\Championship;
+use BBlm\Entity\Rule;
+use BBlm\Entity\Team;
+use BBlm\Service\RuleService;
+use BBlm\Service\TeamService;
+use BBlm\Validator\Constraints\ParticipateToChampionship;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class TeamRulesSelectorForm extends AbstractType
 {
+    protected $coach;
+    protected $repository;
+
+    public function __construct(TokenStorageInterface $tokenStorage, EntityManagerInterface $em) {
+        $this->coach = $tokenStorage->getToken()->getUser();
+        $this->repository = $em->getRepository(Championship::class);
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('rule', EntityType::class, [
@@ -29,7 +40,11 @@ class TeamRulesSelectorForm extends AbstractType
                 'class' => Championship::class,
                 'choice_label' => 'name',
                 'placeholder' => 'Choose an option',
-                'expanded' => true
+                'choices' => $this->repository->findCoachAllowedChampionships($this->coach),
+                'expanded' => true,
+                'constraints' => [
+                    new ParticipateToChampionship()
+                ]
             ]);
         if($team = $builder->getData()) {
             if($rule = TeamService::getTeamRule($team)) {
@@ -39,12 +54,12 @@ class TeamRulesSelectorForm extends AbstractType
                     $translation_key = RuleService::composeTranslationRosterKey($rule->getRuleKey(), $roster);
                     $choices[$translation_key] = $roster;
                 }
-
+                ksort($choices);
                 $builder
                     ->add('name')
                     ->add('roster', ChoiceType::class, [
                     'choices' => $choices,
-                    'translation_domain' => $rule->getRuleKey() ?? false
+                    'choice_translation_domain' => $rule->getRuleKey() ?? false
                 ]);
             }
         }

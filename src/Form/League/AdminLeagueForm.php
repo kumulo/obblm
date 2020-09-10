@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form\League;
+namespace BBlm\Form\League;
 
 use Symfony\Component\Form\FormBuilderInterface;
 

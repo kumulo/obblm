@@ -1,9 +1,9 @@
 <?php
 
-namespace App\DataFixtures;
+namespace BBlm\DataFixtures;
 
-use App\Entity\Rule;
-use App\Entity\Team;
+use BBlm\Entity\Rule;
+use BBlm\Entity\Team;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;

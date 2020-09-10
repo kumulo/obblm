@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Traits;
+namespace BBlm\Traits;
 
 trait ClassNameAsKeyTrait {
     /**
      * @internal
      */
-    public function getKey()
+    public function getKey():string
     {
         return get_class($this);
     }

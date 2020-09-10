@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service\ChampionshipFormat;
+namespace BBlm\Service\ChampionshipFormat;
 
-use App\Entity\Championship;
-use App\Entity\Team;
+use BBlm\Entity\Championship;
+use BBlm\Entity\Team;
 
 class JourneyChampionshipFormat extends AbstractChampionshipFormat implements ChampionshipFormatInterface {
 

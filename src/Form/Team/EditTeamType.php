@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Form\Team;
+namespace BBlm\Form\Team;
 
-use App\Entity\Team;
-use App\Service\TeamService;
-use App\Validator\Constraints\TeamComposition;
-use App\Validator\Constraints\TeamValue;
+use BBlm\Entity\Team;
+use BBlm\Service\TeamService;
+use BBlm\Validator\Constraints\TeamComposition;
+use BBlm\Validator\Constraints\TeamValue;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -39,7 +39,7 @@ class EditTeamType extends AbstractType {
                 ->add('cheerleaders')
                 ->add('assistants')
                 ->add('popularity');
-                if(TeamService::isTeamCouldHaveApothecary($team)) {
+                if(TeamService::couldHaveApothecary($team)) {
                     $builder->add('apothecary');
                 }
             }

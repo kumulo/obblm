@@ -44,7 +44,7 @@ rules:
                         st: 7
                         ag: 3
                         av: 7
-                        skills: [ 'ball_chain', 'no_hands', 'secret_weapon,', 'stunty' ]
+                        skills: [ 'ball_chain', 'no_hands', 'secret_weapon', 'stunty' ]
                         cost: 70000
                         available_skills: ['s']
                         available_skills_on_double: ['g', 'a', 'p']

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace BBlm\Controller\Admin;
 
-use App\Entity\League;
-use App\Form\League\AdminLeagueForm;
+use BBlm\Entity\League;
+use BBlm\Form\League\AdminLeagueForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class LeagueAdminController
- * @package App\Controller\Admin
+ * @package BBlm\Controller\Admin
  *
  * @Route("/admin/leagues")
  */

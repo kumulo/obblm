@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DataFixtures;
+namespace BBlm\DataFixtures;
 
-use App\Entity\Coach;
+use BBlm\Entity\Coach;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;

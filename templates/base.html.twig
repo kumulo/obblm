@@ -9,15 +9,19 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
+    <script>
+        window.user = {{ app.user|json_encode()|raw }};
+    </script>
 </head>
-<body>
+<body class="pushable">
 {% if(is_granted('ROLE_USER')) %}
-{% include 'layout/header.html.twig' %}
-{% include 'layout/navbar.html.twig' %}
+    {% include 'layout/navbar.html.twig' %}
+    {% include 'layout/header.html.twig' %}
 {% endif %}
-{% block body %}{% endblock %}
+<div class="pusher"><div class="ui main container">{% block body %}{% endblock %}</div></div>
 {% block javascripts %}
-    {#{ encore_entry_script_tags('app') }#}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}
 </body>
 </html>

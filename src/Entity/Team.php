@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Entity;
+namespace BBlm\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\TeamRepository;
+use BBlm\Repository\TeamRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -36,14 +37,14 @@ class Team
     private $coach;
 
     /**
-     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="home_team")
+     * @ORM\OneToMany(targetEntity=Encounter::class, fetch="EXTRA_LAZY", mappedBy="home_team")
      */
-    private $games_as_home;
+    private $encounters_as_home;
 
     /**
-     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="visitor_team")
+     * @ORM\OneToMany(targetEntity=Encounter::class, fetch="EXTRA_LAZY", mappedBy="visitor_team")
      */
-    private $games_as_visitor;
+    private $encounters_as_visitor;
 
     /**
      * @ORM\ManyToOne(targetEntity=Championship::class, inversedBy="teams")
@@ -71,7 +72,7 @@ class Team
     private $roster;
 
     /**
-     * @ORM\OneToMany(targetEntity=Player::class, mappedBy="team", orphanRemoval=true, cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Player::class, fetch="EAGER", mappedBy="team", orphanRemoval=true, cascade={"persist", "remove"})
      * @ORM\OrderBy({"number"="ASC"})
      */
     private $players;
@@ -106,16 +107,23 @@ class Team
      */
     private $locked_by_managment = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=TeamVersion::class, fetch="EAGER", mappedBy="team", orphanRemoval=true, cascade={"persist", "remove"})
+     * @ORM\OrderBy({"id"="DESC"})
+     */
+    private $versions;
+
     public function __construct()
     {
-        $this->games_as_home = new ArrayCollection();
-        $this->games_as_visitor = new ArrayCollection();
+        $this->encounters_as_home = new ArrayCollection();
+        $this->encounters_as_visitor = new ArrayCollection();
         $this->players = new ArrayCollection();
         $this->apothecary = false;
         $this->rerolls = 0;
         $this->cheerleaders = 0;
         $this->assistants = 0;
         $this->popularity = 0;
+        $this->versions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,30 +156,30 @@ class Team
     }
 
     /**
-     * @return Collection|Game[]
+     * @return Collection|Encounter[]
      */
-    public function getGamesAsHome(): Collection
+    public function getEncountersAsHome(): Collection
     {
-        return $this->games_as_home;
+        return $this->encounters_as_home;
     }
 
-    public function addGameAsHome(Game $game): self
+    public function addEncounterAsHome(Encounter $encounter): self
     {
-        if (!$this->games_as_home->contains($game)) {
-            $this->games_as_home[] = $game;
-            $game->setHomeTeam($this);
+        if (!$this->encounters_as_home->contains($encounter)) {
+            $this->encounters_as_home[] = $encounter;
+            $encounter->setHomeTeam($this);
         }
 
         return $this;
     }
 
-    public function removeGameAsHome(Game $game): self
+    public function removeEncounterAsHome(Encounter $encounter): self
     {
-        if ($this->games_as_home->contains($game)) {
-            $this->games_as_home->removeElement($game);
+        if ($this->encounters_as_home->contains($encounter)) {
+            $this->encounters_as_home->removeElement($encounter);
             // set the owning side to null (unless already changed)
-            if ($game->getHomeTeam() === $this) {
-                $game->setHomeTeam(null);
+            if ($encounter->getHomeTeam() === $this) {
+                $encounter->setHomeTeam(null);
             }
         }
 
@@ -179,30 +187,30 @@ class Team
     }
 
     /**
-     * @return Collection|Game[]
+     * @return Collection|Encounter[]
      */
-    public function getGamesAsVisitor(): Collection
+    public function getEncountersAsVisitor(): Collection
     {
-        return $this->games_as_visitor;
+        return $this->encounters_as_visitor;
     }
 
-    public function addGameAsVisitor(Game $game): self
+    public function addEncounterAsVisitor(Encounter $encounter): self
     {
-        if (!$this->games_as_visitor->contains($game)) {
-            $this->games_as_visitor[] = $game;
-            $game->setHomeTeam($this);
+        if (!$this->encounters_as_visitor->contains($encounter)) {
+            $this->encounters_as_visitor[] = $encounter;
+            $encounter->setHomeTeam($this);
         }
 
         return $this;
     }
 
-    public function removeGameAsVisitor(Game $game): self
+    public function removeEncounterAsVisitor(Encounter $encounter): self
     {
-        if ($this->games_as_visitor->contains($game)) {
-            $this->games_as_visitor->removeElement($game);
+        if ($this->encounters_as_visitor->contains($encounter)) {
+            $this->encounters_as_visitor->removeElement($encounter);
             // set the owning side to null (unless already changed)
-            if ($game->getHomeTeam() === $this) {
-                $game->setHomeTeam(null);
+            if ($encounter->getHomeTeam() === $this) {
+                $encounter->setHomeTeam(null);
             }
         }
 
@@ -210,14 +218,18 @@ class Team
     }
 
     /**
-     * @return ArrayCollection|Game[]
+     * @return ArrayCollection|Encounter[]
      */
-    public function getGames(): ArrayCollection
+    public function getEncounters(): ArrayCollection
     {
-        return new ArrayCollection(array_merge(
-            $this->games_as_home->toArray(),
-            $this->games_as_visitor->toArray()
-        ));
+        $encounters = new ArrayCollection();
+        foreach ($this->encounters_as_home as $encounter) {
+            $encounters->offsetSet($encounter->getId(), $encounter);
+        }
+        foreach ($this->encounters_as_visitor as $encounter) {
+            $encounters->offsetSet($encounter->getId(), $encounter);
+        }
+        return $encounters;
     }
 
     public function getChampionship(): ?Championship
@@ -288,6 +300,17 @@ class Team
         return $this->players;
     }
 
+    /**
+     * @return Collection|Player[]
+     */
+    public function getNotDeadPlayers(): Collection
+    {
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->eq('dead', false))
+        ;
+        return $this->players->matching($criteria);
+    }
+
     public function addPlayer(Player $player): self
     {
         if (!$this->players->contains($player)) {
@@ -320,7 +343,7 @@ class Team
     {
         if (!($context->getValue()->getRule() || $context->getValue()->getChampionship()) ||
             $context->getValue()->getRule() && $context->getValue()->getChampionship()) {
-            $context->buildViolation('You should choose a rule or a championship!')
+            $context->buildViolation('constraints.team.rule_or_championship.violation')
                 ->addViolation();
         }
     }
@@ -398,6 +421,37 @@ class Team
     public function setLockedByManagment(bool $locked_by_managment): self
     {
         $this->locked_by_managment = $locked_by_managment;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TeamVersion[]
+     */
+    public function getVersions(): Collection
+    {
+        return $this->versions;
+    }
+
+    public function addVersion(TeamVersion $version): self
+    {
+        if (!$this->versions->contains($version)) {
+            $this->versions[] = $version;
+            $version->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVersion(TeamVersion $version): self
+    {
+        if ($this->versions->contains($version)) {
+            $this->versions->removeElement($version);
+            // set the owning side to null (unless already changed)
+            if ($version->getTeam() === $this) {
+                $version->setTeam(null);
+            }
+        }
 
         return $this;
     }

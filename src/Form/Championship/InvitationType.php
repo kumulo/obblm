@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Form\Championship;
+namespace BBlm\Form\Championship;
 
-use App\Entity\ChampionshipInvitation;
+use BBlm\Entity\ChampionshipInvitation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

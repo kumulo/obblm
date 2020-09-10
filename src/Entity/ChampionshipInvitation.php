@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace BBlm\Entity;
 
-use App\Repository\ChampionshipInvitationRepository;
+use BBlm\Repository\ChampionshipInvitationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

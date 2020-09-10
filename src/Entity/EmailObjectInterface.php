@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace BBlm\Entity;
 
 interface EmailObjectInterface {
     public function getEmail(): ?string;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace BBlm\Repository;
 
-use App\Entity\PlayerVersion;
+use BBlm\Entity\PlayerVersion;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Service;
+namespace BBlm\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class LocalizerService
- * @package App\Service
+ * @package BBlm\Service
  */
 class LocalizerService {
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Validator\Constraints;
+namespace BBlm\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
+use function get_class;
 
 class TeamValue extends Constraint {
 
@@ -12,6 +13,6 @@ class TeamValue extends Constraint {
 
     public function validatedBy()
     {
-        return \get_class($this).'Validator';
+        return get_class($this).'Validator';
     }
 }

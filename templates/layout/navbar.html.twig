@@ -1,30 +1,27 @@
-<nav>
-    <h2>Navigation</h2>
-    <ul>
-        <li>
-            <a href="{{ path('home') }}">Dashboard</a>
-        </li>
-        <li>
-            <a href="{{ path('my_teams') }}">My teams</a>
-        </li>
-        <li>
-            <a href="{{ path('my_championships') }}">My Championships</a>
-        </li>
-        {% if(is_granted('ROLE_ADMIN')) %}
-        <li>
-            Admin
-            <ul>
-                <li>
-                    <a href="{{ path('admin_leagues') }}">Leagues</a>
-                </li>
-                <li>
-                    <a href="{{ path('admin_rules') }}">Rules</a>
-                </li>
-                <li>
-                    <a href="{{ path('admin_users') }}">Users</a>
-                </li>
-            </ul>
-        </li>
-        {% endif %}
-    </ul>
+<nav id="navigation" class="ui vertical inverted sidebar menu left">
+    <div class="item"><b>BBLM</b></div>
+    <a class="item" href="{{ path('home') }}">
+        <i aria-hidden="true" class="icon notranslate mdi mdi-view-dashboard"></i>
+        Dashboard
+    </a>
+    <a class="item" href="{{ path('my_teams') }}">
+        <i aria-hidden="true" class="icon notranslate mdi mdi-football"></i>
+        My teams
+    </a>
+    <a class="item" href="{{ path('my_championships') }}">
+        <i aria-hidden="true" class="icon notranslate mdi mdi-trophy-variant"></i>
+        My Championships
+    </a>
+    {% if(is_granted('ROLE_ADMIN')) %}
+    <div class="item">
+        <i class="options icon"></i>
+        <i aria-hidden="true" class="v-icon notranslate mdi mdi-options"></i>
+        Admin
+        <div class="menu">
+            <a class="item" href="{{ path('admin_leagues') }}">Leagues</a>
+            <a class="item" href="{{ path('admin_rules') }}">Rules</a>
+            <a class="item" href="{{ path('admin_users') }}">Users</a>
+        </div>
+    </div>
+    {% endif %}
 </nav>

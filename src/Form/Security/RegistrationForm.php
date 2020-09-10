@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Form\Security;
+namespace BBlm\Form\Security;
 
-use App\Entity\Coach;
+use BBlm\Entity\Coach;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;

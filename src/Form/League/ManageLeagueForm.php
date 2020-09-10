@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form\League;
+namespace BBlm\Form\League;
 
 final class ManageLeagueForm extends AbstractLeagueForm {
 

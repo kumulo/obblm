@@ -1,8 +1,12 @@
 <?php
-namespace App\Security\Voter;
+namespace BBlm\Security\Voter;
 
-use App\Entity\Championship;
-use App\Entity\Coach;
+use BBlm\Entity\Championship;
+use BBlm\Entity\Coach;
+use BBlm\Entity\Team;
+use BBlm\Service\TeamService;
+use Doctrine\ORM\EntityManagerInterface;
+use LogicException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
@@ -11,12 +15,19 @@ class ChampionshipVoter extends Voter
     // these strings are just invented: you can use anything
     const VIEW = 'championship.view';
     const EDIT = 'championship.edit';
+    const ADD_ENCOUNTER = 'championship.add_encounter';
     const MANAGE = 'championship.manage';
+
+    protected $em;
+
+    public function __construct(EntityManagerInterface $em) {
+        $this->em = $em;
+    }
 
     protected function supports(string $attribute, $subject)
     {
         // if the attribute isn't one we support, return false
-        if (!in_array($attribute, [self::VIEW, self::EDIT, self::MANAGE])) {
+        if (!in_array($attribute, [self::VIEW, self::EDIT, self::ADD_ENCOUNTER, self::MANAGE])) {
             return false;
         }
 
@@ -46,11 +57,13 @@ class ChampionshipVoter extends Voter
                 return $this->canView($championship, $coach);
             case self::EDIT:
                 return $this->canEdit($championship, $coach);
+            case self::ADD_ENCOUNTER:
+                return $this->canAddNewEncounter($championship, $coach);
             case self::MANAGE:
                 return $this->canManage($championship, $coach);
         }
 
-        throw new \LogicException("The voter $attribute is not defined!");
+        throw new LogicException("The voter $attribute is not defined!");
     }
 
     private function canView(Championship $championship, Coach $coach)
@@ -90,8 +103,23 @@ class ChampionshipVoter extends Voter
         if ($this->canManage($championship, $coach)) {
             return true;
         }
+
         // this assumes that the League has the Coach as Owner
         return $coach === $championship->getLeague()->getOwner();
+    }
+
+    private function canAddNewEncounter(Championship $championship, Coach $coach)
+    {
+        if ($this->canManage($championship, $coach)) {
+            return true;
+        }
+
+        $coach_teams = $this->em->getRepository(Team::class)->findBy([
+            'coach' => $coach,
+            'championship' => $championship,
+        ]);
+        // this assumes that the League has the Coach as Owner
+        return TeamService::areFreeOfEncounter($coach_teams);
     }
 
     private function canManage(Championship $championship, Coach $coach)

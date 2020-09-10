@@ -1,14 +1,21 @@
 <?php
 
-namespace App\Validator\Constraints;
+namespace BBlm\Validator\Constraints;
 
-use App\Entity\Team;
-use App\Service\TeamService;
+use BBlm\Entity\Team;
+use BBlm\Service\RuleService;
+use BBlm\Service\TeamService;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class TeamValueValidator extends ConstraintValidator {
+
+    protected $ruleService;
+
+    public function __construct(RuleService $ruleService) {
+        $this->ruleService = $ruleService;
+    }
 
     public function validate($value, Constraint $constraint)
     {
@@ -21,7 +28,8 @@ class TeamValueValidator extends ConstraintValidator {
 
         $rule = $value->getChampionship() ? $value->getChampionship()->getRule() : $value->getRule();
         $limit = $rule->getMaxTeamCost() ?? TeamValue::LIMIT;
-        $team_cost = TeamService::calculateTeamCost($value);
+        $team_cost = TeamService::calculateTeamValue(TeamService::getLastVersion($value),
+            $this->ruleService->getRule(TeamService::getTeamRule($value)));
 
         if($team_cost > $limit) {
             $this->context->buildViolation($constraint->limitMessage)

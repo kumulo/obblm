@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Form\Championship;
+namespace BBlm\Form\Championship;
 
-use App\Entity\Championship;
-use App\Service\TieBreakService;
+use BBlm\Entity\Championship;
+use BBlm\Service\TieBreakService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -21,6 +21,9 @@ class ManageChampionshipForm extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name')
+            ->add('points_per_win')
+            ->add('points_per_draw')
+            ->add('points_per_loss')
             ->add('tie_break_1', ChoiceType::class, [
                 'choices' => $this->tieBreakService->getTieBreaksForForm()
             ])

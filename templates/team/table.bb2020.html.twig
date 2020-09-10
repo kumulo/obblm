@@ -1,5 +1,5 @@
 <ul>
-    {% for player in team.players %}
+    {% for player in team.notDeadPlayers %}
         <li>
             {% include 'team/player-line.bb2020.html.twig' with { 'player': player } %}
         </li>

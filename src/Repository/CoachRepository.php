@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Repository;
+namespace BBlm\Repository;
 
-use App\Entity\Coach;
+use BBlm\Entity\Coach;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use function get_class;
 
 /**
  * @method Coach|null find($id, $lockMode = null, $lockVersion = null)
@@ -29,7 +30,7 @@ class CoachRepository extends ServiceEntityRepository implements UserLoaderInter
     public function upgradePassword(UserInterface $user, string $newEncodedPassword): void
     {
         if (!$user instanceof Coach) {
-            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
         }
 
         $user->setPassword($newEncodedPassword);

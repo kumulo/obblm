@@ -1,12 +1,12 @@
 security:
     encoders:
-        App\Entity\Coach: auto
+        BBlm\Entity\Coach: auto
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         app_user_provider:
             entity:
-                class: App\Entity\Coach
+                class: BBlm\Entity\Coach
     role_hierarchy:
         ROLE_MANAGER: ROLE_USER
         ROLE_ADMIN: ROLE_MANAGER
@@ -26,7 +26,7 @@ security:
             logout: true
             guard:
                 authenticators:
-                    - App\Security\ObblmAuthenticator
+                    - BBlm\Security\ObblmAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -37,6 +37,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/api/docs.json, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/activate, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Form\League;
+namespace BBlm\Form\League;
 
-use App\Entity\League;
+use BBlm\Entity\League;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

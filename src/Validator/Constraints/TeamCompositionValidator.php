@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Validator\Constraints;
+namespace BBlm\Validator\Constraints;
 
-use App\Entity\Team;
-use App\Service\PlayerService;
+use BBlm\Entity\Team;
+use BBlm\Service\PlayerService;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -21,7 +21,7 @@ class TeamCompositionValidator extends ConstraintValidator {
         $count = [];
         $max_positions = $this->getMaxPlayersByTypes($value);
 
-        foreach($value->getPlayers() as $player) {
+        foreach($value->getNotDeadPlayers() as $player) {
             $limit = $max_positions[$player->getType()];
             $type = $player->getType();
             isset($count[$type]) ? $count[$type]++ : $count[$type] = 1;

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Controller;
+namespace BBlm\Controller;
 
 use ApiPlatform\Core\Api\IriConverterInterface;
-use App\Entity\Coach;
-use App\Event\ActivateCoachEvent;
-use App\Event\RegisterCoachEvent;
-use App\Form\Security\RegistrationForm;
+use BBlm\Entity\Coach;
+use BBlm\Event\ActivateCoachEvent;
+use BBlm\Event\RegisterCoachEvent;
+use BBlm\Form\Security\RegistrationForm;
+use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,7 +58,7 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        throw new LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     /**

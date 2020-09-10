@@ -1,8 +1,9 @@
 <?php
-namespace App\Security\Voter;
+namespace BBlm\Security\Voter;
 
-use App\Entity\League;
-use App\Entity\Coach;
+use BBlm\Entity\Coach;
+use BBlm\Entity\League;
+use LogicException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
@@ -58,7 +59,7 @@ class LeagueVoter extends Voter
                 return $this->canManage($league, $coach);
         }
 
-        throw new \LogicException('This code should not be reached!');
+        throw new LogicException('This code should not be reached!');
     }
 
     private function canView(League $league, Coach $coach)
@@ -74,20 +75,14 @@ class LeagueVoter extends Voter
 
     private function canEdit(League $league, Coach $coach)
     {
-        // this assumes that the League object has a `getOwner()` method
-        return (
-            ($coach === $league->getOwner()) // $coach is owner
-            // $coach is league manager
-            || $this->security->isGranted('ROLE_ADMIN') // $coach is an admin
-        );
+        if ($this->canManage($league, $coach)) {
+            return true;
+        }
+        return false;
     }
 
     private function canManage(League $league, Coach $coach)
     {
-        if ($this->canEdit($league, $coach)) {
-            return true;
-        }
-
         // this assumes that the League object has a `getOwner()` method
         return (
             ($coach === $league->getOwner()) // $coach is owner

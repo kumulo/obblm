@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DataFixtures;
+namespace BBlm\DataFixtures;
 
-use App\Entity\League;
+use BBlm\Entity\League;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;

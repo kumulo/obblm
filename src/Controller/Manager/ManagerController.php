@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Controller\Manager;
+namespace BBlm\Controller\Manager;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class ManagerController
- * @package App\Controller\Manager
+ * @package BBlm\Controller\Manager
  *
  * @Route("/manage")
  */

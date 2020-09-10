@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\TieBreaker;
+namespace BBlm\Service\TieBreaker;
 
 use Doctrine\ORM\QueryBuilder;
 
@@ -11,5 +11,9 @@ class TouchdownLessTieBreak extends AbstractTieBreaker {
     public function updateTieBreakQuery(QueryBuilder $query)
     {
         return $query->addOrderBy('t.td_take', 'DESC');
+    }
+    public function getOrderingForCriteria():array
+    {
+        return ['td_take' => 'ASC'];
     }
 }

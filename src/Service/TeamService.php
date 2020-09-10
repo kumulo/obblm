@@ -1,34 +1,24 @@
 <?php
 
-namespace App\Service;
+namespace BBlm\Service;
 
-use App\Entity\Rule;
-use App\Entity\Team;
+use BBlm\Entity\Encounter;
+use BBlm\Entity\Rule;
+use BBlm\Entity\Team;
+use BBlm\Entity\TeamVersion;
+use BBlm\Service\Rule\RuleInterface;
+use Doctrine\Common\Collections\Collection;
 
 class TeamService {
 
     const TRANSLATION_GLUE = '.';
 
-    public static function calculateTeamValue(Team $team):int {
-        $team_cost = 0;
-        $rule = self::getTeamRule($team);
-
-        // Players
-        foreach($team->getPlayers() as $player) {
-            $team_cost += $rule->getPlayerCost($player->getType());
-        }
-        // Sidelines
-        $team_cost += $team->getRerolls() * self::getRerollCost($team);
-        $team_cost += $team->getAssistants() * self::getAssistantsCost($team);
-        $team_cost += $team->getCheerleaders() * self::getCheerleadersCost($team);
-        $team_cost += $team->getPopularity() * self::getPopularityCost($team);
-        $team_cost += ($team->getApothecary()) ? self::getApothecaryCost($team) : 0;
-
-        return $team_cost;
+    public static function calculateTeamValue(TeamVersion $version, RuleInterface $rule):int {
+        return $rule->calculateTeamValue($version);
     }
 
-    public static function calculateTeamRate(Team $team):int {
-        return self::calculateTeamValue($team) / 10000;
+    public static function calculateTeamRate(TeamVersion $version, RuleInterface $rule):int {
+        return $rule->calculateTeamRate($version);
     }
 
     public static function getApothecaryCost(Team $team):int {
@@ -63,7 +53,47 @@ class TeamService {
         return (int) self::getTeamRule($team)->getRule()['rosters'][$team->getRoster()]['options']['reroll_cost'];
     }
 
-    public static function isTeamCouldHaveApothecary(Team $team):bool {
+    public static function couldHaveApothecary(Team $team):bool {
         return (bool) self::getTeamRule($team)->getRule()['rosters'][$team->getRoster()]['options']['can_have_apothecary'];
+    }
+
+    /**
+     * If at least one team is free of encounter
+     * @param Collection|Team[] $teams
+     * @return bool
+     */
+    public static function areFreeOfEncounter(array $teams):bool {
+        $free = false;
+        foreach($teams as $team) {
+            if(self::isFreeOfEncounter($team)) $free = true;
+        }
+        return $free;
+    }
+
+    public static function isFreeOfEncounter(Team $team):bool {
+        return (bool) !self::getOpenedEncounter($team);
+    }
+
+    public static function getOpenedEncounter(Team $team):?Encounter {
+        foreach($team->getEncounters() as $encounter) {
+            if(!$encounter->getValidatedAt()) {
+                return $encounter;
+            }
+        }
+        return null;
+    }
+    public static function getLastVersion(Team  $team):TeamVersion {
+        $versions = $team->getVersions();
+        /** @var TeamVersion $last */
+        $last = $versions->first();
+        if($last) {
+            return $last;
+        }
+        $version = new TeamVersion();
+        $team->addVersion($version);
+        return $version;
+    }
+    public static function getLastEncounter(Team $team):bool {
+        return false;
     }
 }

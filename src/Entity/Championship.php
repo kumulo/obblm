@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Entity;
+namespace BBlm\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ChampionshipRepository;
+use BBlm\Repository\ChampionshipRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,7 +56,7 @@ class Championship
     /**
      * @ORM\Column(type="boolean")
      */
-    private $auto_validate_games = false;
+    private $auto_validate_encounters = false;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -68,12 +69,12 @@ class Championship
     private $journeys;
 
     /**
-     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="championship", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Encounter::class, mappedBy="championship", orphanRemoval=true)
      */
-    private $games;
+    private $encounters;
 
     /**
-     * @ORM\OneToMany(targetEntity=Team::class, mappedBy="championship")
+     * @ORM\OneToMany(targetEntity=Team::class, fetch="EAGER", mappedBy="championship")
      */
     private $teams;
 
@@ -114,10 +115,25 @@ class Championship
      */
     private $is_locked = false;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $points_per_win = 5;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $points_per_draw = 3;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $points_per_loss = 0;
+
     public function __construct()
     {
         $this->journeys = new ArrayCollection();
-        $this->games = new ArrayCollection();
+        $this->encounters = new ArrayCollection();
         $this->teams = new ArrayCollection();
         $this->managers = new ArrayCollection();
         $this->invitations = new ArrayCollection();
@@ -201,14 +217,14 @@ class Championship
         return $this;
     }
 
-    public function getAutoValidateGames(): ?bool
+    public function getAutoValidateEncounters(): ?bool
     {
-        return $this->auto_validate_games;
+        return $this->auto_validate_encounters;
     }
 
-    public function setAutoValidateGames(bool $auto_validate_games): self
+    public function setAutoValidateEncounters(bool $auto_validate_encounters): self
     {
-        $this->auto_validate_games = $auto_validate_games;
+        $this->auto_validate_encounters = $auto_validate_encounters;
 
         return $this;
     }
@@ -257,30 +273,30 @@ class Championship
     }
 
     /**
-     * @return Collection|Game[]
+     * @return Collection|Encounter[]
      */
-    public function getGames(): Collection
+    public function getEncounters(): Collection
     {
-        return $this->games;
+        return $this->encounters;
     }
 
-    public function addGame(Game $game): self
+    public function addEncounter(Encounter $encounter): self
     {
-        if (!$this->games->contains($game)) {
-            $this->games[] = $game;
-            $game->setChampionship($this);
+        if (!$this->encounters->contains($encounter)) {
+            $this->encounters[] = $encounter;
+            $encounter->setChampionship($this);
         }
 
         return $this;
     }
 
-    public function removeGame(Game $game): self
+    public function removeEncounter(Encounter $encounter): self
     {
-        if ($this->games->contains($game)) {
-            $this->games->removeElement($game);
+        if ($this->encounters->contains($encounter)) {
+            $this->encounters->removeElement($encounter);
             // set the owning side to null (unless already changed)
-            if ($game->getChampionship() === $this) {
-                $game->setChampionship(null);
+            if ($encounter->getChampionship() === $this) {
+                $encounter->setChampionship(null);
             }
         }
 
@@ -293,6 +309,14 @@ class Championship
     public function getTeams(): Collection
     {
         return $this->teams;
+    }
+
+    public function getTeamsOrdered(): Collection
+    {
+        $criteria = Criteria::create()
+            ->orderBy(['team.versions.first.points' => 'DESC'])
+        ;
+        return $this->teams->matching($criteria);
     }
 
     public function addTeam(Team $team): self
@@ -455,6 +479,42 @@ class Championship
         if ($this->guests->contains($guest)) {
             $this->guests->removeElement($guest);
         }
+
+        return $this;
+    }
+
+    public function getPointsPerWin(): ?int
+    {
+        return $this->points_per_win;
+    }
+
+    public function setPointsPerWin(int $points_per_win): self
+    {
+        $this->points_per_win = $points_per_win;
+
+        return $this;
+    }
+
+    public function getPointsPerDraw(): ?int
+    {
+        return $this->points_per_draw;
+    }
+
+    public function setPointsPerDraw(int $points_per_draw): self
+    {
+        $this->points_per_draw = $points_per_draw;
+
+        return $this;
+    }
+
+    public function getPointsPerLoss(): ?int
+    {
+        return $this->points_per_loss;
+    }
+
+    public function setPointsPerLoss(int $points_per_loss): self
+    {
+        $this->points_per_loss = $points_per_loss;
 
         return $this;
     }

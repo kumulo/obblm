@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Event;
+namespace BBlm\Event;
 
-use App\Entity\Championship;
+use BBlm\Entity\Championship;
 use Symfony\Contracts\EventDispatcher\Event;
 
 class ChampionshipLaunchedEvent extends Event {

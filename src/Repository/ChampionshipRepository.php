@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace BBlm\Repository;
 
-use App\Entity\Championship;
-use App\Entity\Coach;
-use App\Entity\Team;
+use BBlm\Entity\Championship;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -34,6 +32,7 @@ class ChampionshipRepository extends ServiceEntityRepository
             ->where('manager = :coach')
             ->leftJoin('champ.teams', 'team')
             ->orWhere('team.coach = :coach')
+            ->groupBy('champ.id')
             ->setParameter(':coach', $this->security->getToken()->getUser());
     }
 

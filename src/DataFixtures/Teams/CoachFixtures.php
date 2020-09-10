@@ -1,10 +1,10 @@
 <?php
 
-namespace App\DataFixtures\Teams;
+namespace BBlm\DataFixtures\Teams;
 
-use App\DataFixtures\ChampionshipFixtures;
-use App\Entity\Championship;
-use App\Entity\Coach;
+use BBlm\DataFixtures\ChampionshipFixtures;
+use BBlm\Entity\Championship;
+use BBlm\Entity\Coach;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -25,7 +25,7 @@ class CoachFixtures extends Fixture implements DependentFixtureInterface, Fixtur
     {
         /** @var Championship $championship */
         $championship = $this->getReference(ChampionshipFixtures::CHAMPIONSHIP_REFERENCE);
-        for($i=1; $i <= 8; $i++) {
+        for($i=1; $i <= 24; $i++) {
             $coach = (new Coach())
                 ->setEmail('coach-' . $i . '@obblm.com')
                 ->setUsername('coach' . $i);

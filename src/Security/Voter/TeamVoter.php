@@ -1,8 +1,9 @@
 <?php
-namespace App\Security\Voter;
+namespace BBlm\Security\Voter;
 
-use App\Entity\Team;
-use App\Entity\Coach;
+use BBlm\Entity\Coach;
+use BBlm\Entity\Team;
+use LogicException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
@@ -50,7 +51,7 @@ class TeamVoter extends Voter
                 return $this->canEdit($team, $coach);
         }
 
-        throw new \LogicException('This code should not be reached!');
+        throw new LogicException('This code should not be reached!');
     }
 
     private function canView(Team $team, Coach $coach)
@@ -59,6 +60,7 @@ class TeamVoter extends Voter
         if ($this->canManage($team, $coach)) {
             return true;
         }
+        return true;
     }
 
     private function canManage(Team $team, Coach $coach)

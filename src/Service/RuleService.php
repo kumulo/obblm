@@ -1,65 +1,94 @@
 <?php
 
-namespace App\Service;
-use App\Entity\Rule;
-use Doctrine\ORM\EntityManagerInterface;
+namespace BBlm\Service;
+use BBlm\Entity\Rule;
+use BBlm\Form\Encounter\ActionBb2020Type;
+use BBlm\Form\Encounter\ActionType;
+use BBlm\Form\Encounter\InjuryBb2020Type;
+use BBlm\Form\Encounter\InjuryType;
+use BBlm\Service\Rule\RuleInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Exception;
+use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 class RuleService {
 
     const TRANSLATION_GLUE = '.';
 
-    private $em;
-    private $translator;
-    private $available_rules;
+    private $rule_services;
+    private $rules;
+    private $cache;
 
-    public function __construct(EntityManagerInterface $em, $translator, $datas) {
-        $this->em = $em;
-        $this->translator = $translator;
-
-        foreach($datas as $name => $rule) $this->addStaticRule($name, $rule);
-        $rules = $this->em->getRepository(Rule::class)->findAll();
-        foreach($rules as $rule) $this->addRule($rule);
+    public function __construct(AdapterInterface $cache) {
+        $this->rule_services = new ArrayCollection();
+        $this->rules = new ArrayCollection();
+        $this->cache = $cache;
     }
 
     public function getRules() {
-        return $this->available_rules;
+        return $this->rules;
     }
 
-    public function getRulesForForm() {
-        $rules = array();
-        foreach($this->available_rules as $key => $rule) {
-            if($rule->getId()) {
-                $rules[$rule->getName()] = $rule->getRuleKey();
-            }
-            else {
-                $rules[$this->translator->trans('rules.' . $key . '.title', array(), 'rules')] = $key;
-            }
+    public function addRule(RuleInterface $rule) {
+        if (!$rule instanceof RuleInterface) {
+            throw new UnexpectedTypeException($rule, RuleInterface::class);
         }
-        return $rules;
+        $this->rule_services->offsetSet($rule->getKey(), $rule);
+    }
+    public function getRuleService($key):?RuleInterface {
+        if (!isset($this->rule_services[$key])) {
+            throw new Exception('No Service found for ' . $key);
+        }
+        return $this->rule_services[$key];
+    }
+    public function getRule(Rule $rule):RuleInterface {
+        $key = self::getCacheKey($rule);
+        return $this->getCacheOrCreate($key, $rule);
     }
 
-    public function addStaticRule($name, Array $data) {
-        $rule = (new Rule())
-            ->setRule($data)
-            ->setRuleKey($name)
-            ->setName($this->translator->trans('rules.' . $name . '.title', array(), 'rules'));
-        $this->available_rules[$rule->getRuleKey()] = $rule;
+    protected static function getCacheKey(Rule $rule) {
+        return join(self::TRANSLATION_GLUE, ['bblm', 'rules', $rule->getRuleKey(), $rule->getId()]);
     }
+    public function getCacheOrCreate($key, Rule $rule):RuleInterface {
+        $item = $this->cache->getItem($key);
+        if (!$item->isHit()) {
+            $ruleService = $this->getRuleService($rule->getRuleKey());
+            $ruleService->attachRule($rule);
+            $this->cache->save($item->set($ruleService));
+        } else {
+            $ruleService = $item->get();
+        }
 
-    public function addRule(Rule $rule) {
-        $this->available_rules[$rule->getRuleKey()] = $rule;
-    }
-    public function getRule($key) {
-        return (isset($this->available_rules[$key])) ? $this->available_rules[$key] : false;
+        return $ruleService;
     }
 
     public static function composeTranslationRosterKey($rule_key, $roster):string {
         return join(self::TRANSLATION_GLUE, [$rule_key, 'rosters', $roster, 'title']);
     }
 
+    public static function composeTranslationRosterDescription($rule_key, $roster):string {
+        return join(self::TRANSLATION_GLUE, [$rule_key, 'rosters', $roster, 'description']);
+    }
+
+    public static function composeTranslationInjuryKey($rule_key, $injury_key):string {
+        return join(self::TRANSLATION_GLUE, [$rule_key, 'injuries', $injury_key, 'name']);
+    }
+
+    public static function composeTranslationInjuryEffect($rule_key, $injury_key):string {
+        return join(self::TRANSLATION_GLUE, [$rule_key, 'injuries', $injury_key, 'effect']);
+    }
+
     public static function getAvailableRosters(Rule $object):array {
         $rule = $object->getRule();
-
         return array_keys($rule['rosters']);
+    }
+
+    public static function getActionFormType(Rule $rule):string {
+        return ($rule->isPostBb2020()) ? ActionBb2020Type::class : ActionType::class;
+    }
+
+    public static function getInjuryFormType(Rule $rule):string {
+        return ($rule->isPostBb2020()) ? InjuryBb2020Type::class : InjuryType::class;
     }
 }

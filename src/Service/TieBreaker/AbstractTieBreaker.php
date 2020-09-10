@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Service\TieBreaker;
+namespace BBlm\Service\TieBreaker;
 
-use App\Traits\ClassNameAsKeyTrait;
+use BBlm\Traits\ClassNameAsKeyTrait;
 
 abstract class AbstractTieBreaker implements TieBreakerInterface {
     use ClassNameAsKeyTrait;

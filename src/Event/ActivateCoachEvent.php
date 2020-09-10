@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Event;
+namespace BBlm\Event;
 
-use App\Entity\Coach;
+use BBlm\Entity\Coach;
 use Symfony\Contracts\EventDispatcher\Event;
 
 class ActivateCoachEvent extends Event {

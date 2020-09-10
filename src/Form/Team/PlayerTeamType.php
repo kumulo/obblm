@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Form\Team;
+namespace BBlm\Form\Team;
 
-use App\Entity\Player;
-use App\Entity\Rule;
-use App\Service\PlayerService;
+use BBlm\Entity\Player;
+use BBlm\Entity\Rule;
+use BBlm\Service\PlayerService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

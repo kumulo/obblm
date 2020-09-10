@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace BBlm\Controller\Admin;
 
-use App\Entity\Coach;
-use App\Form\AdminUserForm;
+use BBlm\Entity\Coach;
+use BBlm\Form\AdminUserForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class UserAdminController
- * @package App\Controller\Admin
+ * @package BBlm\Controller\Admin
  *
  * @Route("/admin/users")
  */

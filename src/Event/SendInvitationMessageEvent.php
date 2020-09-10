@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Event;
+namespace BBlm\Event;
 
-use App\Entity\Championship;
-use App\Entity\ChampionshipInvitation;
-use App\Entity\Coach;
-use App\Entity\EmailObjectInterface;
+use BBlm\Entity\Championship;
+use BBlm\Entity\EmailObjectInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
 class SendInvitationMessageEvent extends Event {

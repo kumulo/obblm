@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Service\ChampionshipFormat;
+namespace BBlm\Service\ChampionshipFormat;
 
-use App\Service\ChampionshipService;
-use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use BBlm\Service\ChampionshipService;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 
 class ChampionshipFormatsPass implements CompilerPassInterface
 {

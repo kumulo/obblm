@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service;
+namespace BBlm\Service;
 
-use App\Entity\Player;
-use App\Entity\PlayerVersion;
+use BBlm\Entity\Player;
+use BBlm\Entity\PlayerVersion;
 
 class PlayerService {
 
@@ -23,35 +23,57 @@ class PlayerService {
     }
 
     public static function getPlayerSkills(Player $player):array {
-        $last = self::getLastVersion($player);
-        return ($last instanceof PlayerVersion) ? $last->getSkills() : ($last['skills'] ?? []);
+        return self::getLastVersion($player)->getSkills() ?: [];
     }
 
     public static function getPlayerCharacteristics(Player $player):array {
-        $last = self::getLastVersion($player);
-        return ($last instanceof PlayerVersion) ? $last->getCharacteristics() : $last;
+        return self::getLastVersion($player)->getCharacteristics() ?: [];
+    }
+
+    public static function getPlayerSpp(Player $player):string {
+        return self::getLastVersion($player)->getSpp() ?: 0;
     }
 
     public static function getPlayerValue(Player $player):string {
-        $last = self::getLastVersion($player);
-        $rule = TeamService::getTeamRule($player->getTeam());
-        list($rule_key, $roster, $type) = explode('.', $player->getType());
-        return ($last instanceof PlayerVersion) ? $last->getValue() : $rule->getRule()['rosters'][$roster]['players'][$type]['cost'];
+        return self::getLastVersion($player)->getValue() ?: 0;
     }
 
     /**
      * @param Player $player
-     * @return PlayerVersion|array
+     * @return PlayerVersion
      */
-    public static function getLastVersion(Player $player) {
+    public static function getLastVersion(Player $player):PlayerVersion {
         $versions = $player->getVersions();
         /** @var PlayerVersion $last */
         $last = $versions->first();
         if($last) {
             return $last;
         }
-        $rule = TeamService::getTeamRule($player->getTeam());
+        $base = self::getBasePlayerVersion($player);
+        return (new PlayerVersion())
+            ->setPlayer($player)
+            // TODO : this part id linked to rules
+            ->setCharacteristics([
+                'ma' => $base['ma'],
+                'st' => $base['st'],
+                'ag' => $base['ag'],
+                'av' => $base['av']
+            ])
+            ->setActions([
+                'td' => 0,
+                'cas' => 0,
+                'pas' => 0,
+                'int' => 0,
+                'mvp' => 0,
+            ])
+            ->setSkills(($base['skills'] ?? []))
+            ->setValue($base['cost']);
+    }
+    public static function getBasePlayerVersion(Player $player):array {
         list($rule_key, $roster, $type) = explode('.', $player->getType());
-        return $rule->getRule()['rosters'][$roster]['players'][$type];
+        $rule = TeamService::getTeamRule($player->getTeam());
+        $base = $rule->getRule()['rosters'][$roster]['players'][$type];
+        $base['injuries'] = [];
+        return $base;
     }
 }

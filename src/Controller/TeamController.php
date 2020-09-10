@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Controller;
+namespace BBlm\Controller;
 
-use App\Entity\Championship;
-use App\Entity\Rule;
-use App\Entity\Team;
-use App\Form\Team\EditTeamType;
-use App\Form\Team\TeamRulesSelectorForm;
-use App\Security\Voter\TeamVoter;
+use BBlm\Entity\Championship;
+use BBlm\Entity\Rule;
+use BBlm\Entity\Team;
+use BBlm\Form\Team\EditTeamType;
+use BBlm\Form\Team\TeamRulesSelectorForm;
+use BBlm\Security\Voter\TeamVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 /**
  * Class TeamController
- * @package App\Controller
+ * @package BBlm\Controller
  *
  * @Route("/teams")
  */
@@ -52,7 +52,7 @@ class TeamController extends AbstractController {
                 return $this->redirectToRoute('team_create_championship', ['championship' => $team->getChampionship()->getId()]);
             }
             else {
-                throw new InvalidParameterException("Impossible to create the redirect route.");;
+                throw new InvalidParameterException("Impossible to create the redirect route.");
             }
         }
 

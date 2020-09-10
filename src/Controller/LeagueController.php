@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Controller;
+namespace BBlm\Controller;
 
-use App\Entity\League;
+use BBlm\Entity\League;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class LeagueController
- * @package App\Controller
+ * @package BBlm\Controller
  *
  * @Route("/leagues")
  */

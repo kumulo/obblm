@@ -1,15 +1,22 @@
 <?php
 
-namespace App\Controller;
+namespace BBlm\Controller;
 
-use App\Entity\Championship;
-use App\Entity\Team;
+use BBlm\Entity\Championship;
+use BBlm\Entity\Encounter;
+use BBlm\Entity\Team;
+use BBlm\Form\Encounter\EncounterForm;
+use BBlm\Service\ChampionshipService;
+use BBlm\Service\RuleService;
+use BBlm\Service\TeamService;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class LeagueController
- * @package App\Controller
+ * @package BBlm\Controller
  *
  * @Route("/championships")
  */
@@ -28,12 +35,21 @@ class ChampionshipController extends AbstractController {
     /**
      * @Route("/{championship}", name="championship_detail")
      */
-    public function detail(Championship $championship) {
+    public function detail(Championship $championship, ChampionshipService $championshipService) {
         $this->denyAccessUnlessGranted('championship.view', $championship);
+
+        $versions = $championshipService
+            ->getFormat($championship->getFormat())
+            ->getOrderedTeamsWithTieBreaks($championship);
+        if(count($versions) == 0 && $this->isGranted('championship.manage', $championship)) {
+            $versions = array_map(function(Team $team) {
+                return TeamService::getLastVersion($team);
+            }, $championship->getTeams()->toArray());
+        }
 
         return $this->render('championship/detail.html.twig', [
             'championship' => $championship,
-            'teams' => $championship->getTeams(),
+            'teamVersions' => $versions,
         ]);
     }
     /**
@@ -44,6 +60,78 @@ class ChampionshipController extends AbstractController {
 
         return $this->render('team/detail.html.twig', [
             'team' => $team,
+        ]);
+    }
+    /**
+     * @Route("/{championship}/encounter/add", name="championship_add_encounter")
+     */
+    public function addEncounter(Championship $championship, Request $request) {
+        $this->denyAccessUnlessGranted('championship.add_encounter', $championship);
+
+        $encounter = (new Encounter())
+            ->setChampionship($championship)
+            ->setCreatedAt(new DateTime());
+
+        $form = $this->createForm(EncounterForm::class, $encounter, [
+            'available_teams' => ChampionshipService::getFreeOfEncountersTeams($championship)
+        ]);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($encounter);
+            $em->flush();
+            return $this->redirectToRoute('championship_edit_encounter', [
+                'championship' => $championship->getId(),
+                'encounter' => $encounter->getId(),
+            ]);
+        }
+
+        return $this->render('form/encounter/add.html.twig', [
+            'championship' => $championship,
+            'form' => $form->createView(),
+        ]);
+    }
+    /**
+     * @Route("/{championship}/encounter/{encounter}", name="championship_view_encounter")
+     */
+    public function viewEncounter(Championship $championship, Encounter $encounter) {
+        $this->denyAccessUnlessGranted('encounter.view', $encounter);
+
+        return $this->render('encounter/detail.html.twig', [
+            'championship' => $championship,
+            'encounter' => $encounter
+        ]);
+    }
+    /**
+     * @Route("/{championship}/encounter/{encounter}/edit", name="championship_edit_encounter")
+     */
+    public function editEncounter(Championship $championship, Encounter $encounter, RuleService $ruleService, Request $request) {
+        $this->denyAccessUnlessGranted('encounter.edit', $encounter);
+
+        $form = $this->createForm(EncounterForm::class, $encounter, [
+            'available_teams' => ChampionshipService::getFreeOfEncountersTeams($championship),
+            'disable_teams' => true,
+            'rule' => $ruleService->getRule($championship->getRule())
+        ]);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            foreach($encounter->getHomeActions() as $action) $encounter->addAction($action);
+            foreach($encounter->getVisitorActions() as $action) $encounter->addAction($action);
+            $em->persist($encounter);
+            $em->flush();
+            return $this->redirectToRoute('championship_view_encounter', [
+                'championship' => $championship->getId(),
+                'encounter' => $encounter->getId(),
+            ]);
+        }
+
+        return $this->render('form/encounter/edit.html.twig', [
+            'championship' => $championship,
+            'form' => $form->createView(),
+            'encounter' => $encounter
         ]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace BBlm\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,8 +11,15 @@ class FrontendController extends AbstractController {
      * @Route("/", name="home")
      */
     public function home(SerializerInterface $serializer) {
-        return $this->render('dashboard/index.html.twig', [
+        $response = $this->render('dashboard/index.html.twig', [
             //'user' => $serializer->serialize($this->getUser(), 'json'),
         ]);
+        // cache for 3600 seconds
+        $response->setSharedMaxAge(3600);
+
+        // (optional) set a custom Cache-Control directive
+        $response->headers->addCacheControlDirective('must-revalidate', true);
+
+        return $response;
     }
 }

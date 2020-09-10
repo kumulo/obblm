@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     libgmp3-dev libldap2-dev unixodbc-dev \
     libsqlite3-dev libaspell-dev libsnmp-dev \
     libpcre3-dev libtidy-dev libonig-dev \
-    libzip-dev
+    libzip-dev unzip
 
 # Install Node, Yarn
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
@@ -48,6 +48,7 @@ RUN pecl install -o -f redis \
     &&  docker-php-ext-enable redis
 
 RUN apt-get install -y supervisor
+COPY ./docker/app/messenger-worker.conf /etc/supervisor/conf.d/
 
 RUN docker-php-ext-install bcmath
 

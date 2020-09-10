@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace BBlm\Controller\Admin;
 
-use App\Entity\Rule;
+use BBlm\Entity\Rule;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class RuleAdminController
- * @package App\Controller\Admin
+ * @package BBlm\Controller\Admin
  *
  * @Route("/admin/rules")
  */

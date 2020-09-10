@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace BBlm\Repository;
 
-use App\Entity\Rule;
+use BBlm\Entity\Rule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

@@ -61,7 +61,7 @@ rules:
                         available_skills_on_double: ['s', 'p']
                 options:
                     reroll_cost: 70000
-                    available_star_players: [hack_enslash, j_earlice, setekh, wilhelm_chaney, ramtut, count_luthor_von_drakenborg]
+                    available_star_players: [hack_enslash, j_earlice, setekh, wilhelm_chaney, ramtut_iii, count_luthor_von_drakenborg]
                     can_have_apothecary: false
                     can_have_sorcerer: true
                     can_have_igor: true
